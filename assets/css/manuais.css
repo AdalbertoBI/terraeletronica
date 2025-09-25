@@ -1,0 +1,72 @@
+/* Estilos específicos para a página de manuais */
+.downloads {
+  background: var(--gray-100);
+  padding: var(--spacing-4xl) 0;
+}
+.downloads-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--spacing-lg);
+}
+.downloads-tabs {
+  display: inline-flex;
+  gap: 8px;
+  background: var(--white);
+  padding: 6px;
+  border-radius: 10px;
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-base);
+  margin-bottom: var(--spacing-lg);
+}
+.tab-btn {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--gray-800);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.tab-btn[aria-selected="true"] {
+  background: var(--primary-50, #E0F2F1);
+  border-color: var(--primary-100, #B2DFDB);
+}
+.download-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-base);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+}
+.download-card i {
+  font-size: 28px;
+  color: var(--primary-color);
+}
+.download-meta {
+  flex: 1;
+}
+.download-name {
+  font-weight: 600;
+  color: var(--gray-800);
+}
+.download-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+.download-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid var(--gray-300);
+  color: var(--gray-800);
+  transition: var(--transition-base);
+}
+.download-actions a:hover {
+  background: var(--gray-100);
+}

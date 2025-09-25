@@ -1,0 +1,286 @@
+/* Board Som Specific Styles */
+:root {
+    --board-som-primary: #4A90E2;
+    --board-som-secondary: #357ABD;
+    --board-som-accent: #FFA726;
+    --board-som-gradient: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+}
+
+/* Override theme for Board Som */
+.board-som {
+    --primary-color: #4A90E2;
+    --secondary-color: #357ABD;
+    --accent-color: #FFA726;
+    --gradient-primary: var(--board-som-gradient);
+}
+
+/* Board Som Container */
+.board-som-container {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+    padding: 20px;
+    background: rgba(74, 144, 226, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 2px solid rgba(74, 144, 226, 0.3);
+    width: 60%;
+    max-width: 400px;
+    z-index: 10;
+}
+
+/* Board Som Keys */
+.board-key {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 2px solid var(--board-som-primary);
+    border-radius: 12px;
+    padding: 15px 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-height: 60px;
+    box-shadow: 
+        0 4px 12px rgba(74, 144, 226, 0.2),
+        inset 0 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+.board-key:hover {
+    background: linear-gradient(135deg, var(--board-som-primary) 0%, var(--board-som-secondary) 100%);
+    color: white;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 
+        0 8px 20px rgba(74, 144, 226, 0.4),
+        inset 0 1px 3px rgba(255, 255, 255, 0.3);
+    border-color: var(--board-som-accent);
+}
+
+.board-key:active,
+.board-key.active {
+    transform: translateY(2px) scale(0.95);
+    box-shadow: 
+        0 2px 8px rgba(74, 144, 226, 0.3),
+        inset 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.key-icon {
+    font-size: 1.5rem;
+    color: var(--board-som-primary);
+    transition: color 0.3s ease;
+}
+
+.board-key:hover .key-icon {
+    color: white;
+}
+
+.key-number {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--board-som-secondary);
+    transition: color 0.3s ease;
+}
+
+.board-key:hover .key-number {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Board Som Controls */
+.board-controls {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
+    background: rgba(74, 144, 226, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 15px 25px;
+    border-radius: 30px;
+    border: 1px solid rgba(74, 144, 226, 0.3);
+    z-index: 10;
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.control-item:hover {
+    transform: translateY(-2px);
+}
+
+.control-icon {
+    font-size: 1.5rem;
+    color: var(--board-som-primary);
+    transition: all 0.3s ease;
+}
+
+.control-item:hover .control-icon {
+    color: var(--board-som-accent);
+    transform: scale(1.2);
+}
+
+.control-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: rgba(74, 144, 226, 0.8);
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Animações específicas do Board Som */
+@keyframes boardKeyPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+@keyframes boardNoteFloat {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(-15deg);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(-50%, -50%) scale(1) rotate(-10deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -80px) scale(1.2) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+/* Animação para teclas ativas */
+.board-key.ringing {
+    animation: boardKeyPress 0.4s ease-in-out;
+}
+
+/* Partículas específicas do Board Som */
+@keyframes particleFloat {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -150px) scale(1.5);
+        opacity: 0;
+    }
+}
+
+@keyframes particleHover {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -100px) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Hero customizado para Board Som */
+.board-som .product-hero {
+    background: 
+        linear-gradient(135deg, rgba(74, 144, 226, 0.85) 0%, rgba(53, 122, 189, 0.85) 100%),
+        url('../../assets/images/banners/sala-de-musicoterapia.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Ondas sonoras do Board Som */
+.sound-waves {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 5px;
+    opacity: 0.3;
+}
+
+.wave {
+    width: 4px;
+    height: 40px;
+    background: var(--board-som-accent);
+    border-radius: 2px;
+    animation: soundWave 1.5s ease-in-out infinite;
+}
+
+.wave-2 {
+    animation-delay: 0.2s;
+}
+
+.wave-3 {
+    animation-delay: 0.4s;
+}
+
+@keyframes soundWave {
+    0%, 100% {
+        height: 20px;
+        opacity: 0.3;
+    }
+    50% {
+        height: 60px;
+        opacity: 1;
+    }
+}
+
+/* Destaque de nota musical */
+.note-highlight {
+    background: var(--board-som-accent) !important;
+    color: white !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 0 20px var(--board-som-accent) !important;
+}
+
+/* Responsive para Board Som */
+@media (max-width: 768px) {
+    .board-som-container {
+        width: 80%;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 6px;
+        padding: 15px;
+    }
+    
+    .board-key {
+        min-height: 50px;
+        padding: 10px 8px;
+    }
+    
+    .key-icon {
+        font-size: 1.2rem;
+    }
+    
+    .key-number {
+        font-size: 0.7rem;
+    }
+    
+    .board-controls {
+        bottom: 5%;
+        gap: 15px;
+        padding: 12px 20px;
+    }
+    
+    .control-icon {
+        font-size: 1.2rem;
+    }
+    
+    .control-label {
+        font-size: 0.6rem;
+    }
+}

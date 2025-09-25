@@ -1,0 +1,4 @@
+# Placeholder para imagem hero da página Tecnologia Assistiva
+# Dimensões sugeridas: 1920x1080px
+# Conteúdo sugerido: pessoas usando tecnologia assistiva, ambiente inclusivo, tecnologia adaptativa
+# Cores: tons de azul e verde (seguindo a identidade visual da Terra Eletrônica)

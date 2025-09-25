@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manuais e Downloads - Terra Eletrônica</title>
+  <meta name="description" content="Manuais e materiais para download da Terra Eletrônica." />
+  <link rel="icon" type="image/png" href="assets/images/logos/terra-compact.png" sizes="32x32">
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/manuais.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar" aria-label="Navegação principal">
+      <div class="container">
+        <div class="nav-brand">
+          <a href="index.html" aria-label="Voltar ao início">
+            <picture>
+              <source type="image/webp" srcset="assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
+              <source type="image/webp" srcset="assets/images/logos/terra-compact.webp" media="(max-width:899px)">
+              <source srcset="assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
+              <source srcset="assets/images/logos/terra-compact.png" media="(max-width:899px)">
+              <img src="assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+            </picture>
+          </a>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="index.html#home" class="nav-link">Início</a></li>
+          <li><a href="produtos/instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
+          <li><a href="produtos/sensory-musical.html" class="nav-link">Sensory Musical</a></li>
+          <li><a href="produtos/tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
+          <li><a href="index.html#sobre" class="nav-link">Sobre</a></li>
+          <li><a href="index.html#contato" class="nav-link">Contato</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="downloads">
+      <div class="container">
+        <div class="section-header">
+          <h1 class="section-title">Manuais e Downloads</h1>
+          <p class="section-subtitle">Arquivos disponíveis para leitura e download</p>
+        </div>
+        <div class="downloads-tabs" role="tablist" aria-label="Selecionar tipo de arquivo">
+          <button id="tab-manual" role="tab" aria-controls="panel-lista" aria-selected="true" class="tab-btn">Manuais</button>
+          <button id="tab-download" role="tab" aria-controls="panel-lista" aria-selected="false" class="tab-btn">Downloads</button>
+        </div>
+        <div id="panel-lista" role="tabpanel" aria-labelledby="tab-manual">
+          <div id="downloadsList" class="downloads-list" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/manuais.js"></script>
+</body>
+</html>

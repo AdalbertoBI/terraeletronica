@@ -1,0 +1,1338 @@
+/* ========================================
+   🎵 INSTRUMENTOS NET-MIDI-T.A. STYLES 
+======================================== */
+
+/* Paleta de Cores Musicais */
+:root {
+    --musical-primary: #1e3a8a;
+    --musical-secondary: #f59e0b;
+    --musical-accent: #10b981;
+    --musical-purple: #8b5cf6;
+    --musical-pink: #ec4899;
+    --musical-cyan: #06b6d4;
+    --musical-orange: #f97316;
+    
+    --gradient-musical: linear-gradient(135deg, var(--musical-primary) 0%, var(--musical-purple) 50%, var(--musical-secondary) 100%);
+    --gradient-rainbow: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff);
+    
+    --font-musical: 'Dancing Script', cursive;
+    --shadow-musical: 0 10px 30px rgba(30, 58, 138, 0.3);
+    --shadow-glow: 0 0 20px rgba(245, 158, 11, 0.5);
+
+/* ============================================
+   HERO SECTION STYLES - Modern Musical Design
+   ============================================ */
+
+.musical-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    color: var(--musical-primary);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    animation: titlePulse 3s ease-in-out infinite;
+}
+
+.title-decoration {
+    animation: float 2s ease-in-out infinite alternate;
+    color: var(--musical-secondary);
+    filter: drop-shadow(0 0 10px var(--musical-secondary));
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.musical-badge {
+    background: linear-gradient(135deg, var(--musical-primary), var(--musical-secondary));
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.musical-badge::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: transform 0.6s ease;
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+}
+
+.musical-badge:hover::before {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+}
+
+.musical-badge:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.badge-innovation {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+}
+
+.badge-wireless {
+    background: linear-gradient(135deg, #00D4FF, #0099CC);
+}
+
+.badge-inclusive {
+    background: linear-gradient(135deg, #FF6B9D, #C44569);
+}
+
+.badge-multiuser {
+    background: linear-gradient(135deg, #4ECDC4, #44A08D);
+}
+
+.hero-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.btn-musical {
+    background: linear-gradient(135deg, var(--musical-primary), var(--musical-secondary));
+    color: white;
+    padding: 1.25rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: glow 2s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.btn-musical:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn-musical:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+@keyframes titlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+@keyframes glow {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Responsive adjustments for hero section */
+@media (max-width: 768px) {
+    .musical-title {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-badges {
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .musical-badge {
+        font-size: 0.8rem;
+        padding: 0.6rem 1.2rem;
+    }
+    
+    .btn-musical {
+        font-size: 1rem;
+        padding: 1rem 2rem;
+        gap: 0.5rem;
+    }
+}
+}
+
+/* Notas Musicais Flutuantes */
+.musical-hero {
+    background: var(--gradient-musical);
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    padding: calc(80px + var(--spacing-4xl)) 0 var(--spacing-4xl) 0;
+}
+
+.musical-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    background-image: url('../images/banners/sala-de-musicoterapia.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+}
+
+.musical-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-musical);
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.floating-notes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.note {
+    position: absolute;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.1);
+    animation: float 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.note1 { top: 10%; left: 10%; animation-delay: -1s; }
+.note2 { top: 20%; right: 15%; animation-delay: -2s; }
+.note3 { top: 50%; left: 5%; animation-delay: -3s; }
+.note4 { top: 70%; right: 10%; animation-delay: -4s; }
+.note5 { top: 30%; left: 80%; animation-delay: -0.5s; }
+.note6 { top: 60%; left: 70%; animation-delay: -1.5s; }
+.note7 { top: 80%; left: 20%; animation-delay: -2.5s; }
+.note8 { top: 15%; left: 60%; animation-delay: -3.5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+.musical-hero .container {
+    position: relative;
+    z-index: 3;
+}
+
+/* Títulos Musicais */
+.musical-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    background: linear-gradient(45deg, #fff, #f59e0b, #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
+}
+
+.title-decoration {
+    display: inline-block;
+    animation: pulse 2s ease-in-out infinite;
+    margin: 0 1rem;
+}
+
+.hero-subtitle {
+    font-size: var(--font-size-lg);
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto var(--spacing-xl) auto;
+    opacity: 0.95;
+    line-height: 1.7;
+}
+
+.hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-base);
+    margin-bottom: var(--spacing-xl);
+}
+
+.musical-badge {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s ease;
+}
+
+.musical-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.badge-innovation { background: rgba(245, 158, 11, 0.9); }
+.badge-wireless { background: rgba(16, 185, 129, 0.9); }
+.badge-inclusive { background: rgba(236, 72, 153, 0.9); }
+.badge-multiuser { background: rgba(139, 92, 246, 0.9); }
+
+/* Botão Musical Principal */
+.hero-cta {
+    text-align: center;
+    margin-top: var(--spacing-3xl);
+}
+
+.btn-musical {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-base);
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    background: var(--gradient-rainbow);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-musical);
+}
+
+.btn-musical:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(30, 58, 138, 0.4);
+}
+
+.btn-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Seção Manifesto Musical */
+.musical-manifesto {
+    padding: var(--spacing-5xl) 0;
+    background: linear-gradient(180deg, rgba(30, 58, 138, 0.05) 0%, rgba(245, 158, 11, 0.05) 100%);
+}
+
+.manifesto-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4xl);
+    align-items: center;
+}
+
+@media (min-width: 1024px) {
+    .manifesto-content {
+        grid-template-columns: 1.2fr 0.8fr;
+    }
+}
+
+.section-title-musical {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: var(--spacing-lg);
+    color: var(--musical-primary);
+}
+
+.highlight-musical {
+    background: var(--gradient-rainbow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.manifesto-quote blockquote {
+    font-size: var(--font-size-xl);
+    font-style: italic;
+    color: var(--musical-primary);
+    border-left: 5px solid var(--musical-secondary);
+    margin: var(--spacing-xl) 0;
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    padding: var(--spacing-lg);
+}
+
+.manifesto-description {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    color: var(--gray-700);
+    margin-bottom: var(--spacing-xl);
+}
+
+.musical-icon {
+    display: inline-block;
+    margin-right: var(--spacing-sm);
+}
+
+.highlight-reatech {
+    background: linear-gradient(45deg, var(--musical-secondary), var(--musical-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+.manifesto-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-xl);
+}
+
+@media (min-width: 768px) {
+    .manifesto-stats {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.stat-item {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-base);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-musical);
+}
+
+.stat-number {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-text {
+    font-size: var(--font-size-sm);
+    color: var(--gray-600);
+    font-weight: 600;
+}
+
+/* Tecnologia Musical */
+.musical-technology {
+    padding: var(--spacing-5xl) 0;
+    background: var(--musical-primary);
+    color: white;
+    position: relative;
+}
+
+.musical-technology::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.section-header-musical {
+    text-align: center;
+    margin-bottom: var(--spacing-4xl);
+    position: relative;
+    z-index: 1;
+}
+
+.section-subtitle-musical {
+    font-size: var(--font-size-lg);
+    opacity: 0.9;
+    max-width: 800px;
+    margin: var(--spacing-lg) auto 0;
+}
+
+.tech-grid-musical {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 768px) {
+    .tech-grid-musical {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.tech-card-musical {
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-2xl);
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.tech-card-musical:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: var(--shadow-glow);
+}
+
+.tech-icon-musical {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto var(--spacing-xl) auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient-rainbow);
+    border-radius: var(--radius-full);
+    font-size: 2.5rem;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.icon-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-rainbow);
+    opacity: 0.3;
+    animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.tech-card-musical h3 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-base);
+    color: white;
+}
+
+.tech-card-musical p {
+    line-height: 1.7;
+    opacity: 0.9;
+    margin-bottom: var(--spacing-lg);
+}
+
+.tech-highlight {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+}
+
+.highlight-tag {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--musical-secondary);
+    color: var(--musical-primary);
+    border-radius: var(--radius-base);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+/* Catálogo de Instrumentos Musicais */
+.musical-instruments-showcase {
+    padding: var(--spacing-5xl) 0;
+    background: linear-gradient(180deg, #f8fafc 0%, rgba(245, 158, 11, 0.05) 50%, #f8fafc 100%);
+}
+
+.instruments-grid-musical {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3xl);
+    margin-bottom: var(--spacing-4xl);
+}
+
+@media (min-width: 768px) {
+    .instruments-grid-musical {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.instrument-card-musical {
+    background: white;
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.4s ease;
+    position: relative;
+    border: 3px solid transparent;
+}
+
+.instrument-card-musical:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: var(--shadow-musical);
+    border-color: var(--musical-secondary);
+}
+
+/* Badges dos Instrumentos */
+.instrument-badge-featured {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: var(--gradient-rainbow);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-base);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    z-index: 2;
+    animation: pulse 2s infinite;
+}
+
+.instrument-badge-innovative {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: var(--musical-cyan);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-base);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    z-index: 2;
+}
+
+.instrument-badge-creative {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: var(--musical-purple);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-base);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    z-index: 2;
+}
+
+.instrument-badge-futuristic {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: var(--musical-accent);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-base);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    z-index: 2;
+}
+
+.instrument-badge-classic {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: var(--musical-orange);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-base);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    z-index: 2;
+}
+
+.instrument-image-musical {
+    position: relative;
+    height: 300px;
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    overflow: hidden;
+}
+
+.instrument-image-musical img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s ease;
+}
+
+.instrument-card-musical:hover .instrument-image-musical img {
+    transform: scale(1.1);
+}
+
+.instrument-overlay-musical {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(30, 58, 138, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.instrument-card-musical:hover .instrument-overlay-musical {
+    opacity: 1;
+}
+
+.overlay-content {
+    text-align: center;
+    color: white;
+    padding: var(--spacing-lg);
+}
+
+.overlay-content h4 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-base);
+    font-weight: 700;
+}
+
+.instrument-content-musical {
+    padding: var(--spacing-2xl);
+}
+
+.instrument-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.instrument-name {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    color: var(--musical-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.instrument-category {
+    font-size: var(--font-size-base);
+    color: var(--musical-secondary);
+    font-weight: 600;
+}
+
+.instrument-description-copy {
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+    color: var(--gray-700);
+    margin-bottom: var(--spacing-xl);
+}
+
+.features-highlight-musical {
+    margin-bottom: var(--spacing-xl);
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-base);
+    margin-bottom: var(--spacing-base);
+    padding: var(--spacing-sm);
+    background: rgba(245, 158, 11, 0.1);
+    border-radius: var(--radius-base);
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    background: rgba(245, 158, 11, 0.15);
+    transform: translateX(5px);
+}
+
+.feature-item i {
+    color: var(--musical-secondary);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.instrument-cta {
+    border-top: 2px solid var(--gray-200);
+    padding-top: var(--spacing-lg);
+}
+
+.price-highlight {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.price-label {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--gradient-rainbow);
+    color: white;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.btn-buy-musical {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-lg);
+    background: var(--gradient-musical);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-buy-musical:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-musical);
+}
+
+/* CTA Global */
+.instruments-global-cta {
+    text-align: center;
+    background: var(--gradient-musical);
+    color: white;
+    padding: var(--spacing-3xl);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-musical);
+}
+
+.instruments-global-cta h3 {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-base);
+    font-weight: 800;
+}
+
+.instruments-global-cta p {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-xl);
+    opacity: 0.9;
+}
+
+.btn-combo-musical {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-base);
+    padding: var(--spacing-lg) var(--spacing-2xl);
+    background: white;
+    color: var(--musical-primary);
+    text-decoration: none;
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-combo-musical:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+}
+
+/* Video Container Musical */
+.video-container-musical {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.video-container-musical iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-caption {
+    text-align: center;
+    margin-top: var(--spacing-base);
+    color: var(--gray-600);
+    font-style: italic;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .musical-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-badges {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tech-grid-musical {
+        grid-template-columns: 1fr;
+    }
+    
+    .instruments-grid-musical {
+        grid-template-columns: 1fr;
+    }
+    
+    .manifesto-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Animações de Pulse */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Efeitos de Hover Globais */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   🎵 MODERN PRODUCT SECTIONS 
+======================================== */
+
+/* Estilos para videos grid modernos */
+.videos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3xl);
+    margin-top: var(--spacing-3xl);
+}
+
+@media (min-width: 768px) {
+    .videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.video-item {
+    background: white;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transition: all 0.3s ease;
+}
+
+.video-item:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-musical);
+}
+
+.video-item .video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    background: var(--gray-100);
+}
+
+.video-item .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.video-item h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    color: var(--musical-primary);
+    margin: var(--spacing-lg) var(--spacing-lg) var(--spacing-base);
+}
+
+.video-item p {
+    font-size: var(--font-size-base);
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin: 0 var(--spacing-lg) var(--spacing-lg);
+}
+
+/* ============================================
+   PRODUCT DETAIL STYLES - Modern Layout System
+   ============================================ */
+
+.product-detail {
+    margin-bottom: 4rem;
+    padding: 0;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-musical);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.product-detail:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(30, 58, 138, 0.15);
+}
+
+.product-detail:last-child {
+    margin-bottom: 0;
+}
+
+/* Two-column layout with alternating directions */
+.product-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    padding: 3rem;
+    align-items: center;
+    min-height: 500px;
+}
+
+/* Reverse layout for every second product */
+.product-detail:nth-child(even) .product-content {
+    grid-template-columns: 1fr 1fr;
+    direction: rtl;
+}
+
+.product-detail:nth-child(even) .product-content > * {
+    direction: ltr;
+}
+
+.product-image {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.product-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+.product-image img,
+.product-image picture img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.product-gallery {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    justify-content: center;
+}
+
+.gallery-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: var(--radius-base);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.gallery-thumb:hover {
+    transform: scale(1.1);
+    border-color: var(--musical-secondary);
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.product-name {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: var(--musical-primary);
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.product-category {
+    font-size: 1rem;
+    color: var(--musical-secondary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.product-highlight {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--musical-secondary), #fbbf24);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    align-self: flex-start;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); }
+    100% { box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5); }
+}
+
+.product-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--gray-700);
+    margin: 0;
+}
+
+.product-description p {
+    margin: 0 0 1rem 0;
+}
+
+.product-features {
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.05), rgba(139, 92, 246, 0.05));
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    border: 1px solid rgba(30, 58, 138, 0.1);
+}
+
+.product-features h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--musical-primary);
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.product-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.product-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.product-features li i {
+    color: var(--musical-secondary);
+    font-size: 1.1rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.product-features strong {
+    color: var(--musical-primary);
+    font-weight: 700;
+}
+
+.product-applications {
+    margin-top: 2rem;
+}
+
+.product-applications h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--musical-primary);
+    margin: 0 0 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6));
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(30, 58, 138, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.app-item:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, var(--musical-primary), var(--musical-purple));
+    color: white;
+    border-color: var(--musical-primary);
+}
+
+.app-item i {
+    font-size: 1.5rem;
+    color: var(--musical-secondary);
+    transition: all 0.3s ease;
+}
+
+.app-item:hover i {
+    color: white;
+    transform: scale(1.1);
+}
+
+.app-item span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Responsive design for product details */
+@media (max-width: 968px) {
+    .product-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem;
+        text-align: center;
+    }
+    
+    .product-detail:nth-child(even) .product-content {
+        grid-template-columns: 1fr;
+        direction: ltr;
+    }
+    
+    .product-name {
+        font-size: 1.8rem;
+    }
+    
+    .product-features {
+        padding: 1.5rem;
+    }
+    
+    .applications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .product-detail {
+        margin-bottom: 2rem;
+    }
+    
+    .product-content {
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .product-name {
+        font-size: 1.5rem;
+    }
+    
+    .applications-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .app-item {
+        padding: 1rem 0.75rem;
+    }
+}

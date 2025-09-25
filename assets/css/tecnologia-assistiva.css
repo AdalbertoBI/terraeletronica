@@ -1,0 +1,7 @@
+/* Tecnologia Assistiva - estilos específicos da página */
+
+.produto-hero .hero-background.tecnologia-assistiva-hero {
+  background-image: url('../images/produtos/tecnologia-assistiva-hero.jpg');
+  background-size: cover;
+  background-position: center;
+}

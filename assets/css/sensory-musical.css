@@ -1,0 +1,7 @@
+/* Sensory Musical - estilos específicos da página */
+
+.produto-hero .hero-background.sensory-musical-hero {
+  background-image: url('../images/produtos/sensory-musical-waves.jpg');
+  background-size: cover;
+  background-position: center;
+}

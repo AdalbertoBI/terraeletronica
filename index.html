@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Terra Eletrônica - Tecnologia que liberta seu potencial. Tecnologia Assistiva, Lupas Eletrônicas, Mouses Especiais, Instrumentos MIDI-TA e muito mais.">
+    <meta name="keywords" content="tecnologia assistiva, lupas eletrônicas, mouses especiais, instrumentos musicais, acessibilidade, deficiência, inclusão">
+    <meta name="theme-color" content="#009688">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Terra Eletrônica">
+    <title>Terra Eletrônica - Tecnologia que liberta seu potencial</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logos/terra-compact.png" sizes="32x32">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/index.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+    <nav class="navbar" aria-label="Main Navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <picture>
+                        <source type="image/webp" srcset="assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
+                        <source type="image/webp" srcset="assets/images/logos/terra-compact.webp" media="(max-width:899px)">
+                        <source srcset="assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
+                        <source srcset="assets/images/logos/terra-compact.png" media="(max-width:899px)">
+                        <img src="assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                    </picture>
+                    <h1 class="sr-only">Terra Eletrônica</h1>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Início</a></li>
+                    <li><a href="produtos/instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
+                    <li><a href="produtos/sensory-musical.html" class="nav-link">Sensory Musical</a></li>
+                    <li><a href="produtos/tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
+                    <li><a href="#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background hero-background-main">
+            <div class="hero-overlay hero-overlay-main"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content hero-content-main">
+                <h1 class="hero-title">
+                    <span class="highlight">Tecnologia que liberta</span><br>
+                    seu <span class="highlight">potencial</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Desenvolvemos tecnologia assistiva inovadora para promover 
+                    inclusão, autonomia e qualidade de vida através de soluções personalizadas.
+                </p>
+                <div class="hero-cta">
+                    <a href="#produtos" class="btn btn-primary">Ver Produtos</a>
+                    <a href="#sobre" class="btn btn-secondary">Conheça Nossa História</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produtos Section -->
+    <section id="produtos" class="produtos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos Produtos</h2>
+                <p class="section-subtitle">
+                    Soluções inovadoras em tecnologia assistiva para diferentes necessidades
+                </p>
+            </div>
+            
+            <div class="produtos-grid">
+                <!-- Instrumentos MIDI-TA -->
+                <div class="produto-card" data-aos="fade-up">
+                    <div class="card-image">
+                        <img src="assets/images/banners/sala-de-musicoterapia.jpeg" alt="Instrumentos NET-MIDI-T.A. - Sala de Musicoterapia">
+                        <div class="card-overlay">
+                            <a href="produtos/instrumentos-midi.html" class="card-link" title="Ver detalhes dos Instrumentos NET-MIDI-T.A." aria-label="Ver detalhes dos Instrumentos NET-MIDI-T.A.">
+                                <i class="fas fa-music"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Instrumentos NET-MIDI-T.A.</h3>
+                        <p class="card-description">
+                            Sistema de instrumentos musicais wireless para musicoterapia, 
+                            desenvolvido especialmente para pessoas com deficiência.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-wifi"></i> Conexão wireless</li>
+                            <li><i class="fas fa-users"></i> Multi-usuários</li>
+                            <li><i class="fas fa-cog"></i> Controles personalizáveis</li>
+                        </ul>
+                        <a href="produtos/instrumentos-midi.html" class="btn btn-outline">Saiba Mais</a>
+                    </div>
+                </div>
+
+                <!-- Sensory Musical -->
+                <div class="produto-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-image">
+                        <img src="assets/images/produtos/sensorial-musical.png" alt="Sensory Musical - Experiências Vibroacústicas">
+                        <div class="card-overlay">
+                            <a href="produtos/sensory-musical.html" class="card-link" title="Ver Produtos Sensory Musical" aria-label="Ver detalhes do Sensory Musical">
+                                <i class="fas fa-wave-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Sensory Musical</h3>
+                        <p class="card-description">
+                            Ferramentas avançadas para vibroacústica, experiências sensoriais 
+                            imersivas e tecnologias de realidade aumentada musical.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-spa"></i> Relaxamento profundo</li>
+                            <li><i class="fas fa-heartbeat"></i> Melhora da circulação e mobilidade</li>
+                            <li><i class="fas fa-hand-holding-heart"></i> Alívio da dor</li>
+                            <li><i class="fas fa-smile"></i> Bem-estar emocional</li>
+                            <li><i class="fas fa-magic"></i> Entretenimento aprimorado</li>
+                        </ul>
+                        <a href="produtos/sensory-musical.html" class="btn btn-outline">Saiba Mais</a>
+                    </div>
+                </div>
+
+                <!-- Tecnologia Assistiva -->
+                <div class="produto-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-image">
+                        <img src="assets/images/produtos/tecnologia assistiva.png" alt="Tecnologia Assistiva">
+                        <div class="card-overlay">
+                            <a href="produtos/tecnologia-assistiva.html" class="card-link" title="Ver Produtos de Tecnologia Assistiva" aria-label="Ver detalhes da Tecnologia Assistiva">
+                                <i class="fas fa-universal-access"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Tecnologia Assistiva</h3>
+                        <p class="card-description">
+                            Soluções completas para acessibilidade: mouses especiais, lupas eletrônicas, 
+                            teclados adaptativos e sistemas de comunicação alternativa.
+                        </p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-mouse"></i> Mouses Especiais</li>
+                            <li><i class="fas fa-search-plus"></i> Lupas Eletrônicas</li>
+                            <li><i class="fas fa-keyboard"></i> Teclados Adaptativos</li>
+                            <li><i class="fas fa-comments"></i> Comunicação Alternativa</li>
+                        </ul>
+                        <a href="produtos/tecnologia-assistiva.html" class="btn btn-outline">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="sobre sobre-full">
+        <div class="container">
+            <div class="sobre-text sobre-text-full">
+                <h2 class="section-title">Sobre a Terra Eletrônica</h2>
+                <p>
+                    A Terra Eletrônica® é uma empresa brasileira especializada no desenvolvimento 
+                    de produtos de tecnologia assistiva, com foco em soluções inovadoras que 
+                    promovem a inclusão digital e social de pessoas com deficiência.
+                </p>
+                <p>
+                    Nossa missão é desenvolver tecnologia que liberta o potencial das pessoas, criando 
+                    tecnologias que ampliam possibilidades, promovem autonomia e melhoram a 
+                    qualidade de vida de nossos usuários.
+                </p>
+                <div class="sobre-stats">
+                    <div class="stat"><span class="stat-number">30+</span><span class="stat-label">Anos de Experiência</span></div>
+                    <div class="stat"><span class="stat-number">100000+</span><span class="stat-label">Produtos Entregues</span></div>
+                    <div class="stat"><span class="stat-number">100%</span><span class="stat-label">Nacional</span></div>
+                </div>
+            </div>
+
+            <div class="sobre-news">
+                <div class="sobre-tagline">
+                    <h3>Não é de hoje</h3>
+                </div>
+
+                <div class="noticias-carousel" aria-label="Carrossel de notícias">
+                    <button class="carousel-btn prev" aria-label="Anterior"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <div class="carousel-track">
+                        <div class="carousel-item"><img src="assets/images/noticias/noticia-01.jpg" alt="Notícia 1"></div>
+                        <div class="carousel-item"><img src="assets/images/noticias/noticia-02.jpg" alt="Notícia 2"></div>
+                        <div class="carousel-item"><img src="assets/images/noticias/noticia-03.jpg" alt="Notícia 3"></div>
+                        <div class="carousel-item"><img src="assets/images/noticias/noticia-04.jpg" alt="Notícia 4"></div>
+                        <div class="carousel-item"><img src="assets/images/noticias/noticia-05.jpg" alt="Notícia 5"></div>
+                        <div class="carousel-item"><img src="assets/images/noticias/noticia-06.jpg" alt="Notícia 6"></div>
+                        <div class="carousel-item"><img src="assets/images/noticias/noticia-07.jpg" alt="Notícia 7"></div>
+                        
+                    </div>
+                    <button class="carousel-btn next" aria-label="Próximo"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="contato">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Entre em Contato</h2>
+                <p class="section-subtitle">
+                    Estamos prontos para ajudar você a encontrar a solução ideal
+                </p>
+            </div>
+            
+            <div class="contato-content">
+                <div class="contato-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Visite-nos</h4>
+                            <p>Avenida Ouro Fino, 572<br>
+                            Bosque dos Eucaliptos<br>
+                            São José dos Campos – SP</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp whatsapp-icon"></i>
+                        <div>
+                            <h4>Vendas</h4>
+                            <p>Contate-nos via WhatsApp<br>
+                            <strong><a href="https://wa.me/5512991653176" target="_blank" rel="noopener" class="whatsapp-link">+55 12 99165-3176</a></strong><br>
+                            <small>Redes sociais: <a href="https://instagram.com/terraeletronica" target="_blank" rel="noopener" class="instagram-link">@terraeletronica</a></small></p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-calculator"></i>
+                        <div>
+                            <h4>Setor Financeiro</h4>
+                            <p><strong>Imira Quadros Borba</strong><br>
+                            (12) 3917-1020<br>
+                            imira.quadros@terraeletronica.com.br</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>E-mail Geral</h4>
+                            <p>terra@terraeletronica.com.br</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="contato-form" id="contatoForm">
+                    <div class="form-group">
+                        <input type="text" id="nome" name="nome" placeholder="Seu Nome">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Seu E-mail">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="telefone" name="telefone" placeholder="Seu Telefone">
+                    </div>
+                    <div class="form-group">
+                        <label for="assunto" class="sr-only">Assunto</label>
+                        <select id="assunto" name="assunto" aria-label="Assunto da mensagem">
+                            <option value="">Assunto</option>
+                            <option value="duvidas">Dúvidas sobre Produtos</option>
+                            <option value="orcamento">Solicitar Orçamento</option>
+                            <option value="suporte">Suporte Técnico</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="mensagem" name="mensagem" placeholder="Sua Mensagem" rows="5"></textarea>
+                    </div>
+                    <button type="button" onclick="enviarWhatsApp()" class="btn btn-primary">Enviar via WhatsApp</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    
+                    <div class="footer-brand">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/logos/terra-compact.webp">
+                            <img src="assets/images/logos/terra-compact.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                        <p>Tecnologia que liberta seu potencial</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronica5492" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Produtos</h4>
+                    <ul>
+                        <li><a href="produtos/instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
+                        <li><a href="produtos/tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
+                        <li><a href="produtos/sensory-musical.html">Sensory Musical</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="manuais.html?tipo=manual">Manuais</a></li>
+                        <li><a href="manuais.html?tipo=download">Downloads</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
+                <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    
+    <!-- Widget de Acessibilidade Expandido -->
+    <div class="accessibility-widget" id="accessibilityWidget">
+        <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Menu de Acessibilidade" title="Opções de Acessibilidade">
+            <i class="fas fa-universal-access" aria-hidden="true"></i>
+        </button>
+        
+        <div class="accessibility-panel" id="accessibilityPanel" role="dialog" aria-labelledby="accessibilityTitle" aria-hidden="true">
+            <h3 id="accessibilityTitle">Opções de Acessibilidade</h3>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="increaseFontBtn" aria-label="Aumentar tamanho da fonte">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    <span>Aumentar Fonte</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="decreaseFontBtn" aria-label="Diminuir tamanho da fonte">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                    <span>Diminuir Fonte</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="highContrastBtn" aria-label="Alternar alto contraste">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                    <span>Alto Contraste</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="darkModeBtn" aria-label="Alternar modo escuro">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <span>Modo Escuro</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="readAloudBtn" aria-label="Ativar leitura em voz alta">
+                    <i class="fas fa-volume-up" aria-hidden="true"></i>
+                    <span>Leitura em Voz Alta</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="resetBtn" aria-label="Restaurar configurações padrão">
+                    <i class="fas fa-undo" aria-hidden="true"></i>
+                    <span>Restaurar Padrão</span>
+                </button>
+            </div>
+            
+            <button class="accessibility-close" id="accessibilityClose" aria-label="Fechar menu de acessibilidade">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        if (window && window.VLibras && typeof window.VLibras.Widget === 'function') {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        } else {
+            window.addEventListener('load', function() {
+                if (window.VLibras && typeof window.VLibras.Widget === 'function') {
+                    new window.VLibras.Widget('https://vlibras.gov.br/app');
+                }
+            });
+        }
+    </script>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <div class="whatsapp-float" style="opacity: 1 !important; visibility: visible !important; transform: scale(1) !important; z-index: 10002 !important;">
+        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

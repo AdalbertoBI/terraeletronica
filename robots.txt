@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://terra-eletronica.github.io/site-oficial/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
+
+# Disallow specific paths
+Disallow: /assets/
+Disallow: /*.min.js
+Disallow: /*.min.css
+Disallow: /node_modules/
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /.git/
+Disallow: /.gitignore
+
+# Allow important pages
+Allow: /index.html
+Allow: /produtos/
+Allow: /404.html
