@@ -1,37 +1,499 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="musical-beam-05">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MUSICAL_BEAM_05 | Terra Eletrônica</title>
-  <link rel="icon" type="image/png" href="../../assets/images/logos/terra-compact.png" sizes="32x32" />
-  <link rel="stylesheet" href="../../assets/css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="MUSICAL_BEAM_05 - Controlador MIDI sem fio com 5 sensores laser de distância para musicoterapia e performances. Acionamento totalmente sem toque físico.">
+    <meta name="keywords" content="MUSICAL_BEAM_05, sensores laser, controlador MIDI, sem toque físico, musicoterapia, Terra Eletrônica, pessoas com deficiência, tecnologia assistiva">
+    <meta name="theme-color" content="#7B68EE">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="MUSICAL_BEAM_05 - Terra Eletrônica">
+    <title>MUSICAL_BEAM_05 - Controlador MIDI com Sensores Laser | Terra Eletrônica</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../../assets/images/logos/terra-compact.png" sizes="32x32">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/instrumentos-midi-grid.css">
+    <link rel="stylesheet" href="../../assets/css/musical-beam-05.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header">
-    <nav class="navbar" aria-label="Main Navigation">
-      <div class="container">
-        <div class="nav-brand">
-          <a href="../../index.html" aria-label="Voltar ao início">
-            <picture>
-              <source type="image/webp" srcset="../../assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
-              <source type="image/webp" srcset="../../assets/images/logos/terra-compact.webp" media="(max-width:899px)">
-              <source srcset="../../assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
-              <source srcset="../../assets/images/logos/terra-compact.png" media="(max-width:899px)">
-              <img src="../../assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
-            </picture>
-          </a>
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar" aria-label="Main Navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../../index.html" aria-label="Voltar ao início">
+                        <picture>
+                            <source type="image/webp" srcset="../../assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
+                            <source type="image/webp" srcset="../../assets/images/logos/terra-compact.webp" media="(max-width:899px)">
+                            <source srcset="../../assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
+                            <source srcset="../../assets/images/logos/terra-compact.png" media="(max-width:899px)">
+                            <img src="../../assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                    </a>
+                    <h1 class="sr-only">Terra Eletrônica</h1>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../../index.html#home" class="nav-link">Início</a></li>
+                    <li><a href="../instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
+                    <li><a href="../sensory-musical.html" class="nav-link">Sensory Musical</a></li>
+                    <li><a href="../tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
+                    <li><a href="../../index.html#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="../../index.html#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main id="conteudo">
+        <!-- Hero Section -->
+        <section class="product-hero">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="../../index.html">Início</a>
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    <a href="../instrumentos-midi.html">Instrumentos MIDI</a>
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    <span>MUSICAL_BEAM_05</span>
+                </nav>
+                
+                <div class="hero-content">
+                    <h1 class="product-title">MUSICAL_BEAM_05</h1>
+                    <p class="product-subtitle">Controle musical no ar como mágica - sem toque físico</p>
+                    
+                    <div class="product-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-wave-square" aria-hidden="true"></i>
+                            <span>5 Sensores Laser</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-hand-paper" aria-hidden="true"></i>
+                            <span>Sem Toque Físico</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-ruler" aria-hidden="true"></i>
+                            <span>Alcance 1 Metro</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-magic" aria-hidden="true"></i>
+                            <span>Música no Ar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Details Section -->
+        <section class="product-details">
+            <div class="container">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <figure>
+                            <picture>
+                                <source type="image/webp" srcset="../../assets/images/produtos/Musical_Beam_2-transformed.webp">
+                                <img src="../../assets/images/produtos/Musical_Beam_2-transformed.png" alt="MUSICAL_BEAM_05 - Torre com sensores laser" loading="lazy">
+                            </picture>
+                        </figure>
+                    </div>
+                    
+                    <div class="product-info">
+                        <h2>Música Criada por Movimentos Simples</h2>
+                        <p class="lead-text">
+                            O <strong>MUSICAL_BEAM_05</strong> é um controlador MIDI revolucionário que permite criar música 
+                            através de movimentos corporais simples, sem qualquer toque físico. Uma torre em formato de farol 
+                            com 5 sensores de distância que transformam gestos em música como mágica.
+                        </p>
+                        
+                        <div class="benefits-grid">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-satellite-dish" aria-hidden="true"></i>
+                                </div>
+                                <div class="benefit-content">
+                                    <h3>Sensores Avançados</h3>
+                                    <p>5 sensores de distância com alcance de 1 metro cada, detectando os menores movimentos</p>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-wheelchair" aria-hidden="true"></i>
+                                </div>
+                                <div class="benefit-content">
+                                    <h3>Totalmente Inclusivo</h3>
+                                    <p>Ideal para pessoas com reduzida capacidade motora - funciona até com movimentos de bebês</p>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-expand-arrows-alt" aria-hidden="true"></i>
+                                </div>
+                                <div class="benefit-content">
+                                    <h3>Versátil e Expansível</h3>
+                                    <p>Suporta até 5 sensores opcionais destacáveis com clips para posicionamento independente</p>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-magic" aria-hidden="true"></i>
+                                </div>
+                                <div class="benefit-content">
+                                    <h3>Performance Mágica</h3>
+                                    <p>Regência musical no ar, acionamento de notas e efeitos musicais sem contato físico</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="cta-section">
+                            <h3 class="cta-title">🎵 Transforme movimentos em música! 🎵</h3>
+                            <p class="cta-description"><strong>Perfeito para:</strong> Pessoas com mobilidade reduzida • Musicoterapia avançada • Performances corporais • Dança musical • Instalações interativas</p>
+                            
+                            <div class="cta-buttons">
+                                <a href="https://www.mercadolivre.com.br/instrumento-musical-beam-05-terra-eletronica/up/MLBU3361549355?pdp_filters=seller_id%3A144300924#polycard_client=search-nordic&search_layout=grid&position=17&type=product&tracking_id=59f32452-4b9b-4d71-a343-d7d8a1fc3422&wid=MLB4164385869&sid=search" 
+                                   target="_blank" rel="noopener" class="btn btn-primary">
+                                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                                    Comprar Agora
+                                </a>
+                                <a href="https://wa.me/5512991653176?text=Olá! Gostaria de saber mais sobre o MUSICAL_BEAM_05" 
+                                   target="_blank" rel="noopener" class="btn btn-secondary">
+                                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                                    Entre em Contato
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Specifications Section -->
+        <section class="specifications">
+            <div class="container">
+                <h2 class="section-title">Especificações Técnicas</h2>
+                
+                <div class="specs-grid">
+                    <div class="spec-category">
+                        <h3><i class="fas fa-tower-broadcast" aria-hidden="true"></i> Torre Sensorial</h3>
+                        <ul>
+                            <li><strong>Sensores:</strong> 5 sensores de distância integrados</li>
+                            <li><strong>Alcance:</strong> 1 metro por sensor</li>
+                            <li><strong>Formato:</strong> Torre estilo farol</li>
+                            <li><strong>Acionamento:</strong> Totalmente sem toque físico</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-category">
+                        <h3><i class="fas fa-plug" aria-hidden="true"></i> Expansão Opcional</h3>
+                        <ul>
+                            <li><strong>Sensores Extras:</strong> Até 5 sensores destacáveis</li>
+                            <li><strong>Conexão:</strong> Cabo de 3 metros</li>
+                            <li><strong>Fixação:</strong> Clips resistentes</li>
+                            <li><strong>Posicionamento:</strong> Independente e versátil</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-category">
+                        <h3><i class="fas fa-microchip" aria-hidden="true"></i> Conectividade</h3>
+                        <ul>
+                            <li><strong>Comunicação:</strong> Totalmente wireless</li>
+                            <li><strong>Modo MIDI:</strong> Controlador MIDI padrão</li>
+                            <li><strong>Modo HID:</strong> Emula teclado do computador</li>
+                            <li><strong>Compatibilidade:</strong> Programas como BEAMZ</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-category">
+                        <h3><i class="fas fa-battery-full" aria-hidden="true"></i> Energia</h3>
+                        <ul>
+                            <li><strong>Bateria:</strong> Lítio interna</li>
+                            <li><strong>Autonomia:</strong> 10 horas contínuas</li>
+                            <li><strong>Carregador:</strong> 5V padrão celular</li>
+                            <li><strong>Indicador:</strong> LED de status de bateria</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Applications Section -->
+        <section class="applications">
+            <div class="container">
+                <h2 class="section-title">Aplicações Inovadoras</h2>
+                <p class="section-subtitle">Descubra as possibilidades infinitas do MUSICAL_BEAM_05</p>
+                
+                <div class="applications-grid">
+                    <div class="application-card">
+                        <div class="app-icon">
+                            <i class="fas fa-user-md" aria-hidden="true"></i>
+                        </div>
+                        <h3>Musicoterapia Avançada</h3>
+                        <p>Perfeito para pessoas com mobilidade reduzida, permitindo expressão musical através dos menores movimentos</p>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="app-icon">
+                            <i class="fas fa-child" aria-hidden="true"></i>
+                        </div>
+                        <h3>Atividades Lúdicas</h3>
+                        <p>Ideal para crianças, escolas de música e atividades em grupo, proporcionando diversão e aprendizado</p>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="app-icon">
+                            <i class="fas fa-theater-masks" aria-hidden="true"></i>
+                        </div>
+                        <h3>Performances Corporais</h3>
+                        <p>Dança musical, festas temáticas e apresentações artísticas ganham nova dimensão interativa</p>
+                    </div>
+                    
+                    <div class="application-card">
+                        <div class="app-icon">
+                            <i class="fas fa-tree" aria-hidden="true"></i>
+                        </div>
+                        <h3>Instalações Interativas</h3>
+                        <p>Árvores de natal musicais, praças, shoppings e condomínios com experiências sonoras únicas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Como Funciona a Magia</h2>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-number">01</div>
+                        <h3>Detecção de Movimento</h3>
+                        <p>Os sensores laser captam qualquer movimento corporal: braços, pernas, cabeça, cadeira de rodas ou até mesmo respiração</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-number">02</div>
+                        <h3>Processamento Inteligente</h3>
+                        <p>O sistema converte os movimentos detectados em comandos MIDI ou HID, permitindo controle total da música</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-number">03</div>
+                        <h3>Resposta Musical</h3>
+                        <p>Cada sensor pode acionar notas, instrumentos, efeitos musicais ou regências, criando uma sinfonia no ar</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-number">04</div>
+                        <h3>Experiência Mágica</h3>
+                        <p>O resultado é uma experiência musical única onde os movimentos se transformam em música de forma natural e intuitiva</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA Section -->
+        <section class="final-cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Revolucione a Experiência Musical Interativa</h2>
+                    <p>
+                        O <strong>MUSICAL_BEAM_05</strong> quebra todas as barreiras da música tradicional. 
+                        Desenvolvido com tecnologia brasileira de ponta, oferece uma nova forma de interação 
+                        musical completamente inclusiva e acessível para todos.
+                    </p>
+                    
+                    <div class="final-benefits">
+                        <div class="final-benefit">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            <span>Zero toque físico necessário</span>
+                        </div>
+                        <div class="final-benefit">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            <span>Funciona até com bebês</span>
+                        </div>
+                        <div class="final-benefit">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            <span>Expansível até 10 sensores</span>
+                        </div>
+                    </div>
+                    
+                    <div class="final-buttons">
+                        <a href="https://www.mercadolivre.com.br/instrumento-musical-beam-05-terra-eletronica/up/MLBU3361549355?pdp_filters=seller_id%3A144300924#polycard_client=search-nordic&search_layout=grid&position=17&type=product&tracking_id=59f32452-4b9b-4d71-a343-d7d8a1fc3422&wid=MLB4164385869&sid=search" 
+                           target="_blank" rel="noopener" class="btn btn-purchase btn-large">
+                            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                            Adquirir MUSICAL_BEAM_05
+                        </a>
+                        <a href="https://wa.me/5512991653176?text=Olá! Gostaria de mais informações sobre o MUSICAL_BEAM_05 e condições especiais" 
+                           target="_blank" rel="noopener" class="btn btn-whatsapp btn-large">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                            Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <picture>
+                            <source type="image/webp" srcset="../../assets/images/logos/terra-compact.webp">
+                            <img src="../../assets/images/logos/terra-compact.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                        <p>Tecnologia que liberta seu potencial</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronica5492" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Produtos</h4>
+                    <ul>
+                        <li><a href="../instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
+                        <li><a href="../tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
+                        <li><a href="../sensory-musical.html">Sensory Musical</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="../../index.html#sobre">Sobre Nós</a></li>
+                        <li><a href="../../index.html#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="../../manuais.html?tipo=manual">Manuais</a></li>
+                        <li><a href="../../manuais.html?tipo=download">Downloads</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
+                <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
+            </div>
         </div>
-      </div>
-    </nav>
-  </header>
+    </footer>
 
-  <main class="container mt-3 mb-3">
-    <p>Página dedicada do MUSICAL_BEAM_05. Em breve conteúdo completo.</p>
-    <p><a href="../instrumentos-midi.html">Voltar para Instrumentos</a></p>
-  </main>
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    
+    <!-- Widget de Acessibilidade -->
+    <div class="accessibility-widget" id="accessibilityWidget">
+        <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Menu de Acessibilidade" title="Opções de Acessibilidade">
+            <i class="fas fa-universal-access" aria-hidden="true"></i>
+        </button>
+        
+        <div class="accessibility-panel" id="accessibilityPanel" role="dialog" aria-labelledby="accessibilityTitle" aria-hidden="true">
+            <h3 id="accessibilityTitle">Opções de Acessibilidade</h3>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="increaseFontBtn" aria-label="Aumentar tamanho da fonte">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    <span>Aumentar Fonte</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="decreaseFontBtn" aria-label="Diminuir tamanho da fonte">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                    <span>Diminuir Fonte</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="highContrastBtn" aria-label="Alternar alto contraste">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                    <span>Alto Contraste</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="darkModeBtn" aria-label="Alternar modo escuro">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="readAloudBtn" aria-label="Ativar leitura em voz alta">
+                    <i class="fas fa-volume-up" aria-hidden="true"></i>
+                    <span>Leitura em Voz Alta</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="resetBtn" aria-label="Restaurar configurações padrão">
+                    <i class="fas fa-undo" aria-hidden="true"></i>
+                    <span>Restaurar Padrão</span>
+                </button>
+            </div>
+            
+            <button class="accessibility-close" id="accessibilityClose" aria-label="Fechar menu de acessibilidade">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
 
-  <footer class="footer"><div class="container"><div class="footer-bottom"><p>&copy; 2025 Terra Eletrônica.</p></div></div></footer>
-  <script src="../../assets/js/main.js"></script>
+    <!-- Botão WhatsApp Flutuante -->
+    <div class="whatsapp-float whatsapp-visible">
+        <a href="https://wa.me/5512991653176?text=Olá! Gostaria de saber mais sobre o MUSICAL_BEAM_05" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp sobre MUSICAL_BEAM_05">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        if (window && window.VLibras && typeof window.VLibras.Widget === 'function') {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        } else {
+            window.addEventListener('load', function() {
+                if (window.VLibras && typeof window.VLibras.Widget === 'function') {
+                    new window.VLibras.Widget('https://vlibras.gov.br/app');
+                }
+            });
+        }
+    </script>
+
+    <!-- Scripts -->
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/musical-beam-05.js"></script>
 </body>
 </html>
