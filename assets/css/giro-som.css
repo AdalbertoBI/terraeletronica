@@ -1,0 +1,410 @@
+/* Giro Som 09 Specific Styles */
+:root {
+    --giro-som-primary: #F39C12;
+    --giro-som-secondary: #E67E22;
+    --giro-som-accent: #D68910;
+    --giro-som-gradient: linear-gradient(135deg, #F39C12 0%, #E67E22 100%);
+    --sunflower-yellow: #F1C40F;
+    --sunflower-orange: #FF8C00;
+}
+
+/* Override theme for Giro Som */
+.giro-som {
+    --primary-color: #F39C12;
+    --secondary-color: #E67E22;
+    --accent-color: #D68910;
+    --gradient-primary: var(--giro-som-gradient);
+}
+
+/* Giro Som Container */
+.giro-som-container {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 300px;
+    background: 
+        radial-gradient(circle at center, rgba(241, 196, 15, 0.1) 0%, rgba(243, 156, 18, 0.05) 70%, transparent 100%),
+        conic-gradient(from 0deg, rgba(243, 156, 18, 0.1), rgba(230, 126, 34, 0.1), rgba(243, 156, 18, 0.1));
+    border-radius: 50%;
+    border: 3px solid rgba(243, 156, 18, 0.3);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    z-index: 10;
+    animation: sunflowerRotate 20s linear infinite;
+}
+
+/* Giro Som Petals */
+.giro-petal {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--sunflower-yellow) 0%, var(--giro-som-primary) 100%);
+    border: 2px solid var(--giro-som-secondary);
+    border-radius: 50% 10% 50% 10%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 6px 15px rgba(243, 156, 18, 0.3),
+        inset 0 2px 5px rgba(255, 255, 255, 0.4);
+    transform-origin: center;
+}
+
+.giro-petal:hover {
+    background: linear-gradient(135deg, var(--sunflower-orange) 0%, var(--giro-som-secondary) 100%);
+    transform: scale(1.15) rotate(15deg) !important;
+    box-shadow: 
+        0 12px 25px rgba(243, 156, 18, 0.5),
+        inset 0 2px 8px rgba(255, 255, 255, 0.6),
+        0 0 20px rgba(243, 156, 18, 0.8);
+    border-color: var(--sunflower-orange);
+    z-index: 100;
+}
+
+.giro-petal:active,
+.giro-petal.spinning {
+    transform: scale(1.05) rotate(180deg) !important;
+    animation: petalSpin 0.3s ease-in-out;
+}
+
+.petal-icon {
+    font-size: 1.8rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: all 0.3s ease;
+}
+
+.giro-petal:hover .petal-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+.petal-number {
+    font-size: 0.7rem;
+    font-weight: bold;
+    color: var(--giro-som-secondary);
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease;
+}
+
+.giro-petal:hover .petal-number {
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Giro Som Center */
+.giro-center {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: 
+        radial-gradient(circle, var(--sunflower-yellow) 0%, var(--giro-som-primary) 70%);
+    border: 4px solid var(--giro-som-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    box-shadow: 
+        0 8px 20px rgba(243, 156, 18, 0.4),
+        inset 0 4px 10px rgba(255, 255, 255, 0.5);
+    animation: centerPulse 3s ease-in-out infinite;
+    z-index: 50;
+}
+
+/* Giro Som Controls */
+.giro-controls {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 25px;
+    background: rgba(243, 156, 18, 0.1);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    padding: 18px 30px;
+    border-radius: 35px;
+    border: 1px solid rgba(243, 156, 18, 0.3);
+    z-index: 10;
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.control-item:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+
+.control-icon {
+    font-size: 1.6rem;
+    color: var(--giro-som-primary);
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.control-item:hover .control-icon {
+    color: var(--sunflower-orange);
+    transform: scale(1.3) rotate(10deg);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.control-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(243, 156, 18, 0.9);
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Animações específicas do Giro Som */
+@keyframes sunflowerRotate {
+    0% { transform: translateX(-50%) rotate(0deg); }
+    100% { transform: translateX(-50%) rotate(360deg); }
+}
+
+@keyframes petalSpin {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(180deg); }
+    100% { transform: scale(1) rotate(360deg); }
+}
+
+@keyframes centerPulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
+    }
+    50% { 
+        transform: scale(1.1);
+        box-shadow: 0 12px 30px rgba(243, 156, 18, 0.6);
+    }
+}
+
+@keyframes giroNoteFloat {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(-20deg);
+        opacity: 0;
+    }
+    25% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(-5deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -100px) scale(1.5) rotate(15deg);
+        opacity: 0;
+    }
+}
+
+@keyframes sunflowerParticleFloat {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -180px) scale(2);
+        opacity: 0;
+    }
+}
+
+@keyframes sunflowerParticleHover {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -120px) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Hero customizado para Giro Som */
+.giro-som .product-hero {
+    background: 
+        linear-gradient(135deg, rgba(243, 156, 18, 0.85) 0%, rgba(230, 126, 34, 0.85) 100%),
+        url('../../assets/images/banners/sala-de-musicoterapia.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Ondas sonoras do Giro Som */
+.giro-waves {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 6px;
+    opacity: 0.4;
+}
+
+.sunflower-wave {
+    width: 5px;
+    height: 50px;
+    background: var(--sunflower-orange);
+    border-radius: 3px;
+    animation: sunflowerSoundWave 2s ease-in-out infinite;
+}
+
+.sunflower-wave:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.sunflower-wave:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.sunflower-wave:nth-child(4) {
+    animation-delay: 0.9s;
+}
+
+@keyframes sunflowerSoundWave {
+    0%, 100% {
+        height: 30px;
+        opacity: 0.4;
+    }
+    50% {
+        height: 80px;
+        opacity: 1;
+    }
+}
+
+/* Destaque de nota musical */
+.giro-som .note-highlight {
+    background: var(--sunflower-orange) !important;
+    color: white !important;
+    transform: scale(1.15) rotate(5deg) !important;
+    box-shadow: 0 0 25px var(--sunflower-orange) !important;
+}
+
+/* Notas musicais específicas do Giro Som */
+.giro-note {
+    font-size: 2.8rem !important;
+    animation: giroNoteFloat 3s ease-out forwards !important;
+}
+
+.sunflower-particle {
+    background: radial-gradient(circle, var(--sunflower-yellow), var(--giro-som-primary)) !important;
+}
+
+/* Efeitos de partícula temáticos */
+.hover-particle.sunflower-particle {
+    background: radial-gradient(circle, #F39C12, #E67E22);
+    box-shadow: 0 0 10px rgba(243, 156, 18, 0.6);
+}
+
+/* Responsive para Giro Som */
+@media (max-width: 768px) {
+    .giro-som-container {
+        width: 250px;
+        height: 250px;
+        top: 20%;
+    }
+    
+    .giro-petal {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .petal-icon {
+        font-size: 1.5rem;
+    }
+    
+    .giro-petal:hover .petal-icon {
+        font-size: 1.7rem;
+    }
+    
+    .petal-number {
+        font-size: 0.6rem;
+    }
+    
+    .giro-center {
+        width: 65px;
+        height: 65px;
+        font-size: 2rem;
+    }
+    
+    .giro-controls {
+        bottom: 5%;
+        gap: 20px;
+        padding: 15px 25px;
+    }
+    
+    .control-icon {
+        font-size: 1.3rem;
+    }
+    
+    .control-label {
+        font-size: 0.6rem;
+    }
+    
+    .giro-waves {
+        right: 5%;
+        gap: 4px;
+    }
+    
+    .sunflower-wave {
+        width: 4px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .giro-som-container {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .giro-petal {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .petal-icon {
+        font-size: 1.2rem;
+    }
+    
+    .giro-center {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}
+
+/* Acessibilidade aprimorada */
+.giro-petal:focus {
+    outline: 3px solid var(--sunflower-orange);
+    outline-offset: 2px;
+}
+
+.control-item:focus {
+    outline: 2px solid var(--giro-som-primary);
+    outline-offset: 1px;
+    border-radius: 8px;
+}
+
+/* Modo de alto contraste */
+@media (prefers-contrast: high) {
+    .giro-petal {
+        border-width: 3px;
+        border-color: #000;
+    }
+    
+    .giro-center {
+        border-width: 5px;
+        border-color: #000;
+    }
+}
