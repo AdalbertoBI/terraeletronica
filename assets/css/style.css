@@ -1785,6 +1785,13 @@ body.dark-mode .btn {
     animation: fadeInUp 1s ease 2s forwards;
 }
 
+.whatsapp-visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: scale(1) !important;
+    z-index: 10002 !important;
+}
+
 .whatsapp-float a {
     display: flex;
     align-items: center;
