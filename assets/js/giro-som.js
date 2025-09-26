@@ -13,6 +13,7 @@ class GiroSomPage {
         this.audioContext = null;
         this.gainNode = null;
         this.isAudioEnabled = false;
+        this.isSoundEnabled = true; // Controle do usuário para som
         this.currentNoteIndex = 0;
         this.isPlaying = false;
         
@@ -21,6 +22,7 @@ class GiroSomPage {
     
     init() {
         this.setupAudioContext();
+        this.setupSoundControl();
         this.setupProductImageInteraction();
         this.setupGiroSomDemo();
         this.setupScrollAnimations();
@@ -51,6 +53,19 @@ class GiroSomPage {
         } else if (this.audioContext) {
             this.isAudioEnabled = true;
         }
+    }
+
+    setupSoundControl() {
+        // Escutar evento global de toggle de som
+        document.addEventListener('soundToggle', (event) => {
+            this.isSoundEnabled = !this.isSoundEnabled;
+            console.log(`🌻 Giro Som - Som ${this.isSoundEnabled ? 'ativado' : 'desativado'}`);
+            
+            // Criar feedback visual
+            if (this.isSoundEnabled) {
+                this.createSoundTriggeredNote(0);
+            }
+        });
     }
     
     // Test audio functionality
@@ -222,7 +237,8 @@ class GiroSomPage {
     }
     
     playGiroNote(noteIndex, element = null) {
-        if (!this.isAudioEnabled || !this.audioContext) {
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) {
+            if (!this.isSoundEnabled) return;
             this.enableAudio();
             if (!this.isAudioEnabled) return;
         }
@@ -328,7 +344,7 @@ class GiroSomPage {
     }
     
     startMusicalScale() {
-        if (this.isPlaying) return;
+        if (!this.isSoundEnabled || this.isPlaying) return;
         
         this.isPlaying = true;
         this.currentNoteIndex = 0;
@@ -514,14 +530,16 @@ class GiroSomPage {
                 
                 // Adicionar feedback visual sutil
                 element.addEventListener('mouseenter', () => {
-                    this.createHoverParticle(element);
+                    if (this.isSoundEnabled) {
+                        this.createHoverParticle(element);
+                    }
                 });
             });
         });
     }
     
     playHoverNote(noteIndex, elementType, element) {
-        if (!this.isAudioEnabled || !this.audioContext) return;
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) return;
         
         const frequency = this.giroFrequencies[noteIndex];
         const oscillator = this.audioContext.createOscillator();

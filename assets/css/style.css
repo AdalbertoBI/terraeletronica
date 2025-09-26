@@ -1792,6 +1792,123 @@ body.dark-mode .btn {
     z-index: 10002 !important;
 }
 
+/* Sound Control Floating Button */
+.sound-control-float {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 10003;
+    animation: fadeInDown 1s ease 1s forwards;
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.sound-control-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #FF6B35 0%, #F4511E 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    box-shadow: 
+        0 4px 20px rgba(255, 107, 53, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.sound-control-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.6s ease;
+}
+
+.sound-control-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 8px 30px rgba(255, 107, 53, 0.5),
+        0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.sound-control-btn:hover::before {
+    transform: scale(1);
+}
+
+.sound-control-btn:active {
+    transform: translateY(-1px) scale(0.98);
+}
+
+.sound-control-btn.muted {
+    background: linear-gradient(135deg, #9E9E9E 0%, #616161 100%);
+    box-shadow: 
+        0 4px 20px rgba(158, 158, 158, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sound-control-btn.muted:hover {
+    box-shadow: 
+        0 8px 30px rgba(158, 158, 158, 0.5),
+        0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Musical Notes Animation */
+.musical-note {
+    position: absolute;
+    font-size: 1.2rem;
+    color: var(--primary-color, #2c5aa0);
+    pointer-events: none;
+    z-index: 1000;
+    animation: floatNote 3s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes floatNote {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+    25% {
+        opacity: 0.8;
+        transform: translateY(-20px) scale(1.1) rotate(5deg);
+    }
+    50% {
+        opacity: 0.6;
+        transform: translateY(-40px) scale(1.2) rotate(-3deg);
+    }
+    75% {
+        opacity: 0.3;
+        transform: translateY(-60px) scale(1.1) rotate(2deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-80px) scale(0.8) rotate(0deg);
+    }
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .whatsapp-float a {
     display: flex;
     align-items: center;

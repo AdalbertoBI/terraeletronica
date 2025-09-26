@@ -10,6 +10,9 @@ class MusicalBeam05 {
         this.audioContext = null;
         this.gainNode = null;
         this.initialized = false;
+        this.isSoundEnabled = true; // Controle do usuário para som
+        this.musicalNotes = ['♪','♫','♬','♩','♭','♯','𝄞','𝅘𝅥𝅮'];
+        this.currentNoteIndex = 0;
         
         // Configuração dos sensores
         this.sensorConfig = {
@@ -24,9 +27,13 @@ class MusicalBeam05 {
 
     init() {
         this.setupAudioContext();
+        this.setupSoundControl();
         this.createSensorElements();
         this.attachEventListeners();
         this.startLaserAnimation();
+        this.setupGlobalHoverSounds();
+        this.enhanceProductImage();
+        this.injectUtilityStyles();
         this.initialized = true;
         console.log('Musical Beam 05 initialized successfully');
     }
@@ -45,6 +52,19 @@ class MusicalBeam05 {
         } catch (error) {
             console.warn('Web Audio API não suportado:', error);
         }
+    }
+
+    setupSoundControl() {
+        // Escutar evento global de toggle de som
+        document.addEventListener('soundToggle', (event) => {
+            this.isSoundEnabled = !this.isSoundEnabled;
+            console.log(`🎶 Musical Beam - Som ${this.isSoundEnabled ? 'ativado' : 'desativado'}`);
+            
+            // Criar feedback visual com som de sensor aleatório
+            if (this.isSoundEnabled && this.sensors.length > 0) {
+                this.createLaserParticles(this.sensors[0]);
+            }
+        });
     }
 
     createSensorElements() {
@@ -188,6 +208,34 @@ class MusicalBeam05 {
             item.addEventListener('mouseenter', () => {
                 this.createLaserEffect(item);
             });
+            item.addEventListener('mouseenter', () => this.playSensorSound(index % this.sensorConfig.count));
+        });
+
+        // Som em categorias de especificações
+        const specCats = document.querySelectorAll('.spec-category');
+        specCats.forEach((cat, i) => {
+            cat.addEventListener('mouseenter', () => {
+                this.playSensorSound(i % this.sensorConfig.count);
+                this.spawnMusicalNote(cat);
+            });
+        });
+
+        // Som em application cards
+        const appCards = document.querySelectorAll('.application-card');
+        appCards.forEach((card, i) => {
+            card.addEventListener('mouseenter', () => {
+                this.playSensorSound((i+2) % this.sensorConfig.count);
+                this.createLaserEffect(card);
+            });
+        });
+
+        // Botões CTA
+        const ctaBtns = document.querySelectorAll('.cta-buttons a, .final-buttons a, .btn-primary, .btn-secondary');
+        ctaBtns.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                this.playRandomSensorSound();
+                this.spawnRipple(btn);
+            });
         });
     }
 
@@ -213,7 +261,7 @@ class MusicalBeam05 {
     }
 
     playSensorSound(sensorIndex) {
-        if (!window.AudioContext && !window.webkitAudioContext) return;
+        if (!this.isSoundEnabled || (!window.AudioContext && !window.webkitAudioContext)) return;
 
         try {
             this.createAudioContext();
@@ -393,6 +441,102 @@ class MusicalBeam05 {
                 this.activateSensor(i);
             }, i * 800);
         }
+    }
+
+    /* ====== NOVAS FUNÇÕES DE INTERAÇÃO GLOBAL ====== */
+    setupGlobalHoverSounds() {
+        const title = document.querySelector('.product-title');
+        if (title) {
+            title.addEventListener('mouseenter', () => this.playRandomSensorSound());
+        }
+
+        // Breadcrumb
+        document.querySelectorAll('.breadcrumb a').forEach(a => {
+            a.addEventListener('mouseenter', () => this.playRandomSensorSound());
+        });
+    }
+
+    enhanceProductImage() {
+        const imgWrapper = document.querySelector('.product-image figure');
+        const container = document.querySelector('.product-image');
+        if (!imgWrapper || !container) return;
+
+        // Partículas
+        if (!container.querySelector('.beam-particles')) {
+            const particles = document.createElement('div');
+            particles.className = 'beam-particles';
+            for (let i=0;i<14;i++) {
+                const s = document.createElement('span');
+                s.style.setProperty('--x', Math.random()*100+'%');
+                s.style.setProperty('--y', Math.random()*100+'%');
+                s.style.setProperty('--d', (Math.random()*5)+'s');
+                particles.appendChild(s);
+            }
+            container.appendChild(particles);
+        }
+
+        // Efeito de parallax leve com movimento do mouse
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            imgWrapper.style.transform = `rotateY(${x*12}deg) rotateX(${ -y*12}deg) scale(1.05)`;
+        });
+        container.addEventListener('mouseleave', () => {
+            imgWrapper.style.transform = '';
+        });
+
+        // Clique gera acorde (tocar todos os sensores rapidamente)
+        container.addEventListener('click', () => {
+            for (let i=0;i<this.sensorConfig.count;i++) {
+                setTimeout(()=> this.playSensorSound(i), i*90);
+            }
+            this.spawnMusicalNote(container, true);
+        });
+    }
+
+    spawnMusicalNote(refEl, burst=false) {
+        if (!refEl) return;
+        const note = document.createElement('div');
+        note.className = 'floating-note';
+        note.textContent = this.musicalNotes[this.currentNoteIndex++ % this.musicalNotes.length];
+        const rect = refEl.getBoundingClientRect();
+        note.style.left = (rect.left + rect.width/2) + 'px';
+        note.style.top = (rect.top + rect.height/2) + 'px';
+        document.body.appendChild(note);
+        setTimeout(()=> note.remove(), 2200);
+        if (burst) {
+            for (let i=0;i<4;i++) setTimeout(()=> this.spawnMusicalNote(refEl,false), 120*i);
+        }
+    }
+
+    spawnRipple(el) {
+        const ripple = document.createElement('span');
+        ripple.className = 'btn-ripple';
+        el.appendChild(ripple);
+        setTimeout(()=> ripple.remove(), 600);
+    }
+
+    injectUtilityStyles() {
+        if (document.getElementById('beam-utility-styles')) return;
+        const style = document.createElement('style');
+        style.id = 'beam-utility-styles';
+        style.textContent = `
+            .floating-note {
+                position: fixed; pointer-events:none; font-size:2rem; z-index:9999; color:#7B68EE;
+                animation: noteFloat 2.2s ease-out forwards; filter: drop-shadow(0 4px 6px rgba(0,0,0,.25));
+            }
+            @keyframes noteFloat {
+                0% { transform: translate(-50%, -50%) scale(.6); opacity:0; }
+                10% { opacity:1; }
+                80% { opacity:1; }
+                100% { transform: translate(-50%, -210%) scale(1.2) rotate(-15deg); opacity:0; }
+            }
+            .btn-ripple { position:absolute; inset:0; border-radius:inherit; overflow:hidden; }
+            .btn-ripple::after { content:''; position:absolute; inset:0; background:radial-gradient(circle at center, rgba(255,255,255,.5), rgba(255,255,255,0)); animation:ripplePulse .6s ease-out; }
+            @keyframes ripplePulse { 0% { transform:scale(.3); opacity:.9;} 100% { transform:scale(1.4); opacity:0;} }
+        `;
+        document.head.appendChild(style);
     }
 }
 

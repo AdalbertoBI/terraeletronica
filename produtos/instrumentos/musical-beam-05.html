@@ -107,13 +107,39 @@
         <section class="product-details">
             <div class="container">
                 <div class="product-grid">
-                    <div class="product-image">
-                        <figure>
-                            <picture>
-                                <source type="image/webp" srcset="../../assets/images/produtos/Musical_Beam_2-transformed.webp">
-                                <img src="../../assets/images/produtos/Musical_Beam_2-transformed.png" alt="MUSICAL_BEAM_05 - Torre com sensores laser" loading="lazy">
-                            </picture>
-                        </figure>
+                    <div class="product-image-gallery">
+                        <div class="main-image-container">
+                            <div class="carousel">
+                                <div class="carousel-item active" data-type="image">
+                                    <figure>
+                                        <picture>
+                                            <source type="image/webp" srcset="../../assets/images/produtos/Musical_Beam_2-transformed.webp">
+                                            <img src="../../assets/images/produtos/Musical_Beam_2-transformed.png" alt="Vista frontal do MUSICAL_BEAM_05, um controlador MIDI em formato de torre com 5 sensores laser." loading="lazy">
+                                        </picture>
+                                        <figcaption class="sr-only">Imagem principal do MUSICAL_BEAM_05</figcaption>
+                                    </figure>
+                                </div>
+                                <div class="carousel-item" data-type="video">
+                                    <video controls preload="metadata" poster="../../assets/images/produtos/Musical_Beam_2-transformed.webp">
+                                        <source src="../../assets/videos/Musical_Beam_05_video.mp4" type="video/mp4">
+                                        Seu navegador não suporta o vídeo.
+                                    </video>
+                                </div>
+                            </div>
+                            <div class="carousel-controls">
+                                <button class="prev" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+                                <button class="next" aria-label="Próximo"><i class="fas fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                        <div class="thumbnail-gallery">
+                            <div class="thumbnail active" data-index="0" data-type="image">
+                                <img src="../../assets/images/produtos/Musical_Beam_2-transformed.webp" alt="Miniatura da imagem do MUSICAL_BEAM_05" loading="lazy">
+                            </div>
+                            <div class="thumbnail" data-index="1" data-type="video">
+                                <img src="../../assets/images/produtos/Musical_Beam_2-transformed.webp" alt="Miniatura do vídeo do MUSICAL_BEAM_05" loading="lazy">
+                                <i class="fas fa-play-circle video-indicator"></i>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="product-info">
@@ -240,8 +266,8 @@
         <!-- Applications Section -->
         <section class="applications">
             <div class="container">
-                <h2 class="section-title">Aplicações Inovadoras</h2>
-                <p class="section-subtitle">Descubra as possibilidades infinitas do MUSICAL_BEAM_05</p>
+                <h2 class="section-title">Aplicações Recomendadas</h2>
+                <p class="section-subtitle">Descubra onde o MUSICAL_BEAM_05 pode transformar experiências musicais</p>
                 
                 <div class="applications-grid">
                     <div class="application-card">
@@ -274,39 +300,6 @@
                         </div>
                         <h3>Instalações Interativas</h3>
                         <p>Árvores de natal musicais, praças, shoppings e condomínios com experiências sonoras únicas</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section class="features">
-            <div class="container">
-                <h2 class="section-title">Como Funciona a Magia</h2>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-number">01</div>
-                        <h3>Detecção de Movimento</h3>
-                        <p>Os sensores laser captam qualquer movimento corporal: braços, pernas, cabeça, cadeira de rodas ou até mesmo respiração</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-number">02</div>
-                        <h3>Processamento Inteligente</h3>
-                        <p>O sistema converte os movimentos detectados em comandos MIDI ou HID, permitindo controle total da música</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-number">03</div>
-                        <h3>Resposta Musical</h3>
-                        <p>Cada sensor pode acionar notas, instrumentos, efeitos musicais ou regências, criando uma sinfonia no ar</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-number">04</div>
-                        <h3>Experiência Mágica</h3>
-                        <p>O resultado é uma experiência musical única onde os movimentos se transformam em música de forma natural e intuitiva</p>
                     </div>
                 </div>
             </div>
@@ -472,6 +465,13 @@
         </div>
     </div>
 
+    <!-- Botão de Controle de Som -->
+    <div class="sound-control-float" id="soundControlFloat">
+        <button class="sound-control-btn" id="soundToggleBtn" aria-label="Ativar/Desativar som" title="Controlar reprodução de sons">
+            <i class="fas fa-volume-up" aria-hidden="true"></i>
+        </button>
+    </div>
+
     <!-- Botão WhatsApp Flutuante -->
     <div class="whatsapp-float whatsapp-visible">
         <a href="https://wa.me/5512991653176?text=Olá! Gostaria de saber mais sobre o MUSICAL_BEAM_05" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp sobre MUSICAL_BEAM_05">
@@ -493,6 +493,7 @@
     </script>
 
     <!-- Scripts -->
+    <script src="../../assets/js/sound-control.js"></script>
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/musical-beam-05.js"></script>
 </body>

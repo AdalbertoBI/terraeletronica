@@ -9,6 +9,7 @@
     --beam-gradient: linear-gradient(135deg, #7B68EE 0%, #00CED1 50%, #FF6B9D 100%);
     --beam-glow: 0 0 20px rgba(123, 104, 238, 0.3);
     --beam-shadow: 0 10px 30px rgba(0, 206, 209, 0.2);
+    --text-color: #333333; /* Dark text for good contrast */
 }
 
 .musical-beam-05 {
@@ -19,11 +20,19 @@
 
 /* Product Hero Section */
 .product-hero {
-    background: var(--beam-gradient);
+    background: 
+        linear-gradient(135deg, rgba(123, 104, 238, 0.85) 0%, rgba(0, 206, 209, 0.85) 50%, rgba(255, 107, 157, 0.85) 100%),
+        url('../images/banners/sala-de-musicoterapia.jpeg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     color: white;
-    padding: 4rem 0;
+    padding: 6rem 0;
     position: relative;
     overflow: hidden;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
 }
 
 .product-hero::before {
@@ -38,6 +47,7 @@
         radial-gradient(circle at 80% 80%, rgba(0, 206, 209, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 40% 60%, rgba(255, 107, 157, 0.1) 0%, transparent 50%);
     animation: laserBeams 8s ease-in-out infinite alternate;
+    z-index: 1;
 }
 
 @keyframes laserBeams {
@@ -81,6 +91,9 @@
 }
 
 .hero-content {
+    text-align: center;
+    max-width: 1000px;
+    margin: 0 auto;
     position: relative;
     z-index: 2;
 }
@@ -140,6 +153,7 @@
 .product-details {
     padding: 5rem 0;
     background: white;
+    color: var(--text-color);
 }
 
 .product-grid {
@@ -151,25 +165,95 @@
 
 .product-image {
     position: relative;
+    perspective: 1000px; /* Para efeito 3D similar ao BIG_KBD */
+    cursor: pointer;
+    transition: transform 0.4s ease;
 }
 
 .product-image figure {
     margin: 0;
     position: relative;
-    border-radius: 20px;
+    border-radius: 24px;
     overflow: hidden;
-    box-shadow: var(--beam-shadow);
+    box-shadow: 0 25px 50px -10px rgba(123,104,238,0.35), 0 10px 25px rgba(0,206,209,0.25);
+    transition: all 0.7s cubic-bezier(.19,1,.22,1);
+    transform-style: preserve-3d;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 60%);
+}
+
+.product-image:hover figure {
+    transform: rotateY(6deg) rotateX(5deg) scale(1.06);
+    box-shadow: 0 40px 80px -20px rgba(123,104,238,0.45), 0 20px 40px rgba(0,206,209,0.35), 0 0 60px -10px rgba(255,107,157,0.4);
 }
 
 .product-image img {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.6s ease, filter 0.6s ease;
+    filter: brightness(1) saturate(1.05);
+    transform-origin: center center;
+    will-change: transform, filter;
 }
 
 .product-image:hover img {
-    transform: scale(1.05);
+    transform: scale(1.08) translateZ(20px);
+    filter: brightness(1.12) saturate(1.25) contrast(1.05);
+}
+
+/* Glow pulsante temático nos cantos */
+.product-image::before, .product-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: 26px;
+    background: linear-gradient(140deg, rgba(123,104,238,0.25), rgba(0,206,209,0.15) 40%, rgba(255,107,157,0.25));
+    mix-blend-mode: screen;
+    opacity: 0.0;
+    transition: opacity 0.6s ease;
+    z-index: 1;
+}
+
+.product-image:hover::before, .product-image:hover::after {
+    opacity: 0.9;
+    animation: beamGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes beamGlow {
+    0% { filter: blur(8px) brightness(1); opacity: .6; }
+    50% { filter: blur(14px) brightness(1.3); opacity: .85; }
+    100% { filter: blur(10px) brightness(1.1); opacity: .65; }
+}
+
+/* Pequenas partículas flutuantes sobre a imagem */
+.product-image .beam-particles {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.product-image .beam-particles span {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff 0%, rgba(255,255,255,0) 70%);
+    top: var(--y, 50%);
+    left: var(--x, 50%);
+    opacity: 0;
+    animation: particleFloat 6s linear infinite;
+    animation-delay: var(--d, 0s);
+    transform: translate(-50%, -50%) scale(.4);
+}
+
+@keyframes particleFloat {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(.4) translateY(0); }
+    10% { opacity: .8; }
+    60% { opacity: .6; }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1) translateY(-40px); }
 }
 
 .product-info h2 {
@@ -294,6 +378,7 @@
 .specifications {
     padding: 5rem 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: var(--text-color);
 }
 
 .section-title {
@@ -317,6 +402,7 @@
     box-shadow: var(--beam-shadow);
     border-top: 4px solid var(--beam-secondary);
     transition: all 0.3s ease;
+    color: var(--text-color);
 }
 
 .spec-category:hover {
@@ -364,6 +450,7 @@
 .applications {
     padding: 5rem 0;
     background: white;
+    color: var(--text-color);
 }
 
 .section-subtitle {
@@ -388,6 +475,7 @@
     box-shadow: var(--beam-shadow);
     border: 1px solid rgba(123, 104, 238, 0.1);
     transition: all 0.3s ease;
+    color: var(--text-color);
 }
 
 .application-card:hover {
@@ -425,71 +513,7 @@
     margin: 0;
 }
 
-/* Features Section */
-.features {
-    padding: 5rem 0;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-}
 
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.feature-card {
-    background: white;
-    padding: 2.5rem 2rem;
-    border-radius: 20px;
-    box-shadow: var(--beam-shadow);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(123, 104, 238, 0.2);
-}
-
-.feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--beam-gradient);
-}
-
-.feature-number {
-    width: 60px;
-    height: 60px;
-    background: var(--beam-gradient);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: white;
-    box-shadow: var(--beam-glow);
-}
-
-.feature-card h3 {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--beam-primary);
-}
-
-.feature-card p {
-    color: var(--text-color);
-    line-height: 1.6;
-    margin: 0;
-}
 
 /* Final CTA Section */
 .final-cta {
@@ -685,9 +709,7 @@
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
     
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
+
     
     .final-benefits {
         grid-template-columns: 1fr;
@@ -698,7 +720,6 @@
     .product-details,
     .specifications,
     .applications,
-    .features,
     .final-cta {
         padding: 3rem 0;
     }

@@ -3,6 +3,7 @@ class BoardBellsPage {
     constructor() {
         this.audioContext = null;
         this.isAudioEnabled = false;
+        this.isSoundEnabled = true; // Controle do usuário para som
         this.musicalNotes = ['🔔', '🎵', '🎶', '♪', '♫', '♬', '♭', '♯', '�'];
         // Frequências de bells/sinos para Board Bells (8 teclas)
         this.bellFrequencies = [
@@ -30,6 +31,7 @@ class BoardBellsPage {
     
     init() {
         this.setupAudioContext();
+        this.setupSoundControl();
         this.setupProductImageInteraction();
         this.setupBoardBellsDemo();
         this.setupScrollAnimations();
@@ -111,6 +113,19 @@ class BoardBellsPage {
         } catch (error) {
             console.log('Erro ao tocar nota de teste:', error);
         }
+    }
+
+    setupSoundControl() {
+        // Escutar evento global de toggle de som
+        document.addEventListener('soundToggle', (event) => {
+            this.isSoundEnabled = !this.isSoundEnabled;
+            console.log(`🔔 Board Bells - Som ${this.isSoundEnabled ? 'ativado' : 'desativado'}`);
+            
+            // Criar feedback visual
+            if (this.isSoundEnabled) {
+                this.createSoundTriggeredNote(0);
+            }
+        });
     }
     
     createSoundTriggeredNote(noteIndex, element = null) {
@@ -363,7 +378,7 @@ class BoardBellsPage {
     }
     
     playBellNote(noteIndex, element = null) {
-        if (!this.isAudioEnabled || !this.audioContext) return;
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) return;
         
         // Usar frequência específica do Board Bells (8 sinos)
         const frequency = this.bellFrequencies[noteIndex % this.bellFrequencies.length];
@@ -421,7 +436,7 @@ class BoardBellsPage {
     }
     
     startMusicalScale() {
-        if (this.isPlaying) return;
+        if (!this.isSoundEnabled || this.isPlaying) return;
         
         this.isPlaying = true;
         this.currentNoteIndex = 0;
@@ -649,14 +664,16 @@ class BoardBellsPage {
                 
                 // Adicionar feedback visual sutil
                 element.addEventListener('mouseenter', () => {
-                    this.createHoverParticle(element);
+                    if (this.isSoundEnabled) {
+                        this.createHoverParticle(element);
+                    }
                 });
             });
         });
     }
     
     playHoverNote(noteIndex, elementType, element) {
-        if (!this.isAudioEnabled || !this.audioContext) return;
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) return;
         
         const frequency = this.bellFrequencies[noteIndex];
         const oscillator = this.audioContext.createOscillator();

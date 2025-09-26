@@ -3,6 +3,7 @@ class BigKbd25Page {
     constructor() {
         this.audioContext = null;
         this.isAudioEnabled = false;
+        this.isSoundEnabled = true; // Controle do usuário para som
         this.musicalNotes = ['♪', '♫', '♬', '♭', '♯', '𝄞', '𝄢', '𝅘𝅥𝅮'];
         this.scaleFrequencies = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]; // C4 to C5
         this.scaleNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'];
@@ -14,6 +15,7 @@ class BigKbd25Page {
     
     init() {
         this.setupAudioContext();
+        this.setupSoundControl();
         this.setupProductImageInteraction();
         this.setupPianoKeys();
         this.setupScrollAnimations();
@@ -93,6 +95,113 @@ class BigKbd25Page {
             oscillator.stop(this.audioContext.currentTime + 0.1);
         } catch (error) {
             console.log('Erro ao tocar nota de teste:', error);
+        }
+    }
+
+    setupSoundControl() {
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        const soundControlFloat = document.getElementById('soundControlFloat');
+        
+        if (!soundToggleBtn || !soundControlFloat) {
+            console.log('Elementos de controle de som não encontrados');
+            return;
+        }
+
+        // Configurar estado inicial
+        this.updateSoundButton();
+
+        // Event listener para o botão
+        soundToggleBtn.addEventListener('click', () => {
+            this.toggleSound();
+        });
+
+        // Mostrar o botão após um delay
+        setTimeout(() => {
+            soundControlFloat.style.opacity = '1';
+            soundControlFloat.style.transform = 'translateY(0)';
+        }, 1500);
+    }
+
+    toggleSound() {
+        this.isSoundEnabled = !this.isSoundEnabled;
+        this.updateSoundButton();
+        
+        // Feedback visual e sonoro
+        this.createSoundToggleFeedback();
+        
+        console.log(`🔊 Som ${this.isSoundEnabled ? 'ativado' : 'desativado'}`);
+    }
+
+    updateSoundButton() {
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        if (!soundToggleBtn) return;
+
+        const icon = soundToggleBtn.querySelector('i');
+        
+        if (this.isSoundEnabled) {
+            soundToggleBtn.classList.remove('muted');
+            soundToggleBtn.setAttribute('title', 'Desativar sons');
+            soundToggleBtn.setAttribute('aria-label', 'Desativar reprodução de sons');
+            icon.className = 'fas fa-volume-up';
+        } else {
+            soundToggleBtn.classList.add('muted');
+            soundToggleBtn.setAttribute('title', 'Ativar sons');
+            soundToggleBtn.setAttribute('aria-label', 'Ativar reprodução de sons');
+            icon.className = 'fas fa-volume-mute';
+        }
+    }
+
+    createSoundToggleFeedback() {
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        if (!soundToggleBtn) return;
+
+        // Criar efeito de ondas sonoras visuais
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                const wave = document.createElement('div');
+                wave.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 60px;
+                    height: 60px;
+                    border: 2px solid ${this.isSoundEnabled ? '#FF6B35' : '#9E9E9E'};
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    animation: soundWave 1s ease-out forwards;
+                    pointer-events: none;
+                    z-index: -1;
+                `;
+
+                soundToggleBtn.appendChild(wave);
+
+                // Remover após animação
+                setTimeout(() => wave.remove(), 1000);
+            }, i * 100);
+        }
+
+        // Criar notas musicais se som estiver ativado
+        if (this.isSoundEnabled) {
+            this.createMusicalNotes(soundToggleBtn);
+        }
+
+        // Adicionar estilo de animação se não existir
+        if (!document.getElementById('soundWaveAnimation')) {
+            const style = document.createElement('style');
+            style.id = 'soundWaveAnimation';
+            style.textContent = `
+                @keyframes soundWave {
+                    0% {
+                        transform: translate(-50%, -50%) scale(1);
+                        opacity: 0.8;
+                    }
+                    100% {
+                        transform: translate(-50%, -50%) scale(3);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
         }
     }
     
@@ -229,7 +338,11 @@ class BigKbd25Page {
     }
     
     playNote(noteIndex, element = null) {
-        if (!this.isAudioEnabled || !this.audioContext) return;
+        // Sempre criar nota visual
+        this.createSoundTriggeredNote(noteIndex, element);
+        
+        // Só reproduzir som se estiver habilitado
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) return;
         
         const frequency = this.scaleFrequencies[noteIndex];
         const oscillator = this.audioContext.createOscillator();
@@ -246,9 +359,6 @@ class BigKbd25Page {
         
         oscillator.start();
         oscillator.stop(this.audioContext.currentTime + 1);
-        
-        // Criar nota visual sincronizada com o som
-        this.createSoundTriggeredNote(noteIndex, element);
     }
     
     startMusicalScale() {
@@ -478,14 +588,16 @@ class BigKbd25Page {
                 
                 // Adicionar feedback visual sutil
                 element.addEventListener('mouseenter', () => {
-                    this.createHoverParticle(element);
+                    if (this.isSoundEnabled) {
+                        this.createHoverParticle(element);
+                    }
                 });
             });
         });
     }
     
     playHoverNote(noteIndex, elementType, element) {
-        if (!this.isAudioEnabled || !this.audioContext) return;
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) return;
         
         const frequency = this.scaleFrequencies[noteIndex];
         const oscillator = this.audioContext.createOscillator();
@@ -596,7 +708,9 @@ class BigKbd25Page {
         
         soundElements.forEach(element => {
             element.addEventListener('mouseenter', () => {
-                this.createSoundWaveEffect(element);
+                if (this.isSoundEnabled) {
+                    this.createSoundWaveEffect(element);
+                }
             });
         });
     }

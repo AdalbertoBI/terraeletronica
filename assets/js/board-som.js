@@ -14,6 +14,7 @@ class BoardSomPage {
         this.audioContext = null;
         this.gainNode = null;
         this.isAudioEnabled = false;
+        this.isSoundEnabled = true; // Controle do usuário para som
         this.currentNoteIndex = 0;
         this.isPlaying = false;
         
@@ -22,6 +23,7 @@ class BoardSomPage {
     
     init() {
         this.setupAudioContext();
+        this.setupSoundControl();
         this.setupProductImageInteraction();
         this.setupBoardSomDemo();
         this.setupScrollAnimations();
@@ -51,6 +53,92 @@ class BoardSomPage {
             });
         } else if (this.audioContext) {
             this.isAudioEnabled = true;
+        }
+    }
+
+    setupSoundControl() {
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        const soundControlFloat = document.getElementById('soundControlFloat');
+        
+        if (!soundToggleBtn || !soundControlFloat) {
+            console.log('Elementos de controle de som não encontrados');
+            return;
+        }
+
+        // Configurar estado inicial
+        this.updateSoundButton();
+
+        // Event listener para o botão
+        soundToggleBtn.addEventListener('click', () => {
+            this.toggleSound();
+        });
+
+        // Mostrar o botão após um delay
+        setTimeout(() => {
+            soundControlFloat.style.opacity = '1';
+            soundControlFloat.style.transform = 'translateY(0)';
+        }, 1500);
+    }
+
+    toggleSound() {
+        this.isSoundEnabled = !this.isSoundEnabled;
+        this.updateSoundButton();
+        
+        // Feedback visual
+        this.createSoundToggleFeedback();
+        
+        console.log(`🔊 Som ${this.isSoundEnabled ? 'ativado' : 'desativado'}`);
+    }
+
+    updateSoundButton() {
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        if (!soundToggleBtn) return;
+
+        const icon = soundToggleBtn.querySelector('i');
+        
+        if (this.isSoundEnabled) {
+            soundToggleBtn.classList.remove('muted');
+            soundToggleBtn.setAttribute('title', 'Desativar sons');
+            soundToggleBtn.setAttribute('aria-label', 'Desativar reprodução de sons');
+            icon.className = 'fas fa-volume-up';
+        } else {
+            soundToggleBtn.classList.add('muted');
+            soundToggleBtn.setAttribute('title', 'Ativar sons');
+            soundToggleBtn.setAttribute('aria-label', 'Ativar reprodução de sons');
+            icon.className = 'fas fa-volume-mute';
+        }
+    }
+
+    createSoundToggleFeedback() {
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        if (!soundToggleBtn) return;
+
+        // Criar efeito de ondas sonoras visuais
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                const wave = document.createElement('div');
+                wave.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 60px;
+                    height: 60px;
+                    border: 2px solid ${this.isSoundEnabled ? '#FF6B35' : '#9E9E9E'};
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    animation: soundWave 1s ease-out forwards;
+                    pointer-events: none;
+                    z-index: -1;
+                `;
+
+                soundToggleBtn.appendChild(wave);
+                setTimeout(() => wave.remove(), 1000);
+            }, i * 100);
+        }
+
+        // Criar notas musicais se som estiver ativado
+        if (this.isSoundEnabled) {
+            this.createMusicalNotes(soundToggleBtn);
         }
     }
     
@@ -209,9 +297,13 @@ class BoardSomPage {
     }
     
     playBoardNote(noteIndex, element = null) {
-        if (!this.isAudioEnabled || !this.audioContext) {
-            this.enableAudio();
-            if (!this.isAudioEnabled) return;
+        // Sempre criar nota visual
+        this.createSoundTriggeredNote(noteIndex, element);
+        
+        // Só reproduzir som se estiver habilitado
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) {
+            if (!this.isAudioEnabled) this.enableAudio();
+            if (!this.isSoundEnabled) return;
         }
         
         const frequency = this.boardFrequencies[noteIndex % this.boardFrequencies.length];
@@ -314,7 +406,7 @@ class BoardSomPage {
     }
     
     startMusicalScale() {
-        if (this.isPlaying) return;
+        if (!this.isSoundEnabled || this.isPlaying) return;
         
         this.isPlaying = true;
         this.currentNoteIndex = 0;
@@ -499,14 +591,16 @@ class BoardSomPage {
                 
                 // Adicionar feedback visual sutil
                 element.addEventListener('mouseenter', () => {
-                    this.createHoverParticle(element);
+                    if (this.isSoundEnabled) {
+                        this.createHoverParticle(element);
+                    }
                 });
             });
         });
     }
     
     playHoverNote(noteIndex, elementType, element) {
-        if (!this.isAudioEnabled || !this.audioContext) return;
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) return;
         
         const frequency = this.boardFrequencies[noteIndex];
         const oscillator = this.audioContext.createOscillator();
