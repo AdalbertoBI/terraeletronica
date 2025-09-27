@@ -592,27 +592,28 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===== PERFORMANCE =====
-// Preload de páginas importantes
+// Preload de páginas importantes - TEMPORARIAMENTE DESABILITADO
 function preloadImportantPages() {
+    console.log('Preload de páginas desabilitado para evitar erros 404');
+    return;
+    
+    // TODO: Reativar quando todas as páginas estiverem criadas
+    /*
     const importantPages = [
-        '/produtos/instrumentos-midi.html',
-        '/produtos/sensory-musical.html',
-        '/produtos/tecnologia-assistiva.html',
-        '/produtos/biblia-eletronica.html',
-        '/produtos/lupa-bolinha.html'
+        'produtos/instrumentos-midi.html',
+        'produtos/sensory-musical.html',
+        'produtos/tecnologia-assistiva.html',
+        'produtos/biblia-eletronica.html',
+        'produtos/lupa-bolinha.html'
     ];
     
     importantPages.forEach(page => {
-        // Verificar se a página existe antes de fazer prefetch
         const link = document.createElement('link');
         link.rel = 'prefetch';
         link.href = page;
-        link.onerror = () => {
-            console.log(`Página não encontrada para preload: ${page}`);
-            document.head.removeChild(link);
-        };
         document.head.appendChild(link);
     });
+    */
 }
 
 // Inicializar preload após load
