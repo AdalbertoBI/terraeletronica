@@ -615,6 +615,12 @@ section {
     
     .section-header {
         margin-bottom: var(--spacing-2xl);
+        position: relative;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.98);
+        padding: var(--spacing-base) 0;
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
     }
     
     /* Prevent section overlap on mobile */
@@ -626,6 +632,8 @@ section {
 .section-header {
     text-align: center;
     margin-bottom: var(--spacing-4xl);
+    position: relative;
+    z-index: 10;
 }
 
 .section-title {
@@ -678,6 +686,8 @@ section {
     overflow: hidden;
     box-shadow: var(--shadow-base);
     transition: var(--transition-base);
+    position: relative;
+    z-index: 1;
 }
 
 .produto-card:hover {
