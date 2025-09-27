@@ -1,10 +1,22 @@
 // Validação e interatividade do formulário de contato
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contatoForm');
+    
+    // Verificar se o formulário existe antes de continuar
+    if (!form) {
+        return; // Sair se não há formulário na página
+    }
+    
     const inputs = form.querySelectorAll('input, select, textarea');
     const submitBtn = form.querySelector('.btn-send');
     const messageField = document.getElementById('mensagem');
     const charCounter = document.getElementById('char-count');
+    
+    // Limpar erros iniciais
+    const errorContainer = document.getElementById('form-errors');
+    if (errorContainer) {
+        errorContainer.innerHTML = '';
+    }
     
     // Configuração de validação
     const validators = {
@@ -37,16 +49,22 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // Função para validar campo individual
-    function validateField(field) {
+    function validateField(field, showErrors = true) {
         const name = field.name;
         const value = field.value.trim();
         const validator = validators[name];
-        const formGroup = field.closest('.form-group');
-        const errorSpan = formGroup.querySelector('.form-error');
         
         let isValid = true;
         let errorMessage = '';
 
+        // Verificar se o campo tem validador definido
+        if (!validator) {
+            return true;
+        }
+
+        // Verificar se o campo foi tocado pelo usuário
+        const wasTouched = field.dataset.touched === 'true';
+        
         // Validação obrigatória
         if (validator.required && !value) {
             isValid = false;
@@ -68,33 +86,49 @@ document.addEventListener('DOMContentLoaded', function() {
             errorMessage = validator.message;
         }
 
-        // Aplicar classes de validação
-        formGroup.classList.remove('valid', 'error');
-        if (value) {
-            formGroup.classList.add(isValid ? 'valid' : 'error');
+        // Aplicar classes de validação no campo apenas se foi tocado
+        field.classList.remove('valid', 'error');
+        if (value && wasTouched) {
+            field.classList.add(isValid ? 'valid' : 'error');
         }
 
-        // Mostrar/ocultar mensagem de erro
-        if (errorSpan) {
-            errorSpan.textContent = errorMessage;
+        // Mostrar erro no container de erros apenas se foi tocado e showErrors é true
+        const errorContainer = document.getElementById('form-errors');
+        if (errorContainer) {
+            const existingError = errorContainer.querySelector(`[data-field="${name}"]`);
+            if (existingError) {
+                existingError.remove();
+            }
+            
+            if (!isValid && errorMessage && wasTouched && showErrors) {
+                const errorDiv = document.createElement('div');
+                errorDiv.setAttribute('data-field', name);
+                errorDiv.className = 'field-error';
+                errorDiv.textContent = errorMessage;
+                errorContainer.appendChild(errorDiv);
+            }
         }
 
         return isValid;
     }
 
     // Função para validar formulário completo
-    function validateForm() {
+    function validateForm(showErrors = true) {
         let isFormValid = true;
         
         inputs.forEach(input => {
-            if (!validateField(input)) {
+            if (!validateField(input, showErrors)) {
                 isFormValid = false;
             }
         });
 
-        // Atualizar estado do botão
-        submitBtn.disabled = !isFormValid;
-        submitBtn.classList.toggle('disabled', !isFormValid);
+        // Atualizar estado do botão apenas se pelo menos um campo foi tocado
+        const anyFieldTouched = Array.from(inputs).some(input => input.dataset.touched === 'true');
+        
+        if (submitBtn && anyFieldTouched) {
+            submitBtn.disabled = !isFormValid;
+            submitBtn.classList.toggle('disabled', !isFormValid);
+        }
 
         return isFormValid;
     }
@@ -110,20 +144,22 @@ document.addEventListener('DOMContentLoaded', function() {
         // Validação durante digitação (com delay)
         let timeout;
         input.addEventListener('input', function() {
+            this.dataset.touched = 'true';
             clearTimeout(timeout);
             timeout = setTimeout(() => {
-                validateField(this);
-                validateForm();
+                validateField(this, true);
+                validateForm(true);
             }, 300);
         });
 
         // Animação de foco
         input.addEventListener('focus', function() {
-            this.closest('.form-group').classList.add('focused');
+            this.classList.add('focused');
+            this.dataset.touched = 'true';
         });
 
         input.addEventListener('blur', function() {
-            this.closest('.form-group').classList.remove('focused');
+            this.classList.remove('focused');
         });
     });
 
@@ -135,12 +171,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Mudar cor baseada no limite
             const counter = charCounter.parentElement;
-            counter.classList.remove('warning', 'danger');
-            
-            if (count > 450) {
-                counter.classList.add('danger');
-            } else if (count > 400) {
-                counter.classList.add('warning');
+            if (counter) {
+                counter.classList.remove('warning', 'danger');
+                
+                if (count > 450) {
+                    counter.classList.add('danger');
+                } else if (count > 400) {
+                    counter.classList.add('warning');
+                }
             }
         });
     }
@@ -192,31 +230,51 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
 
-    // Validação inicial
-    validateForm();
-
     // CSS adicional para feedback
     const feedbackStyle = document.createElement('style');
     feedbackStyle.textContent = `
-        .form-group.focused .form-label {
-            color: var(--primary-color);
+        .contato-form input.focused,
+        .contato-form select.focused,
+        .contato-form textarea.focused {
+            border-color: var(--primary-color, #0066cc);
+            box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+        }
+        
+        .contato-form input.valid,
+        .contato-form select.valid,
+        .contato-form textarea.valid {
+            border-color: var(--success, #28a745);
+        }
+        
+        .contato-form input.error,
+        .contato-form select.error,
+        .contato-form textarea.error {
+            border-color: var(--danger, #dc3545);
+            background-color: rgba(220, 53, 69, 0.05);
+        }
+        
+        .form-errors-container .field-error {
+            color: var(--danger, #dc3545);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            margin-bottom: 0.5rem;
         }
         
         .character-counter.warning {
-            color: var(--warning);
+            color: var(--warning, #ffc107);
         }
         
         .character-counter.danger {
-            color: var(--danger);
+            color: var(--danger, #dc3545);
         }
         
         .form-feedback {
             padding: 1rem;
-            border-radius: var(--radius-lg);
-            margin-top: var(--spacing-lg);
+            border-radius: 8px;
+            margin-top: 1rem;
             display: flex;
             align-items: center;
-            gap: var(--spacing-sm);
+            gap: 0.5rem;
             font-weight: 500;
             animation: slideDown 0.3s ease;
         }
@@ -246,6 +304,13 @@ document.addEventListener('DOMContentLoaded', function() {
 // Função melhorada para envio via WhatsApp
 function enviarWhatsApp() {
     const form = document.getElementById('contatoForm');
+    
+    // Verificar se o formulário existe
+    if (!form) {
+        console.error('Formulário de contato não encontrado');
+        return;
+    }
+    
     const submitBtn = form.querySelector('.btn-send');
     
     // Validar formulário
@@ -261,7 +326,7 @@ function enviarWhatsApp() {
         missingFields.forEach(fieldName => {
             const field = form.querySelector(`[name="${fieldName}"]`);
             if (field) {
-                field.closest('.form-group').classList.add('error');
+                field.classList.add('error');
                 field.focus();
             }
         });
@@ -308,9 +373,14 @@ _Enviado através do formulário de contato do site_
         setTimeout(() => {
             form.reset();
             // Remover classes de validação
-            form.querySelectorAll('.form-group').forEach(group => {
-                group.classList.remove('valid', 'error', 'focused');
+            form.querySelectorAll('input, select, textarea').forEach(field => {
+                field.classList.remove('valid', 'error', 'focused');
             });
+            // Limpar erros
+            const errorContainer = document.getElementById('form-errors');
+            if (errorContainer) {
+                errorContainer.innerHTML = '';
+            }
             // Resetar contador
             const charCounter = document.getElementById('char-count');
             if (charCounter) charCounter.textContent = '0';
@@ -321,6 +391,12 @@ _Enviado através do formulário de contato do site_
 
 function showFeedback(type, message) {
     const form = document.getElementById('contatoForm');
+    
+    // Verificar se o formulário existe
+    if (!form) {
+        console.error('Formulário de contato não encontrado');
+        return;
+    }
     
     // Remover feedback anterior
     const existingFeedback = form.querySelector('.form-feedback');
