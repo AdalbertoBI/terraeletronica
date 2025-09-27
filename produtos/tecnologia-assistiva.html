@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="tecnologia-assistiva">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Tecnologia Assistiva - Soluções tecnológicas inovadoras para pessoas com deficiência. Produtos que promovem autonomia, independência e inclusão digital.">
+    <meta name="keywords" content="tecnologia assistiva, acessibilidade, autonomia, deficiência, inclusão digital, produtos adaptativos, dispositivos assistivos">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Tecnologia Assistiva - Terra Eletrônica">
+    <title>Tecnologia Assistiva | Terra Eletrônica</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logos/terra-compact.png" sizes="32x32">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/tecnologia-assistiva.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar" aria-label="Main Navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../index.html" aria-label="Voltar ao início">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
+                            <source type="image/webp" srcset="../assets/images/logos/terra-compact.webp" media="(max-width:899px)">
+                            <source srcset="../assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
+                            <source srcset="../assets/images/logos/terra-compact.png" media="(max-width:899px)">
+                            <img src="../assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                    </a>
+                    <h1 class="sr-only">Terra Eletrônica</h1>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Início</a></li>
+                    <li><a href="instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
+                    <li><a href="sensory-musical.html" class="nav-link">Sensory Musical</a></li>
+                    <li><a href="tecnologia-assistiva.html" class="nav-link active">Tecnologia Assistiva</a></li>
+                    <li><a href="../index.html#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="../index.html#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main id="conteudo" tabindex="-1">
+        <section id="home" class="hero">
+            <div class="hero-background hero-background-tech">
+                <div class="hero-overlay hero-overlay-tech"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content hero-content-tech">
+                    <nav class="breadcrumb" aria-label="Você está em">
+                        <a href="../index.html">Início</a>
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        <span>Tecnologia Assistiva</span>
+                    </nav>
+                    
+                    <h1 class="hero-title">
+                        <span class="highlight">Tecnologia</span><br>
+                        <span class="highlight">Assistiva</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Soluções tecnológicas inovadoras que promovem autonomia, independência e qualidade de vida 
+                        para pessoas com deficiência. Produtos adaptativos que eliminam barreiras e ampliam 
+                        possibilidades de inclusão social e digital.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#produtos-grid" class="btn btn-primary">Ver Produtos</a>
+                        <a href="../index.html#contato" class="btn btn-secondary">Entre em Contato</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre a Tecnologia Assistiva -->
+        <section class="about-system">
+            <div class="container">
+                <div class="about-content maxw-900 mx-auto">
+                    <h2 class="section-title text-center">O que é Tecnologia Assistiva?</h2>
+                    <p>
+                        A Tecnologia Assistiva (TA) é uma área interdisciplinar de conhecimento que engloba 
+                        produtos, recursos, metodologias, estratégias, práticas e serviços que objetivam 
+                        promover a funcionalidade, relacionada à atividade e participação de pessoas com deficiência.
+                    </p>
+                    <p>
+                        Na Terra Eletrônica, desenvolvemos soluções inovadoras que vão além da adaptação, 
+                        criando produtos que realmente transformam vidas e ampliam horizontes, permitindo 
+                        que cada pessoa alcance seu máximo potencial.
+                    </p>
+                    
+                    <div class="system-features">
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-wheelchair"></i>
+                                <h3>Mobilidade Adaptada</h3>
+                                <p>Soluções para locomoção e controle de ambiente</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-assistive-listening-systems"></i>
+                                <h3>Comunicação Alternativa</h3>
+                                <p>Dispositivos para comunicação não verbal</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-laptop-medical"></i>
+                                <h3>Computação Acessível</h3>
+                                <p>Interfaces adaptadas para computadores</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-home"></i>
+                                <h3>Automação Residencial</h3>
+                                <p>Controle inteligente de ambiente doméstico</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid de Produtos -->
+        <section id="produtos-grid" class="instrumentos-grid" aria-labelledby="titulo-produtos">
+            <div class="container">
+                <h2 id="titulo-produtos" class="section-title text-center">Produtos de Tecnologia Assistiva</h2>
+                <p class="section-subtitle text-center maxw-900 mx-auto">
+                    Cada produto é desenvolvido com foco na autonomia e independência do usuário
+                </p>
+                
+                <div class="grid">
+                    <!-- Produto 1: Lupa Bolinha -->
+                    <article class="card" aria-labelledby="lupa-title">
+                        <figure class="card-media">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/produtos/lupa-bolinha.webp">
+                                <img src="../assets/images/produtos/lupa-bolinha.jpg" alt="Lupa Bolinha - Lupa eletrônica com ampliação de 10 a 60 vezes para pessoas com baixa visão" loading="lazy">
+                            </picture>
+                        </figure>
+                        <div class="card-body">
+                            <h3 id="lupa-title" class="card-title">Lupa Bolinha</h3>
+                            <p class="card-text"><strong>A revolução na ampliação visual!</strong> Lupa eletrônica nacional com ampliação de 10 a 60 vezes, iluminação LED e mais de 56 modos de vídeo. Interface USB simples como um mouse, perfeita para idosos e pessoas com baixa visão.</p>
+                            <div class="card-features">
+                                <span class="feature-badge">✓ Produto Nacional</span>
+                                <span class="feature-badge">✓ 12 meses garantia</span>
+                                <span class="feature-badge">✓ USB Plug & Play</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://terraeletronica.com.br/lupa-bolinha/" target="_blank" rel="noopener" class="btn btn-outline" aria-label="Ver detalhes da Lupa Bolinha">
+                                    Saiba mais <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://produto.mercadolivre.com.br/MLB-708767472-lupa-eletrnica-bolinha-para-pessoa-idosa-e-baixa-viso-_JM" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Comprar Lupa Bolinha">
+                                    Comprar Agora <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Produto 2: Bíblia Eletrônica -->
+                    <article class="card" aria-labelledby="biblia-title">
+                        <figure class="card-media">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/produtos/biblia-eletronica.webp">
+                                <img src="../assets/images/produtos/biblia-eletronica.jpg" alt="Bíblia Eletrônica - A Bíblia completa em áudio-braille em uma única página" loading="lazy">
+                            </picture>
+                        </figure>
+                        <div class="card-body">
+                            <h3 id="biblia-title" class="card-title">Bíblia Eletrônica</h3>
+                            <p class="card-text"><strong>A Bíblia mais acessível do mundo!</strong> Toda a Bíblia Sagrada em uma única página com sistema revolucionário áudio-braille. Acessível para crianças, idosos, analfabetos e deficientes visuais. Sem necessidade de internet, CDs ou celular!</p>
+                            <div class="card-features">
+                                <span class="feature-badge">✓ Áudio + Braille</span>
+                                <span class="feature-badge">✓ Portátil</span>
+                                <span class="feature-badge">✓ Acesso rápido</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://terraeletronica.com.br/comunicacao-alternativa/biblia-eletronica/" target="_blank" rel="noopener" class="btn btn-outline" aria-label="Ver detalhes da Bíblia Eletrônica">
+                                    Saiba mais <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                </a>
+                                <a href="https://produto.mercadolivre.com.br/MLB-1255791734-biblia-eletrnica-em-1-pagina-impressa-e-em-audio-braile-_JM" target="_blank" rel="noopener" class="btn btn-primary" aria-label="Comprar Bíblia Eletrônica">
+                                    Comprar Agora <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Produto 3: Mouse Plus -->
+                    <article class="card" aria-labelledby="mouse-plus-title">
+                        <figure class="card-media">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/produtos/mouse-plus.webp">
+                                <img src="../assets/images/produtos/mouse-plus.jpg" alt="Mouse Plus - Mouse adaptado com acionadores para facilitar exercícios motores" loading="lazy">
+                            </picture>
+                        </figure>
+                        <div class="card-body">
+                            <h3 id="mouse-plus-title" class="card-title">Mouse Plus</h3>
+                            <p class="card-text"><strong>Mouse adaptado que transforma vidas!</strong> Mouse convencional adaptado para receber 1 ou 2 acionadores, funcionando como teclas de click. Perfeito para exercícios motores e reabilitação. Interface USB compatível com qualquer computador.</p>
+                            <div class="card-features">
+                                <span class="feature-badge">✓ Produto Nacional</span>
+                                <span class="feature-badge">✓ Exercícios motores</span>
+                                <span class="feature-badge">✓ USB 2.0</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://terraeletronica.com.br/mouses-especiais/mouse-plus/" target="_blank" rel="noopener" class="btn btn-outline" aria-label="Ver detalhes do Mouse Plus">
+                                    Saiba mais <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                </a>
+                                <a href="../index.html#contato" class="btn btn-primary" aria-label="Solicitar orçamento Mouse Plus">
+                                    Solicitar Orçamento <i class="fas fa-envelope" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Produto 4: Big Ball Mouse FDAT -->
+                    <article class="card" aria-labelledby="bigball-title">
+                        <figure class="card-media">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/produtos/big-ball-mouse.webp">
+                                <img src="../assets/images/produtos/big-ball-mouse.jpg" alt="Big Ball Mouse FDAT - Mouse de esfera gigante com filtro anti-tremor para pessoas com dificuldades motoras" loading="lazy">
+                            </picture>
+                        </figure>
+                        <div class="card-body">
+                            <h3 id="bigball-title" class="card-title">Big Ball Mouse FDAT</h3>
+                            <p class="card-text"><strong>Tecnologia exclusiva com filtro anti-tremor!</strong> Mouse de esfera gigante (70mm) com FDAT patenteado pela Terra Eletrônica. Ideal para pessoas com Parkinson, desenhistas e dificuldades motoras. 5 teclas coloridas e design ergonômico único!</p>
+                            <div class="card-features">
+                                <span class="feature-badge">✓ FDAT Patenteado</span>
+                                <span class="feature-badge">✓ Esfera 70mm</span>
+                                <span class="feature-badge">✓ Anti-tremor</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://terraeletronica.com.br/mouses-especiais/big-ball-mouse-fdat/" target="_blank" rel="noopener" class="btn btn-outline" aria-label="Ver detalhes do Big Ball Mouse FDAT">
+                                    Saiba mais <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                </a>
+                                <a href="../index.html#contato" class="btn btn-primary" aria-label="Solicitar orçamento Big Ball Mouse">
+                                    Solicitar Orçamento <i class="fas fa-envelope" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Produto 5: Roller Mouse -->
+                    <article class="card" aria-labelledby="roller-title">
+                        <figure class="card-media">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/produtos/roller-mouse.webp">
+                                <img src="../assets/images/produtos/roller-mouse.jpg" alt="Roller Mouse - Mouse especial com roletes para pessoas com deficiência motora" loading="lazy">
+                            </picture>
+                        </figure>
+                        <div class="card-body">
+                            <h3 id="roller-title" class="card-title">Roller Mouse</h3>
+                            <p class="card-text"><strong>Simplicidade que empodera!</strong> Desenvolvido com terapeutas para pessoas que não conseguem usar mouse convencional. Roletes para posicionamento, teclas grandes e coloridas com funções especiais. Perfeito para escolas, idosos e crianças!</p>
+                            <div class="card-features">
+                                <span class="feature-badge">✓ Desenvolvido com terapeutas</span>
+                                <span class="feature-badge">✓ Teclas coloridas</span>
+                                <span class="feature-badge">✓ USB Plug & Play</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://terraeletronica.com.br/mouses-especiais/roller-mouse/" target="_blank" rel="noopener" class="btn btn-outline" aria-label="Ver detalhes do Roller Mouse">
+                                    Saiba mais <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                </a>
+                                <a href="../index.html#contato" class="btn btn-primary" aria-label="Solicitar orçamento Roller Mouse">
+                                    Solicitar Orçamento <i class="fas fa-envelope" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Produto 6: Acionadores -->
+                    <article class="card" aria-labelledby="acionadores-title">
+                        <figure class="card-media">
+                            <picture>
+                                <source type="image/webp" srcset="../assets/images/produtos/acionadores.webp">
+                                <img src="../assets/images/produtos/acionadores.jpg" alt="Acionadores Terra Eletrônica - Botões adaptativos em 4 tamanhos para pessoas com limitações motoras" loading="lazy">
+                            </picture>
+                        </figure>
+                        <div class="card-body">
+                            <h3 id="acionadores-title" class="card-title">Acionadores Terra Eletrônica</h3>
+                            <p class="card-text"><strong>Robustez e confiabilidade excepcionais!</strong> Acionadores 100% nacionais em 4 tamanhos (AR1 a AR4) com teclas coloridas em acrílico polido. Suportam 2 milhões de acionamentos severos. Design ergonômico com chave "zero force" para máximo conforto.</p>
+                            <div class="card-features">
+                                <span class="feature-badge">✓ 4 tamanhos disponíveis</span>
+                                <span class="feature-badge">✓ 2 milhões de ciclos</span>
+                                <span class="feature-badge">✓ Zero Force</span>
+                            </div>
+                            <div class="card-actions">
+                                <a href="https://terraeletronica.com.br/mouses-especiais/acionadores/" target="_blank" rel="noopener" class="btn btn-outline" aria-label="Ver detalhes dos Acionadores">
+                                    Saiba mais <i class="fas fa-external-link-alt" aria-hidden="true"></i>
+                                </a>
+                                <a href="../index.html#contato" class="btn btn-primary" aria-label="Solicitar orçamento Acionadores">
+                                    Solicitar Orçamento <i class="fas fa-envelope" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carrossel de Vídeos -->
+        <section class="videos-carousel-section">
+            <div class="container">
+                <h2 class="section-title text-center">Tecnologia Assistiva em Ação</h2>
+                <p class="section-subtitle text-center maxw-900 mx-auto">
+                    Veja como nossas soluções de tecnologia assistiva transformam vidas e promovem independência
+                </p>
+                
+                <div class="videos-carousel" id="videosCarousel">
+                    <div class="carousel-container">
+                        <div class="carousel-track" id="carouselTrack">
+                            <!-- Vídeo 1: Lupa Bolinha -->
+                            <button class="video-card" data-video-id="lupa-bolinha-demo" aria-label="Assistir demonstração da Lupa Bolinha no YouTube">
+                                <div class="video-thumbnail">
+                                    <img src="../assets/images/produtos/lupa-bolinha.jpg" alt="Demonstração Lupa Bolinha em funcionamento" loading="lazy">
+                                    <div class="play-overlay">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="video-badge">Lupa Bolinha</div>
+                                </div>
+                                <div class="video-info">
+                                    <h3>Lupa Bolinha em Ação</h3>
+                                    <p>Veja como a lupa eletrônica com ampliação de 10 a 60 vezes transforma a leitura e escrita de pessoas com baixa visão.</p>
+                                </div>
+                            </button>
+
+                            <!-- Vídeo 2: Bíblia Eletrônica -->
+                            <button class="video-card" data-video-id="biblia-eletronica-demo" aria-label="Assistir demonstração da Bíblia Eletrônica no YouTube">
+                                <div class="video-thumbnail">
+                                    <img src="../assets/images/produtos/biblia-eletronica.jpg" alt="Demonstração Bíblia Eletrônica áudio-braille" loading="lazy">
+                                    <div class="play-overlay">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="video-badge">Bíblia Eletrônica</div>
+                                </div>
+                                <div class="video-info">
+                                    <h3>Bíblia Eletrônica Funcionando</h3>
+                                    <p>Descubra como acessar qualquer capítulo da Bíblia em menos de um segundo com o sistema áudio-braille.</p>
+                                </div>
+                            </button>
+
+                            <!-- Vídeo 3: Mouse Plus -->
+                            <button class="video-card" data-video-id="mouse-plus-demo" aria-label="Assistir demonstração do Mouse Plus no YouTube">
+                                <div class="video-thumbnail">
+                                    <img src="../assets/images/produtos/mouse-plus.jpg" alt="Demonstração Mouse Plus com acionadores" loading="lazy">
+                                    <div class="play-overlay">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="video-badge">Mouse Plus</div>
+                                </div>
+                                <div class="video-info">
+                                    <h3>Mouse Plus para Terapia</h3>
+                                    <p>Veja como o mouse adaptado facilita exercícios motores e terapia de reabilitação computacional.</p>
+                                </div>
+                            </button>
+
+                            <!-- Vídeo 4: Big Ball Mouse FDAT -->
+                            <button class="video-card" data-video-id="big-ball-mouse-demo" aria-label="Assistir demonstração do Big Ball Mouse FDAT no YouTube">
+                                <div class="video-thumbnail">
+                                    <img src="../assets/images/produtos/big-ball-mouse.jpg" alt="Demonstração Big Ball Mouse com filtro anti-tremor" loading="lazy">
+                                    <div class="play-overlay">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="video-badge">Big Ball Mouse</div>
+                                </div>
+                                <div class="video-info">
+                                    <h3>Filtro Anti-Tremor FDAT</h3>
+                                    <p>Demonstração exclusiva da tecnologia patenteada FDAT em ação, ideal para pessoas com Parkinson.</p>
+                                </div>
+                            </button>
+
+                            <!-- Vídeo 5: Roller Mouse -->
+                            <button class="video-card" data-video-id="roller-mouse-demo" aria-label="Assistir demonstração do Roller Mouse no YouTube">
+                                <div class="video-thumbnail">
+                                    <img src="../assets/images/produtos/roller-mouse.jpg" alt="Demonstração Roller Mouse com roletes" loading="lazy">
+                                    <div class="play-overlay">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="video-badge">Roller Mouse</div>
+                                </div>
+                                <div class="video-info">
+                                    <h3>Roller Mouse Simplificado</h3>
+                                    <p>Veja a simplicidade e eficiência do mouse com roletes, desenvolvido especialmente com terapeutas.</p>
+                                </div>
+                            </button>
+
+                            <!-- Vídeo 6: Acionadores -->
+                            <button class="video-card" data-video-id="acionadores-demo" aria-label="Assistir demonstração dos Acionadores no YouTube">
+                                <div class="video-thumbnail">
+                                    <img src="../assets/images/produtos/acionadores.jpg" alt="Demonstração Acionadores em diferentes tamanhos" loading="lazy">
+                                    <div class="play-overlay">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                    </div>
+                                    <div class="video-badge">Acionadores</div>
+                                </div>
+                                <div class="video-info">
+                                    <h3>Acionadores Robustos</h3>
+                                    <p>Conheça os 4 modelos de acionadores (AR1 a AR4) e sua resistência de 2 milhões de ciclos.</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Controles do Carrossel -->
+                    <button class="carousel-btn carousel-btn-prev" id="prevBtn" aria-label="Vídeos anteriores" title="Ver vídeos anteriores">
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <button class="carousel-btn carousel-btn-next" id="nextBtn" aria-label="Próximos vídeos" title="Ver próximos vídeos">
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                    
+                    <!-- Indicadores -->
+                    <div class="carousel-indicators" id="carouselIndicators" role="tablist" aria-label="Navegação por páginas de vídeos">
+                        <button class="indicator active" data-slide="0" role="tab" aria-label="Vídeos da Lupa Bolinha e Bíblia Eletrônica" aria-selected="true" tabindex="0"></button>
+                        <button class="indicator" data-slide="1" role="tab" aria-label="Vídeos do Mouse Plus e Big Ball Mouse" aria-selected="false" tabindex="-1"></button>
+                        <button class="indicator" data-slide="2" role="tab" aria-label="Vídeos do Roller Mouse e Acionadores" aria-selected="false" tabindex="-1"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal de Vídeo -->
+        <div class="video-modal" id="videoModal" aria-hidden="true">
+            <div class="modal-backdrop" id="modalBackdrop"></div>
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose" aria-label="Fechar vídeo">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+                <div class="modal-video-container">
+                    <iframe id="modalVideoPlayer" src="" title="Vídeo de demonstração do produto" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content text-center">
+                    <h2>Precisa de uma Solução Personalizada?</h2>
+                    <p>Cada pessoa possui necessidades únicas. Entre em contato conosco para desenvolvermos uma solução de tecnologia assistiva personalizada para suas necessidades específicas.</p>
+                    <div class="cta-buttons">
+                        <a href="../index.html#contato" class="btn btn-primary">Entre em Contato</a>
+                        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" class="btn btn-secondary">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-compact.webp">
+                            <img src="../assets/images/logos/terra-compact.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                        <p>Tecnologia que liberta seu potencial</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronica5492" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Produtos</h4>
+                    <ul>
+                        <li><a href="instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
+                        <li><a href="tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
+                        <li><a href="sensory-musical.html">Sensory Musical</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="../index.html#sobre">Sobre Nós</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="../manuais.html?tipo=manual">Manuais</a></li>
+                        <li><a href="../manuais.html?tipo=download">Downloads</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
+                <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    
+    <!-- Widget de Acessibilidade Expandido -->
+    <div class="accessibility-widget" id="accessibilityWidget">
+        <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Menu de Acessibilidade" title="Opções de Acessibilidade">
+            <i class="fas fa-universal-access" aria-hidden="true"></i>
+        </button>
+        
+        <dialog class="accessibility-panel" id="accessibilityPanel" aria-labelledby="accessibilityTitle">
+            <h3 id="accessibilityTitle">Opções de Acessibilidade</h3>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="increaseFontBtn" aria-label="Aumentar tamanho da fonte">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    <span>Aumentar Fonte</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="decreaseFontBtn" aria-label="Diminuir tamanho da fonte">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                    <span>Diminuir Fonte</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="highContrastBtn" aria-label="Alternar alto contraste">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                    <span>Alto Contraste</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="darkModeBtn" aria-label="Alternar modo escuro">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <span>Modo Escuro</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="readAloudBtn" aria-label="Ativar leitura em voz alta">
+                    <i class="fas fa-volume-up" aria-hidden="true"></i>
+                    <span>Leitura em Voz Alta</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="resetBtn" aria-label="Restaurar configurações padrão">
+                    <i class="fas fa-undo" aria-hidden="true"></i>
+                    <span>Restaurar Padrão</span>
+                </button>
+            </div>
+            
+            <button class="accessibility-close" id="accessibilityClose" aria-label="Fechar menu de acessibilidade">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </dialog>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        if (window && window.VLibras && typeof window.VLibras.Widget === 'function') {
+            window.vlibrasWidget = new window.VLibras.Widget('https://vlibras.gov.br/app');
+        } else {
+            window.addEventListener('load', function() {
+                if (window.VLibras && typeof window.VLibras.Widget === 'function') {
+                    window.vlibrasWidget = new window.VLibras.Widget('https://vlibras.gov.br/app');
+                }
+            });
+        }
+    </script>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <div class="whatsapp-float whatsapp-visible">
+        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="../assets/js/main.js"></script>
+    
+    <!-- Sistema de Modal de Vídeo Inline -->
+    <script>
+    console.log('Iniciando sistema de modal inline...');
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Marcar como inicializado
+        window.videoCarouselInitialized = true;
+        
+        // Elementos do modal
+        const modal = document.getElementById('videoModal');
+        const modalPlayer = document.getElementById('modalVideoPlayer');
+        const modalClose = document.getElementById('modalClose');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const videoCards = document.querySelectorAll('.video-card');
+        
+        console.log('Elementos encontrados:', {
+            modal: !!modal,
+            modalPlayer: !!modalPlayer,
+            modalClose: !!modalClose,
+            modalBackdrop: !!modalBackdrop,
+            videoCards: videoCards.length
+        });
+        
+        if (!modal || !modalPlayer) {
+            console.error('Elementos essenciais não encontrados');
+            return;
+        }
+        
+        // Função para abrir modal
+        function openModal(videoId) {
+            console.log('Abrindo modal com ID:', videoId);
+            
+            let embedUrl;
+            const videoContainer = modalPlayer.parentElement;
+            const modalContent = modal.querySelector('.modal-content');
+            
+            // Limpar classes anteriores
+            videoContainer.classList.remove('instagram');
+            modalContent.classList.remove('instagram');
+            
+            // Mapear IDs de vídeo para URLs específicas dos produtos
+            const videoUrls = {
+                'lupa-bolinha-demo': 'dQw4w9WgXcQ', // Placeholder - inserir ID do vídeo real da Lupa Bolinha
+                'biblia-eletronica-demo': 'dQw4w9WgXcQ', // Placeholder - inserir ID do vídeo real da Bíblia Eletrônica  
+                'mouse-plus-demo': 'dQw4w9WgXcQ', // Placeholder - inserir ID do vídeo real do Mouse Plus
+                'big-ball-mouse-demo': 'dQw4w9WgXcQ', // Placeholder - inserir ID do vídeo real do Big Ball Mouse
+                'roller-mouse-demo': 'dQw4w9WgXcQ', // Placeholder - inserir ID do vídeo real do Roller Mouse
+                'acionadores-demo': 'dQw4w9WgXcQ' // Placeholder - inserir ID do vídeo real dos Acionadores
+            };
+            
+            const youtubeId = videoUrls[videoId] || 'dQw4w9WgXcQ';
+            embedUrl = 'https://www.youtube.com/embed/' + youtubeId + '?autoplay=1&rel=0';
+            
+            console.log('URL do embed:', embedUrl);
+            
+            // Definir src e mostrar modal
+            modalPlayer.src = embedUrl;
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            
+            // Focar no botão fechar
+            setTimeout(() => modalClose && modalClose.focus(), 100);
+        }
+        
+        // Função para fechar modal
+        function closeModal() {
+            console.log('Fechando modal');
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            modalPlayer.src = '';
+            document.body.style.overflow = '';
+        }
+        
+        // Configurar event listeners para cards (agora são botões nativos)
+        videoCards.forEach((card, index) => {
+            const videoId = card.getAttribute('data-video-id');
+            console.log(`Card ${index + 1}: ${videoId}`);
+            
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Clique no card detectado');
+                openModal(videoId);
+            });
+        });
+        
+        // Event listeners para fechar modal
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModal);
+        }
+        
+        if (modalBackdrop) {
+            modalBackdrop.addEventListener('click', closeModal);
+        }
+        
+        // Fechar com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+        
+        console.log('Sistema de modal configurado com sucesso!');
+        
+        // Inicializar carrossel de navegação
+        initCarouselNavigation();
+    });
+    
+    // Função para controlar navegação do carrossel
+    function initCarouselNavigation() {
+        const track = document.getElementById('carouselTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicators = document.querySelectorAll('.indicator');
+        const videoCards = document.querySelectorAll('.video-card');
+        
+        console.log('Inicializando navegação do carrossel:', {
+            track: !!track,
+            prevBtn: !!prevBtn,
+            nextBtn: !!nextBtn,
+            indicators: indicators.length,
+            videoCards: videoCards.length
+        });
+        
+        if (!track || !prevBtn || !nextBtn) {
+            console.error('Elementos do carrossel não encontrados');
+            return;
+        }
+        
+        let currentIndex = 0;
+        const totalCards = videoCards.length;
+        const cardsPerView = 3; // Número de cards visíveis por vez
+        const maxIndex = Math.max(0, totalCards - cardsPerView);
+        
+        console.log(`Carrossel configurado: ${totalCards} cards, máximo ${cardsPerView} por visualização`);
+        
+        // Função para atualizar posição do carrossel
+        function updateCarousel() {
+            if (videoCards.length === 0) return;
+            
+            const firstCard = videoCards[0];
+            const cardWidth = firstCard.offsetWidth;
+            const computedStyle = window.getComputedStyle(track);
+            const gap = parseFloat(computedStyle.gap) || 24;
+            
+            const moveDistance = cardWidth + gap;
+            const translateX = -(currentIndex * moveDistance);
+            
+            track.style.transform = `translateX(${translateX}px)`;
+            
+            // Atualizar indicadores se existirem
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+            
+            // Atualizar estado dos botões
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= maxIndex;
+            
+            console.log(`Carrossel atualizado - índice: ${currentIndex}/${maxIndex}, translateX: ${translateX}px`);
+        }
+        
+        // Event listeners para botões
+        prevBtn.addEventListener('click', function() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+        
+        // Event listeners para indicadores
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', function() {
+                currentIndex = Math.min(index, maxIndex);
+                updateCarousel();
+            });
+        });
+        
+        // Inicializar estado
+        updateCarousel();
+        
+        console.log('Navegação do carrossel configurada com sucesso!');
+    }
+    </script>
+    
+    <script src="../assets/js/tecnologia-assistiva.js"></script>
+</body>
+</html>

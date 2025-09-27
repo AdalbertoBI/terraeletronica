@@ -1,20 +1,12 @@
-// Board Som Interactive Page
-class BoardSomPage {
+// BIG_KBD_25 Specific JavaScript
+class BigKbd25Page {
     constructor() {
-        // Frequências das 12 teclas do Board Som (C4 a B5)
-        this.boardFrequencies = [
-            261.63, 277.18, 293.66, 311.13, // C4, C#4, D4, D#4
-            329.63, 349.23, 369.99, 392.00, // E4, F4, F#4, G4
-            415.30, 440.00, 466.16, 493.88  // G#4, A4, A#4, B4
-        ];
-        
-        // Notas musicais para visualização
-        this.musicalNotes = ['♪', '♫', '♩', '♬', '♭', '♮', '♯', '𝄞'];
-        
         this.audioContext = null;
-        this.gainNode = null;
         this.isAudioEnabled = false;
         this.isSoundEnabled = true; // Controle do usuário para som
+        this.musicalNotes = ['♪', '♫', '♬', '♭', '♯', '𝄞', '𝄢', '𝅘𝅥𝅮'];
+        this.scaleFrequencies = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]; // C4 to C5
+        this.scaleNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'];
         this.currentNoteIndex = 0;
         this.isPlaying = false;
         
@@ -22,37 +14,293 @@ class BoardSomPage {
     }
     
     init() {
+        // Garantir que as animações CSS sejam inseridas primeiro
+        this.insertAnimationStyles();
+        
         this.setupAudioContext();
         this.setupSoundControl();
         this.setupProductImageInteraction();
-        this.setupBoardSomDemo();
+        this.setupPianoKeys();
         this.setupScrollAnimations();
         this.setupHoverEffects();
         this.setupSoundWaves();
         this.setupGlobalHoverSounds();
         this.initializeAnimations();
-        this.addBoardSomDescription();
+        
+        // Adicionar função de teste para debug
+        this.setupDebugTest();
+        
+        console.log('🎹 BIG_KBD_25 page initialized with musical enhancements!');
+    }
+    
+    insertAnimationStyles() {
+        // Inserir estilos de animação imediatamente
+        if (!document.querySelector('#musicalNotesAnimations')) {
+            const style = document.createElement('style');
+            style.id = 'musicalNotesAnimations';
+            style.textContent = `
+                .musical-note.sound-triggered {
+                    position: fixed !important;
+                    pointer-events: none !important;
+                    z-index: 9999 !important;
+                    font-family: "Times New Roman", serif !important;
+                    font-weight: bold !important;
+                }
+                
+                @keyframes soundNoteFloat {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    }
+                    20% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
+                    }
+                    80% {
+                        opacity: 1;
+                        transform: translate(-50%, -70%) scale(1) rotate(-10deg);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -90%) scale(0.5) rotate(20deg);
+                    }
+                }
+                
+                @keyframes soundNoteBounce {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) translateY(0);
+                    }
+                    25% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.3) translateY(-30px);
+                    }
+                    50% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.1) translateY(-10px);
+                    }
+                    75% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.2) translateY(-40px);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0.3) translateY(-80px);
+                    }
+                }
+                
+                @keyframes soundNoteSpin {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    }
+                    30% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.4) rotate(180deg);
+                    }
+                    70% {
+                        opacity: 1;
+                        transform: translate(-50%, -60%) scale(1) rotate(360deg);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -80%) scale(0.2) rotate(540deg);
+                    }
+                }
+                
+                @keyframes soundNoteZoom {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0);
+                    }
+                    15% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(2);
+                    }
+                    85% {
+                        opacity: 1;
+                        transform: translate(-50%, -70%) scale(0.8);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -100%) scale(0);
+                    }
+                }
+                
+                @keyframes noteTrail {
+                    0% {
+                        opacity: 0.8;
+                        transform: scale(0);
+                    }
+                    50% {
+                        opacity: 0.5;
+                        transform: scale(1);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: scale(2);
+                    }
+                }
+                
+                @keyframes toggleNoteFeedback {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    }
+                    30% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.3) rotate(180deg);
+                    }
+                    70% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(0.9) rotate(360deg);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(540deg);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            console.log('✅ Estilos de animação das notas musicais inseridos');
+        }
+    }
+    
+    setupDebugTest() {
+        // Função para testar notas visuais manualmente
+        window.testMusicalNote = (noteIndex = 0) => {
+            console.log('🧪 Testando nota visual:', noteIndex);
+            console.log('🔊 Som habilitado:', this.isSoundEnabled);
+            if (this.isSoundEnabled) {
+                this.createSoundTriggeredNote(noteIndex);
+            } else {
+                console.log('❌ Som desabilitado - ative o som para ver notas visuais');
+            }
+        };
+        
+        // Função para forçar teste (ignora estado do som)
+        window.forceTestNote = (noteIndex = 0) => {
+            console.log('🧪 FORÇANDO teste de nota visual (ignora som):', noteIndex);
+            this.createSoundTriggeredNote(noteIndex);
+        };
+        
+        // Função para teste visual estático (sem animação)
+        window.testStaticNote = () => {
+            console.log('🧪 Testando nota estática');
+            const note = document.createElement('div');
+            note.textContent = '♫';
+            note.style.cssText = `
+                position: fixed !important;
+                left: 50% !important;
+                top: 50% !important;
+                font-size: 4rem !important;
+                font-weight: bold !important;
+                color: red !important;
+                z-index: 999999 !important;
+                background: yellow !important;
+                padding: 10px !important;
+                border: 5px solid blue !important;
+                transform: translate(-50%, -50%) !important;
+            `;
+            document.body.appendChild(note);
+            
+            setTimeout(() => {
+                if (note?.parentNode) {
+                    note.parentNode.removeChild(note);
+                }
+            }, 5000);
+        };
+        
+        // Adicionar tecla de atalho para teste (Ctrl + Shift + M)
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'M') {
+                e.preventDefault();
+                console.log('🎯 Teste de nota visual ativado');
+                this.createSoundTriggeredNote(Math.floor(Math.random() * 8));
+            }
+            if (e.ctrlKey && e.shiftKey && e.key === 'S') {
+                e.preventDefault();
+                console.log('🎯 Teste de nota estática ativado');
+                window.testStaticNote();
+            }
+        });
+        
+        console.log('🧪 Debug ativado:');
+        console.log('  - Ctrl+Shift+M: notas animadas (respeita som)');
+        console.log('  - Ctrl+Shift+S: nota estática');
+        console.log('  - window.forceTestNote(): força nota (ignora som)');
     }
     
     setupAudioContext() {
         try {
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            this.gainNode = this.audioContext.createGain();
-            this.gainNode.connect(this.audioContext.destination);
-            this.gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+            // Criar AudioContext com compatibilidade
+            window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            
+            // Tentar habilitar áudio imediatamente
+            this.enableAudio();
+            
+            // Fallback: habilitar na primeira interação se necessário
+            if (!this.isAudioEnabled) {
+                document.addEventListener('click', () => this.enableAudio(), { once: true });
+                document.addEventListener('touchstart', () => this.enableAudio(), { once: true });
+                document.addEventListener('mouseenter', () => this.enableAudio(), { once: true });
+            }
         } catch (error) {
-            console.warn('AudioContext não disponível:', error);
+            console.log('AudioContext não suportado:', error);
         }
     }
     
     enableAudio() {
-        if (this.audioContext && this.audioContext.state === 'suspended') {
-            this.audioContext.resume().then(() => {
-                this.isAudioEnabled = true;
-                console.log('🎵 Áudio do Board Som ativado!');
-            });
-        } else if (this.audioContext) {
-            this.isAudioEnabled = true;
+        if (!this.isAudioEnabled && window.AudioContext) {
+            try {
+                this.audioContext = new AudioContext();
+                
+                // Forçar o contexto a ser iniciado
+                if (this.audioContext.state === 'suspended') {
+                    this.audioContext.resume().then(() => {
+                        this.isAudioEnabled = true;
+                        console.log('🎵 Audio habilitado e retomado!');
+                        
+                        // Tocar uma nota silenciosa para ativar o contexto
+                        this.playTestNote();
+                    });
+                } else {
+                    this.isAudioEnabled = true;
+                    console.log('🎵 Audio habilitado diretamente!');
+                    
+                    // Tocar uma nota silenciosa para ativar o contexto
+                    this.playTestNote();
+                }
+            } catch (error) {
+                console.log('Erro ao habilitar audio:', error);
+                
+                // Tentar novamente em 1 segundo
+                setTimeout(() => this.enableAudio(), 1000);
+            }
+        }
+    }
+    
+    playTestNote() {
+        try {
+            const oscillator = this.audioContext.createOscillator();
+            const gainNode = this.audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(this.audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(440, this.audioContext.currentTime);
+            oscillator.type = 'sine';
+            
+            // Volume muito baixo para não incomodar
+            gainNode.gain.setValueAtTime(0.001, this.audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, this.audioContext.currentTime + 0.1);
+            
+            oscillator.start();
+            oscillator.stop(this.audioContext.currentTime + 0.1);
+            
+            // Não criar nota visual para teste (é apenas para ativar o contexto)
+        } catch (error) {
+            console.log('Erro ao tocar nota de teste:', error);
         }
     }
 
@@ -84,10 +332,10 @@ class BoardSomPage {
         this.isSoundEnabled = !this.isSoundEnabled;
         this.updateSoundButton();
         
-        // Feedback visual
+        // Feedback visual e sonoro
         this.createSoundToggleFeedback();
         
-        console.log(`🔊 Som ${this.isSoundEnabled ? 'ativado' : 'desativado'}`);
+        console.log(`🔊 Som e notas visuais ${this.isSoundEnabled ? 'ativados' : 'desativados'}`);
     }
 
     updateSoundButton() {
@@ -98,13 +346,13 @@ class BoardSomPage {
         
         if (this.isSoundEnabled) {
             soundToggleBtn.classList.remove('muted');
-            soundToggleBtn.setAttribute('title', 'Desativar sons');
-            soundToggleBtn.setAttribute('aria-label', 'Desativar reprodução de sons');
+            soundToggleBtn.setAttribute('title', 'Desativar sons e notas visuais');
+            soundToggleBtn.setAttribute('aria-label', 'Desativar reprodução de sons e efeitos visuais');
             icon.className = 'fas fa-volume-up';
         } else {
             soundToggleBtn.classList.add('muted');
-            soundToggleBtn.setAttribute('title', 'Ativar sons');
-            soundToggleBtn.setAttribute('aria-label', 'Ativar reprodução de sons');
+            soundToggleBtn.setAttribute('title', 'Ativar sons e notas visuais');
+            soundToggleBtn.setAttribute('aria-label', 'Ativar reprodução de sons e efeitos visuais');
             icon.className = 'fas fa-volume-mute';
         }
     }
@@ -132,71 +380,238 @@ class BoardSomPage {
                 `;
 
                 soundToggleBtn.appendChild(wave);
+
+                // Remover após animação
                 setTimeout(() => wave.remove(), 1000);
             }, i * 100);
         }
 
-        // Criar notas musicais se som estiver ativado
+        // Criar notas musicais apenas se som estiver sendo ATIVADO (não desativado)
         if (this.isSoundEnabled) {
             this.createMusicalNotes(soundToggleBtn);
-        }
-    }
-    
-    // Test audio functionality
-    playTestNote() {
-        this.enableAudio();
-        if (this.isAudioEnabled) {
-            this.playBoardNote(0);
-        }
-    }
-    
-    // Sound-triggered note creation
-    createSoundTriggeredNote(noteIndex, element = null) {
-        const note = document.createElement('div');
-        note.className = 'musical-note sound-triggered';
-        note.textContent = this.musicalNotes[noteIndex % this.musicalNotes.length];
-        
-        // Posicionar baseado no elemento ou posição aleatória
-        let x, y;
-        if (element) {
-            const rect = element.getBoundingClientRect();
-            x = rect.left + rect.width / 2;
-            y = rect.top + rect.height / 2;
+            console.log('🎵 Notas visuais ativadas junto com o som');
         } else {
-            x = Math.random() * window.innerWidth;
-            y = window.innerHeight - 50;
+            console.log('🔇 Notas visuais desativadas junto com o som');
         }
-        
-        // Cores específicas para cada nota - tons musicais
-        const colors = ['#e74c3c', '#f39c12', '#e67e22', '#27ae60', '#2980b9', '#8e44ad', '#c0392b', '#d35400', '#16a085', '#2c3e50', '#8b4513', '#4682b4'];
-        const color = colors[noteIndex % colors.length];
-        
-        note.style.cssText = `
-            position: fixed;
-            left: ${x}px;
-            top: ${y}px;
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: ${color};
-            text-shadow: 
-                0 0 10px ${color},
-                0 0 20px ${color},
-                2px 2px 4px rgba(0, 0, 0, 0.5);
-            filter: drop-shadow(0 0 8px ${color});
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%) scale(0) rotate(-15deg);
-            opacity: 0;
-            animation: boardNoteFloat 2.5s ease-out forwards;
-        `;
-        
-        document.body.appendChild(note);
-        
-        setTimeout(() => {
-            if (note.parentNode) {
-                note.parentNode.removeChild(note);
+
+        // Adicionar estilo de animação se não existir
+        if (!document.getElementById('soundWaveAnimation')) {
+            const style = document.createElement('style');
+            style.id = 'soundWaveAnimation';
+            style.textContent = `
+                @keyframes soundWave {
+                    0% {
+                        transform: translate(-50%, -50%) scale(1);
+                        opacity: 0.8;
+                    }
+                    100% {
+                        transform: translate(-50%, -50%) scale(3);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+    
+    createSoundTriggeredNote(noteIndex, element = null) {
+        try {
+            // Debug log
+            console.log('🎵 Criando nota visual:', { noteIndex, element: element?.tagName || 'none' });
+            
+            const note = document.createElement('div');
+            note.className = 'musical-note-test';
+            
+            // Garantir que o índice seja válido
+            const validNoteIndex = Math.abs(noteIndex) % this.musicalNotes.length;
+            note.textContent = this.musicalNotes[validNoteIndex];
+            
+            // Posicionar baseado no elemento ou posição aleatória
+            let x, y;
+            if (element?.getBoundingClientRect) {
+                const rect = element.getBoundingClientRect();
+                x = rect.left + rect.width / 2;
+                y = rect.top + rect.height / 2;
+                
+                // Verificar se as coordenadas são válidas
+                if (isNaN(x) || isNaN(y)) {
+                    x = window.innerWidth / 2;
+                    y = window.innerHeight / 2;
+                }
+                
+                // Adicionar pequena variação para múltiplas notas do mesmo elemento
+                x += (Math.random() - 0.5) * 60;
+                y += (Math.random() - 0.5) * 40;
+            } else {
+                x = Math.random() * (window.innerWidth - 100) + 50;
+                y = window.innerHeight - 100 - Math.random() * 200;
             }
-        }, 2500);
+            
+            // Cores mais vibrantes e específicas para cada nota musical
+            const colors = [
+                '#FF4081', '#FF6B35', '#FFB74D', '#66BB6A', 
+                '#42A5F5', '#AB47BC', '#EF5350', '#FF8A65'
+            ];
+            const color = colors[validNoteIndex];
+            
+            // VERSÃO SIMPLIFICADA PARA TESTE - usar apenas CSS inline básico
+            note.style.cssText = `
+                position: fixed !important;
+                left: ${x}px !important;
+                top: ${y}px !important;
+                font-size: 3rem !important;
+                font-weight: bold !important;
+                color: ${color} !important;
+                text-shadow: 0 0 20px ${color}, 0 0 40px ${color} !important;
+                pointer-events: none !important;
+                z-index: 99999 !important;
+                font-family: "Times New Roman", serif !important;
+                transform: translate(-50%, -50%) !important;
+                opacity: 1 !important;
+                display: block !important;
+                visibility: visible !important;
+            `;
+            
+            // Adicionar ao DOM
+            document.body.appendChild(note);
+            
+            // ANIMAÇÃO SUAVE VIA JAVASCRIPT
+            let scale = 0.5;
+            let opacity = 1;
+            let yOffset = 0;
+            let rotation = 0;
+            
+            console.log('🎵 Iniciando animação da nota na posição:', { x, y });
+            
+            const animate = () => {
+                scale += 0.03;
+                opacity -= 0.015;
+                yOffset -= 1.5;
+                rotation += 3;
+                
+                if (opacity > 0 && scale < 2.5) {
+                    note.style.transform = `translate(-50%, -50%) scale(${scale}) translateY(${yOffset}px) rotate(${rotation}deg)`;
+                    note.style.opacity = opacity;
+                    requestAnimationFrame(animate);
+                } else {
+                    // Remover nota quando a animação terminar
+                    if (note?.parentNode) {
+                        note.parentNode.removeChild(note);
+                        console.log('🗑️ Nota removida após animação');
+                    }
+                }
+            };
+            
+            // Iniciar animação após pequeno delay
+            setTimeout(() => {
+                animate();
+            }, 100);
+            
+            // Debug: verificar se a nota foi adicionada
+            console.log('✅ Nota adicionada ao DOM:', {
+                position: { x, y },
+                color,
+                content: note.textContent,
+                inDOM: document.body.contains(note),
+                styles: note.style.cssText
+            });
+            
+            // Criar rastro de brilho
+            this.createNoteTrail(x, y, color);
+            
+        } catch (error) {
+            console.error('❌ Erro ao criar nota visual:', error);
+        }
+    }
+    
+    createNoteTrail(x, y, color) {
+        // Versão simplificada do rastro para teste
+        try {
+            const trail = document.createElement('div');
+            trail.style.cssText = `
+                position: fixed !important;
+                left: ${x}px !important;
+                top: ${y}px !important;
+                width: 10px !important;
+                height: 10px !important;
+                background: ${color} !important;
+                border-radius: 50% !important;
+                pointer-events: none !important;
+                z-index: 9998 !important;
+                transform: translate(-50%, -50%) !important;
+                opacity: 0.8 !important;
+            `;
+            
+            document.body.appendChild(trail);
+            
+            // Animação simples via JavaScript
+            let scale = 1;
+            let opacity = 0.8;
+            
+            const animateTrail = () => {
+                scale += 0.1;
+                opacity -= 0.05;
+                
+                if (opacity > 0) {
+                    trail.style.transform = `translate(-50%, -50%) scale(${scale})`;
+                    trail.style.opacity = opacity;
+                    requestAnimationFrame(animateTrail);
+                } else {
+                    if (trail?.parentNode) {
+                        trail.parentNode.removeChild(trail);
+                    }
+                }
+            };
+            
+            animateTrail();
+        } catch (error) {
+            console.log('Erro no rastro:', error);
+        }
+    }
+    
+    createMusicalNotes(element) {
+        // Criar várias notas musicais flutuando ao redor do elemento
+        const notes = ['♪', '♫', '♬', '♩', '♯'];
+        const colors = ['#FF4081', '#FF6B35', '#66BB6A', '#42A5F5', '#AB47BC'];
+        
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                const noteDiv = document.createElement('div');
+                noteDiv.className = 'musical-note toggle-feedback';
+                noteDiv.textContent = notes[i % notes.length];
+                
+                const rect = element.getBoundingClientRect();
+                const angle = (360 / 5) * i;
+                const distance = 80;
+                
+                const x = rect.left + rect.width / 2 + Math.cos(angle * Math.PI / 180) * distance;
+                const y = rect.top + rect.height / 2 + Math.sin(angle * Math.PI / 180) * distance;
+                
+                noteDiv.style.cssText = `
+                    position: fixed;
+                    left: ${x}px;
+                    top: ${y}px;
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                    color: ${colors[i % colors.length]};
+                    text-shadow: 
+                        0 0 10px ${colors[i % colors.length]},
+                        0 0 20px ${colors[i % colors.length]};
+                    pointer-events: none;
+                    z-index: 9999;
+                    transform: translate(-50%, -50%) scale(0);
+                    animation: toggleNoteFeedback 1.5s ease-out forwards;
+                `;
+                
+                document.body.appendChild(noteDiv);
+                
+                setTimeout(() => {
+                    if (noteDiv.parentNode) {
+                        noteDiv.parentNode.removeChild(noteDiv);
+                    }
+                }, 1500);
+            }, i * 100);
+        }
     }
     
     setupProductImageInteraction() {
@@ -205,8 +620,8 @@ class BoardSomPage {
         
         if (!productImage || !productImg) return;
         
-        // Interface do Board Som removida - imagem emite escala musical normalmente
-        // this.createBoardSomInterface(productImage);
+        // Teclas de piano removidas - imagem emite escala musical normalmente
+        // this.createPianoKeys(productImage);
         
         // Efeito hover na imagem principal
         productImage.addEventListener('mouseenter', () => {
@@ -224,189 +639,96 @@ class BoardSomPage {
         });
     }
     
-    createBoardSomInterface(container) {
-        const boardContainer = document.createElement('div');
-        boardContainer.className = 'board-som-container';
+    createPianoKeys(container) {
+        const keysContainer = document.createElement('div');
+        keysContainer.className = 'piano-keys';
         
-        // Criar 12 teclas do Board Som em formato 3x4
-        for (let i = 0; i < 12; i++) {
+        // Criar 8 teclas (uma oitava)
+        const whiteKeys = [0, 2, 4, 5, 7]; // C, E, G, F, B
+        const blackKeys = [1, 3, 6]; // D, F, A
+        
+        // Teclas brancas
+        whiteKeys.forEach((noteIndex, keyIndex) => {
             const key = document.createElement('div');
-            key.className = 'board-key';
-            key.dataset.keyIndex = i;
-            key.dataset.frequency = this.boardFrequencies[i];
-            
-            // Adicionar ícone de nota
-            const keyIcon = document.createElement('span');
-            keyIcon.className = 'key-icon';
-            keyIcon.textContent = '♪';
-            key.appendChild(keyIcon);
-            
-            // Adicionar número da tecla
-            const keyNumber = document.createElement('span');
-            keyNumber.className = 'key-number';
-            keyNumber.textContent = i + 1;
-            key.appendChild(keyNumber);
+            key.className = 'piano-key white';
+            key.dataset.note = this.scaleNotes[noteIndex];
+            key.dataset.frequency = this.scaleFrequencies[noteIndex];
             
             key.addEventListener('click', (e) => {
                 e.stopPropagation();
-                this.playBoardNote(i, key);
+                this.playNote(noteIndex);
                 this.animateKey(key);
             });
             
-            key.addEventListener('mouseenter', () => {
-                this.previewBoardNote(i, key);
+            keysContainer.appendChild(key);
+        });
+        
+        // Teclas pretas (sobrepor às brancas)
+        blackKeys.forEach(noteIndex => {
+            const key = document.createElement('div');
+            key.className = 'piano-key black';
+            key.dataset.note = this.scaleNotes[noteIndex];
+            key.dataset.frequency = this.scaleFrequencies[noteIndex];
+            
+            key.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.playNote(noteIndex);
+                this.animateKey(key);
             });
             
-            boardContainer.appendChild(key);
-        }
+            keysContainer.appendChild(key);
+        });
         
-        // Adicionar controles do Board Som
-        const controlsPanel = document.createElement('div');
-        controlsPanel.className = 'board-controls';
-        controlsPanel.innerHTML = `
-            <div class="control-item">
-                <span class="control-icon">🔄</span>
-                <span class="control-label">Botão Giratório Dual</span>
-            </div>
-            <div class="control-item">
-                <span class="control-icon">🔛</span>
-                <span class="control-label">Liga/Desliga</span>
-            </div>
-            <div class="control-item">
-                <span class="control-icon">🔌</span>
-                <span class="control-label">Entrada Carregador</span>
-            </div>
-        `;
-        
-        container.appendChild(boardContainer);
-        container.appendChild(controlsPanel);
+        container.appendChild(keysContainer);
     }
     
-    setupBoardSomDemo() {
-        // Simular 12 teclas do Board Som
-        const boardKeys = document.querySelectorAll('.highlight-item, .feature-card, .application-card');
+    setupPianoKeys() {
+        const pianoKeys = document.querySelectorAll('.piano-key');
         
-        boardKeys.forEach((key, index) => {
-            if (index < 12) {
-                key.addEventListener('click', () => {
-                    this.playBoardNote(index % this.boardFrequencies.length, key);
-                    this.animateElement(key);
-                });
-            }
+        pianoKeys.forEach((key, index) => {
+            key.addEventListener('mouseenter', () => {
+                key.style.transform = 'translateY(-2px) scale(1.05)';
+                key.style.boxShadow = '0 8px 20px rgba(0, 150, 136, 0.3)';
+            });
+            
+            key.addEventListener('mouseleave', () => {
+                key.style.transform = '';
+                key.style.boxShadow = '';
+            });
         });
     }
     
-    playBoardNote(noteIndex, element = null) {
-        // Sempre criar nota visual
-        this.createSoundTriggeredNote(noteIndex, element);
+    playNote(noteIndex, element = null) {
+        // Só criar nota visual se som estiver habilitado
+        if (this.isSoundEnabled) {
+            this.createSoundTriggeredNote(noteIndex, element);
+        }
         
         // Só reproduzir som se estiver habilitado
         if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) {
-            if (!this.isAudioEnabled) this.enableAudio();
-            if (!this.isSoundEnabled) return;
+            console.log('🔇 Som e notas visuais desabilitados');
+            return;
         }
         
-        const frequency = this.boardFrequencies[noteIndex % this.boardFrequencies.length];
-        
-        // Criar oscilador para o som da tecla
+        const frequency = this.scaleFrequencies[noteIndex];
         const oscillator = this.audioContext.createOscillator();
-        const noteGain = this.audioContext.createGain();
+        const gainNode = this.audioContext.createGain();
         
-        oscillator.type = 'triangle'; // Som mais suave para o Board Som
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+        
         oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+        oscillator.type = 'sine';
         
-        // Envelope ADSR para teclas
-        noteGain.gain.setValueAtTime(0, this.audioContext.currentTime);
-        noteGain.gain.linearRampToValueAtTime(0.4, this.audioContext.currentTime + 0.01);
-        noteGain.gain.exponentialRampToValueAtTime(0.2, this.audioContext.currentTime + 0.1);
-        noteGain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.8);
+        gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 1);
         
-        oscillator.connect(noteGain);
-        noteGain.connect(this.gainNode);
-        
-        oscillator.start(this.audioContext.currentTime);
-        oscillator.stop(this.audioContext.currentTime + 0.8);
-        
-        // Criar nota visual
-        this.createSoundTriggeredNote(noteIndex, element);
-    }
-    
-    setupScrollAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationDelay = `${Math.random() * 0.3}s`;
-                    entry.target.classList.add('animate-in');
-                }
-            });
-        }, observerOptions);
-        
-        // Observar elementos para animação
-        document.querySelectorAll('.benefit-item, .spec-category, .application-card, .final-benefit')
-               .forEach(el => observer.observe(el));
-    }
-    
-    setupHoverEffects() {
-        // Efeitos de hover para elementos interativos
-        document.querySelectorAll('.benefit-item, .application-card, .spec-category').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                this.createHoverEffect(item);
-            });
-        });
-    }
-    
-    createHoverEffect(element) {
-        // Criar efeito de partícula no hover
-        const particle = document.createElement('div');
-        particle.className = 'hover-particle';
-        
-        const rect = element.getBoundingClientRect();
-        particle.style.cssText = `
-            position: fixed;
-            left: ${rect.left + rect.width / 2}px;
-            top: ${rect.top + rect.height / 2}px;
-            width: 8px;
-            height: 8px;
-            background: radial-gradient(circle, #4A90E2, transparent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1000;
-            animation: particleFloat 1s ease-out forwards;
-        `;
-        
-        document.body.appendChild(particle);
-        
-        setTimeout(() => {
-            if (particle.parentNode) {
-                particle.parentNode.removeChild(particle);
-            }
-        }, 1000);
-    }
-    
-    setupSoundWaves() {
-        // Criar ondas sonoras visuais
-        const waveContainer = document.createElement('div');
-        waveContainer.className = 'sound-waves';
-        waveContainer.innerHTML = `
-            <div class="wave wave-1"></div>
-            <div class="wave wave-2"></div>
-            <div class="wave wave-3"></div>
-        `;
-        
-        // Adicionar ao hero
-        const hero = document.querySelector('.product-hero');
-        if (hero) {
-            hero.appendChild(waveContainer);
-        }
+        oscillator.start();
+        oscillator.stop(this.audioContext.currentTime + 1);
     }
     
     startMusicalScale() {
-        if (!this.isSoundEnabled || this.isPlaying) return;
+        if (this.isPlaying) return;
         
         this.isPlaying = true;
         this.currentNoteIndex = 0;
@@ -414,16 +736,16 @@ class BoardSomPage {
         const playNextNote = () => {
             if (!this.isPlaying) return;
             
-            this.playBoardNote(this.currentNoteIndex);
+            this.playNote(this.currentNoteIndex);
             this.highlightNote(this.currentNoteIndex);
             
             this.currentNoteIndex++;
             
-            if (this.currentNoteIndex < this.boardFrequencies.length) {
+            if (this.currentNoteIndex < this.scaleFrequencies.length) {
                 setTimeout(playNextNote, 200);
             } else {
                 // Repetir a escala descendente
-                this.currentNoteIndex = this.boardFrequencies.length - 1;
+                this.currentNoteIndex = this.scaleFrequencies.length - 1;
                 setTimeout(() => this.playDescendingScale(), 100);
             }
         };
@@ -435,7 +757,7 @@ class BoardSomPage {
         const playPrevNote = () => {
             if (!this.isPlaying) return;
             
-            this.playBoardNote(this.currentNoteIndex);
+            this.playNote(this.currentNoteIndex);
             this.highlightNote(this.currentNoteIndex);
             
             this.currentNoteIndex--;
@@ -456,33 +778,34 @@ class BoardSomPage {
     }
     
     highlightNote(noteIndex) {
-        // Destacar elemento correspondente à nota
-        const highlights = document.querySelectorAll('.highlight-item');
-        if (highlights[noteIndex % highlights.length]) {
-            highlights[noteIndex % highlights.length].classList.add('note-highlight');
-            setTimeout(() => {
-                highlights[noteIndex % highlights.length].classList.remove('note-highlight');
-            }, 300);
+        // Destacar a tecla correspondente
+        const keys = document.querySelectorAll('.piano-key');
+        keys.forEach(key => key.classList.remove('active'));
+        
+        if (keys[noteIndex]) {
+            keys[noteIndex].classList.add('active');
+            setTimeout(() => keys[noteIndex].classList.remove('active'), 300);
         }
         
-        // Criar nota visual sincronizada (será criada pelo playBoardNote)
+        // Criar nota visual sincronizada (será criada pelo playNote)
     }
     
     removeAllHighlights() {
-        document.querySelectorAll('.note-highlight').forEach(el => {
-            el.classList.remove('note-highlight');
-        });
+        const keys = document.querySelectorAll('.piano-key');
+        keys.forEach(key => key.classList.remove('active'));
     }
+    
+
     
     playChord() {
         if (!this.isAudioEnabled || !this.audioContext) return;
         
-        // Tocar acorde com teclas do Board Som (C, E, G, C)
-        const chordNotes = [0, 4, 7, 11]; // C, E, G, B
+        // Tocar acorde C maior (C, E, G)
+        const chordNotes = [0, 2, 4]; // C, E, G
         const productImage = document.querySelector('.product-image');
         
         chordNotes.forEach((noteIndex, i) => {
-            setTimeout(() => this.playBoardNote(noteIndex, productImage), i * 50);
+            setTimeout(() => this.playNote(noteIndex, productImage), i * 50);
         });
     }
     
@@ -493,84 +816,124 @@ class BoardSomPage {
         setTimeout(() => {
             key.classList.remove('active');
             key.style.transform = '';
-        }, 200);
-    }
-    
-    animateElement(element) {
-        element.style.transform = 'scale(1.05)';
-        element.style.transition = 'transform 0.2s ease';
-        
-        setTimeout(() => {
-            element.style.transform = '';
-        }, 200);
+        }, 150);
     }
     
     createParticleEffect(container) {
+        const colors = ['#e74c3c', '#f39c12', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6'];
+        
         for (let i = 0; i < 12; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 10px;
+                height: 10px;
+                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 15;
+            `;
+            
+            const angle = (360 / 12) * i;
+            const distance = 100;
+            
+            particle.animate([
+                {
+                    transform: 'translate(-50%, -50%) scale(0)',
+                    opacity: 1
+                },
+                {
+                    transform: `translate(-50%, -50%) translateX(${Math.cos(angle * Math.PI / 180) * distance}px) translateY(${Math.sin(angle * Math.PI / 180) * distance}px) scale(1)`,
+                    opacity: 0
+                }
+            ], {
+                duration: 800,
+                easing: 'ease-out'
+            });
+            
+            container.appendChild(particle);
+            
             setTimeout(() => {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                
-                const rect = container.getBoundingClientRect();
-                particle.style.cssText = `
-                    position: fixed;
-                    left: ${rect.left + rect.width / 2}px;
-                    top: ${rect.top + rect.height / 2}px;
-                    width: 6px;
-                    height: 6px;
-                    background: hsl(${Math.random() * 360}, 70%, 60%);
-                    border-radius: 50%;
-                    pointer-events: none;
-                    z-index: 1000;
-                `;
-                
-                const angle = (i / 12) * Math.PI * 2;
-                const velocity = 100 + Math.random() * 100;
-                const vx = Math.cos(angle) * velocity;
-                const vy = Math.sin(angle) * velocity;
-                
-                let x = rect.left + rect.width / 2;
-                let y = rect.top + rect.height / 2;
-                let opacity = 1;
-                
-                const animate = () => {
-                    x += vx * 0.02;
-                    y += vy * 0.02;
-                    opacity -= 0.02;
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 800);
+        }
+    }
+    
+    setupScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fadeInUp');
                     
-                    particle.style.left = x + 'px';
-                    particle.style.top = y + 'px';
-                    particle.style.opacity = opacity;
-                    
-                    if (opacity > 0) {
-                        requestAnimationFrame(animate);
-                    } else {
-                        particle.remove();
+                    // Efeitos especiais por seção
+                    if (entry.target.classList.contains('benefit-item')) {
+                        this.animateBenefitItem(entry.target);
+                    } else if (entry.target.classList.contains('spec-category')) {
+                        this.animateSpecCategory(entry.target);
+                    } else if (entry.target.classList.contains('application-card')) {
+                        this.animateApplicationCard(entry.target);
                     }
-                };
-                
-                document.body.appendChild(particle);
-                animate();
-            }, i * 20);
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos animáveis
+        document.querySelectorAll('.benefit-item, .spec-category, .application-card, .highlight-item').forEach(el => {
+            observer.observe(el);
+        });
+    }
+    
+    animateBenefitItem(item) {
+        const icon = item.querySelector('.benefit-icon');
+        if (icon) {
+            setTimeout(() => {
+                icon.style.animation = 'bounce 1s ease-in-out';
+            }, 200);
+        }
+    }
+    
+    animateSpecCategory(category) {
+        const icon = category.querySelector('h3 i');
+        if (icon) {
+            setTimeout(() => {
+                icon.style.animation = 'pulse 1.5s ease-in-out 3';
+            }, 300);
+        }
+    }
+    
+    animateApplicationCard(card) {
+        const icon = card.querySelector('.app-icon');
+        if (icon) {
+            setTimeout(() => {
+                icon.style.animation = 'rotate 2s ease-in-out';
+            }, 400);
         }
     }
     
     setupGlobalHoverSounds() {
-        // Elementos que devem emitir sons no hover - adaptado para Board Som
+        // Elementos que devem emitir sons no hover
         const soundSelectors = [
             '.btn',                    // Botões
             '.highlight-item',         // Destaques do produto
             '.benefit-item',          // Itens de benefícios
             '.spec-category',         // Categorias de especificação
             '.application-card',      // Cards de aplicação
-            '.board-key',            // Teclas do Board Som
+            '.piano-key',            // Teclas do piano
             '.product-image',        // Imagem do produto
             '.nav-link',             // Links de navegação
             '.final-benefit',        // Benefícios finais
             '.accessibility-btn',    // Botões de acessibilidade
             'h3',                    // Títulos
-            '.cta-section',          // Seção CTA
-            '.key-item'              // Itens de tecla (se existirem)
+            '.cta-section'           // Seção CTA
         ];
         
         // Configurar sons para cada tipo de elemento
@@ -584,7 +947,7 @@ class BoardSomPage {
                     
                     if (this.isAudioEnabled) {
                         // Tocar nota baseada no tipo de elemento e posição
-                        const noteIndex = (index + elementIndex) % this.boardFrequencies.length;
+                        const noteIndex = (index + elementIndex) % this.scaleFrequencies.length;
                         this.playHoverNote(noteIndex, selector, element);
                     }
                 });
@@ -600,9 +963,18 @@ class BoardSomPage {
     }
     
     playHoverNote(noteIndex, elementType, element) {
-        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) return;
+        // Só criar nota visual se som estiver habilitado
+        if (this.isSoundEnabled) {
+            this.createSoundTriggeredNote(noteIndex, element);
+        }
         
-        const frequency = this.boardFrequencies[noteIndex];
+        // Só reproduzir som se estiver habilitado
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) {
+            console.log('🔇 Hover sem som e sem notas visuais');
+            return;
+        }
+        
+        const frequency = this.scaleFrequencies[noteIndex];
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
         
@@ -613,10 +985,10 @@ class BoardSomPage {
         
         // Diferentes tipos de som para diferentes elementos
         if (elementType.includes('btn')) {
-            oscillator.type = 'triangle';
+            oscillator.type = 'sine';
             gainNode.gain.setValueAtTime(0.2, this.audioContext.currentTime);
-        } else if (elementType.includes('board-key')) {
-            oscillator.type = 'square';
+        } else if (elementType.includes('piano-key')) {
+            oscillator.type = 'triangle';
             gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
         } else {
             oscillator.type = 'sine';
@@ -627,9 +999,6 @@ class BoardSomPage {
         
         oscillator.start();
         oscillator.stop(this.audioContext.currentTime + 0.3);
-        
-        // Criar nota visual sincronizada com o som
-        this.createSoundTriggeredNote(noteIndex, element);
     }
     
     createHoverParticle(element) {
@@ -642,11 +1011,11 @@ class BoardSomPage {
             top: ${rect.top + rect.height/2}px;
             width: 6px;
             height: 6px;
-            background: rgba(74, 144, 226, 0.8);
+            background: rgba(0, 150, 136, 0.8);
             border-radius: 50%;
             pointer-events: none;
-            z-index: 1000;
-            animation: particleHover 0.8s ease-out forwards;
+            z-index: 9999;
+            animation: hoverParticle 0.6s ease-out forwards;
         `;
         
         document.body.appendChild(particle);
@@ -655,53 +1024,259 @@ class BoardSomPage {
             if (particle.parentNode) {
                 particle.parentNode.removeChild(particle);
             }
-        }, 800);
+        }, 600);
+    }
+
+    setupHoverEffects() {
+        // Efeitos hover nos botões CTA
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                this.createButtonRipple(btn);
+            });
+        });
+        
+        // Efeitos hover nos highlights
+        document.querySelectorAll('.highlight-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const icon = item.querySelector('i');
+                if (icon) {
+                    icon.classList.add('hover-glow');
+                    setTimeout(() => icon.classList.remove('hover-glow'), 800);
+                }
+                item.classList.add('beam-glow-active');
+                setTimeout(() => item.classList.remove('beam-glow-active'), 600);
+            });
+        });
+    }
+    
+    createButtonRipple(button) {
+        const ripple = document.createElement('div');
+        ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin-left: -10px;
+            margin-top: -10px;
+        `;
+        
+        const initialPosition = button.style.position;
+        const initialOverflow = button.style.overflow;
+        if (window.getComputedStyle(button).position === 'static') {
+            button.style.position = 'relative';
+        }
+        button.style.overflow = 'hidden';
+        button.appendChild(ripple);
+        
+        setTimeout(() => {
+            if (ripple.parentNode) {
+                ripple.parentNode.removeChild(ripple);
+            }
+            if (initialOverflow) {
+                button.style.overflow = initialOverflow;
+            } else {
+                button.style.removeProperty('overflow');
+            }
+            if (initialPosition) {
+                button.style.position = initialPosition;
+            } else if (window.getComputedStyle(button).position === 'relative') {
+                button.style.removeProperty('position');
+            }
+        }, 600);
+    }
+    
+    setupSoundWaves() {
+        // Adicionar ondas sonoras aos elementos que fazem som
+        const soundElements = document.querySelectorAll('.product-image, .piano-key, .btn-primary');
+        
+        soundElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                if (this.isSoundEnabled) {
+                    this.createSoundWaveEffect(element);
+                }
+            });
+        });
+    }
+    
+    createSoundWaveEffect(element) {
+        const waves = document.createElement('div');
+        waves.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 2px;
+            pointer-events: none;
+            z-index: 5;
+        `;
+        
+        for (let i = 0; i < 5; i++) {
+            const wave = document.createElement('div');
+            wave.className = 'sound-wave';
+            wave.style.animationDelay = `${i * 0.1}s`;
+            waves.appendChild(wave);
+        }
+        
+        element.style.position = 'relative';
+        element.appendChild(waves);
+        
+        setTimeout(() => {
+            if (waves.parentNode) {
+                waves.parentNode.removeChild(waves);
+            }
+        }, 1200);
     }
     
     initializeAnimations() {
-        // Adicionar classes de animação após carregamento
+        // Adicionar estilos de animação dinâmicos
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Inicializar animações de entrada
         setTimeout(() => {
-            document.querySelectorAll('.product-hero, .product-details').forEach(section => {
-                section.classList.add('loaded');
+            document.querySelectorAll('.product-title, .product-subtitle').forEach((el, index) => {
+                el.style.animation = `fadeInUp 0.8s ease-out ${index * 0.2}s both`;
             });
         }, 100);
     }
     
-    addBoardSomDescription() {
-        // Adicionar descrição específica do Board Som se necessário
-        const heroContent = document.querySelector('.hero-content');
-        if (heroContent && !document.querySelector('.board-som-description')) {
-            const description = document.createElement('p');
-            description.className = 'board-som-description';
-            description.textContent = 'Controlador MIDI inovador com 12 teclas grandes, giroscópio e design único em formato de quadro.';
-            description.style.cssText = `
-                margin-top: 1rem;
-                font-size: 1.1rem;
-                color: rgba(255, 255, 255, 0.9);
-                font-weight: 300;
-            `;
-            
-            const subtitle = heroContent.querySelector('.product-subtitle');
-            if (subtitle) {
-                subtitle.after(description);
-            }
-        }
+    getRandomColor() {
+        const colors = ['#e74c3c', '#f39c12', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6', '#e91e63', '#ff5722'];
+        return colors[Math.floor(Math.random() * colors.length)];
     }
 }
 
-// Inicialização quando o DOM estiver pronto
+// Classe para gerenciar efeitos visuais avançados
+class VisualEffectsManager {
+    constructor() {
+        this.setupParallaxEffect();
+        this.setupMouseFollower();
+    }
+    
+    setupParallaxEffect() {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.product-hero::before, .musical-notes');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    }
+    
+    setupMouseFollower() {
+        let mouseX = 0, mouseY = 0;
+        let followerX = 0, followerY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        const animateFollower = () => {
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+            
+            // Criar efeito sutil de partículas seguindo o mouse
+            if (Math.random() < 0.1) {
+                this.createMouseParticle(followerX, followerY);
+            }
+            
+            requestAnimationFrame(animateFollower);
+        };
+        
+        animateFollower();
+    }
+    
+    createMouseParticle(x, y) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: fixed;
+            left: ${x}px;
+            top: ${y}px;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 150, 136, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: fadeOut 1s ease-out forwards;
+        `;
+        
+        document.body.appendChild(particle);
+        
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.parentNode.removeChild(particle);
+            }
+        }, 1000);
+    }
+}
+
+// Inicializar quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🎹 Inicializando Board Som...');
+    const bigKbd25 = new BigKbd25Page();
+    // Instanciar gerenciador de efeitos visuais
+    const visualEffects = new VisualEffectsManager();
     
-    const boardSom = new BoardSomPage();
-    window.boardSomInstance = boardSom;
+    // Armazenar instâncias globalmente para referência
+    window.bigKbd25Instance = bigKbd25;
+    window.visualEffectsInstance = visualEffects;
     
-    // Sistema de ativação automática do áudio
+    // Adicionar estilo fadeOut básico se não existir
+    if (!document.querySelector('#fadeOutStyle')) {
+        const style = document.createElement('style');
+        style.id = 'fadeOutStyle';
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; transform: scale(1); }
+                to { opacity: 0; transform: scale(0); }
+            }
+            
+            @keyframes hoverParticle {
+                0% {
+                    opacity: 1;
+                    transform: scale(0) translateY(0);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scale(1) translateY(-10px);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(0) translateY(-20px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Tentativas múltiplas de ativar áudio
+    const audioActivationEvents = [
+        'click', 'touchstart', 'mousedown', 'keydown', 
+        'mousemove', 'mouseenter', 'focus', 'scroll'
+    ];
+    
     let audioActivated = false;
-    const audioActivationEvents = ['click', 'touchstart', 'keydown'];
     
     const tryActivateAudio = () => {
-        const instance = window.boardSomInstance || boardSom;
+        const instance = window.bigKbd25Instance || bigKbd25;
         if (!audioActivated && instance) {
             instance.enableAudio();
             if (instance.isAudioEnabled) {
@@ -733,4 +1308,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Export para uso em outros módulos se necessário
-window.BoardSomPage = BoardSomPage;
+window.BigKbd25Page = BigKbd25Page;

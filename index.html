@@ -17,6 +17,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/contact-form-fix.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -122,7 +123,7 @@
                 <!-- Sensory Musical -->
                 <div class="produto-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="card-image">
-                        <img src="assets/images/produtos/sensorial-musical.png" alt="Sensory Musical - Experiências Vibroacústicas">
+                        <img src="assets/images/banners/sensory-musical.png" alt="Sensory Musical - Experiências sensoriais">
                         <div class="card-overlay">
                             <a href="produtos/sensory-musical.html" class="card-link" title="Ver Produtos Sensory Musical" aria-label="Ver detalhes do Sensory Musical">
                                 <i class="fas fa-wave-square"></i>
@@ -132,7 +133,7 @@
                     <div class="card-content">
                         <h3 class="card-title">Sensory Musical</h3>
                         <p class="card-description">
-                            Ferramentas avançadas para vibroacústica, experiências sensoriais 
+                            Ferramentas avançadas para experiências sensoriais 
                             imersivas e tecnologias de realidade aumentada musical.
                         </p>
                         <ul class="card-features">
@@ -272,29 +273,29 @@
                 </div>
                 
                 <form class="contato-form" id="contatoForm">
-                    <div class="form-group">
-                        <input type="text" id="nome" name="nome" placeholder="Seu Nome">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Seu E-mail">
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" id="telefone" name="telefone" placeholder="Seu Telefone">
-                    </div>
-                    <div class="form-group">
-                        <label for="assunto" class="sr-only">Assunto</label>
-                        <select id="assunto" name="assunto" aria-label="Assunto da mensagem">
-                            <option value="">Assunto</option>
-                            <option value="duvidas">Dúvidas sobre Produtos</option>
-                            <option value="orcamento">Solicitar Orçamento</option>
-                            <option value="suporte">Suporte Técnico</option>
-                            <option value="outros">Outros</option>
+                    <h3 class="form-title-compact">📞 Solicitar Contato</h3>
+                    
+                    <div class="form-grid">
+                        <input type="text" id="nome" name="nome" placeholder="👤 Nome completo" required>
+                        <input type="email" id="email" name="email" placeholder="✉️ E-mail" required>
+                        <input type="tel" id="telefone" name="telefone" placeholder="📞 Telefone (opcional)">
+                        <select id="assunto" name="assunto" required aria-label="Selecione o assunto do contato">
+                            <option value="">🏷️ Selecione o assunto</option>
+                            <option value="duvidas">💡 Dúvidas sobre Produtos</option>
+                            <option value="orcamento">💰 Solicitar Orçamento</option>
+                            <option value="suporte">🔧 Suporte Técnico</option>
+                            <option value="parcerias">🤝 Parcerias</option>
+                            <option value="outros">📋 Outros</option>
                         </select>
+                        <textarea id="mensagem" name="mensagem" placeholder="💬 Como podemos ajudá-lo?" rows="3" required class="form-full-width"></textarea>
                     </div>
-                    <div class="form-group">
-                        <textarea id="mensagem" name="mensagem" placeholder="Sua Mensagem" rows="5"></textarea>
-                    </div>
-                    <button type="button" onclick="enviarWhatsApp()" class="btn btn-primary">Enviar via WhatsApp</button>
+
+                    <button type="button" onclick="enviarWhatsApp()" class="btn btn-primary btn-send">
+                        <i class="fab fa-whatsapp"></i>
+                        Enviar via WhatsApp
+                    </button>
+                    
+                    <div id="form-errors" class="form-errors-container"></div>
                 </form>
             </div>
         </div>
@@ -445,5 +446,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/js/index.js"></script>
+    <script src="assets/js/contact-form.js"></script>
 </body>
 </html>

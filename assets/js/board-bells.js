@@ -1,28 +1,12 @@
-// Board Bells Specific JavaScript - Terra Eletrônica
-class BoardBellsPage {
+// BIG_KBD_25 Specific JavaScript
+class BigKbd25Page {
     constructor() {
         this.audioContext = null;
         this.isAudioEnabled = false;
         this.isSoundEnabled = true; // Controle do usuário para som
-        this.musicalNotes = ['🔔', '🎵', '🎶', '♪', '♫', '♬', '♭', '♯', '�'];
-        // Frequências de bells/sinos para Board Bells (8 teclas)
-        this.bellFrequencies = [
-            261.63, // C4 - Sino 1
-            293.66, // D4 - Sino 2  
-            329.63, // E4 - Sino 3
-            349.23, // F4 - Sino 4
-            392.00, // G4 - Sino 5
-            440.00, // A4 - Sino 6
-            493.88, // B4 - Sino 7
-            523.25  // C5 - Sino 8
-        ];
-        this.boardBellsSpecs = {
-            teclas: 8,
-            formato: "sinos",
-            controladorMidi: true,
-            botaoGiratorio: true,
-            funcoes: ["alt", "seleção de instrumentos", "cores padronizadas"]
-        };
+        this.musicalNotes = ['♪', '♫', '♬', '♭', '♯', '𝄞', '𝄢', '𝅘𝅥𝅮'];
+        this.scaleFrequencies = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]; // C4 to C5
+        this.scaleNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'];
         this.currentNoteIndex = 0;
         this.isPlaying = false;
         
@@ -30,18 +14,221 @@ class BoardBellsPage {
     }
     
     init() {
+        // Garantir que as animações CSS sejam inseridas primeiro
+        this.insertAnimationStyles();
+        
         this.setupAudioContext();
         this.setupSoundControl();
         this.setupProductImageInteraction();
-        this.setupBoardBellsDemo();
+        this.setupPianoKeys();
         this.setupScrollAnimations();
         this.setupHoverEffects();
         this.setupSoundWaves();
         this.setupGlobalHoverSounds();
         this.initializeAnimations();
-        this.addBoardBellsDescription();
         
-        console.log('🔔 Board Bells (Board Som) page initialized with musical enhancements!');
+        // Adicionar função de teste para debug
+        this.setupDebugTest();
+        
+        console.log('🎹 BIG_KBD_25 page initialized with musical enhancements!');
+    }
+    
+    insertAnimationStyles() {
+        // Inserir estilos de animação imediatamente
+        if (!document.querySelector('#musicalNotesAnimations')) {
+            const style = document.createElement('style');
+            style.id = 'musicalNotesAnimations';
+            style.textContent = `
+                .musical-note.sound-triggered {
+                    position: fixed !important;
+                    pointer-events: none !important;
+                    z-index: 9999 !important;
+                    font-family: "Times New Roman", serif !important;
+                    font-weight: bold !important;
+                }
+                
+                @keyframes soundNoteFloat {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    }
+                    20% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
+                    }
+                    80% {
+                        opacity: 1;
+                        transform: translate(-50%, -70%) scale(1) rotate(-10deg);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -90%) scale(0.5) rotate(20deg);
+                    }
+                }
+                
+                @keyframes soundNoteBounce {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) translateY(0);
+                    }
+                    25% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.3) translateY(-30px);
+                    }
+                    50% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.1) translateY(-10px);
+                    }
+                    75% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.2) translateY(-40px);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0.3) translateY(-80px);
+                    }
+                }
+                
+                @keyframes soundNoteSpin {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    }
+                    30% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.4) rotate(180deg);
+                    }
+                    70% {
+                        opacity: 1;
+                        transform: translate(-50%, -60%) scale(1) rotate(360deg);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -80%) scale(0.2) rotate(540deg);
+                    }
+                }
+                
+                @keyframes soundNoteZoom {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0);
+                    }
+                    15% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(2);
+                    }
+                    85% {
+                        opacity: 1;
+                        transform: translate(-50%, -70%) scale(0.8);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -100%) scale(0);
+                    }
+                }
+                
+                @keyframes noteTrail {
+                    0% {
+                        opacity: 0.8;
+                        transform: scale(0);
+                    }
+                    50% {
+                        opacity: 0.5;
+                        transform: scale(1);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: scale(2);
+                    }
+                }
+                
+                @keyframes toggleNoteFeedback {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    }
+                    30% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.3) rotate(180deg);
+                    }
+                    70% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(0.9) rotate(360deg);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(540deg);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            console.log('✅ Estilos de animação das notas musicais inseridos');
+        }
+    }
+    
+    setupDebugTest() {
+        // Função para testar notas visuais manualmente
+        window.testMusicalNote = (noteIndex = 0) => {
+            console.log('🧪 Testando nota visual:', noteIndex);
+            console.log('🔊 Som habilitado:', this.isSoundEnabled);
+            if (this.isSoundEnabled) {
+                this.createSoundTriggeredNote(noteIndex);
+            } else {
+                console.log('❌ Som desabilitado - ative o som para ver notas visuais');
+            }
+        };
+        
+        // Função para forçar teste (ignora estado do som)
+        window.forceTestNote = (noteIndex = 0) => {
+            console.log('🧪 FORÇANDO teste de nota visual (ignora som):', noteIndex);
+            this.createSoundTriggeredNote(noteIndex);
+        };
+        
+        // Função para teste visual estático (sem animação)
+        window.testStaticNote = () => {
+            console.log('🧪 Testando nota estática');
+            const note = document.createElement('div');
+            note.textContent = '♫';
+            note.style.cssText = `
+                position: fixed !important;
+                left: 50% !important;
+                top: 50% !important;
+                font-size: 4rem !important;
+                font-weight: bold !important;
+                color: red !important;
+                z-index: 999999 !important;
+                background: yellow !important;
+                padding: 10px !important;
+                border: 5px solid blue !important;
+                transform: translate(-50%, -50%) !important;
+            `;
+            document.body.appendChild(note);
+            
+            setTimeout(() => {
+                if (note?.parentNode) {
+                    note.parentNode.removeChild(note);
+                }
+            }, 5000);
+        };
+        
+        // Adicionar tecla de atalho para teste (Ctrl + Shift + M)
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'M') {
+                e.preventDefault();
+                console.log('🎯 Teste de nota visual ativado');
+                this.createSoundTriggeredNote(Math.floor(Math.random() * 8));
+            }
+            if (e.ctrlKey && e.shiftKey && e.key === 'S') {
+                e.preventDefault();
+                console.log('🎯 Teste de nota estática ativado');
+                window.testStaticNote();
+            }
+        });
+        
+        console.log('🧪 Debug ativado:');
+        console.log('  - Ctrl+Shift+M: notas animadas (respeita som)');
+        console.log('  - Ctrl+Shift+S: nota estática');
+        console.log('  - window.forceTestNote(): força nota (ignora som)');
     }
     
     setupAudioContext() {
@@ -110,70 +297,321 @@ class BoardBellsPage {
             
             oscillator.start();
             oscillator.stop(this.audioContext.currentTime + 0.1);
+            
+            // Não criar nota visual para teste (é apenas para ativar o contexto)
         } catch (error) {
             console.log('Erro ao tocar nota de teste:', error);
         }
     }
 
     setupSoundControl() {
-        // Escutar evento global de toggle de som
-        document.addEventListener('soundToggle', (event) => {
-            this.isSoundEnabled = !this.isSoundEnabled;
-            console.log(`🔔 Board Bells - Som ${this.isSoundEnabled ? 'ativado' : 'desativado'}`);
-            
-            // Criar feedback visual
-            if (this.isSoundEnabled) {
-                this.createSoundTriggeredNote(0);
-            }
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        const soundControlFloat = document.getElementById('soundControlFloat');
+        
+        if (!soundToggleBtn || !soundControlFloat) {
+            console.log('Elementos de controle de som não encontrados');
+            return;
+        }
+
+        // Configurar estado inicial
+        this.updateSoundButton();
+
+        // Event listener para o botão
+        soundToggleBtn.addEventListener('click', () => {
+            this.toggleSound();
         });
+
+        // Mostrar o botão após um delay
+        setTimeout(() => {
+            soundControlFloat.style.opacity = '1';
+            soundControlFloat.style.transform = 'translateY(0)';
+        }, 1500);
+    }
+
+    toggleSound() {
+        this.isSoundEnabled = !this.isSoundEnabled;
+        this.updateSoundButton();
+        
+        // Feedback visual e sonoro
+        this.createSoundToggleFeedback();
+        
+        console.log(`🔊 Som e notas visuais ${this.isSoundEnabled ? 'ativados' : 'desativados'}`);
+    }
+
+    updateSoundButton() {
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        if (!soundToggleBtn) return;
+
+        const icon = soundToggleBtn.querySelector('i');
+        
+        if (this.isSoundEnabled) {
+            soundToggleBtn.classList.remove('muted');
+            soundToggleBtn.setAttribute('title', 'Desativar sons e notas visuais');
+            soundToggleBtn.setAttribute('aria-label', 'Desativar reprodução de sons e efeitos visuais');
+            icon.className = 'fas fa-volume-up';
+        } else {
+            soundToggleBtn.classList.add('muted');
+            soundToggleBtn.setAttribute('title', 'Ativar sons e notas visuais');
+            soundToggleBtn.setAttribute('aria-label', 'Ativar reprodução de sons e efeitos visuais');
+            icon.className = 'fas fa-volume-mute';
+        }
+    }
+
+    createSoundToggleFeedback() {
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        if (!soundToggleBtn) return;
+
+        // Criar efeito de ondas sonoras visuais
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                const wave = document.createElement('div');
+                wave.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 60px;
+                    height: 60px;
+                    border: 2px solid ${this.isSoundEnabled ? '#FF6B35' : '#9E9E9E'};
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    animation: soundWave 1s ease-out forwards;
+                    pointer-events: none;
+                    z-index: -1;
+                `;
+
+                soundToggleBtn.appendChild(wave);
+
+                // Remover após animação
+                setTimeout(() => wave.remove(), 1000);
+            }, i * 100);
+        }
+
+        // Criar notas musicais apenas se som estiver sendo ATIVADO (não desativado)
+        if (this.isSoundEnabled) {
+            this.createMusicalNotes(soundToggleBtn);
+            console.log('🎵 Notas visuais ativadas junto com o som');
+        } else {
+            console.log('🔇 Notas visuais desativadas junto com o som');
+        }
+
+        // Adicionar estilo de animação se não existir
+        if (!document.getElementById('soundWaveAnimation')) {
+            const style = document.createElement('style');
+            style.id = 'soundWaveAnimation';
+            style.textContent = `
+                @keyframes soundWave {
+                    0% {
+                        transform: translate(-50%, -50%) scale(1);
+                        opacity: 0.8;
+                    }
+                    100% {
+                        transform: translate(-50%, -50%) scale(3);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
     }
     
     createSoundTriggeredNote(noteIndex, element = null) {
-        const note = document.createElement('div');
-        note.className = 'bell-note sound-triggered';
-        note.textContent = '🔔'; // Ícone de sino para Board Som
-        
-        // Posicionar baseado no elemento ou posição aleatória
-        let x, y;
-        if (element) {
-            const rect = element.getBoundingClientRect();
-            x = rect.left + rect.width / 2;
-            y = rect.top + rect.height / 2;
-        } else {
-            x = Math.random() * window.innerWidth;
-            y = window.innerHeight - 50;
-        }
-        
-        // Cores douradas/bronze específicas para sinos do Board Som
-        const bellColors = ['#FFD700', '#FFA500', '#FF8C00', '#DAA520', '#B8860B', '#CD853F', '#DEB887', '#F4A460'];
-        const color = bellColors[noteIndex % bellColors.length];
-        
-        note.style.cssText = `
-            position: fixed;
-            left: ${x}px;
-            top: ${y}px;
-            font-size: 2.2rem;
-            font-weight: bold;
-            color: ${color};
-            text-shadow: 
-                0 0 15px ${color},
-                0 0 25px ${color},
-                2px 2px 6px rgba(0, 0, 0, 0.6);
-            filter: drop-shadow(0 0 12px ${color});
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%) scale(0) rotate(-15deg);
-            opacity: 0;
-            animation: bellNoteFloat 2.5s ease-out forwards;
-        `;
-        
-        document.body.appendChild(note);
-        
-        setTimeout(() => {
-            if (note.parentNode) {
-                note.parentNode.removeChild(note);
+        try {
+            // Debug log
+            console.log('🎵 Criando nota visual:', { noteIndex, element: element?.tagName || 'none' });
+            
+            const note = document.createElement('div');
+            note.className = 'musical-note-test';
+            
+            // Garantir que o índice seja válido
+            const validNoteIndex = Math.abs(noteIndex) % this.musicalNotes.length;
+            note.textContent = this.musicalNotes[validNoteIndex];
+            
+            // Posicionar baseado no elemento ou posição aleatória
+            let x, y;
+            if (element?.getBoundingClientRect) {
+                const rect = element.getBoundingClientRect();
+                x = rect.left + rect.width / 2;
+                y = rect.top + rect.height / 2;
+                
+                // Verificar se as coordenadas são válidas
+                if (isNaN(x) || isNaN(y)) {
+                    x = window.innerWidth / 2;
+                    y = window.innerHeight / 2;
+                }
+                
+                // Adicionar pequena variação para múltiplas notas do mesmo elemento
+                x += (Math.random() - 0.5) * 60;
+                y += (Math.random() - 0.5) * 40;
+            } else {
+                x = Math.random() * (window.innerWidth - 100) + 50;
+                y = window.innerHeight - 100 - Math.random() * 200;
             }
-        }, 2500);
+            
+            // Cores mais vibrantes e específicas para cada nota musical
+            const colors = [
+                '#FF4081', '#FF6B35', '#FFB74D', '#66BB6A', 
+                '#42A5F5', '#AB47BC', '#EF5350', '#FF8A65'
+            ];
+            const color = colors[validNoteIndex];
+            
+            // VERSÃO SIMPLIFICADA PARA TESTE - usar apenas CSS inline básico
+            note.style.cssText = `
+                position: fixed !important;
+                left: ${x}px !important;
+                top: ${y}px !important;
+                font-size: 3rem !important;
+                font-weight: bold !important;
+                color: ${color} !important;
+                text-shadow: 0 0 20px ${color}, 0 0 40px ${color} !important;
+                pointer-events: none !important;
+                z-index: 99999 !important;
+                font-family: "Times New Roman", serif !important;
+                transform: translate(-50%, -50%) !important;
+                opacity: 1 !important;
+                display: block !important;
+                visibility: visible !important;
+            `;
+            
+            // Adicionar ao DOM
+            document.body.appendChild(note);
+            
+            // ANIMAÇÃO SUAVE VIA JAVASCRIPT
+            let scale = 0.5;
+            let opacity = 1;
+            let yOffset = 0;
+            let rotation = 0;
+            
+            console.log('🎵 Iniciando animação da nota na posição:', { x, y });
+            
+            const animate = () => {
+                scale += 0.03;
+                opacity -= 0.015;
+                yOffset -= 1.5;
+                rotation += 3;
+                
+                if (opacity > 0 && scale < 2.5) {
+                    note.style.transform = `translate(-50%, -50%) scale(${scale}) translateY(${yOffset}px) rotate(${rotation}deg)`;
+                    note.style.opacity = opacity;
+                    requestAnimationFrame(animate);
+                } else {
+                    // Remover nota quando a animação terminar
+                    if (note?.parentNode) {
+                        note.parentNode.removeChild(note);
+                        console.log('🗑️ Nota removida após animação');
+                    }
+                }
+            };
+            
+            // Iniciar animação após pequeno delay
+            setTimeout(() => {
+                animate();
+            }, 100);
+            
+            // Debug: verificar se a nota foi adicionada
+            console.log('✅ Nota adicionada ao DOM:', {
+                position: { x, y },
+                color,
+                content: note.textContent,
+                inDOM: document.body.contains(note),
+                styles: note.style.cssText
+            });
+            
+            // Criar rastro de brilho
+            this.createNoteTrail(x, y, color);
+            
+        } catch (error) {
+            console.error('❌ Erro ao criar nota visual:', error);
+        }
+    }
+    
+    createNoteTrail(x, y, color) {
+        // Versão simplificada do rastro para teste
+        try {
+            const trail = document.createElement('div');
+            trail.style.cssText = `
+                position: fixed !important;
+                left: ${x}px !important;
+                top: ${y}px !important;
+                width: 10px !important;
+                height: 10px !important;
+                background: ${color} !important;
+                border-radius: 50% !important;
+                pointer-events: none !important;
+                z-index: 9998 !important;
+                transform: translate(-50%, -50%) !important;
+                opacity: 0.8 !important;
+            `;
+            
+            document.body.appendChild(trail);
+            
+            // Animação simples via JavaScript
+            let scale = 1;
+            let opacity = 0.8;
+            
+            const animateTrail = () => {
+                scale += 0.1;
+                opacity -= 0.05;
+                
+                if (opacity > 0) {
+                    trail.style.transform = `translate(-50%, -50%) scale(${scale})`;
+                    trail.style.opacity = opacity;
+                    requestAnimationFrame(animateTrail);
+                } else {
+                    if (trail?.parentNode) {
+                        trail.parentNode.removeChild(trail);
+                    }
+                }
+            };
+            
+            animateTrail();
+        } catch (error) {
+            console.log('Erro no rastro:', error);
+        }
+    }
+    
+    createMusicalNotes(element) {
+        // Criar várias notas musicais flutuando ao redor do elemento
+        const notes = ['♪', '♫', '♬', '♩', '♯'];
+        const colors = ['#FF4081', '#FF6B35', '#66BB6A', '#42A5F5', '#AB47BC'];
+        
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                const noteDiv = document.createElement('div');
+                noteDiv.className = 'musical-note toggle-feedback';
+                noteDiv.textContent = notes[i % notes.length];
+                
+                const rect = element.getBoundingClientRect();
+                const angle = (360 / 5) * i;
+                const distance = 80;
+                
+                const x = rect.left + rect.width / 2 + Math.cos(angle * Math.PI / 180) * distance;
+                const y = rect.top + rect.height / 2 + Math.sin(angle * Math.PI / 180) * distance;
+                
+                noteDiv.style.cssText = `
+                    position: fixed;
+                    left: ${x}px;
+                    top: ${y}px;
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                    color: ${colors[i % colors.length]};
+                    text-shadow: 
+                        0 0 10px ${colors[i % colors.length]},
+                        0 0 20px ${colors[i % colors.length]};
+                    pointer-events: none;
+                    z-index: 9999;
+                    transform: translate(-50%, -50%) scale(0);
+                    animation: toggleNoteFeedback 1.5s ease-out forwards;
+                `;
+                
+                document.body.appendChild(noteDiv);
+                
+                setTimeout(() => {
+                    if (noteDiv.parentNode) {
+                        noteDiv.parentNode.removeChild(noteDiv);
+                    }
+                }, 1500);
+            }, i * 100);
+        }
     }
     
     setupProductImageInteraction() {
@@ -182,8 +620,8 @@ class BoardBellsPage {
         
         if (!productImage || !productImg) return;
         
-        // Interface do Board Bells removida - imagem emite escala musical normalmente
-        // this.createBoardBellsInterface(productImage);
+        // Teclas de piano removidas - imagem emite escala musical normalmente
+        // this.createPianoKeys(productImage);
         
         // Efeito hover na imagem principal
         productImage.addEventListener('mouseenter', () => {
@@ -201,78 +639,56 @@ class BoardBellsPage {
         });
     }
     
-    createBoardBellsInterface(container) {
-        const bellsContainer = document.createElement('div');
-        bellsContainer.className = 'board-bells-container';
+    createPianoKeys(container) {
+        const keysContainer = document.createElement('div');
+        keysContainer.className = 'piano-keys';
         
-        // Criar 8 sinos do Board Bells em formato 2x4
-        for (let i = 0; i < 8; i++) {
-            const bell = document.createElement('div');
-            bell.className = 'board-bell';
-            bell.dataset.bellIndex = i;
-            bell.dataset.frequency = this.bellFrequencies[i];
+        // Criar 8 teclas (uma oitava)
+        const whiteKeys = [0, 2, 4, 5, 7]; // C, E, G, F, B
+        const blackKeys = [1, 3, 6]; // D, F, A
+        
+        // Teclas brancas
+        whiteKeys.forEach((noteIndex, keyIndex) => {
+            const key = document.createElement('div');
+            key.className = 'piano-key white';
+            key.dataset.note = this.scaleNotes[noteIndex];
+            key.dataset.frequency = this.scaleFrequencies[noteIndex];
             
-            // Adicionar ícone de sino
-            const bellIcon = document.createElement('span');
-            bellIcon.className = 'bell-icon';
-            bellIcon.textContent = '🔔';
-            bell.appendChild(bellIcon);
-            
-            // Adicionar número do sino
-            const bellNumber = document.createElement('span');
-            bellNumber.className = 'bell-number';
-            bellNumber.textContent = i + 1;
-            bell.appendChild(bellNumber);
-            
-            bell.addEventListener('click', (e) => {
+            key.addEventListener('click', (e) => {
                 e.stopPropagation();
-                this.playBellNote(i, bell);
-                this.animateBell(bell);
+                this.playNote(noteIndex);
+                this.animateKey(key);
             });
             
-            bell.addEventListener('mouseenter', () => {
-                this.previewBellNote(i, bell);
+            keysContainer.appendChild(key);
+        });
+        
+        // Teclas pretas (sobrepor às brancas)
+        blackKeys.forEach(noteIndex => {
+            const key = document.createElement('div');
+            key.className = 'piano-key black';
+            key.dataset.note = this.scaleNotes[noteIndex];
+            key.dataset.frequency = this.scaleFrequencies[noteIndex];
+            
+            key.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.playNote(noteIndex);
+                this.animateKey(key);
             });
             
-            bellsContainer.appendChild(bell);
-        }
+            keysContainer.appendChild(key);
+        });
         
-        // Adicionar controles do Board Bells
-        const controlsPanel = document.createElement('div');
-        controlsPanel.className = 'board-controls';
-        controlsPanel.innerHTML = `
-            <div class="control-item">
-                <span class="control-icon">�️</span>
-                <span class="control-label">Botão Dual Function</span>
-            </div>
-            <div class="control-item">
-                <span class="control-icon">🔛</span>
-                <span class="control-label">Liga/Desliga</span>
-            </div>
-            <div class="control-item">
-                <span class="control-icon">🔌</span>
-                <span class="control-label">Entrada Carregador</span>
-            </div>
-        `;
-        
-        container.appendChild(bellsContainer);
-        container.appendChild(controlsPanel);
+        container.appendChild(keysContainer);
     }
     
-    setupBoardBellsDemo() {
-        // Simular 8 sinos do Board Bells
-        const boardKeys = document.querySelectorAll('.highlight-item, .feature-card, .application-card');
+    setupPianoKeys() {
+        const pianoKeys = document.querySelectorAll('.piano-key');
         
-        boardKeys.forEach((key, index) => {
+        pianoKeys.forEach((key, index) => {
             key.addEventListener('mouseenter', () => {
-                // Efeito visual dos sinos do Board Bells
-                key.style.transform = 'translateY(-3px) scale(1.02)';
-                key.style.boxShadow = '0 8px 20px rgba(255, 215, 0, 0.4)';
-                
-                // Tocar som de bell correspondente (limitado a 8 sinos)
-                if (index < this.bellFrequencies.length) {
-                    this.playBellNote(index, key);
-                }
+                key.style.transform = 'translateY(-2px) scale(1.05)';
+                key.style.boxShadow = '0 8px 20px rgba(0, 150, 136, 0.3)';
             });
             
             key.addEventListener('mouseleave', () => {
@@ -280,163 +696,39 @@ class BoardBellsPage {
                 key.style.boxShadow = '';
             });
         });
-        
-        // Demonstração dos controles do Board Bells
-        this.setupBoardControlsDemo();
     }
     
-    setupBoardControlsDemo() {
-        // Simular controles do Board Bells
-        let controlEffect = 0;
-        
-        setInterval(() => {
-            controlEffect += 0.01;
-            const productImage = document.querySelector('.product-image img');
-            if (productImage && this.isPlaying) {
-                // Efeito sutil simulando interação com controles
-                const rotation = Math.sin(controlEffect) * 1.5;
-                productImage.style.transform = `rotate(${rotation}deg) scale(1.02)`;
-            }
-        }, 150);
-    }
-    
-    animateBell(bell) {
-        // Adicionar classe de animação do sino
-        bell.classList.add('ringing');
-        
-        // Remover a classe após a animação
-        setTimeout(() => {
-            bell.classList.remove('ringing');
-        }, 600);
-    }
-    
-    previewBellNote(index, bell) {
-        if (!this.isPlaying) return;
-        
-        // Preview suave do som
-        if (this.isAudioEnabled && this.audioContext) {
-            const oscillator = this.audioContext.createOscillator();
-            const gainNode = this.audioContext.createGain();
-            
-            oscillator.connect(gainNode);
-            gainNode.connect(this.audioContext.destination);
-            
-            oscillator.frequency.setValueAtTime(this.bellFrequencies[index], this.audioContext.currentTime);
-            oscillator.type = 'sine';
-            
-            gainNode.gain.setValueAtTime(0.1, this.audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.3);
-            
-            oscillator.start();
-            oscillator.stop(this.audioContext.currentTime + 0.3);
-        }
-    }
-    
-    toggleDualFunction() {
-        this.dualFunctionEnabled = !this.dualFunctionEnabled;
-        const controlPanel = document.querySelector('.board-controls');
-        
-        if (this.dualFunctionEnabled) {
-            controlPanel.style.backgroundColor = 'rgba(255, 215, 0, 0.2)';
-            controlPanel.style.border = '2px solid #FFD700';
-            this.activateDualFunctionMode();
-        } else {
-            controlPanel.style.backgroundColor = '';
-            controlPanel.style.border = '';
-            this.deactivateDualFunctionMode();
-        }
-    }
-    
-    activateDualFunctionMode() {
-        if (this.dualFunctionInterval) clearInterval(this.dualFunctionInterval);
-        
-        let modeAngle = 0;
-        this.dualFunctionInterval = setInterval(() => {
-            modeAngle += 0.03;
-            const bells = document.querySelectorAll('.board-bell');
-            
-            bells.forEach((bell, index) => {
-                const offset = Math.sin(modeAngle + index * 0.8) * 1.5;
-                const glowIntensity = Math.abs(Math.sin(modeAngle + index * 0.3));
-                bell.style.transform = `translateY(${offset}px) rotate(${offset * 0.3}deg)`;
-                bell.style.boxShadow = `0 4px 15px rgba(255, 215, 0, ${0.3 + glowIntensity * 0.3})`;
-            });
-        }, 80);
-    }
-    
-    deactivateDualFunctionMode() {
-        if (this.dualFunctionInterval) {
-            clearInterval(this.dualFunctionInterval);
-            this.dualFunctionInterval = null;
+    playNote(noteIndex, element = null) {
+        // Só criar nota visual se som estiver habilitado
+        if (this.isSoundEnabled) {
+            this.createSoundTriggeredNote(noteIndex, element);
         }
         
-        const bells = document.querySelectorAll('.board-bell');
-        bells.forEach(bell => {
-            bell.style.transform = '';
-            bell.style.boxShadow = '';
-        });
-    }
-    
-    playBellNote(noteIndex, element = null) {
-        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) return;
+        // Só reproduzir som se estiver habilitado
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) {
+            console.log('🔇 Som e notas visuais desabilitados');
+            return;
+        }
         
-        // Usar frequência específica do Board Bells (8 sinos)
-        const frequency = this.bellFrequencies[noteIndex % this.bellFrequencies.length];
+        const frequency = this.scaleFrequencies[noteIndex];
+        const oscillator = this.audioContext.createOscillator();
+        const gainNode = this.audioContext.createGain();
         
-        // Criar som de bell/sino com múltiplos osciladores para riqueza harmônica
-        const fundamental = this.audioContext.createOscillator();
-        const harmonic2 = this.audioContext.createOscillator();
-        const harmonic3 = this.audioContext.createOscillator();
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
         
-        const gainFund = this.audioContext.createGain();
-        const gainHarm2 = this.audioContext.createGain();
-        const gainHarm3 = this.audioContext.createGain();
-        const masterGain = this.audioContext.createGain();
+        oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+        oscillator.type = 'sine';
         
-        // Configurar osciladores para som de sino
-        fundamental.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
-        harmonic2.frequency.setValueAtTime(frequency * 2.5, this.audioContext.currentTime);
-        harmonic3.frequency.setValueAtTime(frequency * 4.2, this.audioContext.currentTime);
+        gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 1);
         
-        fundamental.type = 'sine';
-        harmonic2.type = 'sine';
-        harmonic3.type = 'triangle';
-        
-        // Conectar e configurar ganhos
-        fundamental.connect(gainFund);
-        harmonic2.connect(gainHarm2);
-        harmonic3.connect(gainHarm3);
-        
-        gainFund.connect(masterGain);
-        gainHarm2.connect(masterGain);
-        gainHarm3.connect(masterGain);
-        masterGain.connect(this.audioContext.destination);
-        
-        // Envelope típico de sino (ataque rápido, decay longo)
-        gainFund.gain.setValueAtTime(0.4, this.audioContext.currentTime);
-        gainHarm2.gain.setValueAtTime(0.15, this.audioContext.currentTime);
-        gainHarm3.gain.setValueAtTime(0.08, this.audioContext.currentTime);
-        masterGain.gain.setValueAtTime(1, this.audioContext.currentTime);
-        
-        masterGain.gain.exponentialRampToValueAtTime(0.3, this.audioContext.currentTime + 0.1);
-        masterGain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 2);
-        
-        // Iniciar osciladores
-        const now = this.audioContext.currentTime;
-        fundamental.start(now);
-        harmonic2.start(now);
-        harmonic3.start(now);
-        
-        fundamental.stop(now + 2);
-        harmonic2.stop(now + 2);
-        harmonic3.stop(now + 2);
-        
-        // Criar nota visual sincronizada com o som
-        this.createSoundTriggeredNote(noteIndex, element);
+        oscillator.start();
+        oscillator.stop(this.audioContext.currentTime + 1);
     }
     
     startMusicalScale() {
-        if (!this.isSoundEnabled || this.isPlaying) return;
+        if (this.isPlaying) return;
         
         this.isPlaying = true;
         this.currentNoteIndex = 0;
@@ -444,16 +736,16 @@ class BoardBellsPage {
         const playNextNote = () => {
             if (!this.isPlaying) return;
             
-            this.playBellNote(this.currentNoteIndex);
+            this.playNote(this.currentNoteIndex);
             this.highlightNote(this.currentNoteIndex);
             
             this.currentNoteIndex++;
             
-            if (this.currentNoteIndex < this.bellFrequencies.length) {
+            if (this.currentNoteIndex < this.scaleFrequencies.length) {
                 setTimeout(playNextNote, 200);
             } else {
                 // Repetir a escala descendente
-                this.currentNoteIndex = this.bellFrequencies.length - 1;
+                this.currentNoteIndex = this.scaleFrequencies.length - 1;
                 setTimeout(() => this.playDescendingScale(), 100);
             }
         };
@@ -465,7 +757,7 @@ class BoardBellsPage {
         const playPrevNote = () => {
             if (!this.isPlaying) return;
             
-            this.playBellNote(this.currentNoteIndex);
+            this.playNote(this.currentNoteIndex);
             this.highlightNote(this.currentNoteIndex);
             
             this.currentNoteIndex--;
@@ -508,12 +800,12 @@ class BoardBellsPage {
     playChord() {
         if (!this.isAudioEnabled || !this.audioContext) return;
         
-        // Tocar acorde com sinos (C, E, G)
-        const chordNotes = [0, 2, 4]; // C, E, G dos sinos
+        // Tocar acorde C maior (C, E, G)
+        const chordNotes = [0, 2, 4]; // C, E, G
         const productImage = document.querySelector('.product-image');
         
         chordNotes.forEach((noteIndex, i) => {
-            setTimeout(() => this.playBellNote(noteIndex, productImage), i * 50);
+            setTimeout(() => this.playNote(noteIndex, productImage), i * 50);
         });
     }
     
@@ -635,15 +927,13 @@ class BoardBellsPage {
             '.benefit-item',          // Itens de benefícios
             '.spec-category',         // Categorias de especificação
             '.application-card',      // Cards de aplicação
-            '.board-bell',           // Sinos do Board Bells
+            '.piano-key',            // Teclas do piano
             '.product-image',        // Imagem do produto
             '.nav-link',             // Links de navegação
             '.final-benefit',        // Benefícios finais
             '.accessibility-btn',    // Botões de acessibilidade
             'h3',                    // Títulos
-            '.cta-section',          // Seção CTA
-            '.sino-item',            // Itens de sino (se existirem)
-            '.color-option'          // Opções de cores
+            '.cta-section'           // Seção CTA
         ];
         
         // Configurar sons para cada tipo de elemento
@@ -657,7 +947,7 @@ class BoardBellsPage {
                     
                     if (this.isAudioEnabled) {
                         // Tocar nota baseada no tipo de elemento e posição
-                        const noteIndex = (index + elementIndex) % this.bellFrequencies.length;
+                        const noteIndex = (index + elementIndex) % this.scaleFrequencies.length;
                         this.playHoverNote(noteIndex, selector, element);
                     }
                 });
@@ -673,9 +963,18 @@ class BoardBellsPage {
     }
     
     playHoverNote(noteIndex, elementType, element) {
-        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) return;
+        // Só criar nota visual se som estiver habilitado
+        if (this.isSoundEnabled) {
+            this.createSoundTriggeredNote(noteIndex, element);
+        }
         
-        const frequency = this.bellFrequencies[noteIndex];
+        // Só reproduzir som se estiver habilitado
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) {
+            console.log('🔇 Hover sem som e sem notas visuais');
+            return;
+        }
+        
+        const frequency = this.scaleFrequencies[noteIndex];
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
         
@@ -688,9 +987,9 @@ class BoardBellsPage {
         if (elementType.includes('btn')) {
             oscillator.type = 'sine';
             gainNode.gain.setValueAtTime(0.2, this.audioContext.currentTime);
-        } else if (elementType.includes('board-bell')) {
-            oscillator.type = 'sine'; // Som de sino suave
-            gainNode.gain.setValueAtTime(0.4, this.audioContext.currentTime);
+        } else if (elementType.includes('piano-key')) {
+            oscillator.type = 'triangle';
+            gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
         } else {
             oscillator.type = 'sine';
             gainNode.gain.setValueAtTime(0.15, this.audioContext.currentTime);
@@ -700,9 +999,6 @@ class BoardBellsPage {
         
         oscillator.start();
         oscillator.stop(this.audioContext.currentTime + 0.3);
-        
-        // Criar nota visual sincronizada com o som
-        this.createSoundTriggeredNote(noteIndex, element);
     }
     
     createHoverParticle(element) {
@@ -744,8 +1040,11 @@ class BoardBellsPage {
             item.addEventListener('mouseenter', () => {
                 const icon = item.querySelector('i');
                 if (icon) {
-                    icon.style.animation = 'bounce 0.8s ease-in-out';
+                    icon.classList.add('hover-glow');
+                    setTimeout(() => icon.classList.remove('hover-glow'), 800);
                 }
+                item.classList.add('beam-glow-active');
+                setTimeout(() => item.classList.remove('beam-glow-active'), 600);
             });
         });
     }
@@ -767,13 +1066,27 @@ class BoardBellsPage {
             margin-top: -10px;
         `;
         
-        button.style.position = 'relative';
+        const initialPosition = button.style.position;
+        const initialOverflow = button.style.overflow;
+        if (window.getComputedStyle(button).position === 'static') {
+            button.style.position = 'relative';
+        }
         button.style.overflow = 'hidden';
         button.appendChild(ripple);
         
         setTimeout(() => {
             if (ripple.parentNode) {
                 ripple.parentNode.removeChild(ripple);
+            }
+            if (initialOverflow) {
+                button.style.overflow = initialOverflow;
+            } else {
+                button.style.removeProperty('overflow');
+            }
+            if (initialPosition) {
+                button.style.position = initialPosition;
+            } else if (window.getComputedStyle(button).position === 'relative') {
+                button.style.removeProperty('position');
             }
         }, 600);
     }
@@ -784,7 +1097,9 @@ class BoardBellsPage {
         
         soundElements.forEach(element => {
             element.addEventListener('mouseenter', () => {
-                this.createSoundWaveEffect(element);
+                if (this.isSoundEnabled) {
+                    this.createSoundWaveEffect(element);
+                }
             });
         });
     }
@@ -912,57 +1227,19 @@ class VisualEffectsManager {
             }
         }, 1000);
     }
-    
-    addBoardBellsDescription() {
-        const container = document.querySelector('.container');
-        if (!container) return;
-        
-        const description = document.createElement('div');
-        description.className = 'product-description fade-in';
-        description.innerHTML = `
-            <h3>🔔 Board Bells - Controlador MIDI Inovador</h3>
-            <p>O Board Bells é um controlador MIDI com 8 teclas em formato de sinos, que podem ser usadas como acionadoras de notas musicais para vários instrumentos.</p>
-            <div class="features-list">
-                <div class="feature">
-                    <span class="feature-icon">🔔</span>
-                    <span>8 teclas em formato de sinos</span>
-                </div>
-                <div class="feature">
-                    <span class="feature-icon">🎨</span>
-                    <span>Cores adequadas aos padrões internacionais</span>
-                </div>
-                <div class="feature">
-                    <span class="feature-icon">🎛️</span>
-                    <span>Botão giratório com duas funções</span>
-                </div>
-                <div class="feature">
-                    <span class="feature-icon">🔛</span>
-                    <span>Chave liga/desliga e entrada carregador</span>
-                </div>
-                <div class="feature">
-                    <span class="feature-icon">🎵</span>
-                    <span>Compatível com sistemas MIDI</span>
-                </div>
-                <div class="feature">
-                    <span class="feature-icon">♿</span>
-                    <span>Funções similares ao BIG-KBD</span>
-                </div>
-            </div>
-        `;
-        
-        container.appendChild(description);
-    }
 }
 
 // Inicializar quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-    const boardBells = new BoardBellsPage();
-    new VisualEffectsManager();
+    const bigKbd25 = new BigKbd25Page();
+    // Instanciar gerenciador de efeitos visuais
+    const visualEffects = new VisualEffectsManager();
     
-    // Armazenar instância globalmente para referência
-    window.boardBellsInstance = boardBells;
+    // Armazenar instâncias globalmente para referência
+    window.bigKbd25Instance = bigKbd25;
+    window.visualEffectsInstance = visualEffects;
     
-    // Adicionar estilo fadeOut se não existir
+    // Adicionar estilo fadeOut básico se não existir
     if (!document.querySelector('#fadeOutStyle')) {
         const style = document.createElement('style');
         style.id = 'fadeOutStyle';
@@ -986,25 +1263,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     transform: scale(0) translateY(-20px);
                 }
             }
-            
-            @keyframes soundNoteFloat {
-                0% {
-                    opacity: 0;
-                    transform: translate(-50%, -50%) scale(0) rotate(0deg);
-                }
-                20% {
-                    opacity: 1;
-                    transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
-                }
-                80% {
-                    opacity: 1;
-                    transform: translate(-50%, -70%) scale(1) rotate(-10deg);
-                }
-                100% {
-                    opacity: 0;
-                    transform: translate(-50%, -90%) scale(0.5) rotate(20deg);
-                }
-            }
         `;
         document.head.appendChild(style);
     }
@@ -1018,7 +1276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let audioActivated = false;
     
     const tryActivateAudio = () => {
-        const instance = window.boardBellsInstance || boardBells;
+        const instance = window.bigKbd25Instance || bigKbd25;
         if (!audioActivated && instance) {
             instance.enableAudio();
             if (instance.isAudioEnabled) {
@@ -1050,4 +1308,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Export para uso em outros módulos se necessário
-window.BoardBellsPage = BoardBellsPage;
+window.BigKbd25Page = BigKbd25Page;

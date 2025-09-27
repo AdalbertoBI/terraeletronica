@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="sensory-musical">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Sensory Musical - Produtos que reproduzem música de forma única, combinando audição e vibrações das melodias. Tecnologia confortável e acolhedora para bem-estar sensorial.">
+    <meta name="keywords" content="sensory musical, estimulação sensorial, bem-estar musical, desenvolvimento cognitivo, experiência sensorial, vibrações musicais, reprodução musical">
+    <meta name="theme-color" content="#FF5722">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Sensory Musical - Terra Eletrônica">
+    <title>Sensory Musical | Terra Eletrônica</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logos/terra-compact.png" sizes="32x32">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/sensory-musical.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- Header -->
+    <header class="header" style="position: relative; z-index: 100;">
+        <nav class="navbar" aria-label="Main Navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../index.html" aria-label="Voltar ao início">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
+                            <source type="image/webp" srcset="../assets/images/logos/terra-compact.webp" media="(max-width:899px)">
+                            <source srcset="../assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
+                            <source srcset="../assets/images/logos/terra-compact.png" media="(max-width:899px)">
+                            <img src="../assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                    </a>
+                    <h1 class="sr-only">Terra Eletrônica</h1>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Início</a></li>
+                    <li><a href="instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
+                    <li><a href="sensory-musical.html" class="nav-link active">Sensory Musical</a></li>
+                    <li><a href="tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
+                    <li><a href="../index.html#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="../index.html#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Você está em" style="background: rgba(0,0,0,0.8); padding: 0.75rem 0; position: relative; z-index: 101;">
+        <div class="container">
+            <a href="../index.html" style="color: white; text-decoration: none;">Início</a>
+            <i class="fas fa-chevron-right" aria-hidden="true" style="color: white; margin: 0 0.5rem;"></i>
+            <span style="color: white;">Sensory Musical</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main id="conteudo" tabindex="-1">
+        <section id="home" class="hero" style="position: relative; min-height: 100vh; background: #ff6b35 url('../assets/images/banners/sensory-musical.png') center/cover no-repeat !important;">
+            <div class="hero-overlay hero-overlay-sensory" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3) !important; z-index: 1;"></div>
+            <div class="container" style="position: relative; z-index: 10; background: transparent !important;">
+                <div class="hero-content hero-content-sensory">
+                    <h1 class="hero-title">
+                        <span class="highlight">Sensory</span><br>
+                        <span class="highlight">Musical</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Desperte os sentidos e promova o bem-estar através de experiências musicais envolventes. 
+                        Nossa tecnologia sensorial cria momentos de conexão, relaxamento e descoberta, 
+                        transformando cada interação em uma jornada de crescimento pessoal e harmonia interior.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#produtos-grid" class="btn btn-primary">Ver Produtos</a>
+                        <a href="../index.html#contato" class="btn btn-secondary">Entre em Contato</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre o Sensory Musical -->
+        <section class="about-system" style="position: relative; z-index: 10; background: white;">
+            <div class="container">
+                <div class="about-content maxw-900 mx-auto">
+                    <h2 class="section-title text-center">O que é Sensory Musical?</h2>
+                    <p>
+                        A linha Sensory Musical é um convite à descoberta sensorial através da música. 
+                        Criada para promover momentos de bem-estar, conexão e autoconhecimento, 
+                        nossa tecnologia desperta os sentidos de forma suave e envolvente.
+                    </p>
+                    <p>
+                        Cada produto é uma porta de entrada para experiências transformadoras que nutrem 
+                        a mente, o corpo e a alma. Através da harmonia entre som e vibração, 
+                        criamos um espaço seguro para exploração, relaxamento e crescimento pessoal.
+                    </p>
+                    
+                    <div class="system-features">
+                        <div class="feature-grid">
+                            <div class="feature-item">
+                                <i class="fas fa-heart"></i>
+                                <h3>Conforto Acolhedor</h3>
+                                <p>Design confortável e acolhedor que proporciona bem-estar e conexão</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-wave-square"></i>
+                                <h3>Vibrações Musicais</h3>
+                                <p>Sinta as vibrações das melodias combinadas com a audição para uma experiência única</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-headphones"></i>
+                                <h3>Reprodução Musical Única</h3>
+                                <p>Reproduz músicas de forma especial, criando experiências sonoras envolventes</p>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-spa"></i>
+                                <h3>Mente Calma e Corpo Relaxado</h3>
+                                <p>Experiências musicais que promovem tranquilidade mental e relaxamento corporal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Em Breve - Novos Lançamentos -->
+        <section class="coming-soon-section">
+            <video class="background-video" autoplay muted loop playsinline preload="auto">
+                <source src="../assets/images/banners/ondas%20em%20movimento.mp4" type="video/mp4">
+                <!-- Fallback para navegadores sem suporte a vídeo -->
+                Seu navegador não suporta vídeos HTML5.
+            </video>
+            <div class="video-overlay" style="background-image: url('../assets/images/banners/sensory-musical.png'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+            <div class="container">
+                <div class="coming-soon-header">
+                    <h2 class="section-title text-center">
+                        <span class="highlight-coming-soon">Em Breve</span>
+                    </h2>
+                    <h3 class="section-subtitle-large text-center">Novos Lançamentos Sensory Musical</h3>
+                    <p class="section-description text-center maxw-900 mx-auto">
+                        Prepare-se para uma nova dimensão de bem-estar sensorial. Nossos próximos lançamentos 
+                        prometem experiências ainda mais imersivas, criando momentos únicos de paz, 
+                        descoberta e conexão com seus sentidos mais profundos.
+                    </p>
+                    <div class="coming-soon-badge">
+                        <i class="fas fa-clock"></i>
+                        <span>Lançamento previsto para 2025</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid de Produtos Em Breve -->
+        <section id="produtos-grid" class="instrumentos-grid coming-soon-products" aria-labelledby="titulo-produtos" style="position: relative; z-index: 10; background: white;">
+            <div class="container">
+                <div class="grid">
+                    <!-- Produto 1: SensoryWave Pro -->
+                    <article class="card coming-soon-card" aria-labelledby="cama-sensory-title">
+                        <div class="coming-soon-overlay">
+                            <div class="coming-soon-label">
+                                <i class="fas fa-star"></i>
+                                <span>Em Breve</span>
+                            </div>
+                        </div>
+                        <figure class="card-media">
+                            <img src="../assets/images/banners/sensory-musical.png" alt="Cama Sensory Musical - Experiência musical relaxante" loading="lazy" style="max-width: 100%; height: auto; display: block;">
+                        </figure>
+                        <div class="card-body">
+                            <h3 id="cama-sensory-title" class="card-title">Cama Sensory Musical</h3>
+                            <p class="card-text">
+                                Cama especialmente desenvolvida para momentos de relaxamento e bem-estar. 
+                                Reproduz música combinando som e vibrações suaves, criando uma experiência 
+                                única de conforto e tranquilidade para descanso e meditação.
+                            </p>
+                            <div class="product-highlights">
+                                <div class="highlight-item">
+                                    <i class="fas fa-bed"></i>
+                                    <span>Conforto Para Descanso</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-wave-square"></i>
+                                    <span>Vibrações Relaxantes</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-spa"></i>
+                                    <span>Bem-Estar Completo</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <a href="../index.html#contato" class="btn btn-primary" aria-label="Manifestar interesse na Cama Sensory Musical">
+                                    <i class="fas fa-bell"></i> Avisar-me quando disponível
+                                </a>
+                                <a href="../index.html#contato" class="btn btn-outline" aria-label="Solicitar mais informações">
+                                    <i class="fas fa-info-circle"></i> Mais Informações
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Produto 2: NeuroSync Musical -->
+                    <article class="card coming-soon-card" aria-labelledby="tablet-sensory-title">
+                        <div class="coming-soon-overlay">
+                            <div class="coming-soon-label">
+                                <i class="fas fa-star"></i>
+                                <span>Em Breve</span>
+                            </div>
+                        </div>
+                        <figure class="card-media">
+                            <img src="../assets/images/banners/sensory-musical.png" alt="Tablet Sensorial Musical - Tecnologia portátil interativa" loading="lazy" style="max-width: 100%; height: auto; display: block;">
+                        </figure>
+                        <div class="card-body">
+                            <h3 id="tablet-sensory-title" class="card-title">Tablet Sensorial Musical</h3>
+                            <p class="card-text">
+                                Tablet inovador que une tecnologia e bem-estar sensorial. Reproduz música 
+                                de forma sincronizada com vibrações, oferecendo uma experiência portátil 
+                                e interativa para momentos de relaxamento e descoberta musical.
+                            </p>
+                            <div class="product-highlights">
+                                <div class="highlight-item">
+                                    <i class="fas fa-tablet-alt"></i>
+                                    <span>Tecnologia Portátil</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-headphones"></i>
+                                    <span>Experiência Interativa</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-sync-alt"></i>
+                                    <span>Sincronização Perfeita</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <a href="../index.html#contato" class="btn btn-primary" aria-label="Manifestar interesse no NeuroSync Musical">
+                                    <i class="fas fa-bell"></i> Avisar-me quando disponível
+                                </a>
+                                <a href="../index.html#contato" class="btn btn-outline" aria-label="Solicitar mais informações">
+                                    <i class="fas fa-info-circle"></i> Mais Informações
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Produto 3: TactileHarmony Suite -->
+                    <article class="card coming-soon-card" aria-labelledby="almofada-sensory-title">
+                        <div class="coming-soon-overlay">
+                            <div class="coming-soon-label">
+                                <i class="fas fa-star"></i>
+                                <span>Em Breve</span>
+                            </div>
+                        </div>
+                        <figure class="card-media">
+                            <img src="../assets/images/banners/sensory-musical.png" alt="Almofada Autônoma Sensorial Musical - Conforto músical portátil" loading="lazy" style="max-width: 100%; height: auto; display: block;">
+                        </figure>
+                        <div class="card-body">
+                            <h3 id="almofada-sensory-title" class="card-title">Almofada Autônoma Sensorial Musical</h3>
+                            <p class="card-text">
+                                Almofada inteligente e autônoma que proporciona conforto excepcional. 
+                                Combina maciez acolhedora com reprodução musical e vibrações suaves, 
+                                criando um refúgio pessoal de bem-estar e relaxamento em qualquer ambiente.
+                            </p>
+                            <div class="product-highlights">
+                                <div class="highlight-item">
+                                    <i class="fas fa-couch"></i>
+                                    <span>Conforto Extremo</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-robot"></i>
+                                    <span>Funcionamento Autônomo</span>
+                                </div>
+                                <div class="highlight-item">
+                                    <i class="fas fa-home"></i>
+                                    <span>Uso Doméstico</span>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <a href="../index.html#contato" class="btn btn-primary" aria-label="Manifestar interesse no TactileHarmony Suite">
+                                    <i class="fas fa-bell"></i> Avisar-me quando disponível
+                                </a>
+                                <a href="../index.html#contato" class="btn btn-outline" aria-label="Solicitar mais informações">
+                                    <i class="fas fa-info-circle"></i> Mais Informações
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- CTA de Interesse -->
+                <div class="interest-cta">
+                    <div class="interest-content">
+                        <h3>Seja o primeiro a conhecer nossos novos produtos</h3>
+                        <p>Cadastre-se para receber notificações exclusivas sobre lançamentos e novidades da linha Sensory Musical.</p>
+                        <a href="../index.html#contato" class="btn btn-primary btn-large">
+                            <i class="fas fa-envelope"></i> Cadastrar Interesse
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carrossel de Vídeos - Em Breve -->
+        <section class="videos-carousel-section coming-soon-videos">
+            <div class="container">
+                <h2 class="section-title text-center">Vídeos Demonstrativos</h2>
+                <p class="section-subtitle text-center maxw-900 mx-auto">
+                    Acompanhe as demonstrações dos novos produtos Sensory Musical e veja como eles transformam 
+                    a experiência sensorial através da estimulação multissensorial
+                </p>
+                
+                <div class="videos-carousel" id="videosCarousel">
+                    <div class="carousel-container">
+                        <div class="carousel-track" id="carouselTrack">
+                            <!-- Vídeo 1 - SensoryWave Pro -->
+                            <div class="video-card coming-soon-video" data-video-id="sensorywave-demo" tabindex="0" role="button" aria-label="Vídeo demonstrativo do SensoryWave Pro em breve">
+                                <div class="video-thumbnail">
+                                    <img src="../assets/images/banners/sensory-musical.png" alt="SensoryWave Pro - Vídeo em breve" loading="lazy" style="max-width: 100%; height: auto; display: block;">
+                                    <div class="coming-soon-overlay-video">
+                                        <i class="fas fa-clock" aria-hidden="true"></i>
+                                        <span>Em Breve</span>
+                                    </div>
+                                </div>
+                                <div class="video-info">
+                                    <h3>SensoryWave Pro</h3>
+                                    <p>Demonstração completa das experiências musicais multissensoriais e estimulação integrada.</p>
+                                </div>
+                            </div>
+
+                            <!-- Vídeo 2 - NeuroSync Musical -->
+                            <div class="video-card coming-soon-video" data-video-id="neurosync-demo" tabindex="0" role="button" aria-label="Vídeo demonstrativo do NeuroSync Musical em breve">
+                                <div class="video-thumbnail">
+                                    <img src="../assets/images/banners/sensory-musical.png" alt="NeuroSync Musical - Vídeo em breve" loading="lazy" style="max-width: 100%; height: auto; display: block;">
+                                    <div class="coming-soon-overlay-video">
+                                        <i class="fas fa-clock" aria-hidden="true"></i>
+                                        <span>Em Breve</span>
+                                    </div>
+                                </div>
+                                <div class="video-info">
+                                    <h3>NeuroSync Musical</h3>
+                                    <p>Demonstração das funcionalidades de sincronização neurológica através da estimulação multissensorial.</p>
+                                </div>
+                            </div>
+
+                            <!-- Vídeo 3 - TactileHarmony Suite -->
+                            <div class="video-card coming-soon-video" data-video-id="tactile-demo" tabindex="0" role="button" aria-label="Vídeo demonstrativo do TactileHarmony Suite em breve">
+                                <div class="video-thumbnail">
+                                    <img src="../assets/images/banners/sensory-musical.png" alt="TactileHarmony Suite - Vídeo em breve" loading="lazy" style="max-width: 100%; height: auto; display: block;">
+                                    <div class="coming-soon-overlay-video">
+                                        <i class="fas fa-clock" aria-hidden="true"></i>
+                                        <span>Em Breve</span>
+                                    </div>
+                                </div>
+                                <div class="video-info">
+                                    <h3>TactileHarmony Suite</h3>
+                                    <p>Veja como a suíte completa proporciona experiências de atividades em grupo e educação inclusiva.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Controles do Carrossel -->
+                    <button class="carousel-btn carousel-btn-prev" id="prevBtn" aria-label="Vídeos anteriores" title="Ver vídeos anteriores">
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <button class="carousel-btn carousel-btn-next" id="nextBtn" aria-label="Próximos vídeos" title="Ver próximos vídeos">
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                    
+                    <!-- Indicadores -->
+                    <div class="carousel-indicators" id="carouselIndicators" role="tablist" aria-label="Navegação por páginas de vídeos">
+                        <button class="indicator active" data-slide="0" role="tab" aria-label="Página 1 de demonstrações" aria-selected="true" tabindex="0"></button>
+                        <button class="indicator" data-slide="1" role="tab" aria-label="Página 2 de demonstrações" aria-selected="false" tabindex="-1"></button>
+                        <button class="indicator" data-slide="2" role="tab" aria-label="Página 3 de demonstrações" aria-selected="false" tabindex="-1"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal de Vídeo -->
+        <div class="video-modal" id="videoModal" aria-hidden="true">
+            <div class="modal-backdrop" id="modalBackdrop"></div>
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose" aria-label="Fechar vídeo">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+                <div class="modal-video-container">
+                    <iframe id="modalVideoPlayer" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content text-center">
+                    <h2>Interessado em Sensory Musical?</h2>
+                    <p>Entre em contato conosco para conhecer mais sobre nossos produtos sensoriais e como eles podem beneficiar sua prática educacional e de bem-estar.</p>
+                    <div class="cta-buttons">
+                        <a href="../index.html#contato" class="btn btn-primary">Entre em Contato</a>
+                        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" class="btn btn-secondary">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    
+                    <div class="footer-brand">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-compact.webp">
+                            <img src="../assets/images/logos/terra-compact.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                        <p>Tecnologia que liberta seu potencial</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronica5492" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Produtos</h4>
+                    <ul>
+                        <li><a href="instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
+                        <li><a href="tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
+                        <li><a href="sensory-musical.html">Sensory Musical</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="../index.html#sobre">Sobre Nós</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
+                        
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="../manuais.html?tipo=manual">Manuais</a></li>
+                        <li><a href="../manuais.html?tipo=download">Downloads</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2025 Terra Eletrônica. Todos os direitos reservados.</p>
+                <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    
+    <!-- Widget de Acessibilidade Expandido -->
+    <div class="accessibility-widget" id="accessibilityWidget">
+        <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Menu de Acessibilidade" title="Opções de Acessibilidade">
+            <i class="fas fa-universal-access" aria-hidden="true"></i>
+        </button>
+        
+        <div class="accessibility-panel" id="accessibilityPanel" role="dialog" aria-labelledby="accessibilityTitle" aria-hidden="true">
+            <h3 id="accessibilityTitle">Opções de Acessibilidade</h3>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="increaseFontBtn" aria-label="Aumentar tamanho da fonte">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    <span>Aumentar Fonte</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="decreaseFontBtn" aria-label="Diminuir tamanho da fonte">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                    <span>Diminuir Fonte</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="highContrastBtn" aria-label="Alternar alto contraste">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                    <span>Alto Contraste</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="darkModeBtn" aria-label="Alternar modo escuro">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <span>Modo Escuro</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="readAloudBtn" aria-label="Ativar leitura em voz alta">
+                    <i class="fas fa-volume-up" aria-hidden="true"></i>
+                    <span>Leitura em Voz Alta</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="resetBtn" aria-label="Restaurar configurações padrão">
+                    <i class="fas fa-undo" aria-hidden="true"></i>
+                    <span>Restaurar Padrão</span>
+                </button>
+            </div>
+            
+            <button class="accessibility-close" id="accessibilityClose" aria-label="Fechar menu de acessibilidade">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        if (window && window.VLibras && typeof window.VLibras.Widget === 'function') {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        } else {
+            window.addEventListener('load', function() {
+                if (window.VLibras && typeof window.VLibras.Widget === 'function') {
+                    new window.VLibras.Widget('https://vlibras.gov.br/app');
+                }
+            });
+        }
+    </script>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <div class="whatsapp-float whatsapp-visible">
+        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="../assets/js/main.js"></script>
+    
+    <!-- Sistema de Modal de Vídeo Inline -->
+    <script>
+    console.log('Iniciando sistema de modal inline...');
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Marcar como inicializado
+        window.videoCarouselInitialized = true;
+        
+        // Elementos do modal
+        const modal = document.getElementById('videoModal');
+        const modalPlayer = document.getElementById('modalVideoPlayer');
+        const modalClose = document.getElementById('modalClose');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const videoCards = document.querySelectorAll('.video-card');
+        
+        console.log('Elementos encontrados:', {
+            modal: !!modal,
+            modalPlayer: !!modalPlayer,
+            modalClose: !!modalClose,
+            modalBackdrop: !!modalBackdrop,
+            videoCards: videoCards.length
+        });
+        
+        if (!modal || !modalPlayer) {
+            console.error('Elementos essenciais não encontrados');
+            return;
+        }
+        
+        // Função para abrir modal
+        function openModal(videoId) {
+            console.log('Abrindo modal com ID:', videoId);
+            
+            let embedUrl;
+            const videoContainer = modalPlayer.parentElement;
+            const modalContent = modal.querySelector('.modal-content');
+            
+            // Limpar classes anteriores
+            videoContainer.classList.remove('instagram');
+            modalContent.classList.remove('instagram');
+            
+            // Para Sensory Musical, usar vídeos de demonstração ou placeholder
+            if (videoId.includes('sensory-demo')) {
+                // URLs de exemplo para demonstrações sensoriais
+                embedUrl = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0'; // Placeholder - substituir por vídeos reais
+            } else {
+                embedUrl = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+            }
+            
+            console.log('URL do embed:', embedUrl);
+            
+            // Definir src e mostrar modal
+            modalPlayer.src = embedUrl;
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            
+            // Focar no botão fechar
+            setTimeout(() => modalClose && modalClose.focus(), 100);
+        }
+        
+        // Função para fechar modal
+        function closeModal() {
+            console.log('Fechando modal');
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            modalPlayer.src = '';
+            document.body.style.overflow = '';
+        }
+        
+        // Configurar event listeners para cards
+        videoCards.forEach((card, index) => {
+            const videoId = card.getAttribute('data-video-id');
+            console.log(`Card ${index + 1}: ${videoId}`);
+            
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Clique no card detectado');
+                openModal(videoId);
+            });
+            
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    console.log('Tecla Enter/Space no card detectada');
+                    openModal(videoId);
+                }
+            });
+        });
+        
+        // Event listeners para fechar modal
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModal);
+        }
+        
+        if (modalBackdrop) {
+            modalBackdrop.addEventListener('click', closeModal);
+        }
+        
+        // Fechar com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+        
+        console.log('Sistema de modal configurado com sucesso!');
+        
+        // Inicializar carrossel de navegação
+        initCarouselNavigation();
+    });
+    
+    // Função para controlar navegação do carrossel
+    function initCarouselNavigation() {
+        const track = document.getElementById('carouselTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicators = document.querySelectorAll('.indicator');
+        const videoCards = document.querySelectorAll('.video-card');
+        
+        console.log('Inicializando navegação do carrossel:', {
+            track: !!track,
+            prevBtn: !!prevBtn,
+            nextBtn: !!nextBtn,
+            indicators: indicators.length,
+            videoCards: videoCards.length
+        });
+        
+        if (!track || !prevBtn || !nextBtn) {
+            console.error('Elementos do carrossel não encontrados');
+            return;
+        }
+        
+        let currentIndex = 0;
+        const totalCards = videoCards.length;
+        const cardsPerView = 3; // Número de cards visíveis por vez
+        const maxIndex = Math.max(0, totalCards - cardsPerView);
+        
+        console.log(`Carrossel configurado: ${totalCards} cards, máximo ${cardsPerView} por visualização`);
+        
+        // Função para atualizar posição do carrossel
+        function updateCarousel() {
+            if (videoCards.length === 0) return;
+            
+            const firstCard = videoCards[0];
+            const cardWidth = firstCard.offsetWidth;
+            const computedStyle = window.getComputedStyle(track);
+            const gap = parseFloat(computedStyle.gap) || 24;
+            
+            const moveDistance = cardWidth + gap;
+            const translateX = -(currentIndex * moveDistance);
+            
+            track.style.transform = `translateX(${translateX}px)`;
+            
+            // Atualizar indicadores se existirem
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+            
+            // Atualizar estado dos botões
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= maxIndex;
+            
+            console.log(`Carrossel atualizado - índice: ${currentIndex}/${maxIndex}, translateX: ${translateX}px`);
+        }
+        
+        // Event listeners para botões
+        prevBtn.addEventListener('click', function() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            if (currentIndex < maxIndex) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+        
+        // Event listeners para indicadores
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', function() {
+                currentIndex = Math.min(index, maxIndex);
+                updateCarousel();
+            });
+        });
+        
+        // Inicializar estado
+        updateCarousel();
+        
+        console.log('Navegação do carrossel configurada com sucesso!');
+    }
+    </script>
+
+    <!-- Script para processar outros vídeos da página e debug da imagem -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Debug da imagem de fundo
+            const heroSection = document.querySelector('#home.hero');
+            console.log('Hero section found:', !!heroSection);
+            
+            if (heroSection) {
+                const computedStyle = window.getComputedStyle(heroSection);
+                console.log('Background image:', computedStyle.backgroundImage);
+                console.log('Background color:', computedStyle.backgroundColor);
+            }
+            
+            // Testar carregamento da imagem
+            const img = new Image();
+            img.onload = function() {
+                console.log('✅ Imagem carregada com sucesso:', this.src);
+            };
+            img.onerror = function() {
+                console.error('❌ Erro ao carregar imagem:', this.src);
+            };
+            img.src = '../assets/images/banners/sensory-musical.png';
+            
+            // Processar vídeos de background (exceto hero que agora é imagem)
+            const otherVideos = document.querySelectorAll('.background-video');
+            otherVideos.forEach((video, index) => {
+                video.play().catch(e => console.log('Video', index, 'autoplay blocked:', e));
+            });
+        });
+    </script>
+    
+    <script src="../assets/js/sensory-musical.js"></script>
+</body>
+</html>

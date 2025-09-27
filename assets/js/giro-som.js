@@ -1,19 +1,12 @@
-// Giro Som 09 Interactive Page
-class GiroSomPage {
+// BIG_KBD_25 Specific JavaScript
+class BigKbd25Page {
     constructor() {
-        // Frequências das 9 teclas do Giro Som (escala pentatônica + extras)
-        this.giroFrequencies = [
-            261.63, 293.66, 329.63, 392.00, 440.00, // C, D, E, G, A (pentatônica)
-            523.25, 587.33, 659.25, 783.99          // C5, D5, E5, G5 (oitava superior)
-        ];
-        
-        // Notas musicais para visualização - tema girassol
-        this.musicalNotes = ['🌻', '♪', '♫', '♩', '♬', '🎵', '🎶', '☀️', '🌼'];
-        
         this.audioContext = null;
-        this.gainNode = null;
         this.isAudioEnabled = false;
         this.isSoundEnabled = true; // Controle do usuário para som
+        this.musicalNotes = ['♪', '♫', '♬', '♭', '♯', '𝄞', '𝄢', '𝅘𝅥𝅮'];
+        this.scaleFrequencies = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]; // C4 to C5
+        this.scaleNotes = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'];
         this.currentNoteIndex = 0;
         this.isPlaying = false;
         
@@ -21,108 +14,604 @@ class GiroSomPage {
     }
     
     init() {
+        // Garantir que as animações CSS sejam inseridas primeiro
+        this.insertAnimationStyles();
+        
         this.setupAudioContext();
         this.setupSoundControl();
         this.setupProductImageInteraction();
-        this.setupGiroSomDemo();
+        this.setupPianoKeys();
         this.setupScrollAnimations();
         this.setupHoverEffects();
         this.setupSoundWaves();
         this.setupGlobalHoverSounds();
         this.initializeAnimations();
-        this.addGiroSomDescription();
+        
+        // Adicionar função de teste para debug
+        this.setupDebugTest();
+        
+        console.log('🎹 BIG_KBD_25 page initialized with musical enhancements!');
+    }
+    
+    insertAnimationStyles() {
+        // Inserir estilos de animação imediatamente
+        if (!document.querySelector('#musicalNotesAnimations')) {
+            const style = document.createElement('style');
+            style.id = 'musicalNotesAnimations';
+            style.textContent = `
+                .musical-note.sound-triggered {
+                    position: fixed !important;
+                    pointer-events: none !important;
+                    z-index: 9999 !important;
+                    font-family: "Times New Roman", serif !important;
+                    font-weight: bold !important;
+                }
+                
+                @keyframes soundNoteFloat {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    }
+                    20% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.2) rotate(10deg);
+                    }
+                    80% {
+                        opacity: 1;
+                        transform: translate(-50%, -70%) scale(1) rotate(-10deg);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -90%) scale(0.5) rotate(20deg);
+                    }
+                }
+                
+                @keyframes soundNoteBounce {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) translateY(0);
+                    }
+                    25% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.3) translateY(-30px);
+                    }
+                    50% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.1) translateY(-10px);
+                    }
+                    75% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.2) translateY(-40px);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0.3) translateY(-80px);
+                    }
+                }
+                
+                @keyframes soundNoteSpin {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    }
+                    30% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.4) rotate(180deg);
+                    }
+                    70% {
+                        opacity: 1;
+                        transform: translate(-50%, -60%) scale(1) rotate(360deg);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -80%) scale(0.2) rotate(540deg);
+                    }
+                }
+                
+                @keyframes soundNoteZoom {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0);
+                    }
+                    15% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(2);
+                    }
+                    85% {
+                        opacity: 1;
+                        transform: translate(-50%, -70%) scale(0.8);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -100%) scale(0);
+                    }
+                }
+                
+                @keyframes noteTrail {
+                    0% {
+                        opacity: 0.8;
+                        transform: scale(0);
+                    }
+                    50% {
+                        opacity: 0.5;
+                        transform: scale(1);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: scale(2);
+                    }
+                }
+                
+                @keyframes toggleNoteFeedback {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+                    }
+                    30% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(1.3) rotate(180deg);
+                    }
+                    70% {
+                        opacity: 1;
+                        transform: translate(-50%, -50%) scale(0.9) rotate(360deg);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translate(-50%, -50%) scale(0) rotate(540deg);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+            console.log('✅ Estilos de animação das notas musicais inseridos');
+        }
+    }
+    
+    setupDebugTest() {
+        // Função para testar notas visuais manualmente
+        window.testMusicalNote = (noteIndex = 0) => {
+            console.log('🧪 Testando nota visual:', noteIndex);
+            console.log('🔊 Som habilitado:', this.isSoundEnabled);
+            if (this.isSoundEnabled) {
+                this.createSoundTriggeredNote(noteIndex);
+            } else {
+                console.log('❌ Som desabilitado - ative o som para ver notas visuais');
+            }
+        };
+        
+        // Função para forçar teste (ignora estado do som)
+        window.forceTestNote = (noteIndex = 0) => {
+            console.log('🧪 FORÇANDO teste de nota visual (ignora som):', noteIndex);
+            this.createSoundTriggeredNote(noteIndex);
+        };
+        
+        // Função para teste visual estático (sem animação)
+        window.testStaticNote = () => {
+            console.log('🧪 Testando nota estática');
+            const note = document.createElement('div');
+            note.textContent = '♫';
+            note.style.cssText = `
+                position: fixed !important;
+                left: 50% !important;
+                top: 50% !important;
+                font-size: 4rem !important;
+                font-weight: bold !important;
+                color: red !important;
+                z-index: 999999 !important;
+                background: yellow !important;
+                padding: 10px !important;
+                border: 5px solid blue !important;
+                transform: translate(-50%, -50%) !important;
+            `;
+            document.body.appendChild(note);
+            
+            setTimeout(() => {
+                if (note?.parentNode) {
+                    note.parentNode.removeChild(note);
+                }
+            }, 5000);
+        };
+        
+        // Adicionar tecla de atalho para teste (Ctrl + Shift + M)
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'M') {
+                e.preventDefault();
+                console.log('🎯 Teste de nota visual ativado');
+                this.createSoundTriggeredNote(Math.floor(Math.random() * 8));
+            }
+            if (e.ctrlKey && e.shiftKey && e.key === 'S') {
+                e.preventDefault();
+                console.log('🎯 Teste de nota estática ativado');
+                window.testStaticNote();
+            }
+        });
+        
+        console.log('🧪 Debug ativado:');
+        console.log('  - Ctrl+Shift+M: notas animadas (respeita som)');
+        console.log('  - Ctrl+Shift+S: nota estática');
+        console.log('  - window.forceTestNote(): força nota (ignora som)');
     }
     
     setupAudioContext() {
         try {
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            this.gainNode = this.audioContext.createGain();
-            this.gainNode.connect(this.audioContext.destination);
-            this.gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+            // Criar AudioContext com compatibilidade
+            window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            
+            // Tentar habilitar áudio imediatamente
+            this.enableAudio();
+            
+            // Fallback: habilitar na primeira interação se necessário
+            if (!this.isAudioEnabled) {
+                document.addEventListener('click', () => this.enableAudio(), { once: true });
+                document.addEventListener('touchstart', () => this.enableAudio(), { once: true });
+                document.addEventListener('mouseenter', () => this.enableAudio(), { once: true });
+            }
         } catch (error) {
-            console.warn('AudioContext não disponível:', error);
+            console.log('AudioContext não suportado:', error);
         }
     }
     
     enableAudio() {
-        if (this.audioContext && this.audioContext.state === 'suspended') {
-            this.audioContext.resume().then(() => {
-                this.isAudioEnabled = true;
-                console.log('🌻 Áudio do Giro Som ativado!');
-            });
-        } else if (this.audioContext) {
-            this.isAudioEnabled = true;
+        if (!this.isAudioEnabled && window.AudioContext) {
+            try {
+                this.audioContext = new AudioContext();
+                
+                // Forçar o contexto a ser iniciado
+                if (this.audioContext.state === 'suspended') {
+                    this.audioContext.resume().then(() => {
+                        this.isAudioEnabled = true;
+                        console.log('🎵 Audio habilitado e retomado!');
+                        
+                        // Tocar uma nota silenciosa para ativar o contexto
+                        this.playTestNote();
+                    });
+                } else {
+                    this.isAudioEnabled = true;
+                    console.log('🎵 Audio habilitado diretamente!');
+                    
+                    // Tocar uma nota silenciosa para ativar o contexto
+                    this.playTestNote();
+                }
+            } catch (error) {
+                console.log('Erro ao habilitar audio:', error);
+                
+                // Tentar novamente em 1 segundo
+                setTimeout(() => this.enableAudio(), 1000);
+            }
+        }
+    }
+    
+    playTestNote() {
+        try {
+            const oscillator = this.audioContext.createOscillator();
+            const gainNode = this.audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(this.audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(440, this.audioContext.currentTime);
+            oscillator.type = 'sine';
+            
+            // Volume muito baixo para não incomodar
+            gainNode.gain.setValueAtTime(0.001, this.audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, this.audioContext.currentTime + 0.1);
+            
+            oscillator.start();
+            oscillator.stop(this.audioContext.currentTime + 0.1);
+            
+            // Não criar nota visual para teste (é apenas para ativar o contexto)
+        } catch (error) {
+            console.log('Erro ao tocar nota de teste:', error);
         }
     }
 
     setupSoundControl() {
-        // Escutar evento global de toggle de som
-        document.addEventListener('soundToggle', (event) => {
-            this.isSoundEnabled = !this.isSoundEnabled;
-            console.log(`🌻 Giro Som - Som ${this.isSoundEnabled ? 'ativado' : 'desativado'}`);
-            
-            // Criar feedback visual
-            if (this.isSoundEnabled) {
-                this.createSoundTriggeredNote(0);
-            }
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        const soundControlFloat = document.getElementById('soundControlFloat');
+        
+        if (!soundToggleBtn || !soundControlFloat) {
+            console.log('Elementos de controle de som não encontrados');
+            return;
+        }
+
+        // Configurar estado inicial
+        this.updateSoundButton();
+
+        // Event listener para o botão
+        soundToggleBtn.addEventListener('click', () => {
+            this.toggleSound();
         });
-    }
-    
-    // Test audio functionality
-    playTestNote() {
-        this.enableAudio();
-        if (this.isAudioEnabled) {
-            this.playGiroNote(0);
-        }
-    }
-    
-    // Sound-triggered note creation with sunflower theme
-    createSoundTriggeredNote(noteIndex, element = null) {
-        const note = document.createElement('div');
-        note.className = 'musical-note sound-triggered giro-note';
-        note.textContent = this.musicalNotes[noteIndex % this.musicalNotes.length];
-        
-        // Posicionar baseado no elemento ou posição aleatória
-        let x, y;
-        if (element) {
-            const rect = element.getBoundingClientRect();
-            x = rect.left + rect.width / 2;
-            y = rect.top + rect.height / 2;
-        } else {
-            x = Math.random() * window.innerWidth;
-            y = window.innerHeight - 50;
-        }
-        
-        // Cores específicas para tema girassol - tons quentes
-        const colors = ['#F39C12', '#E67E22', '#D68910', '#F1C40F', '#F39800', '#FF8C00', '#FFA500', '#FFD700', '#FFAB00'];
-        const color = colors[noteIndex % colors.length];
-        
-        note.style.cssText = `
-            position: fixed;
-            left: ${x}px;
-            top: ${y}px;
-            font-size: 2.8rem;
-            font-weight: bold;
-            color: ${color};
-            text-shadow: 
-                0 0 15px ${color},
-                0 0 25px ${color},
-                2px 2px 4px rgba(0, 0, 0, 0.5);
-            filter: drop-shadow(0 0 12px ${color});
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%) scale(0) rotate(-20deg);
-            opacity: 0;
-            animation: giroNoteFloat 3s ease-out forwards;
-        `;
-        
-        document.body.appendChild(note);
-        
+
+        // Mostrar o botão após um delay
         setTimeout(() => {
-            if (note.parentNode) {
-                note.parentNode.removeChild(note);
+            soundControlFloat.style.opacity = '1';
+            soundControlFloat.style.transform = 'translateY(0)';
+        }, 1500);
+    }
+
+    toggleSound() {
+        this.isSoundEnabled = !this.isSoundEnabled;
+        this.updateSoundButton();
+        
+        // Feedback visual e sonoro
+        this.createSoundToggleFeedback();
+        
+        console.log(`🔊 Som e notas visuais ${this.isSoundEnabled ? 'ativados' : 'desativados'}`);
+    }
+
+    updateSoundButton() {
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        if (!soundToggleBtn) return;
+
+        const icon = soundToggleBtn.querySelector('i');
+        
+        if (this.isSoundEnabled) {
+            soundToggleBtn.classList.remove('muted');
+            soundToggleBtn.setAttribute('title', 'Desativar sons e notas visuais');
+            soundToggleBtn.setAttribute('aria-label', 'Desativar reprodução de sons e efeitos visuais');
+            icon.className = 'fas fa-volume-up';
+        } else {
+            soundToggleBtn.classList.add('muted');
+            soundToggleBtn.setAttribute('title', 'Ativar sons e notas visuais');
+            soundToggleBtn.setAttribute('aria-label', 'Ativar reprodução de sons e efeitos visuais');
+            icon.className = 'fas fa-volume-mute';
+        }
+    }
+
+    createSoundToggleFeedback() {
+        const soundToggleBtn = document.getElementById('soundToggleBtn');
+        if (!soundToggleBtn) return;
+
+        // Criar efeito de ondas sonoras visuais
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => {
+                const wave = document.createElement('div');
+                wave.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 60px;
+                    height: 60px;
+                    border: 2px solid ${this.isSoundEnabled ? '#FF6B35' : '#9E9E9E'};
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    animation: soundWave 1s ease-out forwards;
+                    pointer-events: none;
+                    z-index: -1;
+                `;
+
+                soundToggleBtn.appendChild(wave);
+
+                // Remover após animação
+                setTimeout(() => wave.remove(), 1000);
+            }, i * 100);
+        }
+
+        // Criar notas musicais apenas se som estiver sendo ATIVADO (não desativado)
+        if (this.isSoundEnabled) {
+            this.createMusicalNotes(soundToggleBtn);
+            console.log('🎵 Notas visuais ativadas junto com o som');
+        } else {
+            console.log('🔇 Notas visuais desativadas junto com o som');
+        }
+
+        // Adicionar estilo de animação se não existir
+        if (!document.getElementById('soundWaveAnimation')) {
+            const style = document.createElement('style');
+            style.id = 'soundWaveAnimation';
+            style.textContent = `
+                @keyframes soundWave {
+                    0% {
+                        transform: translate(-50%, -50%) scale(1);
+                        opacity: 0.8;
+                    }
+                    100% {
+                        transform: translate(-50%, -50%) scale(3);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+    
+    createSoundTriggeredNote(noteIndex, element = null) {
+        try {
+            // Debug log
+            console.log('🎵 Criando nota visual:', { noteIndex, element: element?.tagName || 'none' });
+            
+            const note = document.createElement('div');
+            note.className = 'musical-note-test';
+            
+            // Garantir que o índice seja válido
+            const validNoteIndex = Math.abs(noteIndex) % this.musicalNotes.length;
+            note.textContent = this.musicalNotes[validNoteIndex];
+            
+            // Posicionar baseado no elemento ou posição aleatória
+            let x, y;
+            if (element?.getBoundingClientRect) {
+                const rect = element.getBoundingClientRect();
+                x = rect.left + rect.width / 2;
+                y = rect.top + rect.height / 2;
+                
+                // Verificar se as coordenadas são válidas
+                if (isNaN(x) || isNaN(y)) {
+                    x = window.innerWidth / 2;
+                    y = window.innerHeight / 2;
+                }
+                
+                // Adicionar pequena variação para múltiplas notas do mesmo elemento
+                x += (Math.random() - 0.5) * 60;
+                y += (Math.random() - 0.5) * 40;
+            } else {
+                x = Math.random() * (window.innerWidth - 100) + 50;
+                y = window.innerHeight - 100 - Math.random() * 200;
             }
-        }, 3000);
+            
+            // Cores mais vibrantes e específicas para cada nota musical
+            const colors = [
+                '#FF4081', '#FF6B35', '#FFB74D', '#66BB6A', 
+                '#42A5F5', '#AB47BC', '#EF5350', '#FF8A65'
+            ];
+            const color = colors[validNoteIndex];
+            
+            // VERSÃO SIMPLIFICADA PARA TESTE - usar apenas CSS inline básico
+            note.style.cssText = `
+                position: fixed !important;
+                left: ${x}px !important;
+                top: ${y}px !important;
+                font-size: 3rem !important;
+                font-weight: bold !important;
+                color: ${color} !important;
+                text-shadow: 0 0 20px ${color}, 0 0 40px ${color} !important;
+                pointer-events: none !important;
+                z-index: 99999 !important;
+                font-family: "Times New Roman", serif !important;
+                transform: translate(-50%, -50%) !important;
+                opacity: 1 !important;
+                display: block !important;
+                visibility: visible !important;
+            `;
+            
+            // Adicionar ao DOM
+            document.body.appendChild(note);
+            
+            // ANIMAÇÃO SUAVE VIA JAVASCRIPT
+            let scale = 0.5;
+            let opacity = 1;
+            let yOffset = 0;
+            let rotation = 0;
+            
+            console.log('🎵 Iniciando animação da nota na posição:', { x, y });
+            
+            const animate = () => {
+                scale += 0.03;
+                opacity -= 0.015;
+                yOffset -= 1.5;
+                rotation += 3;
+                
+                if (opacity > 0 && scale < 2.5) {
+                    note.style.transform = `translate(-50%, -50%) scale(${scale}) translateY(${yOffset}px) rotate(${rotation}deg)`;
+                    note.style.opacity = opacity;
+                    requestAnimationFrame(animate);
+                } else {
+                    // Remover nota quando a animação terminar
+                    if (note?.parentNode) {
+                        note.parentNode.removeChild(note);
+                        console.log('🗑️ Nota removida após animação');
+                    }
+                }
+            };
+            
+            // Iniciar animação após pequeno delay
+            setTimeout(() => {
+                animate();
+            }, 100);
+            
+            // Debug: verificar se a nota foi adicionada
+            console.log('✅ Nota adicionada ao DOM:', {
+                position: { x, y },
+                color,
+                content: note.textContent,
+                inDOM: document.body.contains(note),
+                styles: note.style.cssText
+            });
+            
+            // Criar rastro de brilho
+            this.createNoteTrail(x, y, color);
+            
+        } catch (error) {
+            console.error('❌ Erro ao criar nota visual:', error);
+        }
+    }
+    
+    createNoteTrail(x, y, color) {
+        // Versão simplificada do rastro para teste
+        try {
+            const trail = document.createElement('div');
+            trail.style.cssText = `
+                position: fixed !important;
+                left: ${x}px !important;
+                top: ${y}px !important;
+                width: 10px !important;
+                height: 10px !important;
+                background: ${color} !important;
+                border-radius: 50% !important;
+                pointer-events: none !important;
+                z-index: 9998 !important;
+                transform: translate(-50%, -50%) !important;
+                opacity: 0.8 !important;
+            `;
+            
+            document.body.appendChild(trail);
+            
+            // Animação simples via JavaScript
+            let scale = 1;
+            let opacity = 0.8;
+            
+            const animateTrail = () => {
+                scale += 0.1;
+                opacity -= 0.05;
+                
+                if (opacity > 0) {
+                    trail.style.transform = `translate(-50%, -50%) scale(${scale})`;
+                    trail.style.opacity = opacity;
+                    requestAnimationFrame(animateTrail);
+                } else {
+                    if (trail?.parentNode) {
+                        trail.parentNode.removeChild(trail);
+                    }
+                }
+            };
+            
+            animateTrail();
+        } catch (error) {
+            console.log('Erro no rastro:', error);
+        }
+    }
+    
+    createMusicalNotes(element) {
+        // Criar várias notas musicais flutuando ao redor do elemento
+        const notes = ['♪', '♫', '♬', '♩', '♯'];
+        const colors = ['#FF4081', '#FF6B35', '#66BB6A', '#42A5F5', '#AB47BC'];
+        
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                const noteDiv = document.createElement('div');
+                noteDiv.className = 'musical-note toggle-feedback';
+                noteDiv.textContent = notes[i % notes.length];
+                
+                const rect = element.getBoundingClientRect();
+                const angle = (360 / 5) * i;
+                const distance = 80;
+                
+                const x = rect.left + rect.width / 2 + Math.cos(angle * Math.PI / 180) * distance;
+                const y = rect.top + rect.height / 2 + Math.sin(angle * Math.PI / 180) * distance;
+                
+                noteDiv.style.cssText = `
+                    position: fixed;
+                    left: ${x}px;
+                    top: ${y}px;
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                    color: ${colors[i % colors.length]};
+                    text-shadow: 
+                        0 0 10px ${colors[i % colors.length]},
+                        0 0 20px ${colors[i % colors.length]};
+                    pointer-events: none;
+                    z-index: 9999;
+                    transform: translate(-50%, -50%) scale(0);
+                    animation: toggleNoteFeedback 1.5s ease-out forwards;
+                `;
+                
+                document.body.appendChild(noteDiv);
+                
+                setTimeout(() => {
+                    if (noteDiv.parentNode) {
+                        noteDiv.parentNode.removeChild(noteDiv);
+                    }
+                }, 1500);
+            }, i * 100);
+        }
     }
     
     setupProductImageInteraction() {
@@ -131,8 +620,8 @@ class GiroSomPage {
         
         if (!productImage || !productImg) return;
         
-        // Interface do Giro Som removida - imagem emite escala musical normalmente
-        // this.createGiroSomInterface(productImage);
+        // Teclas de piano removidas - imagem emite escala musical normalmente
+        // this.createPianoKeys(productImage);
         
         // Efeito hover na imagem principal
         productImage.addEventListener('mouseenter', () => {
@@ -150,201 +639,96 @@ class GiroSomPage {
         });
     }
     
-    createGiroSomInterface(container) {
-        const giroContainer = document.createElement('div');
-        giroContainer.className = 'giro-som-container';
+    createPianoKeys(container) {
+        const keysContainer = document.createElement('div');
+        keysContainer.className = 'piano-keys';
         
-        // Criar 9 pétalas do girassol em formato circular
-        for (let i = 0; i < 9; i++) {
-            const petal = document.createElement('div');
-            petal.className = 'giro-petal';
-            petal.dataset.petalIndex = i;
-            petal.dataset.frequency = this.giroFrequencies[i];
+        // Criar 8 teclas (uma oitava)
+        const whiteKeys = [0, 2, 4, 5, 7]; // C, E, G, F, B
+        const blackKeys = [1, 3, 6]; // D, F, A
+        
+        // Teclas brancas
+        whiteKeys.forEach((noteIndex, keyIndex) => {
+            const key = document.createElement('div');
+            key.className = 'piano-key white';
+            key.dataset.note = this.scaleNotes[noteIndex];
+            key.dataset.frequency = this.scaleFrequencies[noteIndex];
             
-            // Calcular posição circular para cada pétala
-            const angle = (i / 9) * 2 * Math.PI - Math.PI / 2; // Começar do topo
-            const radius = 80;
-            const x = Math.cos(angle) * radius;
-            const y = Math.sin(angle) * radius;
-            
-            petal.style.transform = `translate(${x}px, ${y}px) rotate(${(i * 40)}deg)`;
-            
-            // Adicionar ícone de girassol
-            const petalIcon = document.createElement('span');
-            petalIcon.className = 'petal-icon';
-            petalIcon.textContent = '🌻';
-            petal.appendChild(petalIcon);
-            
-            // Adicionar número da pétala
-            const petalNumber = document.createElement('span');
-            petalNumber.className = 'petal-number';
-            petalNumber.textContent = i + 1;
-            petal.appendChild(petalNumber);
-            
-            petal.addEventListener('click', (e) => {
+            key.addEventListener('click', (e) => {
                 e.stopPropagation();
-                this.playGiroNote(i, petal);
-                this.animatePetal(petal);
+                this.playNote(noteIndex);
+                this.animateKey(key);
             });
             
-            petal.addEventListener('mouseenter', () => {
-                this.previewGiroNote(i, petal);
+            keysContainer.appendChild(key);
+        });
+        
+        // Teclas pretas (sobrepor às brancas)
+        blackKeys.forEach(noteIndex => {
+            const key = document.createElement('div');
+            key.className = 'piano-key black';
+            key.dataset.note = this.scaleNotes[noteIndex];
+            key.dataset.frequency = this.scaleFrequencies[noteIndex];
+            
+            key.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.playNote(noteIndex);
+                this.animateKey(key);
             });
             
-            giroContainer.appendChild(petal);
-        }
+            keysContainer.appendChild(key);
+        });
         
-        // Adicionar centro do girassol
-        const center = document.createElement('div');
-        center.className = 'giro-center';
-        center.innerHTML = '☀️';
-        giroContainer.appendChild(center);
-        
-        // Adicionar controles do Giro Som
-        const controlsPanel = document.createElement('div');
-        controlsPanel.className = 'giro-controls';
-        controlsPanel.innerHTML = `
-            <div class="control-item">
-                <span class="control-icon">🔄</span>
-                <span class="control-label">Botão Giratório Dual</span>
-            </div>
-            <div class="control-item">
-                <span class="control-icon">🔛</span>
-                <span class="control-label">Liga/Desliga</span>
-            </div>
-            <div class="control-item">
-                <span class="control-icon">🔌</span>
-                <span class="control-label">Entrada Carregador</span>
-            </div>
-        `;
-        
-        container.appendChild(giroContainer);
-        container.appendChild(controlsPanel);
+        container.appendChild(keysContainer);
     }
     
-    setupGiroSomDemo() {
-        // Simular 9 pétalas do Giro Som
-        const giroPetals = document.querySelectorAll('.highlight-item, .feature-card, .application-card');
+    setupPianoKeys() {
+        const pianoKeys = document.querySelectorAll('.piano-key');
         
-        giroPetals.forEach((petal, index) => {
-            if (index < 9) {
-                petal.addEventListener('click', () => {
-                    this.playGiroNote(index % this.giroFrequencies.length, petal);
-                    this.animateElement(petal);
-                });
-            }
+        pianoKeys.forEach((key, index) => {
+            key.addEventListener('mouseenter', () => {
+                key.style.transform = 'translateY(-2px) scale(1.05)';
+                key.style.boxShadow = '0 8px 20px rgba(0, 150, 136, 0.3)';
+            });
+            
+            key.addEventListener('mouseleave', () => {
+                key.style.transform = '';
+                key.style.boxShadow = '';
+            });
         });
     }
     
-    playGiroNote(noteIndex, element = null) {
+    playNote(noteIndex, element = null) {
+        // Só criar nota visual se som estiver habilitado
+        if (this.isSoundEnabled) {
+            this.createSoundTriggeredNote(noteIndex, element);
+        }
+        
+        // Só reproduzir som se estiver habilitado
         if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) {
-            if (!this.isSoundEnabled) return;
-            this.enableAudio();
-            if (!this.isAudioEnabled) return;
+            console.log('🔇 Som e notas visuais desabilitados');
+            return;
         }
         
-        const frequency = this.giroFrequencies[noteIndex % this.giroFrequencies.length];
-        
-        // Criar oscilador para som pentatônico (mais orgânico)
+        const frequency = this.scaleFrequencies[noteIndex];
         const oscillator = this.audioContext.createOscillator();
-        const noteGain = this.audioContext.createGain();
+        const gainNode = this.audioContext.createGain();
         
-        oscillator.type = 'sine'; // Som suave como pétalas
+        oscillator.connect(gainNode);
+        gainNode.connect(this.audioContext.destination);
+        
         oscillator.frequency.setValueAtTime(frequency, this.audioContext.currentTime);
+        oscillator.type = 'sine';
         
-        // Envelope ADSR suave para efeito orgânico
-        noteGain.gain.setValueAtTime(0, this.audioContext.currentTime);
-        noteGain.gain.linearRampToValueAtTime(0.4, this.audioContext.currentTime + 0.02);
-        noteGain.gain.exponentialRampToValueAtTime(0.25, this.audioContext.currentTime + 0.15);
-        noteGain.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 1.2);
+        gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 1);
         
-        oscillator.connect(noteGain);
-        noteGain.connect(this.gainNode);
-        
-        oscillator.start(this.audioContext.currentTime);
-        oscillator.stop(this.audioContext.currentTime + 1.2);
-        
-        // Criar nota visual
-        this.createSoundTriggeredNote(noteIndex, element);
-    }
-    
-    setupScrollAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animationDelay = `${Math.random() * 0.3}s`;
-                    entry.target.classList.add('animate-in');
-                }
-            });
-        }, observerOptions);
-        
-        // Observar elementos para animação
-        document.querySelectorAll('.benefit-item, .spec-category, .application-card, .final-benefit')
-               .forEach(el => observer.observe(el));
-    }
-    
-    setupHoverEffects() {
-        // Efeitos de hover para elementos interativos
-        document.querySelectorAll('.benefit-item, .application-card, .spec-category').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                this.createHoverEffect(item);
-            });
-        });
-    }
-    
-    createHoverEffect(element) {
-        // Criar efeito de partícula girassol no hover
-        const particle = document.createElement('div');
-        particle.className = 'hover-particle sunflower-particle';
-        
-        const rect = element.getBoundingClientRect();
-        particle.style.cssText = `
-            position: fixed;
-            left: ${rect.left + rect.width / 2}px;
-            top: ${rect.top + rect.height / 2}px;
-            width: 10px;
-            height: 10px;
-            background: radial-gradient(circle, #F39C12, #E67E22);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1000;
-            animation: sunflowerParticleFloat 1.2s ease-out forwards;
-        `;
-        
-        document.body.appendChild(particle);
-        
-        setTimeout(() => {
-            if (particle.parentNode) {
-                particle.parentNode.removeChild(particle);
-            }
-        }, 1200);
-    }
-    
-    setupSoundWaves() {
-        // Criar ondas sonoras visuais com tema girassol
-        const waveContainer = document.createElement('div');
-        waveContainer.className = 'sound-waves giro-waves';
-        waveContainer.innerHTML = `
-            <div class="wave wave-1 sunflower-wave"></div>
-            <div class="wave wave-2 sunflower-wave"></div>
-            <div class="wave wave-3 sunflower-wave"></div>
-            <div class="wave wave-4 sunflower-wave"></div>
-        `;
-        
-        // Adicionar ao hero
-        const hero = document.querySelector('.product-hero');
-        if (hero) {
-            hero.appendChild(waveContainer);
-        }
+        oscillator.start();
+        oscillator.stop(this.audioContext.currentTime + 1);
     }
     
     startMusicalScale() {
-        if (!this.isSoundEnabled || this.isPlaying) return;
+        if (this.isPlaying) return;
         
         this.isPlaying = true;
         this.currentNoteIndex = 0;
@@ -352,17 +736,17 @@ class GiroSomPage {
         const playNextNote = () => {
             if (!this.isPlaying) return;
             
-            this.playGiroNote(this.currentNoteIndex);
+            this.playNote(this.currentNoteIndex);
             this.highlightNote(this.currentNoteIndex);
             
             this.currentNoteIndex++;
             
-            if (this.currentNoteIndex < this.giroFrequencies.length) {
-                setTimeout(playNextNote, 250); // Um pouco mais lento para efeito orgânico
+            if (this.currentNoteIndex < this.scaleFrequencies.length) {
+                setTimeout(playNextNote, 200);
             } else {
                 // Repetir a escala descendente
-                this.currentNoteIndex = this.giroFrequencies.length - 1;
-                setTimeout(() => this.playDescendingScale(), 150);
+                this.currentNoteIndex = this.scaleFrequencies.length - 1;
+                setTimeout(() => this.playDescendingScale(), 100);
             }
         };
         
@@ -373,13 +757,13 @@ class GiroSomPage {
         const playPrevNote = () => {
             if (!this.isPlaying) return;
             
-            this.playGiroNote(this.currentNoteIndex);
+            this.playNote(this.currentNoteIndex);
             this.highlightNote(this.currentNoteIndex);
             
             this.currentNoteIndex--;
             
             if (this.currentNoteIndex >= 0) {
-                setTimeout(playPrevNote, 250);
+                setTimeout(playPrevNote, 200);
             } else {
                 this.isPlaying = false;
             }
@@ -394,122 +778,162 @@ class GiroSomPage {
     }
     
     highlightNote(noteIndex) {
-        // Destacar elemento correspondente à nota
-        const highlights = document.querySelectorAll('.highlight-item');
-        if (highlights[noteIndex % highlights.length]) {
-            highlights[noteIndex % highlights.length].classList.add('note-highlight');
-            setTimeout(() => {
-                highlights[noteIndex % highlights.length].classList.remove('note-highlight');
-            }, 400);
+        // Destacar a tecla correspondente
+        const keys = document.querySelectorAll('.piano-key');
+        keys.forEach(key => key.classList.remove('active'));
+        
+        if (keys[noteIndex]) {
+            keys[noteIndex].classList.add('active');
+            setTimeout(() => keys[noteIndex].classList.remove('active'), 300);
         }
         
-        // Criar nota visual sincronizada (será criada pelo playGiroNote)
+        // Criar nota visual sincronizada (será criada pelo playNote)
     }
     
     removeAllHighlights() {
-        document.querySelectorAll('.note-highlight').forEach(el => {
-            el.classList.remove('note-highlight');
-        });
+        const keys = document.querySelectorAll('.piano-key');
+        keys.forEach(key => key.classList.remove('active'));
     }
+    
+
     
     playChord() {
         if (!this.isAudioEnabled || !this.audioContext) return;
         
-        // Tocar acorde pentatônico (C, E, G, A)
-        const chordNotes = [0, 2, 3, 4]; // C, E, G, A da escala pentatônica
+        // Tocar acorde C maior (C, E, G)
+        const chordNotes = [0, 2, 4]; // C, E, G
         const productImage = document.querySelector('.product-image');
         
         chordNotes.forEach((noteIndex, i) => {
-            setTimeout(() => this.playGiroNote(noteIndex, productImage), i * 60);
+            setTimeout(() => this.playNote(noteIndex, productImage), i * 50);
         });
     }
     
-    animatePetal(petal) {
-        petal.classList.add('spinning');
-        petal.style.transform += ' scale(1.1)';
+    animateKey(key) {
+        key.classList.add('active');
+        key.style.transform = 'translateY(2px) scale(0.95)';
         
         setTimeout(() => {
-            petal.classList.remove('spinning');
-            petal.style.transform = petal.style.transform.replace(' scale(1.1)', '');
-        }, 300);
-    }
-    
-    animateElement(element) {
-        element.style.transform = 'scale(1.08) rotate(2deg)';
-        element.style.transition = 'transform 0.3s ease';
-        
-        setTimeout(() => {
-            element.style.transform = '';
-        }, 300);
+            key.classList.remove('active');
+            key.style.transform = '';
+        }, 150);
     }
     
     createParticleEffect(container) {
-        for (let i = 0; i < 9; i++) {
+        const colors = ['#e74c3c', '#f39c12', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6'];
+        
+        for (let i = 0; i < 12; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 10px;
+                height: 10px;
+                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 15;
+            `;
+            
+            const angle = (360 / 12) * i;
+            const distance = 100;
+            
+            particle.animate([
+                {
+                    transform: 'translate(-50%, -50%) scale(0)',
+                    opacity: 1
+                },
+                {
+                    transform: `translate(-50%, -50%) translateX(${Math.cos(angle * Math.PI / 180) * distance}px) translateY(${Math.sin(angle * Math.PI / 180) * distance}px) scale(1)`,
+                    opacity: 0
+                }
+            ], {
+                duration: 800,
+                easing: 'ease-out'
+            });
+            
+            container.appendChild(particle);
+            
             setTimeout(() => {
-                const particle = document.createElement('div');
-                particle.className = 'particle sunflower-particle';
-                particle.textContent = Math.random() > 0.5 ? '🌻' : '☀️';
-                
-                const rect = container.getBoundingClientRect();
-                particle.style.cssText = `
-                    position: fixed;
-                    left: ${rect.left + rect.width / 2}px;
-                    top: ${rect.top + rect.height / 2}px;
-                    font-size: 1.5rem;
-                    pointer-events: none;
-                    z-index: 1000;
-                `;
-                
-                const angle = (i / 9) * Math.PI * 2;
-                const velocity = 120 + Math.random() * 80;
-                const vx = Math.cos(angle) * velocity;
-                const vy = Math.sin(angle) * velocity;
-                
-                let x = rect.left + rect.width / 2;
-                let y = rect.top + rect.height / 2;
-                let opacity = 1;
-                let rotation = 0;
-                
-                const animate = () => {
-                    x += vx * 0.02;
-                    y += vy * 0.02;
-                    opacity -= 0.025;
-                    rotation += 5;
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 800);
+        }
+    }
+    
+    setupScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fadeInUp');
                     
-                    particle.style.left = x + 'px';
-                    particle.style.top = y + 'px';
-                    particle.style.opacity = opacity;
-                    particle.style.transform = `rotate(${rotation}deg)`;
-                    
-                    if (opacity > 0) {
-                        requestAnimationFrame(animate);
-                    } else {
-                        particle.remove();
+                    // Efeitos especiais por seção
+                    if (entry.target.classList.contains('benefit-item')) {
+                        this.animateBenefitItem(entry.target);
+                    } else if (entry.target.classList.contains('spec-category')) {
+                        this.animateSpecCategory(entry.target);
+                    } else if (entry.target.classList.contains('application-card')) {
+                        this.animateApplicationCard(entry.target);
                     }
-                };
-                
-                document.body.appendChild(particle);
-                animate();
-            }, i * 30);
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos animáveis
+        document.querySelectorAll('.benefit-item, .spec-category, .application-card, .highlight-item').forEach(el => {
+            observer.observe(el);
+        });
+    }
+    
+    animateBenefitItem(item) {
+        const icon = item.querySelector('.benefit-icon');
+        if (icon) {
+            setTimeout(() => {
+                icon.style.animation = 'bounce 1s ease-in-out';
+            }, 200);
+        }
+    }
+    
+    animateSpecCategory(category) {
+        const icon = category.querySelector('h3 i');
+        if (icon) {
+            setTimeout(() => {
+                icon.style.animation = 'pulse 1.5s ease-in-out 3';
+            }, 300);
+        }
+    }
+    
+    animateApplicationCard(card) {
+        const icon = card.querySelector('.app-icon');
+        if (icon) {
+            setTimeout(() => {
+                icon.style.animation = 'rotate 2s ease-in-out';
+            }, 400);
         }
     }
     
     setupGlobalHoverSounds() {
-        // Elementos que devem emitir sons no hover - adaptado para Giro Som
+        // Elementos que devem emitir sons no hover
         const soundSelectors = [
             '.btn',                    // Botões
             '.highlight-item',         // Destaques do produto
             '.benefit-item',          // Itens de benefícios
             '.spec-category',         // Categorias de especificação
             '.application-card',      // Cards de aplicação
-            '.giro-petal',           // Pétalas do Giro Som
+            '.piano-key',            // Teclas do piano
             '.product-image',        // Imagem do produto
             '.nav-link',             // Links de navegação
             '.final-benefit',        // Benefícios finais
             '.accessibility-btn',    // Botões de acessibilidade
             'h3',                    // Títulos
-            '.cta-section',          // Seção CTA
-            '.petal-item'            // Itens de pétala (se existirem)
+            '.cta-section'           // Seção CTA
         ];
         
         // Configurar sons para cada tipo de elemento
@@ -523,7 +947,7 @@ class GiroSomPage {
                     
                     if (this.isAudioEnabled) {
                         // Tocar nota baseada no tipo de elemento e posição
-                        const noteIndex = (index + elementIndex) % this.giroFrequencies.length;
+                        const noteIndex = (index + elementIndex) % this.scaleFrequencies.length;
                         this.playHoverNote(noteIndex, selector, element);
                     }
                 });
@@ -539,9 +963,18 @@ class GiroSomPage {
     }
     
     playHoverNote(noteIndex, elementType, element) {
-        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) return;
+        // Só criar nota visual se som estiver habilitado
+        if (this.isSoundEnabled) {
+            this.createSoundTriggeredNote(noteIndex, element);
+        }
         
-        const frequency = this.giroFrequencies[noteIndex];
+        // Só reproduzir som se estiver habilitado
+        if (!this.isSoundEnabled || !this.isAudioEnabled || !this.audioContext) {
+            console.log('🔇 Hover sem som e sem notas visuais');
+            return;
+        }
+        
+        const frequency = this.scaleFrequencies[noteIndex];
         const oscillator = this.audioContext.createOscillator();
         const gainNode = this.audioContext.createGain();
         
@@ -554,21 +987,18 @@ class GiroSomPage {
         if (elementType.includes('btn')) {
             oscillator.type = 'sine';
             gainNode.gain.setValueAtTime(0.2, this.audioContext.currentTime);
-        } else if (elementType.includes('giro-petal')) {
+        } else if (elementType.includes('piano-key')) {
             oscillator.type = 'triangle';
-            gainNode.gain.setValueAtTime(0.35, this.audioContext.currentTime);
+            gainNode.gain.setValueAtTime(0.3, this.audioContext.currentTime);
         } else {
             oscillator.type = 'sine';
             gainNode.gain.setValueAtTime(0.15, this.audioContext.currentTime);
         }
         
-        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.4);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, this.audioContext.currentTime + 0.3);
         
         oscillator.start();
-        oscillator.stop(this.audioContext.currentTime + 0.4);
-        
-        // Criar nota visual sincronizada com o som
-        this.createSoundTriggeredNote(noteIndex, element);
+        oscillator.stop(this.audioContext.currentTime + 0.3);
     }
     
     createHoverParticle(element) {
@@ -579,13 +1009,214 @@ class GiroSomPage {
             position: fixed;
             left: ${rect.left + rect.width/2}px;
             top: ${rect.top + rect.height/2}px;
-            width: 8px;
-            height: 8px;
-            background: rgba(243, 156, 18, 0.8);
+            width: 6px;
+            height: 6px;
+            background: rgba(0, 150, 136, 0.8);
             border-radius: 50%;
             pointer-events: none;
-            z-index: 1000;
-            animation: sunflowerParticleHover 1s ease-out forwards;
+            z-index: 9999;
+            animation: hoverParticle 0.6s ease-out forwards;
+        `;
+        
+        document.body.appendChild(particle);
+        
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.parentNode.removeChild(particle);
+            }
+        }, 600);
+    }
+
+    setupHoverEffects() {
+        // Efeitos hover nos botões CTA
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                this.createButtonRipple(btn);
+            });
+        });
+        
+        // Efeitos hover nos highlights
+        document.querySelectorAll('.highlight-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const icon = item.querySelector('i');
+                if (icon) {
+                    icon.classList.add('hover-glow');
+                    setTimeout(() => icon.classList.remove('hover-glow'), 800);
+                }
+                item.classList.add('beam-glow-active');
+                setTimeout(() => item.classList.remove('beam-glow-active'), 600);
+            });
+        });
+    }
+    
+    createButtonRipple(button) {
+        const ripple = document.createElement('div');
+        ripple.style.cssText = `
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin-left: -10px;
+            margin-top: -10px;
+        `;
+        
+        const initialPosition = button.style.position;
+        const initialOverflow = button.style.overflow;
+        if (window.getComputedStyle(button).position === 'static') {
+            button.style.position = 'relative';
+        }
+        button.style.overflow = 'hidden';
+        button.appendChild(ripple);
+        
+        setTimeout(() => {
+            if (ripple.parentNode) {
+                ripple.parentNode.removeChild(ripple);
+            }
+            if (initialOverflow) {
+                button.style.overflow = initialOverflow;
+            } else {
+                button.style.removeProperty('overflow');
+            }
+            if (initialPosition) {
+                button.style.position = initialPosition;
+            } else if (window.getComputedStyle(button).position === 'relative') {
+                button.style.removeProperty('position');
+            }
+        }, 600);
+    }
+    
+    setupSoundWaves() {
+        // Adicionar ondas sonoras aos elementos que fazem som
+        const soundElements = document.querySelectorAll('.product-image, .piano-key, .btn-primary');
+        
+        soundElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                if (this.isSoundEnabled) {
+                    this.createSoundWaveEffect(element);
+                }
+            });
+        });
+    }
+    
+    createSoundWaveEffect(element) {
+        const waves = document.createElement('div');
+        waves.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 2px;
+            pointer-events: none;
+            z-index: 5;
+        `;
+        
+        for (let i = 0; i < 5; i++) {
+            const wave = document.createElement('div');
+            wave.className = 'sound-wave';
+            wave.style.animationDelay = `${i * 0.1}s`;
+            waves.appendChild(wave);
+        }
+        
+        element.style.position = 'relative';
+        element.appendChild(waves);
+        
+        setTimeout(() => {
+            if (waves.parentNode) {
+                waves.parentNode.removeChild(waves);
+            }
+        }, 1200);
+    }
+    
+    initializeAnimations() {
+        // Adicionar estilos de animação dinâmicos
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Inicializar animações de entrada
+        setTimeout(() => {
+            document.querySelectorAll('.product-title, .product-subtitle').forEach((el, index) => {
+                el.style.animation = `fadeInUp 0.8s ease-out ${index * 0.2}s both`;
+            });
+        }, 100);
+    }
+    
+    getRandomColor() {
+        const colors = ['#e74c3c', '#f39c12', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6', '#e91e63', '#ff5722'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+}
+
+// Classe para gerenciar efeitos visuais avançados
+class VisualEffectsManager {
+    constructor() {
+        this.setupParallaxEffect();
+        this.setupMouseFollower();
+    }
+    
+    setupParallaxEffect() {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.product-hero::before, .musical-notes');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    }
+    
+    setupMouseFollower() {
+        let mouseX = 0, mouseY = 0;
+        let followerX = 0, followerY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        const animateFollower = () => {
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+            
+            // Criar efeito sutil de partículas seguindo o mouse
+            if (Math.random() < 0.1) {
+                this.createMouseParticle(followerX, followerY);
+            }
+            
+            requestAnimationFrame(animateFollower);
+        };
+        
+        animateFollower();
+    }
+    
+    createMouseParticle(x, y) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: fixed;
+            left: ${x}px;
+            top: ${y}px;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 150, 136, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: fadeOut 1s ease-out forwards;
         `;
         
         document.body.appendChild(particle);
@@ -596,51 +1227,56 @@ class GiroSomPage {
             }
         }, 1000);
     }
-    
-    initializeAnimations() {
-        // Adicionar classes de animação após carregamento
-        setTimeout(() => {
-            document.querySelectorAll('.product-hero, .product-details').forEach(section => {
-                section.classList.add('loaded');
-            });
-        }, 100);
-    }
-    
-    addGiroSomDescription() {
-        // Adicionar descrição específica do Giro Som se necessário
-        const heroContent = document.querySelector('.hero-content');
-        if (heroContent && !document.querySelector('.giro-som-description')) {
-            const description = document.createElement('p');
-            description.className = 'giro-som-description';
-            description.textContent = 'Controlador MIDI único em formato de girassol com 9 teclas, giroscópio e design orgânico.';
-            description.style.cssText = `
-                margin-top: 1rem;
-                font-size: 1.1rem;
-                color: rgba(255, 255, 255, 0.9);
-                font-weight: 300;
-            `;
-            
-            const subtitle = heroContent.querySelector('.product-subtitle');
-            if (subtitle) {
-                subtitle.after(description);
-            }
-        }
-    }
 }
 
-// Inicialização quando o DOM estiver pronto
+// Inicializar quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🌻 Inicializando Giro Som 09...');
+    const bigKbd25 = new BigKbd25Page();
+    // Instanciar gerenciador de efeitos visuais
+    const visualEffects = new VisualEffectsManager();
     
-    const giroSom = new GiroSomPage();
-    window.giroSomInstance = giroSom;
+    // Armazenar instâncias globalmente para referência
+    window.bigKbd25Instance = bigKbd25;
+    window.visualEffectsInstance = visualEffects;
     
-    // Sistema de ativação automática do áudio
+    // Adicionar estilo fadeOut básico se não existir
+    if (!document.querySelector('#fadeOutStyle')) {
+        const style = document.createElement('style');
+        style.id = 'fadeOutStyle';
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; transform: scale(1); }
+                to { opacity: 0; transform: scale(0); }
+            }
+            
+            @keyframes hoverParticle {
+                0% {
+                    opacity: 1;
+                    transform: scale(0) translateY(0);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scale(1) translateY(-10px);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(0) translateY(-20px);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Tentativas múltiplas de ativar áudio
+    const audioActivationEvents = [
+        'click', 'touchstart', 'mousedown', 'keydown', 
+        'mousemove', 'mouseenter', 'focus', 'scroll'
+    ];
+    
     let audioActivated = false;
-    const audioActivationEvents = ['click', 'touchstart', 'keydown'];
     
     const tryActivateAudio = () => {
-        const instance = window.giroSomInstance || giroSom;
+        const instance = window.bigKbd25Instance || bigKbd25;
         if (!audioActivated && instance) {
             instance.enableAudio();
             if (instance.isAudioEnabled) {
@@ -672,4 +1308,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Export para uso em outros módulos se necessário
-window.GiroSomPage = GiroSomPage;
+window.BigKbd25Page = BigKbd25Page;
