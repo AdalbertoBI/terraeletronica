@@ -2,7 +2,31 @@
 document.addEventListener('DOMContentLoaded', () => {
 	initNoticiasCarousel();
 	initNoticiasLightbox();
+	initSobreVideosCarousel();
+	initVideoModal();
+	fixVideoThumbnails();
 });
+
+function fixVideoThumbnails() {
+	const videoThumbnails = document.querySelectorAll('.video-thumbnail img');
+	
+	videoThumbnails.forEach(img => {
+		// Força o carregamento da imagem
+		img.style.display = 'block';
+		img.style.opacity = '1';
+		
+		// Fallback se a imagem não carregar
+		img.onerror = function() {
+			this.src = 'assets/images/banners/sala-de-musicoterapia.jpeg';
+			this.alt = 'Terra Eletrônica - Vídeo Institucional';
+		};
+		
+		// Força reload se não carregou
+		if (img.naturalWidth === 0) {
+			img.src = img.src + '?t=' + Date.now();
+		}
+	});
+}
 
 function initNoticiasCarousel() {
 	const carousel = document.querySelector('.noticias-carousel');
@@ -152,5 +176,169 @@ function initNoticiasLightbox() {
 	closeBtn.addEventListener('click', close);
 	lightbox.addEventListener('click', (e) => {
 		if (e.target === lightbox) close();
+	});
+}
+
+function initSobreVideosCarousel() {
+	const carousel = document.querySelector('.sobre-videos .videos-carousel');
+	if (!carousel) return;
+
+	const track = carousel.querySelector('.carousel-track');
+	if (!track) return;
+
+	// Verifica se já existe o inner ou cria um novo
+	let inner = track.querySelector('.carousel-track-inner');
+	if (!inner) {
+		inner = document.createElement('div');
+		inner.className = 'carousel-track-inner';
+		while (track.firstChild) {
+			inner.appendChild(track.firstChild);
+		}
+		track.appendChild(inner);
+	}
+
+	const items = Array.from(inner.children);
+	let index = 0;
+
+	const prevBtn = document.getElementById('sobreVideosPrev');
+	const nextBtn = document.getElementById('sobreVideosNext');
+
+	// Pré-calcula offsets cumulativos para itens de larguras variáveis
+	function getItemWidths() {
+		return items.map(el => el.getBoundingClientRect().width);
+	}
+
+	function getOffsets(widths, gap) {
+		const off = [0];
+		for (let i = 1; i < widths.length; i++) {
+			off[i] = off[i - 1] + widths[i - 1] + gap;
+		}
+		return off;
+	}
+
+	let gap = 16; // deve bater com o CSS
+	let widths = getItemWidths();
+	let offsets = getOffsets(widths, gap);
+
+	function update() {
+		// Garante que o índice esteja válido com base no espaço visível
+		clampIndex();
+		const offset = -(offsets[index] || 0);
+		inner.style.transform = `translateX(${offset}px)`;
+	}
+
+	function clampIndex() {
+		const containerWidth = track.getBoundingClientRect().width;
+		const totalWidth = offsets[offsets.length - 1] + widths[widths.length - 1];
+		
+		if (totalWidth <= containerWidth) {
+			index = 0;
+			return;
+		}
+
+		let maxIndex = 0;
+		for (let i = 0; i < offsets.length; i++) {
+			if (offsets[i] + containerWidth >= totalWidth) {
+				maxIndex = i;
+				break;
+			}
+		}
+		
+		if (index > maxIndex) index = maxIndex;
+		if (index < 0) index = 0;
+	}
+
+	function next() {
+		if (index < items.length - 1) {
+			index++;
+			update();
+		}
+	}
+
+	function prev() {
+		if (index > 0) {
+			index--;
+			update();
+		}
+	}
+
+	// Event listeners
+	if (prevBtn) prevBtn.addEventListener('click', prev);
+	if (nextBtn) nextBtn.addEventListener('click', next);
+
+	// Recalcular ao redimensionar
+	window.addEventListener('resize', () => {
+		widths = getItemWidths();
+		offsets = getOffsets(widths, gap);
+		update();
+	});
+
+	// Inicializar
+	update();
+}
+
+function initVideoModal() {
+	const modal = document.getElementById('videoModal');
+	const modalFrame = document.getElementById('modalVideoFrame');
+	const modalClose = modal.querySelector('.modal-close');
+	const modalOverlay = modal.querySelector('.modal-overlay');
+	const videoItems = document.querySelectorAll('.video-item');
+
+	// Função para abrir modal
+	function openModal(videoUrl, videoTitle) {
+		// Converte URL para formato embed se necessário
+		const embedUrl = videoUrl.includes('embed') ? videoUrl : videoUrl.replace('watch?v=', 'embed/');
+		
+		modalFrame.src = embedUrl + '?autoplay=1';
+		modalFrame.title = videoTitle;
+		modal.classList.add('active');
+		modal.setAttribute('aria-hidden', 'false');
+		document.body.style.overflow = 'hidden'; // Impede scroll da página
+		
+		// Foca no botão de fechar para acessibilidade
+		modalClose.focus();
+	}
+
+	// Função para fechar modal
+	function closeModal() {
+		modalFrame.src = '';
+		modal.classList.remove('active');
+		modal.setAttribute('aria-hidden', 'true');
+		document.body.style.overflow = ''; // Restaura scroll da página
+	}
+
+	// Event listeners para os itens de vídeo
+	videoItems.forEach(item => {
+		item.addEventListener('click', () => {
+			const videoUrl = item.dataset.videoUrl;
+			const videoTitle = item.dataset.videoTitle;
+			openModal(videoUrl, videoTitle);
+		});
+
+		// Suporte para navegação por teclado
+		item.addEventListener('keypress', (e) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				const videoUrl = item.dataset.videoUrl;
+				const videoTitle = item.dataset.videoTitle;
+				openModal(videoUrl, videoTitle);
+			}
+		});
+
+		// Torna o item focável
+		item.setAttribute('tabindex', '0');
+		item.setAttribute('role', 'button');
+		item.setAttribute('aria-label', `Reproduzir vídeo: ${item.dataset.videoTitle}`);
+	});
+
+	// Event listeners para fechar modal
+	modalClose.addEventListener('click', closeModal);
+	modalOverlay.addEventListener('click', closeModal);
+
+	// Fechar com ESC
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && modal.classList.contains('active')) {
+			closeModal();
+		}
 	});
 }
