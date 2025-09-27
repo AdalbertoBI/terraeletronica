@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="roller-mouse">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Roller Mouse - Mouse especial com roletes desenvolvido pela Terra Eletrônica para pessoas com deficiência que não permite o uso de mouse convencional. Plug and Play USB.">
+    <meta name="keywords" content="roller mouse, mouse adaptado, roletes, dificuldades motoras, deficiência física, tecnologia assistiva, acessibilidade, USB">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Roller Mouse - Terra Eletrônica">
+    <title>Roller Mouse | Mouse Especial com Roletes | Terra Eletrônica</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logos/logo-P.png" sizes="32x32">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/tecnologia-assistiva.css">
+    <link rel="stylesheet" href="../assets/css/roller-mouse.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .product-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../assets/images/banners/tecnologia assistiva.png') center/cover;
+            opacity: 0.1;
+        }
+
+        .product-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-image {
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .product-info h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .product-subtitle {
+            font-size: var(--font-size-xl);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .highlight-badge {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .specs-table {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin: 2rem 0;
+        }
+
+        .specs-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .specs-table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .benefits-section {
+            background: var(--gray-100);
+            padding: 4rem 0;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .benefit-item i {
+            color: var(--success);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .cta-section {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn-purchase {
+            background: var(--secondary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-base);
+        }
+
+        .btn-purchase:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-quote {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all var(--transition-base);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+        }
+
+        .btn-quote::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-quote:hover {
+            background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-quote:hover::before {
+            left: 100%;
+        }
+
+        .btn-quote:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-quote i {
+            font-size: 1.1rem;
+            transition: transform var(--transition-base);
+        }
+
+        .btn-quote:hover i {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .product-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar" aria-label="Main Navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../index.html" aria-label="Voltar ao início">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
+                            <source type="image/webp" srcset="../assets/images/logos/terra-compact.webp" media="(max-width:899px)">
+                            <source srcset="../assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
+                            <source srcset="../assets/images/logos/terra-compact.png" media="(max-width:899px)">
+                            <img src="../assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                    </a>
+                    <h1 class="sr-only">Terra Eletrônica</h1>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Início</a></li>
+                    <li><a href="instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
+                    <li><a href="sensory-musical.html" class="nav-link">Sensory Musical</a></li>
+                    <li><a href="tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
+                    <li><a href="../index.html#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="../index.html#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="Você está em">
+                <a href="../index.html" class="breadcrumb-link">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <span>Início</span>
+                </a>
+                <i class="fas fa-chevron-right breadcrumb-separator" aria-hidden="true"></i>
+                <a href="tecnologia-assistiva.html" class="breadcrumb-link">Tecnologia Assistiva</a>
+                <i class="fas fa-chevron-right breadcrumb-separator" aria-hidden="true"></i>
+                <span class="breadcrumb-current">Roller Mouse</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <main id="conteudo" tabindex="-1">
+        <section class="product-hero">
+            <div class="container">
+                <div class="product-content">
+                    <div class="product-info">
+                        <div class="highlight-badge">🎯 DESENVOLVIDO COM TERAPEUTAS</div>
+                        <h1>Roller Mouse</h1>
+                        <p class="product-subtitle">Mouse especial com roletes para pessoas com deficiência motora</p>
+                        <p>O ROLLER MOUSE foi desenvolvido especialmente pela TERRA ELETRÔNICA, junto a terapeutas, para facilitar o uso do computador por pessoas com deficiência que não lhe permitam o uso de um mouse convencional, mas que têm perfeita capacidade de usar o Roller Mouse, que por sua vez é muito simples de ser manipulado.</p>
+                        <div class="cta-buttons">
+                            <a href="https://www.mercadolivre.com.br/mouse-especial-roletes-pdificuldades-motoras--roller-mouse/up/MLBU1400952441?pdp_filters=seller_id%3A144300924#polycard_client=search-nordic&search_layout=grid&position=3&type=product&tracking_id=e9061f03-67da-4ab4-b206-98ac62348eba&wid=MLB1376645075&sid=search" target="_blank" rel="noopener" class="btn-purchase">
+                                <i class="fas fa-shopping-cart"></i>
+                                Comprar no Mercado Livre
+                            </a>
+                            <a href="../index.html#contato" class="btn-quote">
+                                <i class="fas fa-calculator"></i>
+                                Solicitar Orçamento
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-image">
+                        <picture>
+                            <img src="../assets/images/produtos/Roller-Mouse.png" alt="Roller Mouse - Mouse especial com roletes para dificuldades motoras" loading="lazy">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Características Principais -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Características Principais</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-arrows-alt"></i>
+                        </div>
+                        <h3>Roletes de Controle</h3>
+                        <p>Roletes para o posicionamento do cursor nos eixos vertical (X) e horizontal (Y), proporcionando controle preciso e suave.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-keyboard"></i>
+                        </div>
+                        <h3>Teclas Grandes e Coloridas</h3>
+                        <p>5 teclas grandes e coloridas com funções especiais para facilitar o uso e evitar confusões durante a operação.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <h3>Conexão USB</h3>
+                        <p>Ligado ao computador via USB sem necessidade de software adicional. Plug and Play, igual ao mouse convencional USB.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Uso Versátil</h3>
+                        <p>Ideal para escolas de computação, idosos e crianças em fase de aprendizado, oferecendo praticidade e economia de tempo.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>LEDs Indicativos</h3>
+                        <p>2 LEDs para indicar quando a tecla click é acionada e quando a função scroll estiver ativada.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Assistência Nacional</h3>
+                        <p>Garantia de 12 meses com assistência técnica nacional, garantindo suporte e tranquilidade no uso.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Funções das Teclas -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-4">Funções das Teclas Coloridas</h2>
+                <div class="specs-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cor da Tecla</th>
+                                <th>Função</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong class="color-blue">Azul</strong></td>
+                                <td>Click</td>
+                                <td>Similar ao botão esquerdo do mouse convencional</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="color-yellow">Amarela</strong></td>
+                                <td>Trava Click</td>
+                                <td>Para função arrastar (drag and drop)</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="color-red">Vermelha</strong></td>
+                                <td>Duplo Click</td>
+                                <td>Apenas um toque gera o duplo click automaticamente</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="color-green">Verde</strong></td>
+                                <td>Click Direito</td>
+                                <td>Similar ao botão direito do mouse convencional</td>
+                            </tr>
+                            <tr>
+                                <td><strong class="color-black">Preta</strong></td>
+                                <td>Trava Scroll</td>
+                                <td>Permite rolar páginas através do rolete vertical</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefícios -->
+        <section class="benefits-section">
+            <div class="container">
+                <h2 class="text-center mb-4">Benefícios do Roller Mouse</h2>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Facilita o uso do computador para pessoas com deficiência motora</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Controle preciso através dos roletes X e Y</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Teclas grandes e coloridas para fácil identificação</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Instalação simples via USB - Plug and Play</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>LEDs indicativos para feedback visual</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Desenvolvido com apoio de terapeutas especializados</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Ideal para escolas, idosos e crianças</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Garantia de 12 meses com assistência técnica nacional</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Especificações Técnicas -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Especificações Técnicas</h2>
+                <div class="specs-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Especificação</th>
+                                <th>Detalhes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Conexão</td>
+                                <td>USB - Plug and Play</td>
+                            </tr>
+                            <tr>
+                                <td>Compatibilidade</td>
+                                <td>Windows, Mac, Linux</td>
+                            </tr>
+                            <tr>
+                                <td>Controle de Movimento</td>
+                                <td>2 roletes (eixos X e Y)</td>
+                            </tr>
+                            <tr>
+                                <td>Teclas</td>
+                                <td>5 teclas grandes e coloridas</td>
+                            </tr>
+                            <tr>
+                                <td>LEDs</td>
+                                <td>2 LEDs indicativos</td>
+                            </tr>
+                            <tr>
+                                <td>Garantia</td>
+                                <td>12 meses</td>
+                            </tr>
+                            <tr>
+                                <td>Assistência</td>
+                                <td>Técnica nacional</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Adquira seu Roller Mouse</h2>
+                <p>Tecnologia assistiva desenvolvida especialmente para facilitar o acesso ao computador</p>
+                <div class="cta-buttons">
+                    <a href="https://www.mercadolivre.com.br/mouse-especial-roletes-pdificuldades-motoras--roller-mouse/up/MLBU1400952441?pdp_filters=seller_id%3A144300924#polycard_client=search-nordic&search_layout=grid&position=3&type=product&tracking_id=e9061f03-67da-4ab4-b206-98ac62348eba&wid=MLB1376645075&sid=search" target="_blank" rel="noopener" class="btn-purchase">
+                        <i class="fas fa-shopping-cart"></i>
+                        Comprar Agora
+                    </a>
+                    <a href="../index.html#contato" class="btn-quote">
+                        <i class="fas fa-phone"></i>
+                        Fale Conosco
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-compact.webp">
+                            <img src="../assets/images/logos/terra-compact.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                        <p>Tecnologia que liberta seu potencial</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronica5492" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Produtos</h4>
+                    <ul>
+                        <li><a href="instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
+                        <li><a href="tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
+                        <li><a href="sensory-musical.html">Sensory Musical</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="../index.html#sobre">Sobre Nós</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="../manuais.html?tipo=manual">Manuais</a></li>
+                        <li><a href="../manuais.html?tipo=download">Downloads</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
+                <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/roller-mouse.js"></script>
+
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</body>
+</html>
