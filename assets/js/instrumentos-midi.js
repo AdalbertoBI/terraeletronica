@@ -3,11 +3,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Inicializando página de instrumentos MIDI...');
     
-    // Marcar que o carrossel será inicializado por esta página
-    window.videoCarouselInitialized = true;
-    
     // Inicializar recursos específicos da página
     initInstrumentCardsInteraction();
+    
+    // Inicializar carrossel de vídeos após outros recursos
+    setTimeout(() => {
+        if (typeof initVideoCarousel === 'function') {
+            initVideoCarousel();
+            window.videoCarouselInitialized = true;
+            console.log('Carrossel inicializado pela página instrumentos-midi');
+        }
+    }, 100);
 });
 
 function initInstrumentosPage() {

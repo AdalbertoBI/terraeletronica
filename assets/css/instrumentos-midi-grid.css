@@ -455,6 +455,15 @@
   display: flex;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   gap: 1.5rem;
+  cursor: grab;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.carousel-track:active {
+  cursor: grabbing;
 }
 
 /* Cards de Vídeo */
@@ -594,18 +603,6 @@
 }
 
 .carousel-btn:hover:not(:disabled) {
-  background: var(--primary-color, #2c5aa0);
-  color: white;
-  transform: translateY(-50%) scale(1.05);
-}
-
-.carousel-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.carousel-btn:hover:not(:disabled) {
   background: var(--primary-color, #009688);
   color: white;
   transform: translateY(-50%) scale(1.1);
@@ -652,8 +649,12 @@
 
 .indicator.active,
 .indicator:hover {
-  background: var(--primary-color, #009688);
-  transform: scale(1.2);
+  background: #009688 !important;
+  transform: scale(1.2) !important;
+}
+
+.indicator.active {
+  background: #2c5aa0 !important;
 }
 
 .indicator:focus {
@@ -810,8 +811,27 @@
     padding: 3rem 0;
   }
   
+  .videos-carousel {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
   .video-card {
     width: 280px;
+  }
+  
+  .carousel-track {
+    gap: 1rem;
+    touch-action: pan-x;
+    cursor: grab;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .carousel-track:active {
+    cursor: grabbing;
   }
   
   .carousel-btn {

@@ -936,12 +936,6 @@ function initAccessibilityWidget() {
 // Inicializar widget de acessibilidade
 document.addEventListener('DOMContentLoaded', function() {
     initAccessibilityWidget();
-    // Inicializar carrossel se não foi inicializado por página específica
-    setTimeout(() => {
-        if (typeof window.videoCarouselInitialized === 'undefined') {
-            initVideoCarousel();
-        }
-    }, 100);
 });
 
 // ===== CARROSSEL DE VÍDEOS =====
@@ -969,43 +963,95 @@ function initVideoCarousel() {
 
     let currentSlide = 0;
     let cardsPerView = getCardsPerView();
-    // Os indicadores representam cada vídeo individual, não páginas
+    // Total de slides individuais (cada vídeo é um slide)
     const totalSlides = videoCards.length;
 
-    // Calcular quantos cards mostrar por vez
+    // Verificar se todos os elementos necessários foram encontrados
+    if (!track || !prevBtn || !nextBtn || indicators.length === 0 || videoCards.length === 0) {
+        console.error('Elementos do carrossel não encontrados:', {
+            track: !!track,
+            prevBtn: !!prevBtn, 
+            nextBtn: !!nextBtn,
+            indicators: indicators.length,
+            videoCards: videoCards.length
+        });
+        return;
+    }
+    
+    console.log('Carrossel inicializado com', totalSlides, 'vídeos e', indicators.length, 'indicadores');
+
+    // Calcular quantos cards mostrar por vez (sempre 1 para navegação individual)
     function getCardsPerView() {
-        const width = window.innerWidth;
-        if (width < 480) return 1;
-        if (width < 768) return 1.5;
-        if (width < 1024) return 2;
-        return 3;
+        // Sempre retorna 1 para navegação individual de vídeos
+        return 1;
     }
 
     // Atualizar posição do carrossel
     function updateCarousel() {
-        const cardWidth = 320 + 24; // largura + gap
+        const cardWidth = getCardWidth();
         const offset = currentSlide * cardWidth;
         track.style.transform = `translateX(-${offset}px)`;
 
         // Atualizar indicadores com ARIA attributes
-        indicators.forEach((indicator, index) => {
-            const isActive = index === currentSlide;
-            indicator.classList.toggle('active', isActive);
-            indicator.setAttribute('aria-selected', isActive.toString());
-            indicator.setAttribute('tabindex', isActive ? '0' : '-1');
-        });
+        if (indicators && indicators.length > 0) {
+            // Remover active de todos primeiro
+            indicators.forEach(indicator => {
+                indicator.classList.remove('active');
+                indicator.setAttribute('aria-selected', 'false');
+                indicator.setAttribute('tabindex', '-1');
+                // Resetar estilos inline
+                indicator.style.backgroundColor = '';
+                indicator.style.transform = '';
+            });
+            
+            // Adicionar active ao atual
+            const activeIndicator = indicators[currentSlide];
+            if (activeIndicator) {
+                activeIndicator.classList.add('active');
+                activeIndicator.setAttribute('aria-selected', 'true');
+                activeIndicator.setAttribute('tabindex', '0');
+                // Forçar estilo para garantir visibilidade
+                activeIndicator.style.backgroundColor = '#2c5aa0';
+                activeIndicator.style.transform = 'scale(1.2)';
+            }
+        }
 
         // Atualizar estado dos botões com acessibilidade
-        const isPrevDisabled = currentSlide === 0;
+        // Garantir que currentSlide esteja dentro dos limites válidos
+        currentSlide = Math.max(0, Math.min(currentSlide, totalSlides - 1));
+        
+        const isPrevDisabled = currentSlide <= 0;
         const isNextDisabled = currentSlide >= totalSlides - 1;
         
-        prevBtn.style.opacity = isPrevDisabled ? '0.5' : '1';
-        prevBtn.disabled = isPrevDisabled;
-        prevBtn.setAttribute('aria-disabled', isPrevDisabled.toString());
+        if (prevBtn) {
+            prevBtn.style.opacity = isPrevDisabled ? '0.5' : '1';
+            prevBtn.disabled = isPrevDisabled;
+            prevBtn.setAttribute('aria-disabled', isPrevDisabled.toString());
+        }
         
-        nextBtn.style.opacity = isNextDisabled ? '0.5' : '1';
-        nextBtn.disabled = isNextDisabled;
-        nextBtn.setAttribute('aria-disabled', isNextDisabled.toString());
+        if (nextBtn) {
+            nextBtn.style.opacity = isNextDisabled ? '0.5' : '1';
+            nextBtn.disabled = isNextDisabled;
+            nextBtn.setAttribute('aria-disabled', isNextDisabled.toString());
+        }
+        
+        console.log(`Carrossel: vídeo ${currentSlide + 1}/${totalSlides} - Próximo: ${isNextDisabled ? 'bloqueado' : 'disponível'}`);
+    }
+
+    // Calcular largura do card baseada no viewport
+    function getCardWidth() {
+        const card = videoCards[0]; // Usar o primeiro card como referência
+        if (card) {
+            const cardRect = card.getBoundingClientRect();
+            const cardStyle = window.getComputedStyle(card);
+            const marginRight = parseFloat(cardStyle.marginRight) || 0;
+            return cardRect.width + marginRight + 24; // width + gap
+        }
+        // Fallback caso não consiga medir
+        const width = window.innerWidth;
+        if (width < 480) return 284;
+        if (width < 768) return 304;
+        return 344;
     }
 
     // Navegação anterior
@@ -1018,16 +1064,27 @@ function initVideoCarousel() {
 
     // Navegação próxima
     function nextSlide() {
-        if (currentSlide < totalSlides - 1) {
+        const maxIndex = totalSlides - 1;
+        console.log(`nextSlide: atual=${currentSlide}, máx=${maxIndex}, total=${totalSlides}`);
+        
+        if (currentSlide < maxIndex) {
             currentSlide++;
             updateCarousel();
+            console.log(`✓ Avançou para vídeo ${currentSlide + 1}`);
+        } else {
+            console.log(`✘ Não pode avançar - já está no último vídeo`);
         }
     }
 
     // Ir para slide específico
     function goToSlide(slideIndex) {
-        currentSlide = slideIndex;
-        updateCarousel();
+        // Garantir que o índice esteja dentro dos limites válidos
+        const newIndex = Math.max(0, Math.min(slideIndex, totalSlides - 1));
+        if (newIndex !== currentSlide) {
+            currentSlide = newIndex;
+            updateCarousel();
+            console.log(`Navegou diretamente para vídeo ${currentSlide + 1}`);
+        }
     }
 
     // Abrir modal de vídeo
@@ -1198,28 +1255,48 @@ function initVideoCarousel() {
         }
     });
 
-    // Suporte a touch/swipe
+    // Suporte a touch/swipe melhorado
     let startX = 0;
+    let startY = 0;
     let isDragging = false;
+    let startTime = 0;
 
     track.addEventListener('touchstart', function(e) {
         startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        startTime = Date.now();
         isDragging = true;
     });
 
     track.addEventListener('touchmove', function(e) {
         if (!isDragging) return;
-        e.preventDefault();
+        
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const diffX = Math.abs(currentX - startX);
+        const diffY = Math.abs(currentY - startY);
+        
+        // Se o movimento horizontal é maior que vertical, prevenir scroll vertical
+        if (diffX > diffY) {
+            e.preventDefault();
+        }
     });
 
     track.addEventListener('touchend', function(e) {
         if (!isDragging) return;
         
         const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
+        const endY = e.changedTouches[0].clientY;
+        const diffX = startX - endX;
+        const diffY = Math.abs(startY - endY);
+        const timeDiff = Date.now() - startTime;
+        const velocity = Math.abs(diffX) / timeDiff;
 
-        if (Math.abs(diff) > 50) { // Threshold mínimo para swipe
-            if (diff > 0) {
+        // Só processar como swipe se:
+        // 1. O movimento horizontal foi maior que vertical
+        // 2. Distância mínima ou velocidade suficiente
+        if (Math.abs(diffX) > diffY && (Math.abs(diffX) > 30 || velocity > 0.3)) {
+            if (diffX > 0) {
                 nextSlide();
             } else {
                 prevSlide();
@@ -1227,6 +1304,42 @@ function initVideoCarousel() {
         }
 
         isDragging = false;
+    });
+
+    // Adicionar suporte para mouse drag em desktop
+    let mouseStartX = 0;
+    let isMouseDragging = false;
+
+    track.addEventListener('mousedown', function(e) {
+        mouseStartX = e.clientX;
+        isMouseDragging = true;
+        e.preventDefault();
+    });
+
+    track.addEventListener('mousemove', function(e) {
+        if (!isMouseDragging) return;
+        e.preventDefault();
+    });
+
+    track.addEventListener('mouseup', function(e) {
+        if (!isMouseDragging) return;
+        
+        const endX = e.clientX;
+        const diff = mouseStartX - endX;
+
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+
+        isMouseDragging = false;
+    });
+
+    track.addEventListener('mouseleave', function() {
+        isMouseDragging = false;
     });
 
     // Responsividade
@@ -1268,8 +1381,15 @@ function initVideoCarousel() {
     // Adicionar indicadores de plataforma
     addPlatformIndicators();
     
-    // Inicializar
+    // Inicializar carrossel
+    console.log('Inicializando carrossel - currentSlide:', currentSlide);
     updateCarousel();
+    
+    // Aguardar DOM estabilizar antes da inicialização final
+    setTimeout(() => {
+        updateCarousel();
+        console.log('Carrossel finalizado - currentSlide:', currentSlide);
+    }, 200);
     
     // Iniciar auto-play se houver mais de um slide
     if (totalSlides > 1) {
@@ -1277,15 +1397,3 @@ function initVideoCarousel() {
     }
 }
 
-// Função auxiliar para debounce
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
