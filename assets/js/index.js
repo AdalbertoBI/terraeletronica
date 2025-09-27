@@ -49,6 +49,12 @@ function initNoticiasCarousel() {
 	const prevBtn = carousel.querySelector('.carousel-btn.prev');
 	const nextBtn = carousel.querySelector('.carousel-btn.next');
 
+	// Variáveis para touch/swipe
+	let isDown = false;
+	let startX;
+	let scrollLeft;
+	let startTime;
+
 	// Pré-calcula offsets cumulativos para itens de larguras variáveis
 	function getItemWidths() {
 		return items.map(el => el.getBoundingClientRect().width);
@@ -113,6 +119,56 @@ function initNoticiasCarousel() {
 		offsets = getOffsets(widths, gap);
 		clampIndex();
 		update();
+	});
+
+	// Touch/Swipe Support
+	track.addEventListener('touchstart', (e) => {
+		isDown = true;
+		startX = e.touches[0].clientX;
+		startTime = new Date().getTime();
+		inner.style.transition = 'none';
+	}, { passive: true });
+
+	track.addEventListener('touchmove', (e) => {
+		if (!isDown) return;
+		
+		const x = e.touches[0].clientX;
+		const walk = (x - startX) * 1.5; // Multiplier for sensitivity
+		const currentOffset = -(offsets[index] || 0);
+		inner.style.transform = `translateX(${currentOffset + walk}px)`;
+	}, { passive: true });
+
+	track.addEventListener('touchend', (e) => {
+		if (!isDown) return;
+		isDown = false;
+		
+		const endX = e.changedTouches[0].clientX;
+		const endTime = new Date().getTime();
+		const distance = Math.abs(endX - startX);
+		const time = endTime - startTime;
+		const velocity = distance / time;
+		
+		// Reset transition
+		inner.style.transition = 'transform 0.4s ease';
+		
+		// Determine swipe direction and threshold
+		if (distance > 30 || velocity > 0.3) { // Minimum swipe distance or velocity
+			if (endX > startX) {
+				// Swipe right - previous
+				index -= 1;
+			} else {
+				// Swipe left - next
+				index += 1;
+			}
+		}
+		
+		clampIndex();
+		update();
+	}, { passive: true });
+
+	// Prevent context menu on long press
+	track.addEventListener('contextmenu', (e) => {
+		e.preventDefault();
 	});
 
 	// Inicial
@@ -203,6 +259,11 @@ function initSobreVideosCarousel() {
 	const prevBtn = document.getElementById('sobreVideosPrev');
 	const nextBtn = document.getElementById('sobreVideosNext');
 
+	// Variáveis para touch/swipe
+	let isDown = false;
+	let startX;
+	let startTime;
+
 	// Pré-calcula offsets cumulativos para itens de larguras variáveis
 	function getItemWidths() {
 		return items.map(el => el.getBoundingClientRect().width);
@@ -265,6 +326,56 @@ function initSobreVideosCarousel() {
 	// Event listeners
 	if (prevBtn) prevBtn.addEventListener('click', prev);
 	if (nextBtn) nextBtn.addEventListener('click', next);
+
+	// Touch/Swipe Support for videos carousel
+	track.addEventListener('touchstart', (e) => {
+		isDown = true;
+		startX = e.touches[0].clientX;
+		startTime = new Date().getTime();
+		inner.style.transition = 'none';
+	}, { passive: true });
+
+	track.addEventListener('touchmove', (e) => {
+		if (!isDown) return;
+		
+		const x = e.touches[0].clientX;
+		const walk = (x - startX) * 1.5;
+		const currentOffset = -(offsets[index] || 0);
+		inner.style.transform = `translateX(${currentOffset + walk}px)`;
+	}, { passive: true });
+
+	track.addEventListener('touchend', (e) => {
+		if (!isDown) return;
+		isDown = false;
+		
+		const endX = e.changedTouches[0].clientX;
+		const endTime = new Date().getTime();
+		const distance = Math.abs(endX - startX);
+		const time = endTime - startTime;
+		const velocity = distance / time;
+		
+		// Reset transition
+		inner.style.transition = 'transform 0.4s ease';
+		
+		// Determine swipe direction and threshold
+		if (distance > 30 || velocity > 0.3) {
+			if (endX > startX) {
+				// Swipe right - previous
+				prev();
+			} else {
+				// Swipe left - next
+				next();
+			}
+		} else {
+			// Snap back to current position
+			update();
+		}
+	}, { passive: true });
+
+	// Prevent context menu on long press
+	track.addEventListener('contextmenu', (e) => {
+		e.preventDefault();
+	});
 
 	// Recalcular ao redimensionar
 	window.addEventListener('resize', () => {
