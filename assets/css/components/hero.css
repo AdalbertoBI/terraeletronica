@@ -1,0 +1,138 @@
+/* ===========================
+   SEÇÃO HERO - TERRA ELETRÔNICA
+   =========================== */
+
+/* Hero Section */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Garantir que hero fique atrás do menu desktop */
+@media (min-width: 769px) {
+    .hero {
+        z-index: 0;
+    }
+    
+    .hero * {
+        z-index: 0;
+    }
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 0;
+}
+
+.hero .container {
+    position: relative;
+    z-index: -5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 80px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .hero .container {
+        justify-content: center;
+    }
+}
+
+.hero-content {
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .hero-content {
+        padding: 0;
+    }
+}
+
+.hero-title {
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-lg);
+    color: var(--white);
+}
+
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: var(--font-size-4xl);
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero-title {
+        font-size: var(--font-size-5xl);
+    }
+}
+
+.hero-title .highlight {
+    background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+}
+
+.hero-subtitle {
+    font-size: var(--font-size-lg);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--spacing-xl);
+    max-width: 600px;
+}
+
+.hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-base);
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .hero-cta {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: var(--spacing-lg);
+    }
+}
+
+/* Logo grande para hero section */
+.hero .logo-hero {
+    height: 80px;
+    width: auto;
+    max-width: 400px;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .hero .logo-hero {
+        height: 60px;
+        max-width: 250px;
+    }
+}

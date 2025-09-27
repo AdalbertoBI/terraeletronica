@@ -1,0 +1,86 @@
+/* ===== MENU MOBILE CSS-ONLY - TÉCNICA COMPROVADA ===== */
+
+/* Input checkbox escondido */
+#mobile-menu-toggle {
+    display: none;
+}
+
+/* Label como botão hamburger */
+.mobile-menu-label {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: #2c5aa0;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 8px;
+    position: relative;
+    z-index: 99999;
+}
+
+.mobile-menu-label span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: white;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Menu mobile escondido por padrão */
+.nav-menu-mobile-checkbox {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    background: white;
+    border: 5px solid red;
+    z-index: 99998;
+    padding: 20px 0;
+    flex-direction: column;
+}
+
+/* Quando checkbox está marcado, mostra o menu */
+#mobile-menu-toggle:checked ~ .nav-menu-mobile-checkbox {
+    display: flex !important;
+    background: yellow !important;
+}
+
+/* Links do menu */
+.nav-link-mobile-checkbox {
+    display: block;
+    padding: 20px 30px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    background: lightgray;
+    border-bottom: 2px solid #333;
+    font-size: 20px;
+}
+
+.nav-link-mobile-checkbox:hover {
+    background: #ccc;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .mobile-menu-label {
+        display: flex;
+    }
+    
+    .nav-menu,
+    .nav-menu-desktop {
+        display: none !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-menu-label,
+    .nav-menu-mobile-checkbox {
+        display: none !important;
+    }
+}

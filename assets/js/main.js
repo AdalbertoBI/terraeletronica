@@ -18,7 +18,7 @@ function initializeApp() {
 // ===== NAVEGAÇÃO RESPONSIVA =====
 function initNavigation() {
     const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    const navMenu = document.querySelector('.nav-menu-mobile');
     const header = document.querySelector('.header');
     
     // Menu mobile toggle
@@ -35,8 +35,10 @@ function initNavigation() {
             // Prevenir scroll do body quando menu está aberto
             if (!isActive) {
                 document.body.style.overflow = 'hidden';
+                document.body.classList.add('menu-open');
             } else {
                 document.body.style.overflow = '';
+                document.body.classList.remove('menu-open');
             }
             
             // Animação do hamburguer melhorada
@@ -58,8 +60,8 @@ function initNavigation() {
     }
     
     // Fechar menu ao clicar em link (mobile)
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
+    const navLinksMobile = document.querySelectorAll('.nav-link-mobile');
+    navLinksMobile.forEach(link => {
         link.addEventListener('click', function() {
             if (window.innerWidth <= 768 && navMenu?.classList.contains('active')) {
                 closeMenu();
@@ -88,6 +90,7 @@ function initNavigation() {
         navMenu?.classList.remove('active');
         navToggle?.classList.remove('active');
         document.body.style.overflow = '';
+        document.body.classList.remove('menu-open');
         
         // Reset hamburguer animation
         const spans = navToggle?.querySelectorAll('span');

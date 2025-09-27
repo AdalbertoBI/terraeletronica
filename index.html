@@ -15,7 +15,8 @@
     <link rel="icon" type="image/png" href="assets/images/logos/logo-P.png" sizes="32x32">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/navigation-responsive.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/contact-form-fix.css">
     
@@ -43,13 +44,8 @@
                     <h1 class="sr-only">Terra Eletrônica</h1>
                 </div>
                 
-                <button class="nav-toggle" aria-label="Abrir menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <ul class="nav-menu">
+                <!-- Menu Único (desktop + mobile) -->
+                <ul class="nav-menu" id="main-nav">
                     <li><a href="#home" class="nav-link">Início</a></li>
                     <li><a href="produtos/instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
                     <li><a href="produtos/sensory-musical.html" class="nav-link">Sensory Musical</a></li>
@@ -60,6 +56,15 @@
             </div>
         </nav>
     </header>
+    
+        <!-- Drawer Mobile Navigation -->
+        <div class="nav-drawer" id="navDrawer" aria-hidden="true" aria-label="Menu Mobile">
+            <nav class="nav-drawer-panel" aria-label="Links principais">
+                <button class="nav-drawer-close" type="button" aria-label="Fechar menu" data-nav-close>&times;</button>
+                <ul class="nav-drawer-list" id="navDrawerList" role="menubar"></ul>
+            </nav>
+        </div>
+
 
     <!-- Hero Section -->
     <section id="home" class="hero">
@@ -560,5 +565,6 @@
     <script src="assets/js/main.js"></script>
     <script src="assets/js/index.js"></script>
     <script src="assets/js/contact-form.js"></script>
+    <script src="assets/js/nav-responsive.js"></script>
 </body>
 </html>

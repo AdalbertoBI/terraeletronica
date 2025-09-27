@@ -1,0 +1,180 @@
+/* ===== MENU MOBILE SLIDE-IN - SOLUÇÃO DEFINITIVA ===== */
+
+/* Botão Hamburger - Sempre visível e no topo */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--primary-color);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    padding: 10px;
+    position: fixed !important;
+    top: 20px;
+    right: 20px;
+    z-index: 2147483647 !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    pointer-events: auto !important;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: white;
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    border-radius: 1px;
+}
+
+.nav-toggle:hover {
+    background: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+/* Animação do X quando ativo */
+.nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Overlay escuro atrás do menu */
+.menu-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    z-index: 2147483646 !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.menu-overlay.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* Menu Mobile Slide-in */
+.nav-menu-mobile {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 300px;
+    max-width: 80vw;
+    height: 100vh !important;
+    background: white !important;
+    z-index: 2147483647 !important;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    display: flex !important;
+    flex-direction: column;
+    padding: 80px 20px 20px;
+    pointer-events: auto !important;
+}
+
+.nav-menu-mobile.active {
+    transform: translateX(0);
+}
+
+/* Links do menu mobile */
+.nav-link-mobile {
+    display: block;
+    padding: 15px 20px;
+    color: var(--gray-800);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--gray-200);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.nav-link-mobile:first-child {
+    border-top: 1px solid var(--gray-200);
+}
+
+.nav-link-mobile:hover {
+    background: var(--gray-100);
+    color: var(--primary-color);
+    padding-left: 30px;
+}
+
+.nav-link-mobile:hover::before {
+    content: "→";
+    position: absolute;
+    left: 20px;
+    color: var(--primary-color);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: flex;
+    }
+    
+    .nav-menu-desktop {
+        display: none !important;
+    }
+}
+
+@media (min-width: 769px) {
+    .nav-toggle,
+    .nav-menu-mobile,
+    .menu-overlay {
+        display: none !important;
+    }
+}
+
+/* Prevenir scroll quando menu está aberto */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Garantir que hero fique atrás */
+@media (max-width: 768px) {
+    .hero,
+    .hero *,
+    section:not(.nav-menu-mobile),
+    .header,
+    .header * {
+        z-index: 1 !important;
+    }
+    
+    /* Forçar elementos do menu mobile */
+    .nav-toggle,
+    .nav-menu-mobile,
+    .menu-overlay {
+        position: fixed !important;
+        z-index: 2147483647 !important;
+    }
+    
+    .menu-overlay {
+        z-index: 2147483646 !important;
+    }
+    
+    /* Reset de contextos de stacking */
+    body > *:not(.nav-menu-mobile):not(.menu-overlay) {
+        isolation: auto !important;
+        will-change: auto !important;
+        transform: none !important;
+        filter: none !important;
+    }
+}

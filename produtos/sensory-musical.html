@@ -16,6 +16,7 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/navigation-responsive.css">
     <link rel="stylesheet" href="../assets/css/sensory-musical.css">
     
     <!-- Font Awesome -->
@@ -46,13 +47,7 @@
                     <h1 class="sr-only">Terra Eletrônica</h1>
                 </div>
                 
-                <button class="nav-toggle" aria-label="Abrir menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <ul class="nav-menu">
+                <ul class="nav-menu" id="main-nav">
                     <li><a href="../index.html#home" class="nav-link">Início</a></li>
                     <li><a href="instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
                     <li><a href="sensory-musical.html" class="nav-link active">Sensory Musical</a></li>
@@ -63,6 +58,14 @@
             </div>
         </nav>
     </header>
+
+    <!-- Drawer Mobile Navigation -->
+    <div class="nav-drawer" id="navDrawer" aria-hidden="true" aria-label="Menu Mobile">
+        <nav class="nav-drawer-panel" aria-label="Links principais">
+            <button class="nav-drawer-close" type="button" aria-label="Fechar menu" data-nav-close>&times;</button>
+            <ul class="nav-drawer-list" id="navDrawerList"></ul>
+        </nav>
+    </div>
 
     <!-- Breadcrumb -->
     <div class="breadcrumb-wrapper">
@@ -570,6 +573,7 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/nav-responsive.js"></script>
     
     <!-- Sistema de Modal de Vídeo Inline -->
     <script>

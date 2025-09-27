@@ -7,6 +7,7 @@
   <meta name="description" content="Manuais e materiais para download da Terra Eletrônica." />
   <link rel="icon" type="image/png" href="assets/images/logos/logo-P.png" sizes="32x32">
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/navigation-responsive.css" />
   <link rel="stylesheet" href="assets/css/manuais.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -25,7 +26,7 @@
             </picture>
           </a>
         </div>
-        <ul class="nav-menu">
+  <ul class="nav-menu" id="main-nav">
           <li><a href="index.html#home" class="nav-link">Início</a></li>
           <li><a href="produtos/instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
           <li><a href="produtos/sensory-musical.html" class="nav-link">Sensory Musical</a></li>
@@ -36,6 +37,14 @@
       </div>
     </nav>
   </header>
+
+  <!-- Drawer Mobile Navigation -->
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true" aria-label="Menu Mobile">
+    <nav class="nav-drawer-panel" aria-label="Links principais">
+      <button class="nav-drawer-close" type="button" aria-label="Fechar menu" data-nav-close>&times;</button>
+  <ul class="nav-drawer-list" id="navDrawerList"></ul>
+    </nav>
+  </div>
 
   <main>
     <section class="downloads">
@@ -111,6 +120,7 @@
     </footer>
 
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/nav-responsive.js"></script>
   <script src="assets/js/manuais.js"></script>
 </body>
 </html>

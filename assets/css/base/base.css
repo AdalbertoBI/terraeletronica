@@ -1,0 +1,49 @@
+/* ===========================
+   ESTILOS BASE - TERRA ELETRÔNICA
+   =========================== */
+
+/* Base styles */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--gray-800);
+    background-color: var(--white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-base);
+}
+
+/* Container específico para seção de instrumentos */
+.instrumentos-grid .container {
+    overflow: visible;
+}
+
+/* Garantir overflow visível para seção de instrumentos */
+.instrumentos-grid,
+.instrumentos-grid * {
+    overflow: visible !important;
+}
+
+/* Exceção para imagens que devem manter overflow hidden */
+.instrumentos-grid .card-media {
+    overflow: hidden !important;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-xl);
+    }
+}
