@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="big-ball-mouse">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Big Ball Mouse FDAT - Mouse especial de esfera gigante com filtro anti-tremor patenteado pela Terra Eletrônica. Ideal para pessoas com Parkinson, dificuldades motoras e deficiência física.">
+    <meta name="keywords" content="big ball mouse, mouse adaptado, filtro anti-tremor, FDAT, parkinson, dificuldades motoras, tecnologia assistiva, acessibilidade">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Big Ball Mouse FDAT - Terra Eletrônica">
+    <title>Big Ball Mouse FDAT | Mouse Especial com Filtro Anti-Tremor | Terra Eletrônica</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logos/logo-P.png" sizes="32x32">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/tecnologia-assistiva.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .product-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../assets/images/banners/tecnologia assistiva.png') center/cover;
+            opacity: 0.1;
+        }
+
+        .product-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-image {
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .product-info h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .product-subtitle {
+            font-size: var(--font-size-xl);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .highlight-badge {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .specs-table {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin: 2rem 0;
+        }
+
+        .specs-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .specs-table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+
+        .benefits-section {
+            background: var(--gray-100);
+            padding: 4rem 0;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .benefit-item i {
+            color: var(--success);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+
+        .cta-section {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn-purchase {
+            background: var(--secondary-color);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-base);
+        }
+
+        .btn-purchase:hover {
+            background: var(--secondary-dark);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .product-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar" aria-label="Main Navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../index.html" aria-label="Voltar ao início">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
+                            <source type="image/webp" srcset="../assets/images/logos/terra-compact.webp" media="(max-width:899px)">
+                            <source srcset="../assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
+                            <source srcset="../assets/images/logos/terra-compact.png" media="(max-width:899px)">
+                            <img src="../assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                    </a>
+                    <h1 class="sr-only">Terra Eletrônica</h1>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Início</a></li>
+                    <li><a href="instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
+                    <li><a href="sensory-musical.html" class="nav-link">Sensory Musical</a></li>
+                    <li><a href="tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
+                    <li><a href="../index.html#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="../index.html#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="Você está em">
+                <a href="../index.html" class="breadcrumb-link">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <span>Início</span>
+                </a>
+                <i class="fas fa-chevron-right breadcrumb-separator" aria-hidden="true"></i>
+                <a href="tecnologia-assistiva.html" class="breadcrumb-link">Tecnologia Assistiva</a>
+                <i class="fas fa-chevron-right breadcrumb-separator" aria-hidden="true"></i>
+                <span class="breadcrumb-current">Big Ball Mouse FDAT</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <main id="conteudo" tabindex="-1">
+        <section class="product-hero">
+            <div class="container">
+                <div class="product-content">
+                    <div class="product-info">
+                        <div class="highlight-badge">🏆 TECNOLOGIA PATENTEADA</div>
+                        <h1>Big Ball Mouse FDAT</h1>
+                        <p class="product-subtitle">Mouse especial de esfera gigante com filtro digital anti-tremor exclusivo</p>
+                        <p>O BIG BALL MOUSE, desenvolvido pela Terra Eletrônica, possui todos os bons predicados dos mouse tipo Tracking Balls com esfera gigante, porém inclui ainda as vantagens do uso de múltiplas teclas especiais e o revolucionário <strong>FDAT (Filtro Digital Anti Tremor)</strong> patenteado.</p>
+                        <div class="cta-buttons">
+                            <a href="https://www.mercadolivre.com.br/mouse-adaptado-terra-eletrnica-big-ball-fdat-branco/p/MLB45932619?pdp_filters=seller_id%3A144300924#polycard_client=search-nordic&search_layout=grid&position=1&type=product&tracking_id=8b04fd27-01bb-496b-87f6-fc3c704ac179&wid=MLB5371983564&sid=search" target="_blank" rel="noopener" class="btn-purchase">
+                                <i class="fas fa-shopping-cart"></i>
+                                Comprar no Mercado Livre
+                            </a>
+                            <a href="../index.html#contato" class="btn btn-outline-light">
+                                <i class="fas fa-envelope"></i>
+                                Solicitar Orçamento
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-image">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/produtos/big-ball-mouse.webp">
+                            <img src="../assets/images/produtos/big-ball-mouse.png" alt="Big Ball Mouse FDAT - Mouse de esfera gigante com filtro anti-tremor" loading="lazy">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Características Principais -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Características Principais</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Filtro Anti-Tremor FDAT</h3>
+                        <p>Tecnologia patenteada que facilita o movimento e posicionamento do cursor, ideal para pessoas com Parkinson e tremores.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-circle"></i>
+                        </div>
+                        <h3>Esfera Gigante 70mm</h3>
+                        <p>Esfera colorida com 70mm de diâmetro para maior conforto e precisão nos movimentos, reduzindo o esforço necessário.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-keyboard"></i>
+                        </div>
+                        <h3>5 Teclas Especiais</h3>
+                        <p>Teclas coloridas em baixo relevo tipo colmeia, posicionadas para evitar acionamentos indevidos com múltiplas funções.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3>Configuração Personalizada</h3>
+                        <p>Possibilidade de configurar velocidade da bola e outros parâmetros para adequar às necessidades motoras do usuário.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <h3>Acionadores Externos</h3>
+                        <p>2 entradas tipo jack P2 mono para acionadores externos opcionais, ampliando as possibilidades de uso.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>LEDs Indicativos</h3>
+                        <p>Indicadores visuais para as funções de click, duplo click, trava click e trava scroll para feedback claro.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Funções das Teclas -->
+        <section class="benefits-section">
+            <div class="container">
+                <h2 class="text-center mb-4">Funções das 5 Teclas Coloridas</h2>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <div>
+                            <h4>Click</h4>
+                            <p>Corresponde à função do botão esquerdo do mouse convencional</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-lock"></i>
+                        <div>
+                            <h4>Trava Click</h4>
+                            <p>Facilita a função de segurar e arrastar ícones com a bola</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-hand-pointer"></i>
+                        <div>
+                            <h4>Duplo Click</h4>
+                            <p>Gera 2 clicks automaticamente com apenas 1 acionamento</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-scroll"></i>
+                        <div>
+                            <h4>Trava Scroll</h4>
+                            <p>Facilita a função de executar rolamentos e navegação com a bola</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <div>
+                            <h4>Tecla Direita</h4>
+                            <p>Mesma função do botão direito do mouse convencional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Especificações Técnicas -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Especificações Técnicas</h2>
+                <div class="specs-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Característica</th>
+                                <th>Especificação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Esfera</td>
+                                <td>70mm de diâmetro, colorida</td>
+                            </tr>
+                            <tr>
+                                <td>Teclas</td>
+                                <td>5 teclas coloridas em baixo relevo tipo colmeia</td>
+                            </tr>
+                            <tr>
+                                <td>LEDs</td>
+                                <td>Indicativos para click, duplo click, trava click, trava scroll</td>
+                            </tr>
+                            <tr>
+                                <td>Entradas Externas</td>
+                                <td>2 entradas jack P2 mono para acionadores</td>
+                            </tr>
+                            <tr>
+                                <td>Material</td>
+                                <td>Caixa plástica injetada em ABS, sem arestas ou cantos vivos</td>
+                            </tr>
+                            <tr>
+                                <td>Base</td>
+                                <td>Antiderrapante para excelente estabilidade</td>
+                            </tr>
+                            <tr>
+                                <td>Interface</td>
+                                <td>USB (Plug and Play)</td>
+                            </tr>
+                            <tr>
+                                <td>Compatibilidade</td>
+                                <td>Microsoft Windows</td>
+                            </tr>
+                            <tr>
+                                <td>Design</td>
+                                <td>Moderno, ergonômico e elegante</td>
+                            </tr>
+                            <tr>
+                                <td>Garantia</td>
+                                <td>12 meses</td>
+                            </tr>
+                            <tr>
+                                <td>Assistência Técnica</td>
+                                <td>Nacional</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Para quem é indicado -->
+        <section class="benefits-section">
+            <div class="container">
+                <h2 class="text-center mb-4">Ideal Para</h2>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="fas fa-accessible-icon"></i>
+                        <div>
+                            <h4>Pessoas com Parkinson</h4>
+                            <p>O filtro anti-tremor FDAT compensa movimentos involuntários</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-palette"></i>
+                        <div>
+                            <h4>Desenhistas e Artistas</h4>
+                            <p>Maior precisão para trabalhos que exigem controle fino</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-wheelchair"></i>
+                        <div>
+                            <h4>Dificuldades Motoras</h4>
+                            <p>Facilita o uso do computador para pessoas com limitações físicas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-user-md"></i>
+                        <div>
+                            <h4>Terapia Ocupacional</h4>
+                            <p>Ferramenta terapêutica para reabilitação e desenvolvimento motor</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div>
+                            <h4>Educação Especial</h4>
+                            <p>Promove inclusão digital em escolas e instituições</p>
+                        </div>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-heart"></i>
+                        <div>
+                            <h4>Idosos</h4>
+                            <p>Interface amigável e de fácil utilização</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Adquira Seu Big Ball Mouse FDAT</h2>
+                <p class="lead">Produto nacional com tecnologia patenteada e assistência técnica em todo Brasil</p>
+                <div class="cta-buttons">
+                    <a href="https://www.mercadolivre.com.br/mouse-adaptado-terra-eletrnica-big-ball-fdat-branco/p/MLB45932619?pdp_filters=seller_id%3A144300924#polycard_client=search-nordic&search_layout=grid&position=1&type=product&tracking_id=8b04fd27-01bb-496b-87f6-fc3c704ac179&wid=MLB5371983564&sid=search" target="_blank" rel="noopener" class="btn-purchase">
+                        <i class="fas fa-shopping-cart"></i>
+                        Comprar Agora no Mercado Livre
+                    </a>
+                    <a href="../index.html#contato" class="btn btn-outline-light">
+                        <i class="fas fa-envelope"></i>
+                        Solicitar Orçamento Personalizado
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-horizontal.webp">
+                            <img src="../assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="footer-logo" loading="lazy">
+                        </picture>
+                        <p>Produtos Especiais para Pessoas Especiais</p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Produtos</h4>
+                    <ul>
+                        <li><a href="instrumentos-midi.html">Instrumentos MIDI</a></li>
+                        <li><a href="sensory-musical.html">Sensory Musical</a></li>
+                        <li><a href="tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
+                        <li><a href="big-ball-mouse.html">Big Ball Mouse FDAT</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="../index.html#sobre">Sobre</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
+                        <li><a href="../manuais.html">Manuais</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <span>11 99999-9999</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <span>terra@terraeletronica.com.br</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copy">
+                    <p>&copy; 2024 Terra Eletrônica. Todos os direitos reservados.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/tecnologia-assistiva.js"></script>
+</body>
+</html>
