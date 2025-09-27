@@ -6,6 +6,39 @@
   overflow-x: hidden;
 }
 
+/* Enhanced mobile overflow prevention */
+@media (max-width: 768px) {
+  body, html {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+  
+  .noticias-carousel,
+  .videos-carousel,
+  .carousel-track {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .carousel-track-inner {
+    /* Ensure carousel doesn't exceed viewport */
+    min-width: 0;
+  }
+  
+  /* Hero content mobile improvements */
+  .hero-content-main {
+    padding: 2rem 1.5rem;
+    margin: 0 1rem;
+  }
+  
+  /* Better touch targets for mobile */
+  .carousel-item,
+  .video-item {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
 /* Hero principal com glassmorphism */
 .hero-background-main {
   background-image: url('../images/banners/sala-de-musicoterapia.jpeg');
@@ -110,12 +143,30 @@
   justify-content: center;
   cursor: pointer;
   transition: var(--transition-base);
+  /* Touch improvements */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .carousel-btn:hover { background: var(--gray-100); }
 
+/* Mobile improvements for carousel buttons */
+@media (max-width: 768px) {
+  .carousel-btn {
+    width: 44px;
+    height: 44px;
+    /* Increase touch target for better accessibility */
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
 .carousel-track {
   overflow: hidden;
+  /* Touch improvements */
+  touch-action: pan-x;
 }
 
 .carousel-track-inner {
@@ -123,13 +174,76 @@
   gap: 8px;
   will-change: transform;
   transition: transform 0.4s ease;
+  /* Prevent text selection during swipe */
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-.carousel-item { flex: 0 0 auto; border-radius: 10px; overflow: hidden; background: var(--gray-200); box-shadow: var(--shadow-base); display: inline-flex; align-items: center; justify-content: center; }
-.carousel-item img { height: clamp(120px, 18vw, 200px); width: auto; object-fit: contain; display: block; cursor: zoom-in; }
+.carousel-item { 
+  flex: 0 0 auto; 
+  border-radius: 10px; 
+  overflow: hidden; 
+  background: var(--gray-200); 
+  box-shadow: var(--shadow-base); 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.carousel-item img { 
+  height: clamp(120px, 18vw, 200px); 
+  width: auto; 
+  object-fit: contain; 
+  display: block; 
+  cursor: zoom-in; 
+  /* Better image rendering - Edge compatible */
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Mobile optimizations for carousel images */
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: clamp(100px, 20vw, 160px);
+    max-width: 80vw;
+  }
+  
+  .carousel-item {
+    min-width: 140px;
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-item img {
+    height: clamp(80px, 22vw, 140px);
+    max-width: 75vw;
+  }
+  
+  .carousel-item {
+    min-width: 120px;
+    max-width: 180px;
+  }
+}
 
 @media (max-width: 768px) {
-  .sobre-full .sobre-stats { grid-template-columns: 1fr 1fr 1fr; }
+  .sobre-full .sobre-stats { 
+    grid-template-columns: 1fr 1fr 1fr; 
+  }
+  
+  /* Better spacing for mobile sections */
+  .produtos,
+  .sobre-full,
+  .contato {
+    padding: 2rem 0;
+  }
+  
+  .produtos-grid {
+    gap: 1.5rem;
+  }
+  
+  .produto-card {
+    margin-bottom: 1rem;
+  }
 }
 
 /* Lightbox para imagens do carrossel de notícias */
@@ -276,6 +390,32 @@
   position: relative;
   visibility: visible !important;
   opacity: 1 !important;
+}
+
+/* Mobile optimizations for video items */
+@media (max-width: 768px) {
+  .video-item {
+    width: clamp(200px, calc(70vw - 20px), 280px);
+    min-width: 200px;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-item {
+    width: clamp(180px, calc(80vw - 20px), 240px);
+    min-width: 180px;
+    max-width: 240px;
+  }
+  
+  .play-overlay {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .play-overlay i {
+    font-size: 18px;
+  }
 }
 
 .video-item:hover {
@@ -485,6 +625,25 @@
 
 .videos-carousel .carousel-btn.next {
   right: 5px;
+}
+
+/* Mobile improvements for video carousel buttons */
+@media (max-width: 768px) {
+  .videos-carousel .carousel-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1rem;
+    /* Better positioning for mobile */
+    z-index: 20;
+  }
+  
+  .videos-carousel .carousel-btn.prev {
+    left: 2px;
+  }
+  
+  .videos-carousel .carousel-btn.next {
+    right: 2px;
+  }
 }
 
 /* Video Indicators */

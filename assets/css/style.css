@@ -9,6 +9,16 @@
 
 html, body {
     overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+/* Prevent horizontal scroll on all main containers */
+body > *,
+.main-content,
+section {
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 :root {
@@ -595,6 +605,22 @@ body {
 /* Sections */
 section {
     padding: var(--spacing-4xl) 0;
+}
+
+/* Mobile responsive section spacing */
+@media (max-width: 768px) {
+    section {
+        padding: var(--spacing-2xl) 0;
+    }
+    
+    .section-header {
+        margin-bottom: var(--spacing-2xl);
+    }
+    
+    /* Prevent section overlap on mobile */
+    section + section {
+        margin-top: var(--spacing-base);
+    }
 }
 
 .section-header {
