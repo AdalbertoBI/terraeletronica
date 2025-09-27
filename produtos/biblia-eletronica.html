@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="biblia-eletronica">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Bíblia Eletrônica - A Bíblia completa em áudio-braille numa única página. Acessível para crianças, idosos, analfabetos e deficientes visuais. Sem necessidade de internet, CDs ou celular!">
+    <meta name="keywords" content="bíblia eletrônica, áudio-braille, deficiência visual, acessibilidade, bíblia acessível, tecnologia assistiva, produto nacional, braille">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Bíblia Eletrônica - Terra Eletrônica">
+    <title>Bíblia Eletrônica - A Bíblia Mais Acessível do Mundo | Terra Eletrônica</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logos/logo-P.png" sizes="32x32">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/tecnologia-assistiva.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Customizado para Hero Background da Bíblia Eletrônica -->
+    <style>
+        .hero-background-tech {
+            background-image: url('../assets/images/produtos/biblia braile.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-overlay-tech {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(51, 65, 85, 0.6));
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-overlay-tech::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(111, 66, 193, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(232, 62, 140, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        /* Melhor contraste e estilo para o texto sobre a imagem */
+        .hero-content-tech {
+            position: relative;
+            z-index: 3;
+        }
+        
+        .hero-content-tech .product-hero-badge {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .hero-content-tech .product-hero-badge i {
+            font-size: 1.2rem;
+            color: #fbbf24;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+        
+        .hero-content-tech .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(
+                135deg,
+                #ffffff 0%,
+                #f1f5f9 25%,
+                #e2e8f0 50%,
+                #ffffff 75%,
+                #f8fafc 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+            animation: shimmer 4s ease-in-out infinite;
+        }
+        
+        .hero-content-tech .hero-subtitle {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            font-weight: 400;
+        }
+        
+        .hero-trust {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 1.5rem 1rem;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+        
+        .trust-item:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .trust-item i {
+            font-size: 2rem;
+            color: #fbbf24;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            margin-bottom: 0.5rem;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        
+        .hero-cta .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero-cta .btn-primary {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            border: 2px solid rgba(245, 158, 11, 0.3);
+        }
+        
+        .hero-cta .btn-primary:hover {
+            background: linear-gradient(135deg, #d97706, #b45309);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(245, 158, 11, 0.4);
+        }
+        
+        .hero-cta .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero-cta .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Animações */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { 
+                background-position: 0% 50%;
+                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+            }
+            50% { 
+                background-position: 100% 50%;
+                filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.6));
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero-background-tech {
+                background-attachment: scroll;
+            }
+            
+            .hero-trust {
+                gap: 1rem;
+            }
+            
+            .trust-item {
+                min-width: 100px;
+                padding: 1rem 0.75rem;
+                font-size: 0.8rem;
+            }
+            
+            .trust-item i {
+                font-size: 1.5rem;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-cta .btn {
+                min-width: 200px;
+                justify-content: center;
+            }
+            
+            .hero-content-tech .product-hero-badge {
+                font-size: 0.8rem;
+                padding: 0.6rem 1.2rem;
+            }
+            
+            .hero-content-tech .hero-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar" aria-label="Main Navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../index.html" aria-label="Voltar ao início">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
+                            <source type="image/webp" srcset="../assets/images/logos/terra-compact.webp" media="(max-width:899px)">
+                            <source srcset="../assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
+                            <source srcset="../assets/images/logos/terra-compact.png" media="(max-width:899px)">
+                            <img src="../assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                    </a>
+                    <h1 class="sr-only">Terra Eletrônica</h1>
+                </div>
+                
+                <button class="nav-toggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="../index.html#home" class="nav-link">Início</a></li>
+                    <li><a href="instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
+                    <li><a href="sensory-musical.html" class="nav-link">Sensory Musical</a></li>
+                    <li><a href="tecnologia-assistiva.html" class="nav-link active">Tecnologia Assistiva</a></li>
+                    <li><a href="../index.html#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="../index.html#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="Você está em">
+                <a href="../index.html" class="breadcrumb-link">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <span>Início</span>
+                </a>
+                <i class="fas fa-chevron-right breadcrumb-separator" aria-hidden="true"></i>
+                <a href="tecnologia-assistiva.html" class="breadcrumb-link">
+                    <span>Tecnologia Assistiva</span>
+                </a>
+                <i class="fas fa-chevron-right breadcrumb-separator" aria-hidden="true"></i>
+                <span class="breadcrumb-current">Bíblia Eletrônica</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <main id="conteudo" tabindex="-1">
+        <section id="home" class="hero">
+            <div class="hero-background hero-background-tech">
+                <div class="hero-overlay hero-overlay-tech"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content hero-content-tech">
+                    <div class="product-hero-badge">
+                        <i class="fas fa-book-open" aria-hidden="true"></i>
+                        <span>A BÍBLIA MAIS ACESSÍVEL DO MUNDO</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="highlight">Bíblia</span><br>
+                        <span class="highlight">Eletrônica</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Toda a Bíblia Sagrada em uma única página com sistema revolucionário áudio-braille! 
+                        Acessível para crianças, idosos, analfabetos e deficientes visuais. 
+                        Acesse qualquer capítulo em menos de um segundo, sem internet, CDs ou celular!
+                    </p>
+                    <div class="hero-cta">
+                        <a href="https://produto.mercadolivre.com.br/MLB-1255791734-biblia-eletrnica-em-1-pagina-impressa-e-em-audio-braile-_JM" target="_blank" rel="noopener" class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i> Comprar Agora
+                        </a>
+                        <a href="#especificacoes" class="btn btn-secondary">Ver Como Funciona</a>
+                    </div>
+                    <div class="hero-trust">
+                        <div class="trust-item">
+                            <i class="fas fa-universal-access"></i>
+                            <span>100% Acessível</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-volume-up"></i>
+                            <span>Áudio + Braille</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-clock"></i>
+                            <span>Acesso em 1 segundo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Showcase -->
+        <section class="product-showcase">
+            <div class="container">
+                <div class="showcase-content">
+                    <div class="showcase-media">
+                        <figure class="product-image">
+                            <img src="../assets/images/produtos/biblia braile.jpg" alt="Bíblia Eletrônica - Sistema áudio-braille numa única página" loading="lazy">
+                        </figure>
+                        <div class="product-badges">
+                            <span class="badge badge-primary">Áudio + Braille</span>
+                            <span class="badge badge-success">Sem Internet</span>
+                            <span class="badge badge-info">Acesso Instantâneo</span>
+                        </div>
+                    </div>
+                    
+                    <div class="showcase-info">
+                        <h2 class="section-title">A Revolução na Leitura Bíblica</h2>
+                        
+                        <div class="benefits-list">
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                                <div class="benefit-content">
+                                    <h3>Bíblia Completa numa Página</h3>
+                                    <p>Toda a Bíblia Sagrada em uma única página impressa com sistema inovador que revoluciona a leitura bíblica</p>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-volume-up"></i>
+                                </div>
+                                <div class="benefit-content">
+                                    <h3>Sistema Áudio-Braille</h3>
+                                    <p>Tecnologia única que combina áudio de alta qualidade com impressão em braille para máxima acessibilidade</p>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-zap"></i>
+                                </div>
+                                <div class="benefit-content">
+                                    <h3>Acesso Ultra Rápido</h3>
+                                    <p>Encontre qualquer capítulo em menos de 1 segundo com apenas 2 toques - mais rápido que qualquer app!</p>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-universal-access"></i>
+                                </div>
+                                <div class="benefit-content">
+                                    <h3>Universalmente Acessível</h3>
+                                    <p>Para crianças, idosos, analfabetos, cegos e deficientes visuais - verdadeiramente inclusiva</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como Funciona -->
+        <section id="especificacoes" class="specifications">
+            <div class="container">
+                <h2 class="section-title text-center">Como Funciona a Bíblia Eletrônica</h2>
+                <p class="section-subtitle text-center maxw-900 mx-auto">
+                    Descubra a tecnologia revolucionária que torna a Bíblia verdadeiramente acessível para todos
+                </p>
+                
+                <div class="specs-grid">
+                    <div class="spec-category">
+                        <h3 class="spec-category-title">
+                            <i class="fas fa-play-circle"></i>
+                            Simplicidade Total
+                        </h3>
+                        <ul class="spec-list">
+                            <li><strong>2 Toques:</strong> Acesse qualquer capítulo</li>
+                            <li><strong>Menos de 1 Segundo:</strong> Velocidade incrível</li>
+                            <li><strong>Sem Configuração:</strong> Pronto para usar</li>
+                            <li><strong>Sem Internet:</strong> Funciona em qualquer lugar</li>
+                            <li><strong>Sem Celular:</strong> Independente de dispositivos</li>
+                            <li><strong>Sem CDs:</strong> Tudo numa página</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-category">
+                        <h3 class="spec-category-title">
+                            <i class="fas fa-headphones"></i>
+                            Qualidade de Áudio
+                        </h3>
+                        <ul class="spec-list">
+                            <li><strong>Som Alto:</strong> Volume potente e claro</li>
+                            <li><strong>Clareza Total:</strong> Narração profissional</li>
+                            <li><strong>Saída para Fone:</strong> Uso pessoal ou coletivo</li>
+                            <li><strong>Qualidade Digital:</strong> Audio cristalino</li>
+                            <li><strong>Sem Ruídos:</strong> Tecnologia limpa</li>
+                            <li><strong>Bateria Longa:</strong> Horas de uso contínuo</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-category">
+                        <h3 class="spec-category-title">
+                            <i class="fas fa-braille"></i>
+                            Sistema Braille
+                        </h3>
+                        <ul class="spec-list">
+                            <li><strong>Braille Completo:</strong> Toda a Bíblia impressa</li>
+                            <li><strong>Qualidade Superior:</strong> Impressão profissional</li>
+                            <li><strong>Tato Perfeito:</strong> Pontos bem definidos</li>
+                            <li><strong>Durabilidade:</strong> Resistente ao uso intenso</li>
+                            <li><strong>Padrão Internacional:</strong> Braille oficial</li>
+                            <li><strong>Sincronização:</strong> Audio e texto alinhados</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-category">
+                        <h3 class="spec-category-title">
+                            <i class="fas fa-map-marked-alt"></i>
+                            Portabilidade
+                        </h3>
+                        <ul class="spec-list">
+                            <li><strong>Qualquer Lugar:</strong> Casa, ônibus, avião, praça</li>
+                            <li><strong>Compacta:</strong> Fácil de transportar</li>
+                            <li><strong>Resistente:</strong> Suporta uso cotidiano</li>
+                            <li><strong>Sem Dependências:</strong> Funciona sozinha</li>
+                            <li><strong>Sempre Pronta:</strong> Liga instantaneamente</li>
+                            <li><strong>Discreta:</strong> Uso pessoal ou em grupo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Custo-Benefício Exclusivo -->
+        <section class="cost-benefit">
+            <div class="container">
+                <div class="cost-comparison">
+                    <div class="cost-header text-center">
+                        <h2 class="section-title">Economia Impressionante: Menos de 1/5 do Preço!</h2>
+                        <p class="section-subtitle">Compare os custos e veja por que a Bíblia Eletrônica Terra é a escolha mais inteligente</p>
+                    </div>
+                    
+                    <div class="cost-grid">
+                        <div class="cost-item traditional">
+                            <div class="cost-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h3>Bíblia Tradicional em Braille</h3>
+                            <div class="cost-price expensive">
+                                <span class="currency">R$</span>
+                                <span class="amount">5.000+</span>
+                            </div>
+                            <p class="cost-description">Preço em livrarias especializadas para Bíblia completa em braille tradicional</p>
+                        </div>
+                        
+                        <div class="cost-item terra highlight">
+                            <div class="cost-badge">MELHOR CUSTO-BENEFÍCIO</div>
+                            <div class="cost-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <h3>Bíblia Eletrônica Terra</h3>
+                            <div class="cost-price affordable">
+                                <span class="savings-text">Mais de 80% mais acessível!</span>
+                            </div>
+                            <p class="cost-description">Áudio + Braille + Tecnologia em uma única solução revolucionária</p>
+                            <div class="cost-savings">
+                                <i class="fas fa-piggy-bank"></i>
+                                <span>Economia de mais de 80% do valor tradicional!</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="value-proposition text-center">
+                        <h3>Muito Mais Que Economia - É Revolução!</h3>
+                        <div class="value-grid">
+                            <div class="value-item">
+                                <i class="fas fa-bolt"></i>
+                                <span>Acesso instantâneo a qualquer capítulo</span>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-volume-up"></i>
+                                <span>Áudio cristalino integrado</span>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Portabilidade total</span>
+                            </div>
+                            <div class="value-item">
+                                <i class="fas fa-infinity"></i>
+                                <span>Durabilidade incomparável</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefícios Exclusivos -->
+        <section class="unique-benefits">
+            <div class="container">
+                <h2 class="section-title text-center">Por Que a Bíblia Eletrônica é Única?</h2>
+                
+                <div class="benefits-comparison">
+                    <div class="comparison-grid">
+                        <div class="comparison-item highlight">
+                            <div class="comparison-header">
+                                <h3>Bíblia Eletrônica Terra</h3>
+                                <div class="comparison-badge winner">A Melhor Escolha</div>
+                            </div>
+                            <ul class="comparison-features">
+                                <li><i class="fas fa-check text-success"></i> Toda Bíblia numa página</li>
+                                <li><i class="fas fa-check text-success"></i> Áudio + Braille simultâneo</li>
+                                <li><i class="fas fa-check text-success"></i> Acesso em 1 segundo</li>
+                                <li><i class="fas fa-check text-success"></i> Funciona sem internet</li>
+                                <li><i class="fas fa-check text-success"></i> Não precisa de celular</li>
+                                <li><i class="fas fa-check text-success"></i> Para todos os públicos</li>
+                                <li><i class="fas fa-check text-success"></i> Portátil e durável</li>
+                                <li><i class="fas fa-check text-success"></i> Menos de 1/5 do preço tradicional</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="comparison-item">
+                            <div class="comparison-header">
+                                <h3>Aplicativos Tradicionais</h3>
+                            </div>
+                            <ul class="comparison-features">
+                                <li><i class="fas fa-times text-danger"></i> Precisa de celular/tablet</li>
+                                <li><i class="fas fa-times text-danger"></i> Depende de internet</li>
+                                <li><i class="fas fa-times text-danger"></i> Navegação lenta</li>
+                                <li><i class="fas fa-times text-danger"></i> Sem braille físico</li>
+                                <li><i class="fas fa-times text-danger"></i> Bateria do dispositivo</li>
+                                <li><i class="fas fa-times text-danger"></i> Complexo para idosos</li>
+                                <li><i class="fas fa-times text-danger"></i> Tela pequena</li>
+                                <li><i class="fas fa-times text-danger"></i> Distração de notificações</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vídeo Demonstração -->
+        <section class="video-demo">
+            <div class="container">
+                <h2 class="section-title text-center">Veja a Bíblia Eletrônica em Funcionamento</h2>
+                <p class="section-subtitle text-center maxw-900 mx-auto">
+                    Demonstração completa do sistema áudio-braille revolucionário
+                </p>
+                
+                <div class="video-container">
+                    <button class="video-card-large" data-video-id="biblia-eletronica-demo" aria-label="Assistir demonstração completa da Bíblia Eletrônica">
+                        <div class="video-thumbnail-large">
+                            <img src="../assets/images/produtos/biblia braile.jpg" alt="Vídeo demonstrativo da Bíblia Eletrônica - Sistema áudio-braille" loading="lazy">
+                            <div class="play-overlay-large">
+                                <i class="fas fa-play" aria-hidden="true"></i>
+                                <span>Assistir Demonstração</span>
+                            </div>
+                        </div>
+                        <div class="video-info-large">
+                            <h3>Como Usar a Bíblia Eletrônica</h3>
+                            <p>Veja como acessar qualquer capítulo da Bíblia em menos de um segundo com o sistema áudio-braille mais avançado do mundo.</p>
+                            <div class="video-duration">
+                                <i class="fas fa-clock"></i>
+                                <span>Assista no YouTube</span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq">
+            <div class="container">
+                <h2 class="section-title text-center">Dúvidas Frequentes</h2>
+                <p class="section-subtitle text-center maxw-900 mx-auto">
+                    Encontre respostas para as principais dúvidas sobre a Bíblia Eletrônica
+                </p>
+                
+                <div class="faq-container maxw-800 mx-auto">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Como toda a Bíblia cabe numa só página?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>A tecnologia áudio-braille revolucionária permite que toda a Bíblia seja acessada através de códigos especiais numa única página. Com apenas 2 toques, você acessa qualquer capítulo instantaneamente.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Precisa de internet ou celular para funcionar?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Não! A Bíblia Eletrônica é completamente independente. Não precisa de internet, celular, computador ou qualquer outro dispositivo. Funciona em qualquer lugar: casa, ônibus, avião, praça.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>É realmente acessível para pessoas cegas?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sim! Combina áudio de alta qualidade com braille completo impresso. Pessoas cegas, com baixa visão, idosos, crianças e analfabetos podem usar com total autonomia.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Qual é a qualidade do áudio?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>O áudio é cristalino e potente, com narração profissional. Tem volume alto e claro, além de saída para fone de ouvido para uso pessoal ou em ambientes silenciosos.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>É durável e resistente?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutamente! Foi projetada para uso intenso e cotidiano. O sistema eletrônico é robusto e a impressão em braille mantém a qualidade mesmo com uso frequente.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Final -->
+        <section class="final-cta">
+            <div class="container">
+                <div class="cta-content text-center">
+                    <h2>A Bíblia Mais Acessível do Mundo Espera por Você</h2>
+                    <p>Não perca mais tempo com aplicativos complicados ou páginas lentas. A Bíblia Eletrônica oferece acesso instantâneo, total acessibilidade e independência completa para sua vida espiritual.</p>
+                    
+                    <div class="cta-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Acesso em 1 Segundo</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Áudio + Braille</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>100% Acessível</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Funciona em Qualquer Lugar</span>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-buttons">
+                        <a href="https://produto.mercadolivre.com.br/MLB-1255791734-biblia-eletrnica-em-1-pagina-impressa-e-em-audio-braile-_JM" target="_blank" rel="noopener" class="btn btn-primary btn-large">
+                            <i class="fas fa-shopping-cart"></i> Comprar Agora no Mercado Livre
+                        </a>
+                        <a href="../index.html#contato" class="btn btn-secondary btn-large">
+                            <i class="fas fa-envelope"></i> Falar com Especialista
+                        </a>
+                    </div>
+                    
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Compra Segura</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-universal-access"></i>
+                            <span>Totalmente Acessível</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-heart"></i>
+                            <span>Transforma Vidas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal de Vídeo -->
+        <div class="video-modal" id="videoModal" aria-hidden="true">
+            <div class="modal-backdrop" id="modalBackdrop"></div>
+            <div class="modal-content">
+                <button class="modal-close" id="modalClose" aria-label="Fechar vídeo">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+                <div class="modal-video-container">
+                    <iframe id="modalVideoPlayer" src="" title="Vídeo demonstrativo da Bíblia Eletrônica" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-compact.webp">
+                            <img src="../assets/images/logos/terra-compact.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                        <p>Tecnologia que liberta seu potencial</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronica5492" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Produtos</h4>
+                    <ul>
+                        <li><a href="instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
+                        <li><a href="tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
+                        <li><a href="sensory-musical.html">Sensory Musical</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="../index.html#sobre">Sobre Nós</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="../manuais.html?tipo=manual">Manuais</a></li>
+                        <li><a href="../manuais.html?tipo=download">Downloads</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
+                <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    
+    <!-- Widget de Acessibilidade Expandido -->
+    <div class="accessibility-widget" id="accessibilityWidget">
+        <button class="accessibility-toggle" id="accessibilityToggle" aria-label="Menu de Acessibilidade" title="Opções de Acessibilidade">
+            <i class="fas fa-universal-access" aria-hidden="true"></i>
+        </button>
+        
+        <dialog class="accessibility-panel" id="accessibilityPanel" aria-labelledby="accessibilityTitle">
+            <h3 id="accessibilityTitle">Opções de Acessibilidade</h3>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="increaseFontBtn" aria-label="Aumentar tamanho da fonte">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                    <span>Aumentar Fonte</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="decreaseFontBtn" aria-label="Diminuir tamanho da fonte">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                    <span>Diminuir Fonte</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="highContrastBtn" aria-label="Alternar alto contraste">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                    <span>Alto Contraste</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="darkModeBtn" aria-label="Alternar modo escuro">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                    <span>Modo Escuro</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="readAloudBtn" aria-label="Ativar leitura em voz alta">
+                    <i class="fas fa-volume-up" aria-hidden="true"></i>
+                    <span>Leitura em Voz Alta</span>
+                </button>
+            </div>
+            
+            <div class="accessibility-option">
+                <button class="accessibility-btn" id="resetBtn" aria-label="Restaurar configurações padrão">
+                    <i class="fas fa-undo" aria-hidden="true"></i>
+                    <span>Restaurar Padrão</span>
+                </button>
+            </div>
+            
+            <button class="accessibility-close" id="accessibilityClose" aria-label="Fechar menu de acessibilidade">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </dialog>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        if (window && window.VLibras && typeof window.VLibras.Widget === 'function') {
+            window.vlibrasWidget = new window.VLibras.Widget('https://vlibras.gov.br/app');
+        } else {
+            window.addEventListener('load', function() {
+                if (window.VLibras && typeof window.VLibras.Widget === 'function') {
+                    window.vlibrasWidget = new window.VLibras.Widget('https://vlibras.gov.br/app');
+                }
+            });
+        }
+    </script>
+
+    <!-- Botão WhatsApp Flutuante -->
+    <div class="whatsapp-float whatsapp-visible">
+        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="../assets/js/main.js"></script>
+    
+    <!-- Sistema de Modal de Vídeo e FAQ -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sistema de Modal de Vídeo
+        const modal = document.getElementById('videoModal');
+        const modalPlayer = document.getElementById('modalVideoPlayer');
+        const modalClose = document.getElementById('modalClose');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const videoCards = document.querySelectorAll('.video-card-large, [data-video-id]');
+        
+        function openModal(videoId) {
+            // Use diretamente o videoId se for um ID do YouTube, senão mapear
+            let youtubeId = videoId;
+            
+            // Se for um ID específico da aplicação, mapear para o ID do YouTube
+            const videoUrls = {
+                'biblia-eletronica-demo': 'TuowTJWlnw8' // Vídeo oficial da Bíblia Eletrônica
+            };
+            
+            if (videoUrls[videoId]) {
+                youtubeId = videoUrls[videoId];
+            }
+            
+            const embedUrl = 'https://www.youtube.com/embed/' + youtubeId + '?autoplay=1&rel=0&modestbranding=1';
+            
+            modalPlayer.src = embedUrl;
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => modalClose && modalClose.focus(), 100);
+        }
+        
+        function closeModal() {
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            modalPlayer.src = '';
+            document.body.style.overflow = '';
+        }
+        
+        videoCards.forEach(card => {
+            const videoId = card.getAttribute('data-video-id');
+            if (videoId) {
+                card.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openModal(videoId);
+                });
+            }
+        });
+        
+        if (modalClose) modalClose.addEventListener('click', closeModal);
+        if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+        
+        // Sistema de FAQ
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            
+            question.addEventListener('click', function() {
+                const isOpen = question.getAttribute('aria-expanded') === 'true';
+                
+                // Fechar outros FAQs
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        const otherQuestion = otherItem.querySelector('.faq-question');
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        otherQuestion.setAttribute('aria-expanded', 'false');
+                        otherAnswer.style.maxHeight = '0';
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle do FAQ atual
+                if (isOpen) {
+                    question.setAttribute('aria-expanded', 'false');
+                    answer.style.maxHeight = '0';
+                    item.classList.remove('active');
+                } else {
+                    question.setAttribute('aria-expanded', 'true');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    item.classList.add('active');
+                }
+            });
+        });
+    });
+    </script>
+    
+    <script src="../assets/js/tecnologia-assistiva.js"></script>
+
+    <style>
+    /* Estilos específicos para a página da Bíblia Eletrônica */
+    .product-showcase {
+        padding: 4rem 0;
+        background: #f8f9fa;
+    }
+
+    .showcase-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-badges {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .badge-primary { background: #007bff; color: white; }
+    .badge-success { background: #28a745; color: white; }
+    .badge-info { background: #17a2b8; color: white; }
+
+    .benefits-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .benefit-item {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .benefit-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #6f42c1, #e83e8c);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    .benefit-content h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .benefit-content p {
+        margin: 0;
+        color: #6c757d;
+        line-height: 1.6;
+    }
+
+    .specifications {
+        padding: 4rem 0;
+        background: white;
+    }
+
+    .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .spec-category {
+        background: #f8f9fa;
+        border-radius: 12px;
+        padding: 2rem;
+        border-left: 4px solid #6f42c1;
+    }
+
+    .spec-category-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .spec-category-title i {
+        color: #6f42c1;
+        font-size: 1.5rem;
+    }
+
+    .spec-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .spec-list li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e9ecef;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .spec-list li:last-child {
+        border-bottom: none;
+    }
+
+    .spec-list strong {
+        color: #495057;
+        font-weight: 600;
+    }
+
+    .cost-benefit {
+        padding: 4rem 0;
+        background: linear-gradient(135deg, #1e293b, #334155);
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cost-benefit::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 30% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .cost-comparison {
+        position: relative;
+        z-index: 2;
+    }
+
+    .cost-header {
+        margin-bottom: 3rem;
+    }
+
+    .cost-header h2 {
+        color: white;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .cost-header .section-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.2rem;
+    }
+
+    .cost-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin: 3rem 0;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cost-item {
+        background: rgba(255, 255, 255, 0.05);
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .cost-item.highlight {
+        border-color: #f59e0b;
+        box-shadow: 0 20px 60px rgba(245, 158, 11, 0.2);
+        transform: translateY(-10px);
+    }
+
+    .cost-item.traditional:hover {
+        transform: translateY(-5px);
+        border-color: #ef4444;
+    }
+
+    .cost-item.terra:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 25px 70px rgba(245, 158, 11, 0.3);
+    }
+
+    .cost-badge {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        color: white;
+        padding: 0.5rem 1.5rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+    }
+
+    .cost-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1.5rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+    }
+
+    .cost-item.traditional .cost-icon {
+        color: #ef4444;
+    }
+
+    .cost-item.terra .cost-icon {
+        color: #f59e0b;
+    }
+
+    .cost-item h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+        color: white;
+        font-weight: 600;
+    }
+
+    .cost-price {
+        margin: 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .cost-price .currency {
+        font-size: 1.5rem;
+        font-weight: 600;
+        opacity: 0.8;
+    }
+
+    .cost-price .amount {
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .cost-price.expensive .amount {
+        color: #ef4444;
+    }
+
+    .cost-price.affordable .amount {
+        color: #10b981;
+    }
+
+    .cost-price .savings-text {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #10b981;
+        text-align: center;
+        line-height: 1.2;
+        background: linear-gradient(135deg, #10b981, #059669);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3));
+    }
+
+    .cost-description {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+
+    .cost-note {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #fbbf24;
+        font-size: 0.9rem;
+        font-style: italic;
+    }
+
+    .cost-savings {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+        padding: 1rem;
+        border-radius: 10px;
+        font-weight: 600;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .value-proposition {
+        margin-top: 4rem;
+        padding-top: 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .value-proposition h3 {
+        font-size: 2rem;
+        color: white;
+        margin-bottom: 2rem;
+    }
+
+    .value-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .value-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .value-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-5px);
+    }
+
+    .value-item i {
+        font-size: 2rem;
+        color: #f59e0b;
+    }
+
+    .value-item span {
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    .unique-benefits {
+        padding: 4rem 0;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    }
+
+    @media (max-width: 768px) {
+        .cost-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .cost-header h2 {
+            font-size: 2rem;
+        }
+
+        .cost-price .amount {
+            font-size: 2.5rem;
+        }
+
+        .value-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .value-proposition h3 {
+            font-size: 1.5rem;
+        }
+    }
+
+    .benefits-comparison {
+        max-width: 1000px;
+        margin: 2rem auto 0;
+    }
+
+    .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .comparison-item {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        border: 2px solid #e9ecef;
+    }
+
+    .comparison-item.highlight {
+        border-color: #6f42c1;
+        box-shadow: 0 8px 32px rgba(111, 66, 193, 0.15);
+        transform: translateY(-4px);
+    }
+
+    .comparison-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .comparison-header h3 {
+        margin: 0 0 1rem 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+    }
+
+    .comparison-badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .comparison-badge.winner {
+        background: #6f42c1;
+        color: white;
+    }
+
+    .comparison-features {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .comparison-features li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #f1f3f4;
+        font-size: 0.95rem;
+    }
+
+    .comparison-features li:last-child {
+        border-bottom: none;
+    }
+
+    .text-success { color: #28a745; }
+    .text-danger { color: #dc3545; }
+
+    .video-demo {
+        padding: 4rem 0;
+        background: white;
+    }
+
+    .video-container {
+        max-width: 800px;
+        margin: 2rem auto 0;
+    }
+
+    .video-card-large {
+        display: block;
+        background: none;
+        border: none;
+        width: 100%;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-card-large:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .video-thumbnail-large {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .video-thumbnail-large img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+    }
+
+    .play-overlay-large {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(30, 41, 59, 0.8));
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        animation: pulse-play 2s ease-in-out infinite;
+    }
+
+    .play-overlay-large::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #f59e0b, #6f42c1, #e83e8c, #f59e0b);
+        border-radius: 50%;
+        z-index: -1;
+        animation: rotate-border 3s linear infinite;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .play-overlay-large i {
+        color: white;
+        font-size: 2rem;
+        margin-left: 3px;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        transition: all 0.3s ease;
+    }
+
+    .play-overlay-large span {
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        opacity: 0.9;
+        transition: all 0.3s ease;
+    }
+
+    .video-card-large:hover .play-overlay-large {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.9), rgba(111, 66, 193, 0.85));
+        transform: translate(-50%, -50%) scale(1.15);
+        border-color: rgba(245, 158, 11, 0.6);
+        box-shadow: 
+            0 12px 40px rgba(245, 158, 11, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .video-card-large:hover .play-overlay-large::before {
+        opacity: 1;
+    }
+
+    .video-card-large:hover .play-overlay-large i {
+        transform: scale(1.1);
+        color: #ffffff;
+    }
+
+    .video-card-large:hover .play-overlay-large span {
+        opacity: 1;
+        transform: translateY(-1px);
+    }
+
+    @keyframes pulse-play {
+        0%, 100% {
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 0 rgba(245, 158, 11, 0);
+        }
+        50% {
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 0 20px rgba(245, 158, 11, 0.1);
+        }
+    }
+
+    @keyframes rotate-border {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .video-info-large {
+        padding: 2rem;
+        text-align: left;
+    }
+
+    .video-info-large h3 {
+        margin: 0 0 1rem 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .video-info-large p {
+        margin: 0 0 1rem 0;
+        color: #6c757d;
+        line-height: 1.6;
+    }
+
+    .video-duration {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #6f42c1;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .faq {
+        padding: 4rem 0;
+        background: #f8f9fa;
+    }
+
+    .faq-container {
+        margin-top: 2rem;
+    }
+
+    .faq-item {
+        background: white;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .faq-item:hover,
+    .faq-item.active {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-question {
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 1.5rem;
+        text-align: left;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2c3e50;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: color 0.3s ease;
+    }
+
+    .faq-question:hover {
+        color: #6f42c1;
+    }
+
+    .faq-question i {
+        transition: transform 0.3s ease;
+        color: #6f42c1;
+    }
+
+    .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+    }
+
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .faq-answer p {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+        margin: 0;
+        line-height: 1.6;
+        color: #6c757d;
+    }
+
+    .final-cta {
+        padding: 4rem 0;
+        background: linear-gradient(135deg, #1e293b, #334155);
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .final-cta::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 30% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 70% 80%, rgba(111, 66, 193, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 20% 80%, rgba(232, 62, 140, 0.08) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .final-cta .cta-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .final-cta h2 {
+        color: white;
+        margin-bottom: 1rem;
+    }
+
+    .final-cta p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+
+    .cta-highlights {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .highlight-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+    }
+
+    .highlight-item i {
+        color: #fff;
+        font-size: 1.2rem;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+
+    .btn-large {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    .trust-badges {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+    }
+
+    .trust-badge {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    .trust-badge i {
+        font-size: 2rem;
+        opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+        .showcase-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .hero-trust {
+            gap: 1rem;
+        }
+
+        .trust-item {
+            font-size: 0.8rem;
+        }
+
+        .specs-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .comparison-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cta-highlights {
+            grid-template-columns: 1fr;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .trust-badges {
+            gap: 1rem;
+        }
+
+        .video-thumbnail-large img {
+            height: 200px;
+        }
+    }
+    </style>
+</body>
+</html>

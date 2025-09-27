@@ -12,7 +12,7 @@
     <title>Sensory Musical | Terra Eletrônica</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../assets/images/logos/terra-compact.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../assets/images/logos/logo-P.png" sizes="32x32">
     
     <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -65,13 +65,18 @@
     </header>
 
     <!-- Breadcrumb -->
-    <nav class="breadcrumb" aria-label="Você está em" style="background: rgba(0,0,0,0.8); padding: 0.75rem 0; position: relative; z-index: 101;">
+    <div class="breadcrumb-wrapper">
         <div class="container">
-            <a href="../index.html" style="color: white; text-decoration: none;">Início</a>
-            <i class="fas fa-chevron-right" aria-hidden="true" style="color: white; margin: 0 0.5rem;"></i>
-            <span style="color: white;">Sensory Musical</span>
+            <nav class="breadcrumb" aria-label="Você está em">
+                <a href="../index.html" class="breadcrumb-link">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <span>Início</span>
+                </a>
+                <i class="fas fa-chevron-right breadcrumb-separator" aria-hidden="true"></i>
+                <span class="breadcrumb-current">Sensory Musical</span>
+            </nav>
         </div>
-    </nav>
+    </div>
 
     <!-- Hero Section -->
     <main id="conteudo" tabindex="-1">
@@ -471,7 +476,7 @@
             </div>
             
             <div class="footer-bottom">
-                <p>© 2025 Terra Eletrônica. Todos os direitos reservados.</p>
+                <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
                 <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
             </div>
         </div>
