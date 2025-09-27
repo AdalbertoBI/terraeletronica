@@ -279,8 +279,8 @@
                 </p>
                 
                 <div class="videos-carousel" id="videosCarousel">
-                    <div class="carousel-container">
-                        <div class="carousel-track" id="carouselTrack">
+                    <section class="carousel-container" aria-label="Carrossel de vídeos de Tecnologia Assistiva">
+                        <div class="carousel-track" id="carouselTrack" aria-live="polite">
                             <!-- Vídeo 1: Lupa Bolinha -->
                             <button class="video-card" data-video-id="lupa-bolinha-demo" aria-label="Assistir demonstração da Lupa Bolinha no YouTube">
                                 <div class="video-thumbnail">
@@ -319,7 +319,7 @@
 
 
                         </div>
-                    </div>
+                    </section>
                     
                     <!-- Controles do Carrossel -->
                     <button class="carousel-btn carousel-btn-prev" id="prevBtn" aria-label="Vídeos anteriores" title="Ver vídeos anteriores">
@@ -329,11 +329,9 @@
                         <i class="fas fa-chevron-right" aria-hidden="true"></i>
                     </button>
                     
-                    <!-- Indicadores -->
-                    <div class="carousel-indicators" id="carouselIndicators" role="tablist" aria-label="Navegação por páginas de vídeos">
-                        <button class="indicator active" data-slide="0" role="tab" aria-label="Vídeos da Lupa Bolinha e Bíblia Eletrônica" aria-selected="true" tabindex="0"></button>
-                        <button class="indicator" data-slide="1" role="tab" aria-label="Vídeo do Big Ball Mouse" aria-selected="false" tabindex="-1"></button>
-                    </div>
+                    <!-- Indicadores (serão gerados dinamicamente) -->
+                    <div class="carousel-indicators" id="carouselIndicators" role="tablist" aria-label="Navegação por páginas de vídeos"></div>
+                    <div class="sr-only" id="carouselLive" aria-live="polite" aria-atomic="true"></div>
                 </div>
             </div>
         </section>
@@ -618,87 +616,166 @@
         initCarouselNavigation();
     });
     
-    // Função para controlar navegação do carrossel
+    // Função para controlar navegação do carrossel (com swipe/touch)
     function initCarouselNavigation() {
         const track = document.getElementById('carouselTrack');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        const indicators = document.querySelectorAll('.indicator');
-        const videoCards = document.querySelectorAll('.video-card');
-        
-        console.log('Inicializando navegação do carrossel:', {
+        const indicatorsWrapper = document.getElementById('carouselIndicators');
+        const liveRegion = document.getElementById('carouselLive');
+        const videoCards = Array.from(document.querySelectorAll('.video-card'));
+
+        console.log('Inicializando navegação do carrossel (v2):', {
             track: !!track,
             prevBtn: !!prevBtn,
             nextBtn: !!nextBtn,
-            indicators: indicators.length,
-            videoCards: videoCards.length
+            indicatorsWrapper: !!indicatorsWrapper,
+            totalCards: videoCards.length
         });
-        
+
         if (!track || !prevBtn || !nextBtn) {
             console.error('Elementos do carrossel não encontrados');
             return;
         }
-        
+
         let currentIndex = 0;
-        const totalCards = videoCards.length;
-        const cardsPerView = 3; // Número de cards visíveis por vez
-        const maxIndex = Math.max(0, totalCards - cardsPerView);
-        
-        console.log(`Carrossel configurado: ${totalCards} cards, máximo ${cardsPerView} por visualização`);
-        
-        // Função para atualizar posição do carrossel
-        function updateCarousel() {
+        let cardsPerView = 1;
+        let maxIndex = 0;
+        let cardWidthCache = 0;
+        let gapCache = 0;
+        let isDragging = false;
+        let startX = 0;
+        let startTranslate = 0;
+        let currentTranslate = 0;
+        let lastDelta = 0;
+        const TRANSITION_MS = 450;
+
+        function computeLayout() {
             if (videoCards.length === 0) return;
-            
             const firstCard = videoCards[0];
-            const cardWidth = firstCard.offsetWidth;
+            cardWidthCache = firstCard.offsetWidth;
             const computedStyle = window.getComputedStyle(track);
-            const gap = parseFloat(computedStyle.gap) || 24;
-            
-            const moveDistance = cardWidth + gap;
-            const translateX = -(currentIndex * moveDistance);
-            
-            track.style.transform = `translateX(${translateX}px)`;
-            
-            // Atualizar indicadores se existirem
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
-            });
-            
-            // Atualizar estado dos botões
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex >= maxIndex;
-            
-            console.log(`Carrossel atualizado - índice: ${currentIndex}/${maxIndex}, translateX: ${translateX}px`);
+            gapCache = parseFloat(computedStyle.gap) || 24;
+            const containerWidth = track.parentElement.offsetWidth;
+            cardsPerView = Math.max(1, Math.floor((containerWidth + gapCache) / (cardWidthCache + gapCache)));
+            maxIndex = Math.max(0, videoCards.length - cardsPerView);
+            currentIndex = Math.min(currentIndex, maxIndex);
+            buildIndicators();
+            updateCarousel(false);
         }
-        
-        // Event listeners para botões
-        prevBtn.addEventListener('click', function() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
+
+        function buildIndicators() {
+            if (!indicatorsWrapper) return;
+            indicatorsWrapper.innerHTML = '';
+            for (let i = 0; i <= maxIndex; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'indicator' + (i === currentIndex ? ' active' : '');
+                btn.dataset.slide = i;
+                btn.setAttribute('role', 'tab');
+                btn.setAttribute('aria-selected', i === currentIndex ? 'true' : 'false');
+                btn.setAttribute('tabindex', i === currentIndex ? '0' : '-1');
+                btn.setAttribute('aria-label', `Página ${i + 1} de ${maxIndex + 1} do carrossel`);
+                btn.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateCarousel();
+                });
+                indicatorsWrapper.appendChild(btn);
             }
-        });
-        
-        nextBtn.addEventListener('click', function() {
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                updateCarousel();
+        }
+
+        function announce() {
+            if (liveRegion) {
+                liveRegion.textContent = `Mostrando página ${currentIndex + 1} de ${maxIndex + 1}`;
             }
+        }
+
+        function updateCarousel(animate = true) {
+            if (videoCards.length === 0) return;
+            const moveDistance = cardWidthCache + gapCache;
+            currentTranslate = -(currentIndex * moveDistance);
+            track.style.transition = animate ? `transform ${TRANSITION_MS}ms cubic-bezier(0.4,0,0.2,1)` : 'none';
+            track.style.transform = `translateX(${currentTranslate}px)`;
+            // Atualizar indicadores
+            if (indicatorsWrapper) {
+                indicatorsWrapper.querySelectorAll('.indicator').forEach((ind, idx) => {
+                    ind.classList.toggle('active', idx === currentIndex);
+                    ind.setAttribute('aria-selected', idx === currentIndex ? 'true' : 'false');
+                    ind.setAttribute('tabindex', idx === currentIndex ? '0' : '-1');
+                });
+            }
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === maxIndex;
+            announce();
+            console.log(`updateCarousel -> idx ${currentIndex}/${maxIndex}, translate ${currentTranslate}`);
+        }
+
+        // Botões
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) { currentIndex--; updateCarousel(); }
         });
-        
-        // Event listeners para indicadores
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', function() {
-                currentIndex = Math.min(index, maxIndex);
-                updateCarousel();
-            });
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < maxIndex) { currentIndex++; updateCarousel(); }
         });
-        
-        // Inicializar estado
-        updateCarousel();
-        
-        console.log('Navegação do carrossel configurada com sucesso!');
+
+        // Drag / Swipe usando Pointer Events
+        function onPointerDown(e) {
+            if (videoCards.length <= cardsPerView) return; // nada pra arrastar
+            isDragging = true;
+            track.classList.add('dragging');
+            track.style.transition = 'none';
+            startX = e.clientX;
+            startTranslate = currentTranslate;
+            lastDelta = 0;
+            track.setPointerCapture(e.pointerId);
+        }
+        function onPointerMove(e) {
+            if (!isDragging) return;
+            const dx = e.clientX - startX;
+            lastDelta = dx;
+            const tentative = startTranslate + dx;
+            // Limites com resistência
+            const minTranslate = -(maxIndex * (cardWidthCache + gapCache));
+            const resisted = applyResistance(tentative, minTranslate, 0);
+            track.style.transform = `translateX(${resisted}px)`;
+        }
+        function onPointerUp() {
+            if (!isDragging) return;
+            isDragging = false;
+            track.classList.remove('dragging');
+            const threshold = (cardWidthCache + gapCache) * 0.25;
+            if (Math.abs(lastDelta) > threshold) {
+                if (lastDelta < 0 && currentIndex < maxIndex) currentIndex++;
+                else if (lastDelta > 0 && currentIndex > 0) currentIndex--;
+            }
+            updateCarousel();
+        }
+        function applyResistance(value, min, max) {
+            if (value < min) return min + (value - min) * 0.25;
+            if (value > max) return max + (value - max) * 0.25;
+            return value;
+        }
+
+        track.addEventListener('pointerdown', onPointerDown);
+        track.addEventListener('pointermove', onPointerMove);
+        track.addEventListener('pointerup', onPointerUp);
+        track.addEventListener('pointercancel', onPointerUp);
+        track.addEventListener('pointerleave', onPointerUp);
+
+        // Teclado: setas esquerda/direita
+        track.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentIndex < maxIndex) { currentIndex++; updateCarousel(); }
+            if (e.key === 'ArrowLeft' && currentIndex > 0) { currentIndex--; updateCarousel(); }
+        });
+
+        // Recalcular ao redimensionar
+        window.addEventListener('resize', debounce(() => computeLayout(), 150));
+
+        function debounce(fn, wait) {
+            let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
+        }
+
+        computeLayout();
+        console.log('Carrossel (v2) configurado com sucesso!');
     }
     </script>
     

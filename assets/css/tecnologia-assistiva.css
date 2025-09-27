@@ -768,6 +768,9 @@
   display: flex;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   gap: 1.5rem;
+  cursor: grab;
+  touch-action: pan-y; /* permite rolagem vertical natural */
+  will-change: transform;
 }
 
 /* Cards de Vídeo */
@@ -918,19 +921,7 @@
   pointer-events: none;
 }
 
-.carousel-btn:hover:not(:disabled) {
-  background: var(--primary-color, #009688);
-  color: white;
-  transform: translateY(-50%) scale(1.1);
-}
-
-.carousel-btn:disabled {
-  cursor: not-allowed;
-  background: #f5f5f5;
-  color: #ccc;
-  opacity: 0.5;
-  transform: translateY(-50%);
-}
+/* (Removido duplicado .carousel-btn:hover e :disabled - já definido antes) */
 
 .carousel-btn:focus {
   outline: 2px solid var(--primary-color, #009688);
@@ -1183,9 +1174,14 @@
   }
   
   .carousel-btn {
-    display: none; /* Oculta botões em telas muito pequenas */
+    display: flex; /* Mantém botões visíveis em telas pequenas para acessibilidade */
   }
 }
+
+/* Estado de arraste do carrossel */
+/* Ajustes de arraste adicionados sem duplicar seletor existente */
+.carousel-track.dragging { cursor: grabbing; transition: none !important; }
+/* (Removido seletor duplicado de .carousel-track; propriedades integradas ao bloco original) */
 
 /* =======================
    ESTILOS PARA EM BREVE
