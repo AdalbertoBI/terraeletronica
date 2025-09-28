@@ -103,7 +103,10 @@
                 <!-- Instrumentos MIDI-TA -->
                 <div class="produto-card" data-aos="fade-up">
                     <div class="card-image">
-                        <img src="assets/images/banners/sala-de-musicoterapia.jpeg" alt="Instrumentos NET-MIDI-T.A. - Sala de Musicoterapia">
+                        <img src="assets/images/banners/sala-de-musicoterapia.jpeg" 
+                             alt="Instrumentos NET-MIDI-T.A. - Sala de Musicoterapia" 
+                             loading="lazy"
+                             decoding="async">
                         <div class="card-overlay">
                             <a href="produtos/instrumentos-midi.html" class="card-link" title="Ver detalhes dos Instrumentos NET-MIDI-T.A." aria-label="Ver detalhes dos Instrumentos NET-MIDI-T.A.">
                                 <i class="fas fa-music"></i>
@@ -128,7 +131,10 @@
                 <!-- Sensory Musical -->
                 <div class="produto-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="card-image">
-                        <img src="assets/images/banners/sensory-musical.png" alt="Sensory Musical - Experiências sensoriais">
+                        <img src="assets/images/banners/sensory-musical.png" 
+                             alt="Sensory Musical - Experiências sensoriais" 
+                             loading="lazy"
+                             decoding="async">
                         <div class="card-overlay">
                             <a href="produtos/sensory-musical.html" class="card-link" title="Ver Produtos Sensory Musical" aria-label="Ver detalhes do Sensory Musical">
                                 <i class="fas fa-wave-square"></i>
@@ -560,11 +566,59 @@
         </a>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/index.js"></script>
-    <script src="assets/js/contact-form.js"></script>
-    <script src="assets/js/nav-responsive.js"></script>
+    <!-- Scripts - Otimizado para performance -->
+    <!-- Scripts críticos carregados primeiro -->
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/nav-responsive.js" defer></script>
+    <!-- Index.js é crítico para os carrosséis funcionarem -->
+    <script src="assets/js/index.js" defer></script>
+    
+    <!-- Scripts não críticos carregados com delay -->
+    <script>
+        // Carregamento inteligente do AOS apenas quando necessário
+        function loadAOS() {
+            if ('IntersectionObserver' in window) {
+                const script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js';
+                script.onload = function() {
+                    // AOS otimizado para mobile
+                    if (window.AOS) {
+                        AOS.init({
+                            duration: window.innerWidth <= 768 ? 400 : 800,
+                            offset: window.innerWidth <= 768 ? 50 : 100,
+                            once: true,
+                            easing: 'ease-out-cubic',
+                            disable: function() {
+                                return window.innerWidth <= 480; // Desabilita em telas muito pequenas
+                            }
+                        });
+                    }
+                };
+                document.head.appendChild(script);
+            }
+        }
+        
+        // Carrega scripts não críticos após interação do usuário ou timeout
+        let scriptsLoaded = false;
+        function loadNonCriticalScripts() {
+            if (scriptsLoaded) return;
+            scriptsLoaded = true;
+            
+            // Carrega AOS
+            loadAOS();
+            
+            // Carrega contact-form apenas (não crítico)
+            const script = document.createElement('script');
+            script.src = 'assets/js/contact-form.js';
+            script.defer = true;
+            document.body.appendChild(script);
+        }
+        
+        // Carrega após primeira interação ou 2 segundos
+        ['touchstart', 'scroll', 'mousemove', 'keydown'].forEach(event => {
+            document.addEventListener(event, loadNonCriticalScripts, { once: true, passive: true });
+        });
+        setTimeout(loadNonCriticalScripts, 2000);
+    </script>
 </body>
 </html>

@@ -11,12 +11,18 @@
   body, html {
     overflow-x: hidden !important;
     width: 100% !important;
+    /* Performance optimizations for mobile */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
   
   /* Ensure proper stacking context */
   section {
     position: relative;
     z-index: 1;
+    /* CSS Containment for performance */
+    contain: layout style paint;
   }
   
   .noticias-carousel,
@@ -24,24 +30,86 @@
   .carousel-track {
     width: 100%;
     max-width: 100%;
+    /* Optimize compositing layers */
+    will-change: transform;
+    transform: translateZ(0);
   }
   
   .carousel-track-inner {
     /* Ensure carousel doesn't exceed viewport */
     min-width: 0;
+    contain: layout;
   }
   
   /* Hero content mobile improvements */
   .hero-content-main {
     padding: 2rem 1.5rem;
     margin: 0 1rem;
+    /* Optimize rendering */
+    contain: layout style;
+    transform: translateZ(0);
   }
   
   /* Better touch targets for mobile */
   .carousel-item,
   .video-item {
     -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
+    /* Allow pan for swipe gestures */
+    touch-action: pan-y pinch-zoom;
+    /* GPU acceleration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  /* Permitir gestos de swipe nos carrosséis */
+  .carousel-track,
+  .videos-carousel .carousel-track {
+    touch-action: pan-x pan-y;
+  }
+  
+  .carousel-track-inner {
+    touch-action: pan-x;
+    /* Ensure proper interaction */
+    pointer-events: auto;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Disable hover effects on mobile to prevent performance issues */
+  .produto-card:hover,
+  .btn:hover,
+  .card-link:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  /* Optimize scroll performance */
+  .hero,
+  .produtos,
+  .sobre,
+  .noticias,
+  .contato {
+    contain: layout;
+    transform: translateZ(0);
+  }
+  
+  /* Optimize animations for mobile */
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+  }
+  
+  /* Preservar funcionalidade de clique nos elementos interativos */
+  .video-item,
+  .carousel-item,
+  .carousel-btn,
+  .play-overlay {
+    pointer-events: auto !important;
+    cursor: pointer;
+  }
+  
+  .video-item {
+    -webkit-tap-highlight-color: rgba(44, 90, 160, 0.3);
   }
 }
 

@@ -13,6 +13,37 @@ function initializeApp() {
     initForms();
     initSmoothScrolling();
     initAccessibility();
+    
+    // Garantir que os carrosséis funcionem após carregamento
+    setTimeout(() => {
+        ensureCarouselsWork();
+    }, 100);
+}
+
+// ===== GARANTIR FUNCIONAMENTO DOS CARROSSÉIS =====
+function ensureCarouselsWork() {
+    // Re-inicializar eventos de touch se necessário
+    const carouselTracks = document.querySelectorAll('.carousel-track, .videos-carousel .carousel-track');
+    
+    carouselTracks.forEach(track => {
+        // Garantir que o elemento é interativo
+        track.style.pointerEvents = 'auto';
+        track.style.touchAction = 'pan-x pan-y';
+        
+        // Garantir que elementos filhos são clicáveis
+        const interactiveElements = track.querySelectorAll('.video-item, .carousel-item, .play-overlay');
+        interactiveElements.forEach(el => {
+            el.style.pointerEvents = 'auto';
+            el.style.cursor = 'pointer';
+        });
+    });
+    
+    // Garantir que botões de navegação funcionem
+    const carouselButtons = document.querySelectorAll('.carousel-btn');
+    carouselButtons.forEach(btn => {
+        btn.style.pointerEvents = 'auto';
+        btn.style.touchAction = 'manipulation';
+    });
 }
 
 // ===== NAVEGAÇÃO RESPONSIVA =====
@@ -160,13 +191,20 @@ function initScrollEffects() {
 
 // ===== ANIMAÇÕES =====
 function initAnimations() {
-    // Inicializar AOS se disponível
+    // Inicializar AOS se disponível com configurações otimizadas
     if (typeof AOS !== 'undefined') {
+        const isMobile = window.innerWidth <= 768;
         AOS.init({
-            duration: 800,
-            offset: 100,
+            duration: isMobile ? 300 : 800,
+            offset: isMobile ? 30 : 100,
             once: true,
-            easing: 'ease-out-cubic'
+            easing: 'ease-out-cubic',
+            disable: function() {
+                // Desabilita em dispositivos muito lentos ou pequenos
+                return window.innerWidth <= 480 || window.devicePixelRatio < 1.5;
+            },
+            throttleDelay: isMobile ? 200 : 99,
+            debounceDelay: isMobile ? 100 : 50
         });
     }
     
