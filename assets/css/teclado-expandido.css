@@ -1,0 +1,125 @@
+/* Teclado Expandido Specific Styles */
+.teclado-expandido {
+    --primary-color: #111827;
+    --primary-dark: #0b1324;
+    --secondary-color: #ffc107;
+    --secondary-dark: #e0a800;
+    --success: #28a745;
+    --gradient-highlight: linear-gradient(135deg, #ffc107 0%, #ffdf70 100%);
+}
+
+.teclado-expandido .highlight-badge {
+    background: var(--gradient-highlight);
+    color: #111827;
+    box-shadow: 0 8px 20px rgba(255, 193, 7, 0.35);
+}
+
+.teclado-expandido .product-subtitle {
+    max-width: 32rem;
+}
+
+.teclado-expandido .feature-card {
+    border-top: 4px solid rgba(255, 193, 7, 0.4);
+}
+
+.teclado-expandido .feature-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.teclado-expandido .feature-card p {
+    color: var(--gray-600);
+}
+
+.teclado-expandido .specs-table tbody tr:nth-child(even) {
+    background: rgba(255, 193, 7, 0.05);
+}
+
+.teclado-expandido .specs-table td:first-child {
+    font-weight: 600;
+    color: #111827;
+    width: 28%;
+}
+
+.teclado-expandido .benefit-item {
+    border-left: 4px solid rgba(255, 193, 7, 0.75);
+}
+
+.teclado-expandido .accessory-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.teclado-expandido .accessory-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.75), rgba(255, 193, 7, 0.35));
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+}
+
+.teclado-expandido .accessory-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+.teclado-expandido .btn-purchase,
+.teclado-expandido .btn-quote {
+    position: relative;
+    overflow: hidden;
+}
+
+.teclado-expandido .btn-purchase::after,
+.teclado-expandido .btn-quote::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.teclado-expandido .btn-purchase:active::after,
+.teclado-expandido .btn-quote:active::after {
+    width: 260px;
+    height: 260px;
+}
+
+.teclado-expandido .product-image img {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .teclado-expandido .product-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .teclado-expandido .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .teclado-expandido .benefits-list {
+        grid-template-columns: 1fr;
+    }
+
+    .teclado-expandido .accessory-card {
+        text-align: center;
+    }
+}

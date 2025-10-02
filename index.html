@@ -29,7 +29,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header (substituído dinamicamente por assets/js/nav.js) -->
     <header class="header">
     <nav class="navbar" aria-label="Main Navigation">
             <div class="container">
@@ -46,9 +46,14 @@
                 
                 <!-- Menu Único (desktop + mobile) -->
                 <ul class="nav-menu" id="main-nav">
-                    <li><a href="#home" class="nav-link">Início</a></li>
+                    <li>
+                            <a href="#home" class="nav-link active">
+                                <i class="fas fa-home" aria-hidden="true"></i>
+                                <span>Página Inicial</span>
+                        </a>
+                    </li>
                     <li><a href="produtos/instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
-                    <li><a href="produtos/sensory-musical.html" class="nav-link">Sensory Musical</a></li>
+                    <li><a href="produtos/sensory-musical.html" class="nav-link">Vibro Senrory Music</a></li>
                     <li><a href="produtos/tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
                     <li><a href="#sobre" class="nav-link">Sobre</a></li>
                     <li><a href="#contato" class="nav-link">Contato</a></li>
@@ -61,7 +66,7 @@
         <div class="nav-drawer" id="navDrawer" aria-hidden="true" aria-label="Menu Mobile">
             <nav class="nav-drawer-panel" aria-label="Links principais">
                 <button class="nav-drawer-close" type="button" aria-label="Fechar menu" data-nav-close>&times;</button>
-                <ul class="nav-drawer-list" id="navDrawerList" role="menubar"></ul>
+                <ul class="nav-drawer-list" id="navDrawerList"></ul>
             </nav>
         </div>
 
@@ -128,21 +133,21 @@
                     </div>
                 </div>
 
-                <!-- Sensory Musical -->
+                <!-- Vibro Senrory Music -->
                 <div class="produto-card" data-aos="fade-up" data-aos-delay="100">
                     <div class="card-image">
-                        <img src="assets/images/banners/sensory-musical.png" 
-                             alt="Sensory Musical - Experiências sensoriais" 
+                    <img src="assets/images/banners/sensory-musical.png" 
+                        alt="Vibro Senrory Music - Experiências sensoriais" 
                              loading="lazy"
                              decoding="async">
                         <div class="card-overlay">
-                            <a href="produtos/sensory-musical.html" class="card-link" title="Ver Produtos Sensory Musical" aria-label="Ver detalhes do Sensory Musical">
+                            <a href="produtos/sensory-musical.html" class="card-link" title="Ver Produtos Vibro Senrory Music" aria-label="Ver detalhes do Vibro Senrory Music">
                                 <i class="fas fa-wave-square"></i>
                             </a>
                         </div>
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">Sensory Musical</h3>
+                        <h3 class="card-title">Vibro Senrory Music</h3>
                         <p class="card-description">
                             Ferramentas avançadas para experiências sensoriais 
                             imersivas e tecnologias de realidade aumentada musical.
@@ -441,7 +446,7 @@
                     <div class="social-links">
                         <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@terraeletronica5492" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronicaoficial" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                         <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -451,7 +456,7 @@
                     <ul>
                         <li><a href="produtos/instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
                         <li><a href="produtos/tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
-                        <li><a href="produtos/sensory-musical.html">Sensory Musical</a></li>
+                        <li><a href="produtos/sensory-musical.html">Vibro Senrory Music</a></li>
                     </ul>
                 </div>
                 
@@ -477,6 +482,9 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
                 <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
+                    <p class="footer-legal-notice" role="note">
+                        Ao continuar navegando, você concorda com o uso responsável de cookies essenciais e com o tratamento dos dados fornecidos em conformidade com o Marco Civil da Internet (Lei nº 12.965/2014) e com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018).
+                    </p>
             </div>
         </div>
     </footer>
@@ -569,6 +577,7 @@
     <!-- Scripts - Otimizado para performance -->
     <!-- Scripts críticos carregados primeiro -->
     <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/nav.js" defer></script>
     <script src="assets/js/nav-responsive.js" defer></script>
     <!-- Index.js é crítico para os carrosséis funcionarem -->
     <script src="assets/js/index.js" defer></script>
@@ -620,5 +629,8 @@
         });
         setTimeout(loadNonCriticalScripts, 2000);
     </script>
+
+    <!-- Cache Manager - Sistema de Cache Inteligente -->
+    <script src="assets/js/cache-manager.js" defer></script>
 </body>
 </html>

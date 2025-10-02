@@ -297,9 +297,14 @@
                 </div>
                 
                 <ul class="nav-menu" id="main-nav">
-                    <li><a href="../index.html#home" class="nav-link">Início</a></li>
+                    <li>
+                        <a href="../index.html#home" class="nav-link">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            <span>Página Inicial</span>
+                        </a>
+                    </li>
                     <li><a href="instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
-                    <li><a href="sensory-musical.html" class="nav-link">Sensory Musical</a></li>
+                    <li><a href="sensory-musical.html" class="nav-link">Vibro Senrory Music</a></li>
                     <li><a href="tecnologia-assistiva.html" class="nav-link active">Tecnologia Assistiva</a></li>
                     <li><a href="../index.html#sobre" class="nav-link">Sobre</a></li>
                     <li><a href="../index.html#contato" class="nav-link">Contato</a></li>
@@ -797,7 +802,7 @@
                     <div class="social-links">
                         <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@terraeletronica5492" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronicaoficial" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                         <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -807,7 +812,7 @@
                     <ul>
                         <li><a href="instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
                         <li><a href="tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
-                        <li><a href="sensory-musical.html">Sensory Musical</a></li>
+                        <li><a href="sensory-musical.html">Vibro Senrory Music</a></li>
                     </ul>
                 </div>
                 
@@ -831,6 +836,9 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
                 <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
+                <p class="footer-legal-notice" role="note">
+                    Ao continuar navegando, você concorda com o uso responsável de cookies essenciais e com o tratamento dos dados fornecidos em conformidade com o Marco Civil da Internet (Lei nº 12.965/2014) e com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018).
+                </p>
             </div>
         </div>
     </footer>
@@ -923,7 +931,8 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/nav-responsive.js"></script>
+    <script src="../assets/js/nav.js" defer></script>
+    <script src="../assets/js/nav-responsive.js" defer></script>
     
     <!-- Sistema de Modal de Vídeo e FAQ -->
     <script>
@@ -1553,8 +1562,8 @@
         justify-content: center;
         gap: 0.5rem;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
         box-shadow: 
             0 8px 32px rgba(0, 0, 0, 0.3),
             inset 0 1px 0 rgba(255, 255, 255, 0.2);

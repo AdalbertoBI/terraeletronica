@@ -3,7 +3,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Hero background específico para Sensory Musical */
+/* Hero background específico para Vibro Senrory Music */
 .hero-background-sensory {
   position: absolute !important;
   top: 0 !important;
@@ -35,9 +35,19 @@ html, body {
 }
 
 /* Z-index hierarchy para elementos sobre o vídeo */
-.header {
-  position: relative;
-  z-index: 100;
+html.sensory-musical .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 10020;
+}
+
+@media (min-width: 769px) {
+  html.sensory-musical body {
+    padding-top: clamp(var(--header-height-desktop), 6vw, 120px);
+  }
 }
 
 /* Breadcrumb Wrapper */

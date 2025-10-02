@@ -50,9 +50,14 @@
                 </div>
                 
                 <ul class="nav-menu" id="main-nav">
-                    <li><a href="../../index.html#home" class="nav-link">Início</a></li>
+                    <li>
+                        <a href="../../index.html#home" class="nav-link">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            <span>Página Inicial</span>
+                        </a>
+                    </li>
                     <li><a href="../instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
-                    <li><a href="../sensory-musical.html" class="nav-link">Sensory Musical</a></li>
+                    <li><a href="../sensory-musical.html" class="nav-link">Vibro Senrory Music</a></li>
                     <li><a href="../tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
                     <li><a href="../../index.html#sobre" class="nav-link">Sobre</a></li>
                     <li><a href="../../index.html#contato" class="nav-link">Contato</a></li>
@@ -127,6 +132,12 @@
                             como acionador de notas musicais para vários instrumentos. Na parte superior estão posicionados um botão 
                             giratório com duas funções e a chave liga/desliga.
                         </p>
+
+                        <div class="compatibility-info" role="note">
+                            <p>
+                                Funciona em <strong>Windows</strong>, <strong>macOS</strong>, <strong>Android</strong> e <strong>iOS</strong> por meio de aplicativos compatíveis com o protocolo <strong>MIDI</strong>.
+                            </p>
+                        </div>
                         
                         <div class="benefits-grid">
                             <div class="benefit-item">
@@ -237,6 +248,40 @@
                             <li><strong>Conectividade:</strong> Padrão MIDI universal</li>
                         </ul>
                     </div>
+
+                    <div class="spec-category manual-spec" aria-labelledby="manual-giro-title">
+                        <h3 id="manual-giro-title"><i class="fas fa-file-pdf" aria-hidden="true"></i> Manual Completo do Giro Som</h3>
+                        <p>Domine todos os recursos do controlador giroscópico com o guia oficial em português e a versão internacional.</p>
+                        <div class="spec-actions">
+                            <a href="../../Manuais/Manual Giro Som.pdf" target="_blank" rel="noopener" class="btn btn-primary">
+                                <i class="fas fa-book-open" aria-hidden="true"></i>
+                                Ver Manual
+                            </a>
+                            <a href="../../Manuais/Manual Giro Som.pdf" download class="btn btn-secondary">
+                                <i class="fas fa-download" aria-hidden="true"></i>
+                                Baixar PDF
+                            </a>
+                        </div>
+                        <p class="spec-note">Prefere em inglês? <a href="../../Manuais/Manual Giro Som_eng.pdf" target="_blank" rel="noopener">Confira a versão internacional</a>.</p>
+                    </div>
+
+                    <div class="spec-category video-spec">
+                        <h3><i class="fas fa-play-circle" aria-hidden="true"></i> Vídeo de Demonstração</h3>
+                        <button type="button" class="video-card video-thumb" data-video-id="RPuFD1rQtqk" aria-label="Assistir demonstração do Giro Som 09">
+                            <picture>
+                                <source type="image/webp" srcset="../../assets/images/produtos/Giro_Som-SNjN0kc50-transformed.webp">
+                                <img src="../../assets/images/produtos/Giro_Som-SNjN0kc50-transformed.png" alt="Miniatura do vídeo de demonstração do Giro Som 09" loading="lazy">
+                            </picture>
+                            <span class="play-overlay" aria-hidden="true">
+                                <i class="fas fa-play"></i>
+                            </span>
+                        </button>
+                        <p>Assista ao Giro Som em ação e veja como o giroscópio adiciona expressividade às performances musicais inclusivas.</p>
+                        <button type="button" class="btn btn-secondary video-card video-cta" data-video-id="RPuFD1rQtqk">
+                            <i class="fas fa-video" aria-hidden="true"></i>
+                            Assistir agora
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -325,6 +370,19 @@
         </section>
     </main>
 
+    <!-- Modal de Vídeo -->
+    <div class="video-modal" id="videoModal" aria-hidden="true">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="Fechar vídeo">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+            <div class="modal-video-container">
+                <iframe id="modalVideoPlayer" src="" title="Reprodução de vídeo do Giro Som 09" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -341,7 +399,7 @@
                     <div class="social-links">
                         <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@terraeletronica5492" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronicaoficial" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                         <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -351,7 +409,7 @@
                     <ul>
                         <li><a href="../instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
                         <li><a href="../tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
-                        <li><a href="../sensory-musical.html">Sensory Musical</a></li>
+                        <li><a href="../sensory-musical.html">Vibro Senrory Music</a></li>
                     </ul>
                 </div>
                 
@@ -377,6 +435,9 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
                 <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
+                <p class="footer-legal-notice" role="note">
+                    Ao continuar navegando, você concorda com o uso responsável de cookies essenciais e com o tratamento dos dados fornecidos em conformidade com o Marco Civil da Internet (Lei nº 12.965/2014) e com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018).
+                </p>
             </div>
         </div>
     </footer>
@@ -476,7 +537,9 @@
     <!-- Scripts -->
     <script src="../../assets/js/sound-control.js"></script>
     <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/video-modal.js"></script>
     <script src="../../assets/js/giro-som.js"></script>
-    <script src="../../assets/js/nav-responsive.js"></script>
+    <script src="../../assets/js/nav.js" defer></script>
+    <script src="../../assets/js/nav-responsive.js" defer></script>
 </body>
 </html>

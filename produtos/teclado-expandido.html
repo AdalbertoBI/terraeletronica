@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="teclado-expandido">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Teclado Expandido Preto e Amarelo com teclas gigantes, alto contraste e padrão ABNT2. Ideal para baixa visão, idosos e acessibilidade digital.">
+    <meta name="keywords" content="teclado expandido, teclado acessível, teclado alto contraste, teclado amarelo, acessibilidade, baixa visão, Terra Eletrônica">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Teclado Expandido - Terra Eletrônica">
+    <title>Teclado Expandido Preto e Amarelo | Terra Eletrônica</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../assets/images/logos/logo-P.png" sizes="32x32">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/navigation-responsive.css">
+    <link rel="stylesheet" href="../assets/css/tecnologia-assistiva.css">
+    <link rel="stylesheet" href="../assets/css/teclado-expandido.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        .product-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('../assets/images/produtos/tecnologia assistiva.png') center/cover;
+            opacity: 0.15;
+        }
+
+        .product-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-info h1 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .product-subtitle {
+            font-size: clamp(1.125rem, 2.4vw, 1.35rem);
+            margin-bottom: 1.75rem;
+            opacity: 0.9;
+        }
+
+        .product-image {
+            text-align: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .highlight-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--gradient-highlight);
+            color: #111827;
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 1rem;
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.35);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-purchase,
+        .btn-quote {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+
+        .btn-purchase {
+            background: var(--secondary-color);
+            color: #111827;
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.3);
+        }
+
+        .btn-purchase:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 193, 7, 0.35);
+        }
+
+        .btn-quote {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-quote:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(40, 167, 69, 0.35);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.75rem;
+            margin-top: 2.5rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            text-align: left;
+            border-top: 4px solid rgba(255, 193, 7, 0.35);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .specs-table {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-top: 2rem;
+        }
+
+        .specs-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .specs-table th,
+        .specs-table td {
+            padding: 1.1rem 1.5rem;
+            border-bottom: 1px solid rgba(17, 24, 39, 0.08);
+            text-align: left;
+        }
+
+        .specs-table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .specs-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .benefits-section {
+            background: var(--gray-100);
+            padding: 4rem 0;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            gap: 1rem;
+            border-left: 4px solid rgba(255, 193, 7, 0.75);
+        }
+
+        .benefit-item i {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+
+        .accessory-card {
+            display: grid;
+            grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+            align-items: stretch;
+            gap: 3rem;
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(17, 24, 39, 0.7));
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .accessory-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.25), transparent 70%);
+            pointer-events: none;
+        }
+
+        .accessory-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .accessory-visual {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .accessory-icon {
+            font-size: 2.4rem;
+            color: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.12);
+            width: 3.75rem;
+            height: 3.75rem;
+            display: grid;
+            place-items: center;
+            border-radius: var(--radius-md);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .accessory-photo {
+            margin: 0;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .accessory-photo picture {
+            display: block;
+        }
+
+        .accessory-photo img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .accessory-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 0.9rem;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #111827;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.95), rgba(255, 223, 128, 0.95));
+            box-shadow: 0 10px 25px rgba(255, 193, 7, 0.35);
+        }
+
+        .accessory-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .accessory-copy h2 {
+            font-size: clamp(1.85rem, 2.4vw, 2.2rem);
+            line-height: 1.2;
+        }
+
+        .accessory-lead {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .accessory-benefits {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 0.9rem;
+        }
+
+        .accessory-benefits li {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: start;
+            gap: 0.75rem;
+            font-size: 0.98rem;
+            color: rgba(255, 255, 255, 0.88);
+        }
+
+        .accessory-benefits i {
+            color: var(--secondary-color);
+            margin-top: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .cta-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .cta-stack .btn-purchase {
+            width: fit-content;
+            padding-inline: 2.4rem;
+        }
+
+        .cta-note {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .cta-section {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(255, 193, 7, 0.3), transparent 50%);
+            opacity: 0.8;
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section .cta-buttons {
+            justify-content: center;
+        }
+
+        @media (max-width: 992px) {
+            .product-content {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .accessory-card {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2.5rem;
+                text-align: left;
+            }
+
+            .accessory-visual {
+                align-items: center;
+            }
+
+            .accessory-icon {
+                margin: 0;
+            }
+
+            .cta-stack .btn-purchase {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo</a>
+
+    <header class="header">
+        <nav class="navbar" aria-label="Main Navigation">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="../index.html" aria-label="Voltar ao início">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
+                            <source type="image/webp" srcset="../assets/images/logos/terra-compact.webp" media="(max-width:899px)">
+                            <source srcset="../assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
+                            <source srcset="../assets/images/logos/terra-compact.png" media="(max-width:899px)">
+                            <img src="../assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                    </a>
+                    <h1 class="sr-only">Terra Eletrônica</h1>
+                </div>
+                
+                <ul class="nav-menu" id="main-nav">
+                    <li>
+                        <a href="../index.html#home" class="nav-link">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            <span>Página Inicial</span>
+                        </a>
+                    </li>
+                    <li><a href="instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
+                    <li><a href="sensory-musical.html" class="nav-link">Vibro Sensory Music</a></li>
+                    <li><a href="tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
+                    <li><a href="../index.html#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="../index.html#contato" class="nav-link">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="nav-drawer" id="navDrawer" aria-hidden="true" aria-label="Menu Mobile">
+        <nav class="nav-drawer-panel" aria-label="Links principais">
+            <button class="nav-drawer-close" type="button" aria-label="Fechar menu" data-nav-close>&times;</button>
+            <ul class="nav-drawer-list" id="navDrawerList"></ul>
+        </nav>
+    </div>
+
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <nav class="breadcrumb" aria-label="Você está em">
+                <a href="../index.html" class="breadcrumb-link">
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                    <span>Início</span>
+                </a>
+                <i class="fas fa-chevron-right breadcrumb-separator" aria-hidden="true"></i>
+                <a href="tecnologia-assistiva.html" class="breadcrumb-link">Tecnologia Assistiva</a>
+                <i class="fas fa-chevron-right breadcrumb-separator" aria-hidden="true"></i>
+                <span class="breadcrumb-current">Teclado Expandido</span>
+            </nav>
+        </div>
+    </div>
+
+    <main id="conteudo-principal" tabindex="-1">
+        <section class="product-hero">
+            <div class="container">
+                <div class="product-content">
+                    <div class="product-info">
+                        <div class="highlight-badge"><i class="fas fa-eye" aria-hidden="true"></i> Alto Contraste Certificado</div>
+                        <h1>Teclado Expandido Preto e Amarelo</h1>
+                        <p class="product-subtitle">Teclas gigantes, padrão ABNT2 e alto contraste para quem precisa enxergar e sentir cada comando com segurança.</p>
+                        <p>O Teclado Expandido Terra Eletrônica foi desenvolvido com terapeutas e especialistas em acessibilidade para entregar autonomia a pessoas com baixa visão, idosos e usuários que precisam de teclas maiores. O layout brasileiro completo, as cores preto e amarelo e o toque suave garantem digitação confortável por muitas horas.</p>
+                        <div class="cta-buttons">
+                            <a href="https://www.mercadolivre.com.br/teclado-ampliado-preto-e-amarelo/up/MLBU2987746720?has_official_store=false&highlight=false&pdp_filters=seller_id%3A144300924&headerTopBrand=false#polycard_client=search-nordic&search_layout=grid&position=6&type=product&tracking_id=688eb312-0013-487d-b60e-22a6ce7fce9b&wid=MLB5270985840&sid=search" target="_blank" rel="noopener" class="btn-purchase">
+                                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                                Comprar no Mercado Livre
+                            </a>
+                            <a href="../index.html#contato" class="btn-quote">
+                                <i class="fas fa-headset" aria-hidden="true"></i>
+                                Solicitar Orçamento
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-image">
+                        <picture>
+                            <img src="../assets/images/produtos/teclado_expandido.webp" alt="Teclado expandido preto e amarelo com teclas grandes" loading="lazy">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-4">Características Principais</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-eye" aria-hidden="true"></i></div>
+                        <h3>Alto Contraste</h3>
+                        <p>Combinação preto e amarelo com fonte ampliada que garante leitura rápida em qualquer ambiente.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-keyboard" aria-hidden="true"></i></div>
+                        <h3>ABNT2 Completo</h3>
+                        <p>Inclui Ç, acentos (~,^), AltGr e atalhos essenciais. Pronto para salas de aula e escritórios inclusivos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-expand" aria-hidden="true"></i></div>
+                        <h3>Teclas Gigantes</h3>
+                        <p>Superfície ampla e espaçamento generoso reduzem erros e aumentam a precisão na digitação.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-plug" aria-hidden="true"></i></div>
+                        <h3>USB Plug &amp; Play</h3>
+                        <p>Conecte e use em segundos. Funciona em Windows, macOS e Linux sem instalação de drivers.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></div>
+                        <h3>Construção Robusta</h3>
+                        <p>Mais de 10 milhões de acionamentos por tecla, corpo resistente e drenos contra respingos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-th-large" aria-hidden="true"></i></div>
+                        <h3>Compatível com Colmeia</h3>
+                        <p>Use com a colmeia acrílica Terra (opcional) para orientar os dedos e evitar toques acidentais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 bg-light" id="especificacoes">
+            <div class="container">
+                <h2 class="text-center mb-4">Especificações Técnicas</h2>
+                <div class="specs-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Característica</th>
+                                <th>Detalhes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Padrão de Teclas</td>
+                                <td>Layout brasileiro ABNT2 com 85 teclas ampliadas, incluindo linha F1–F12 e teclas multimídia.</td>
+                            </tr>
+                            <tr>
+                                <td>Impressão</td>
+                                <td>Letras ultra grandes em alta resolução, resistentes a arranhões e à limpeza frequente.</td>
+                            </tr>
+                            <tr>
+                                <td>Dimensões</td>
+                                <td>436 × 200 × 30&nbsp;mm, com pés ajustáveis para ergonomia em mesas de diferentes alturas.</td>
+                            </tr>
+                            <tr>
+                                <td>Peso</td>
+                                <td>650 g — estável sobre a mesa e fácil de transportar entre estações.</td>
+                            </tr>
+                            <tr>
+                                <td>Conectividade</td>
+                                <td>Cabo USB de 1,5 metro. Plug &amp; Play em Windows, macOS e distribuições Linux.</td>
+                            </tr>
+                            <tr>
+                                <td>Durabilidade</td>
+                                <td>Switches testados para mais de 10 milhões de toques e estrutura reforçada para uso intenso.</td>
+                            </tr>
+                            <tr>
+                                <td>Segurança</td>
+                                <td>Canaletas internas direcionam líquidos para fora, facilitando a limpeza e protegendo o circuito.</td>
+                            </tr>
+                            <tr>
+                                <td>Garantia</td>
+                                <td>12 meses com assistência técnica nacional Terra Eletrônica.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="benefits-section">
+            <div class="container">
+                <h2 class="text-center mb-4">Por que escolher o Teclado Expandido Terra?</h2>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <span>Facilita o acesso digital de pessoas com baixa visão, idosos e usuários com mobilidade reduzida.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <span>Ideal para escolas, clínicas de reabilitação e espaços corporativos inclusivos.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <span>Teclas silenciosas e leves reduzem a fadiga mesmo em longas sessões de digitação.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <span>Compatível com a colmeia acrílica Terra para orientação tátil adicional.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <span>Cores contrastantes destacam números, símbolos e atalhos importantes.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <span>Projeto desenvolvido com terapeutas ocupacionais para atender necessidades reais.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <span>Suporte direto da Terra Eletrônica em todo o Brasil.</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <span>Acompanha manual em português e pronto para integrar kits de tecnologia assistiva.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="accessory-card">
+                    <div class="accessory-visual">
+                        <span class="accessory-badge">
+                            <i class="fas fa-shield-check" aria-hidden="true"></i>
+                            Acessório oficial Terra
+                        </span>
+                        <div class="accessory-icon">
+                            <i class="fas fa-th-large" aria-hidden="true"></i>
+                        </div>
+                        <figure class="accessory-photo">
+                            <picture>
+                                <source srcset="../assets/images/produtos/colmeia_teclado_expandido.webp" type="image/webp">
+                                <img src="../assets/images/produtos/colmeia_teclado_expandido.webp" alt="Colmeia acrílica encaixada sobre o teclado expandido Terra Eletrônica" loading="lazy">
+                            </picture>
+                            <figcaption class="sr-only">Acessório de colmeia transparente encaixado no teclado expandido da Terra Eletrônica.</figcaption>
+                        </figure>
+                    </div>
+                    <div class="accessory-copy">
+                        <h2>Colmeia Acrílica Terra — controle tátil imediato</h2>
+                        <p class="accessory-lead">Transforme o Teclado Expandido em uma estação ultra precisa. A colmeia oficial Terra guia o toque, elimina erros e entrega autonomia instantânea para quem precisa de apoio tátil.</p>
+                        <ul class="accessory-benefits">
+                            <li>
+                                <i class="fas fa-check" aria-hidden="true"></i>
+                                <span>Furos de 18&nbsp;mm alinhados tecla a tecla para evitar acionamentos involuntários.</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check" aria-hidden="true"></i>
+                                <span>Acrílico cristal que preserva o alto contraste amarelo/preto e higieniza em segundos.</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check" aria-hidden="true"></i>
+                                <span>Encaixe rápido e seguro — perfeito para laboratório de informática, terapias e uso doméstico supervisionado.</span>
+                            </li>
+                        </ul>
+                        <div class="cta-stack">
+                            <a href="https://www.mercadolivre.com.br/teclado-baixa-visao--teclado-ampliado-com-colmeia--com--c/up/MLBU1478042177?has_official_store=false&highlight=false&pdp_filters=seller_id%3A144300924&headerTopBrand=false#polycard_client=search-nordic&search_layout=grid&position=5&type=product&tracking_id=f1f5bfa7-48b3-488b-80d7-424991b8d9e1&wid=MLB686898003&sid=search" target="_blank" rel="noopener" class="btn-purchase">
+                                <i class="fas fa-shopping-basket" aria-hidden="true"></i>
+                                Comprar teclado + colmeia
+                            </a>
+                            <span class="cta-note">Envio rápido com garantia Terra Eletrônica. Parcele em até 12x no Mercado Livre.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2>Pronto para levar inclusão à sua sala?</h2>
+                <p>Garanta autonomia e conforto para quem precisa digitar com mais espaço, contraste e precisão.</p>
+                <div class="cta-buttons">
+                    <a href="https://www.mercadolivre.com.br/teclado-ampliado-preto-e-amarelo/up/MLBU2987746720?has_official_store=false&highlight=false&pdp_filters=seller_id%3A144300924&headerTopBrand=false#polycard_client=search-nordic&search_layout=grid&position=6&type=product&tracking_id=688eb312-0013-487d-b60e-22a6ce7fce9b&wid=MLB5270985840&sid=search" target="_blank" rel="noopener" class="btn-purchase">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                        Comprar Agora
+                    </a>
+                    <a href="../index.html#contato" class="btn-quote">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        Fale com a Terra Eletrônica
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <picture>
+                            <source type="image/webp" srcset="../assets/images/logos/terra-compact.webp">
+                            <img src="../assets/images/logos/terra-compact.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                        <p>Tecnologia que liberta seu potencial</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronicaoficial" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Produtos</h4>
+                    <ul>
+                        <li><a href="instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
+                        <li><a href="tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
+                        <li><a href="sensory-musical.html">Vibro Sensory Music</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="../index.html#sobre">Sobre Nós</a></li>
+                        <li><a href="../index.html#contato">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="../manuais.html?tipo=manual">Manuais</a></li>
+                        <li><a href="../manuais.html?tipo=download">Downloads</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Terra Eletrônica. Todos os direitos reservados.</p>
+                <div class="footer-legal">
+                    <a href="../index.html#politica">Política de Privacidade</a>
+                    <span>|</span>
+                    <a href="../index.html#termos">Termos de Uso</a>
+                </div>
+                <p class="footer-legal-notice" role="note">
+                    Ao continuar navegando, você concorda com o uso responsável de cookies essenciais e com o tratamento dos dados fornecidos em conformidade com o Marco Civil da Internet (Lei nº 12.965/2014) e com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018).
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js" defer></script>
+    <script src="../assets/js/nav.js" defer></script>
+    <script src="../assets/js/nav-responsive.js" defer></script>
+</body>
+</html>

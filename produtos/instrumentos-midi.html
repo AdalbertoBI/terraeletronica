@@ -48,9 +48,14 @@
                 </div>
                 
                 <ul class="nav-menu" id="main-nav">
-                    <li><a href="../index.html#home" class="nav-link">Início</a></li>
+                    <li>
+                        <a href="../index.html#home" class="nav-link">
+                            <i class="fas fal fa-home" aria-hidden="true"></i>
+                            <span>Página Inicial</span>
+                        </a>
+                    </li>
                     <li><a href="instrumentos-midi.html" class="nav-link active">Instrumentos MIDI</a></li>
-                    <li><a href="sensory-musical.html" class="nav-link">Sensory Musical</a></li>
+                    <li><a href="sensory-musical.html" class="nav-link">Vibro Senrory Music</a></li>
                     <li><a href="tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
                     <li><a href="../index.html#sobre" class="nav-link">Sobre</a></li>
                     <li><a href="../index.html#contato" class="nav-link">Contato</a></li>
@@ -326,7 +331,7 @@
                             </div>
 
                             <!-- Vídeo 4 -->
-                            <div class="video-card" data-video-id="Dna-LSJXv94" tabindex="0" role="button" aria-label="Assistir demonstração do GIRO_SOUND_09 no YouTube">
+                            <div class="video-card" data-video-id="RPuFD1rQtqk" tabindex="0" role="button" aria-label="Assistir demonstração do GIRO_SOUND_09 no YouTube">
                                 <div class="video-thumbnail">
                                     <img src="../assets/images/produtos/Giro_Som-SNjN0kc50-transformed.webp" alt="Demonstração GIRO_SOUND_09" loading="lazy">
                                     <div class="play-overlay">
@@ -436,7 +441,7 @@
                     <div class="social-links">
                         <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                         <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@terraeletronica5492" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronicaoficial" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                         <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
@@ -446,7 +451,7 @@
                     <ul>
                         <li><a href="instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
                         <li><a href="tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
-                        <li><a href="sensory-musical.html">Sensory Musical</a></li>
+                        <li><a href="sensory-musical.html">Vibro Senrory Music</a></li>
                     </ul>
                 </div>
                 
@@ -472,6 +477,9 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
                 <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
+                <p class="footer-legal-notice" role="note">
+                    Ao continuar navegando, você concorda com o uso responsável de cookies essenciais e com o tratamento dos dados fornecidos em conformidade com o Marco Civil da Internet (Lei nº 12.965/2014) e com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018).
+                </p>
             </div>
         </div>
     </footer>
@@ -564,7 +572,8 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/nav-responsive.js"></script>
+    <script src="../assets/js/nav.js" defer></script>
+    <script src="../assets/js/nav-responsive.js" defer></script>
     
     <!-- Sistema de Modal de Vídeo Inline -->
     <script>
@@ -713,7 +722,6 @@
             const firstCard = videoCards[0];
             if (!firstCard) return;
             
-            const cardRect = firstCard.getBoundingClientRect();
             const cardWidth = firstCard.offsetWidth;
             const computedStyle = window.getComputedStyle(track);
             const gap = parseFloat(computedStyle.gap) || 24;
@@ -827,4 +835,3 @@
     <script src="../assets/js/instrumentos-midi.js"></script>
 </body>
 </html>
->>>>>>> 25ecd06a8670e6fbc8bdc17f8261b8e4b18e1c4f

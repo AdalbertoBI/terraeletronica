@@ -460,10 +460,16 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  touch-action: pan-y pinch-zoom;
 }
 
 .carousel-track:active {
   cursor: grabbing;
+}
+
+.carousel-track.dragging {
+  cursor: grabbing;
+  transition: none !important;
 }
 
 /* Cards de Vídeo */
@@ -822,7 +828,7 @@
   
   .carousel-track {
     gap: 1rem;
-    touch-action: pan-x;
+    touch-action: pan-y pinch-zoom;
     cursor: grab;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -832,6 +838,11 @@
   
   .carousel-track:active {
     cursor: grabbing;
+  }
+
+  .carousel-track.dragging {
+    cursor: grabbing;
+    transition: none !important;
   }
   
   .carousel-btn {

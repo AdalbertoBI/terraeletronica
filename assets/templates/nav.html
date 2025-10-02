@@ -1,0 +1,41 @@
+<div data-nav-template>
+  <nav class="navbar" aria-label="Main Navigation">
+    <div class="container">
+      <button class="nav-toggle-btn" type="button" aria-expanded="false" aria-label="Abrir menu de navegação" aria-controls="navDrawer">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-brand">
+        <a href="{{BASE}}index.html" aria-label="Voltar para a página inicial">
+          <picture>
+            <source type="image/webp" srcset="{{BASE}}assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
+            <source type="image/webp" srcset="{{BASE}}assets/images/logos/terra-compact.webp" media="(max-width:899px)">
+            <source srcset="{{BASE}}assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
+            <source srcset="{{BASE}}assets/images/logos/terra-compact.png" media="(max-width:899px)">
+            <img src="{{BASE}}assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+          </picture>
+        </a>
+        <h1 class="sr-only">Terra Eletrônica</h1>
+      </div>
+      <ul class="nav-menu" id="main-nav">
+        <li>
+          <a href="{{BASE}}index.html#home" class="nav-link" data-nav-id="home">
+            <i class="fas fa-home" aria-hidden="true"></i>
+            <span>Página Inicial</span>
+          </a>
+        </li>
+        <li><a href="{{BASE}}produtos/instrumentos-midi.html" class="nav-link" data-nav-id="instrumentos-midi">Instrumentos MIDI</a></li>
+  <li><a href="{{BASE}}produtos/sensory-musical.html" class="nav-link" data-nav-id="sensory-musical">Vibro Senrory Music</a></li>
+        <li><a href="{{BASE}}produtos/tecnologia-assistiva.html" class="nav-link" data-nav-id="tecnologia-assistiva">Tecnologia Assistiva</a></li>
+        <li><a href="{{BASE}}index.html#sobre" class="nav-link" data-nav-id="sobre">Sobre</a></li>
+        <li><a href="{{BASE}}index.html#contato" class="nav-link" data-nav-id="contato">Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true" aria-label="Menu Mobile">
+    <nav class="nav-drawer-panel" aria-label="Links principais">
+      <button class="nav-drawer-close" type="button" aria-label="Fechar menu" data-nav-close>&times;</button>
+      <ul class="nav-drawer-list" id="navDrawerList"></ul>
+    </nav>
+  </div>
+</div>

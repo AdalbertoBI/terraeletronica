@@ -1,6 +1,6 @@
 {
   "name": "terra-eletronica-site",
-  "version": "1.0.0",
+  "version": "1.0.0.0.0",
   "description": "Site oficial da Terra Eletrônica - Produtos Especiais para Pessoas Especiais",
   "main": "index.html",
   "scripts": {
@@ -11,7 +11,15 @@
     "optimize-images": "npx imagemin assets/images/**/*.{jpg,jpeg,png} --out-dir=assets/images/optimized",
     "lint": "npx eslint assets/js/main.js",
     "validate-html": "npx html-validate *.html produtos/*.html",
-    "lighthouse": "npx lighthouse http://localhost:3000 --output-path=./lighthouse-report.html"
+    "lighthouse": "npx lighthouse http://localhost:3000 --output-path=./lighthouse-report.html",
+    "version:patch": "python update-version.py --type patch",
+    "version:minor": "python update-version.py --type minor",
+    "version:major": "python update-version.py --type major",
+    "version:build": "python update-version.py --type build",
+    "version:revision": "python update-version.py --type revision",
+  "version:sync": "python update-version.py --sync-from-sw",
+    "version:show": "python update-version.py --show-current",
+    "cache:clear": "echo 'Abra o console do navegador e execute: cacheManager.clearCache()'"
   },
   "keywords": [
     "tecnologia assistiva",

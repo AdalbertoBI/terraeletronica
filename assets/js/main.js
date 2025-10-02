@@ -13,6 +13,7 @@ function initializeApp() {
     initForms();
     initSmoothScrolling();
     initAccessibility();
+    initLegalNoticePopup();
     
     // Garantir que os carrosséis funcionem após carregamento
     setTimeout(() => {
@@ -665,13 +666,18 @@ window.addEventListener('load', () => {
 // ===== SERVICE WORKER (PWA) =====
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
-            });
+        try {
+            const swUrl = new URL('sw.js', window.location.href);
+            navigator.serviceWorker.register(swUrl.pathname)
+                .then(registration => {
+                    console.log('SW registered: ', registration);
+                })
+                .catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+        } catch (error) {
+            console.log('SW registration failed: ', error);
+        }
     });
 }
 
@@ -1304,92 +1310,121 @@ function initVideoCarousel() {
         }
     });
 
-    // Suporte a touch/swipe melhorado
-    let startX = 0;
-    let startY = 0;
-    let isDragging = false;
-    let startTime = 0;
+    // Arraste unificado com Pointer Events (desktop + mobile)
+    let pointerDown = false;
+    let pointerId = null;
+    let pointerStartX = 0;
+    let pointerStartY = 0;
+    let pointerDeltaX = 0;
+    let isHorizontalDrag = false;
 
-    track.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].clientX;
-        startY = e.touches[0].clientY;
-        startTime = Date.now();
-        isDragging = true;
-    });
-
-    track.addEventListener('touchmove', function(e) {
-        if (!isDragging) return;
-        
-        const currentX = e.touches[0].clientX;
-        const currentY = e.touches[0].clientY;
-        const diffX = Math.abs(currentX - startX);
-        const diffY = Math.abs(currentY - startY);
-        
-        // Se o movimento horizontal é maior que vertical, prevenir scroll vertical
-        if (diffX > diffY) {
-            e.preventDefault();
+    const ensurePointerCapture = () => {
+        if (pointerId === null || typeof track.setPointerCapture !== 'function') {
+            return;
         }
+
+        if (typeof track.hasPointerCapture !== 'function' || !track.hasPointerCapture(pointerId)) {
+            track.setPointerCapture(pointerId);
+        }
+    };
+
+    const releasePointer = () => {
+        if (pointerId !== null && typeof track.releasePointerCapture === 'function') {
+            if (typeof track.hasPointerCapture !== 'function' || track.hasPointerCapture(pointerId)) {
+                track.releasePointerCapture(pointerId);
+            }
+        }
+        track.classList.remove('dragging');
+        track.style.transition = '';
+        pointerDown = false;
+        pointerId = null;
+    pointerDeltaX = 0;
+    isHorizontalDrag = false;
+    };
+
+    const endDrag = () => {
+        const cardWidth = getCardWidth();
+        const dynamicThreshold = Math.min(80, cardWidth * 0.25);
+
+        if (Math.abs(pointerDeltaX) > dynamicThreshold) {
+            if (pointerDeltaX < 0 && currentSlide < totalSlides - 1) {
+                nextSlide();
+            } else if (pointerDeltaX > 0 && currentSlide > 0) {
+                prevSlide();
+            } else {
+                updateCarousel();
+            }
+        } else {
+            updateCarousel();
+        }
+
+        releasePointer();
+    };
+
+    track.addEventListener('pointerdown', function(e) {
+        if (e.pointerType === 'mouse' && e.button !== 0) {
+            return;
+        }
+
+        pointerDown = true;
+        pointerId = e.pointerId;
+        pointerStartX = e.clientX;
+        pointerStartY = e.clientY;
+        pointerDeltaX = 0;
+        isHorizontalDrag = false;
+        track.style.transition = '';
     });
 
-    track.addEventListener('touchend', function(e) {
-        if (!isDragging) return;
-        
-        const endX = e.changedTouches[0].clientX;
-        const endY = e.changedTouches[0].clientY;
-        const diffX = startX - endX;
-        const diffY = Math.abs(startY - endY);
-        const timeDiff = Date.now() - startTime;
-        const velocity = Math.abs(diffX) / timeDiff;
+    track.addEventListener('pointermove', function(e) {
+        if (!pointerDown || e.pointerId !== pointerId) {
+            return;
+        }
 
-        // Só processar como swipe se:
-        // 1. O movimento horizontal foi maior que vertical
-        // 2. Distância mínima ou velocidade suficiente
-        if (Math.abs(diffX) > diffY && (Math.abs(diffX) > 30 || velocity > 0.3)) {
-            if (diffX > 0) {
-                nextSlide();
+        const diffX = e.clientX - pointerStartX;
+        const diffY = Math.abs(e.clientY - pointerStartY);
+
+        if (!isHorizontalDrag) {
+            if (diffY > Math.abs(diffX)) {
+                // Permitir rolagem vertical natural
+                releasePointer();
+                updateCarousel();
+                return;
+            }
+
+            if (Math.abs(diffX) > 6) {
+                isHorizontalDrag = true;
+                ensurePointerCapture();
+                track.classList.add('dragging');
+                track.style.transition = 'none';
             } else {
-                prevSlide();
+                return;
             }
         }
 
-        isDragging = false;
-    });
+        pointerDeltaX = diffX;
+        const cardWidth = getCardWidth();
+        const baseOffset = -currentSlide * cardWidth;
+        const overscroll = Math.min(cardWidth * 0.25, 120);
+        const minTranslate = -(totalSlides - 1) * cardWidth - overscroll;
+        const maxTranslate = overscroll;
+        const proposedOffset = baseOffset + diffX;
+        const clampedOffset = Math.max(Math.min(proposedOffset, maxTranslate), minTranslate);
 
-    // Adicionar suporte para mouse drag em desktop
-    let mouseStartX = 0;
-    let isMouseDragging = false;
-
-    track.addEventListener('mousedown', function(e) {
-        mouseStartX = e.clientX;
-        isMouseDragging = true;
         e.preventDefault();
+        track.style.transform = `translateX(${clampedOffset}px)`;
     });
 
-    track.addEventListener('mousemove', function(e) {
-        if (!isMouseDragging) return;
-        e.preventDefault();
-    });
-
-    track.addEventListener('mouseup', function(e) {
-        if (!isMouseDragging) return;
-        
-        const endX = e.clientX;
-        const diff = mouseStartX - endX;
-
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
+    const pointerUpHandler = function(e) {
+        if (!pointerDown || (e.type !== 'lostpointercapture' && e.pointerId !== pointerId)) {
+            return;
         }
 
-        isMouseDragging = false;
-    });
+        endDrag();
+    };
 
-    track.addEventListener('mouseleave', function() {
-        isMouseDragging = false;
-    });
+    track.addEventListener('pointerup', pointerUpHandler);
+    track.addEventListener('pointercancel', pointerUpHandler);
+    track.addEventListener('lostpointercapture', pointerUpHandler);
 
     // Responsividade
     function handleResize() {
@@ -1404,29 +1439,6 @@ function initVideoCarousel() {
 
     window.addEventListener('resize', debounce(handleResize, 250));
 
-    // Auto-play (opcional)
-    let autoPlayInterval;
-    const autoPlayDelay = 5000; // 5 segundos
-
-    function startAutoPlay() {
-        autoPlayInterval = setInterval(() => {
-            if (currentSlide >= totalSlides - 1) {
-                currentSlide = 0;
-                updateCarousel();
-            } else {
-                nextSlide();
-            }
-        }, autoPlayDelay);
-    }
-
-    function stopAutoPlay() {
-        clearInterval(autoPlayInterval);
-    }
-
-    // Pausar auto-play no hover
-    carousel.addEventListener('mouseenter', stopAutoPlay);
-    carousel.addEventListener('mouseleave', startAutoPlay);
-
     // Adicionar indicadores de plataforma
     addPlatformIndicators();
     
@@ -1440,9 +1452,362 @@ function initVideoCarousel() {
         console.log('Carrossel finalizado - currentSlide:', currentSlide);
     }, 200);
     
-    // Iniciar auto-play se houver mais de um slide
-    if (totalSlides > 1) {
-        startAutoPlay();
+}
+
+// ===== AVISO LEGAL (PRIMEIRO ACESSO) =====
+function initLegalNoticePopup() {
+    if (typeof window === 'undefined' || typeof document === 'undefined') {
+        return;
+    }
+
+    if (window.__terraLegalNoticeInitialized) {
+        return;
+    }
+
+    window.__terraLegalNoticeInitialized = true;
+
+    const STORAGE_KEY = 'terraLegalNoticeAccepted';
+    const CACHE_NAME = 'terra-eletronica-legal-cache';
+    const CACHE_URL = '__terra-eletronica-legal-consent__';
+    let noticeVisible = false;
+    const bodyScrollState = {
+        locked: false,
+        previousOverflow: '',
+        previousPaddingRight: ''
+    };
+
+    checkConsentStatus()
+        .then(shouldShow => {
+            if (!shouldShow || noticeVisible) {
+                return;
+            }
+
+            noticeVisible = true;
+            ensureLegalNoticeStyles();
+
+            if (supportsNativeDialog()) {
+                renderDialogNotice();
+            } else {
+                renderOverlayNotice();
+            }
+        })
+        .catch(error => {
+            reportConsentError('Falha ao verificar o status do consentimento.', error);
+        });
+
+    function supportsNativeDialog() {
+        return typeof HTMLDialogElement === 'function';
+    }
+
+    function ensureLegalNoticeStyles() {
+        if (document.getElementById('legal-notice-styles')) {
+            return;
+        }
+
+        const style = document.createElement('style');
+        style.id = 'legal-notice-styles';
+        style.textContent = `dialog.legal-notice-dialog::backdrop { background: rgba(0, 0, 0, 0.55); }
+dialog.legal-notice-dialog { border: none; border-radius: 16px; padding: 2rem 1.75rem; max-width: min(480px, calc(100vw - 2.5rem)); box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22); font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.55; color: #1f2d3d; background: #ffffff; }
+.legal-notice-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.55); display: flex; align-items: center; justify-content: center; padding: 1.5rem; z-index: 9999; }
+.legal-notice-card { background: #ffffff; border-radius: 16px; padding: 2rem 1.75rem; max-width: min(480px, calc(100vw - 2.5rem)); box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22); font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.55; color: #1f2d3d; }
+.legal-notice-wrapper { display: flex; flex-direction: column; gap: 1rem; }
+.legal-notice-wrapper h2 { margin: 0; font-size: 1.35rem; color: #009688; }
+.legal-notice-text { margin: 0; font-size: 0.95rem; }
+.legal-notice-text--muted { color: #546e7a; font-size: 0.88rem; }
+.legal-notice-actions { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
+.legal-notice-btn { background: #009688; color: #ffffff; border: none; border-radius: 999px; padding: 0.75rem 1.6rem; font-weight: 600; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease; text-align: center; }
+.legal-notice-btn:hover, .legal-notice-btn:focus-visible { background: #00796b; transform: translateY(-1px); outline: none; }
+.legal-notice-link { color: #009688; font-weight: 500; text-decoration: underline; text-underline-offset: 0.25rem; cursor: pointer; }
+.legal-notice-link:focus-visible { outline: 2px solid #80cbc4; outline-offset: 2px; }
+@media (min-width: 520px) { .legal-notice-actions { flex-direction: row; justify-content: flex-end; align-items: center; } .legal-notice-actions .legal-notice-link { margin-right: auto; } }
+`; // eslint-disable-line no-multi-str
+
+        document.head.appendChild(style);
+    }
+
+    function renderDialogNotice() {
+        const dialog = document.createElement('dialog');
+        dialog.className = 'legal-notice-dialog';
+
+        const titleId = generateUniqueId('legalNoticeTitle');
+        const descriptionId = generateUniqueId('legalNoticeDescription');
+
+        dialog.setAttribute('aria-labelledby', titleId);
+        dialog.setAttribute('aria-describedby', descriptionId);
+
+        const { container, primaryAction } = buildNoticeContent(titleId, descriptionId);
+        dialog.appendChild(container);
+
+        dialog.addEventListener('cancel', event => {
+            event.preventDefault();
+        });
+
+        document.body.appendChild(dialog);
+
+        const closeNotice = () => {
+            try {
+                dialog.close();
+            } catch (error) {
+                reportConsentError('Falha ao fechar o diálogo de consentimento.', error);
+            }
+            dialog.remove();
+            unlockBodyScroll();
+            noticeVisible = false;
+        };
+
+        bindAcceptanceAction(primaryAction, closeNotice);
+
+        lockBodyScroll();
+
+        requestAnimationFrame(() => {
+            dialog.showModal();
+            primaryAction.focus({ preventScroll: true });
+        });
+    }
+
+    function renderOverlayNotice() {
+        const overlay = document.createElement('div');
+        overlay.className = 'legal-notice-overlay';
+
+        const card = document.createElement('div');
+        card.className = 'legal-notice-card';
+        overlay.appendChild(card);
+
+        const titleId = generateUniqueId('legalNoticeTitle');
+        const descriptionId = generateUniqueId('legalNoticeDescription');
+
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-labelledby', titleId);
+        overlay.setAttribute('aria-describedby', descriptionId);
+
+        const { container, primaryAction } = buildNoticeContent(titleId, descriptionId);
+        card.appendChild(container);
+
+        overlay.addEventListener('click', event => {
+            if (event.target === overlay) {
+                event.stopPropagation();
+            }
+        });
+
+        document.body.appendChild(overlay);
+
+        const focusableElements = Array.from(card.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])'));
+        overlay.addEventListener('keydown', event => {
+            if (event.key !== 'Tab') {
+                return;
+            }
+
+            if (!focusableElements.length) {
+                event.preventDefault();
+                return;
+            }
+
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (event.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    event.preventDefault();
+                    lastElement.focus();
+                }
+                return;
+            }
+
+            if (document.activeElement === lastElement) {
+                event.preventDefault();
+                firstElement.focus();
+            }
+        });
+
+        const closeNotice = () => {
+            overlay.remove();
+            unlockBodyScroll();
+            noticeVisible = false;
+        };
+
+        bindAcceptanceAction(primaryAction, closeNotice);
+
+        lockBodyScroll();
+
+        requestAnimationFrame(() => {
+            primaryAction.focus({ preventScroll: true });
+        });
+    }
+
+    function buildNoticeContent(titleId, descriptionId) {
+        const container = document.createElement('div');
+        container.className = 'legal-notice-wrapper';
+
+        const heading = document.createElement('h2');
+        heading.id = titleId;
+        heading.textContent = 'Aviso de Privacidade e Cookies';
+        container.appendChild(heading);
+
+        const description = document.createElement('p');
+        description.id = descriptionId;
+        description.className = 'legal-notice-text';
+        description.textContent = 'Utilizamos cookies essenciais e tecnologias semelhantes para garantir o funcionamento seguro e acessível do site. Ao prosseguir, você concorda com essa utilização e com o tratamento dos dados fornecidos conforme o Marco Civil da Internet (Lei nº 12.965/2014) e a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018).';
+        container.appendChild(description);
+
+        const actions = document.createElement('div');
+        actions.className = 'legal-notice-actions';
+
+        const infoLink = document.createElement('a');
+        infoLink.href = '#contato';
+        infoLink.className = 'legal-notice-link';
+        infoLink.textContent = 'Ver canais de atendimento';
+        infoLink.setAttribute('data-legal-more-info', 'true');
+        actions.appendChild(infoLink);
+
+        const confirmButton = document.createElement('button');
+        confirmButton.type = 'button';
+        confirmButton.className = 'legal-notice-btn';
+        confirmButton.dataset.legalAccept = 'true';
+        confirmButton.setAttribute('aria-describedby', descriptionId);
+        confirmButton.textContent = 'Entendi e continuar';
+        actions.appendChild(confirmButton);
+
+        container.appendChild(actions);
+
+        return { container, primaryAction: confirmButton };
+    }
+
+    function generateUniqueId(base) {
+        let id = base;
+        let suffix = 1;
+
+        while (document.getElementById(id)) {
+            id = `${base}-${suffix}`;
+            suffix += 1;
+        }
+
+        return id;
+    }
+
+    function lockBodyScroll() {
+        if (bodyScrollState.locked) {
+            return;
+        }
+
+        bodyScrollState.previousOverflow = document.body.style.overflow || '';
+        bodyScrollState.previousPaddingRight = document.body.style.paddingRight || '';
+
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        if (scrollbarWidth > 0) {
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
+        }
+
+        document.body.style.overflow = 'hidden';
+        bodyScrollState.locked = true;
+    }
+
+    function unlockBodyScroll() {
+        if (!bodyScrollState.locked) {
+            return;
+        }
+
+        document.body.style.overflow = bodyScrollState.previousOverflow;
+        document.body.style.paddingRight = bodyScrollState.previousPaddingRight;
+        bodyScrollState.locked = false;
+    }
+
+    function reportConsentError(context, error) {
+        if (typeof console !== 'undefined' && typeof console.warn === 'function') {
+            console.warn(`[Aviso Legal] ${context}`, error);
+        }
+    }
+
+    function bindAcceptanceAction(primaryAction, closeFn) {
+        if (!primaryAction) {
+            return;
+        }
+
+        primaryAction.addEventListener('click', () => {
+            primaryAction.disabled = true;
+            primaryAction.setAttribute('aria-busy', 'true');
+
+            persistConsent()
+                .catch(error => {
+                    reportConsentError('Erro ao persistir o consentimento.', error);
+                    return null;
+                })
+                .then(closeFn);
+        });
+    }
+
+    async function persistConsent() {
+        const timestamp = new Date().toISOString();
+        let stored = false;
+
+        try {
+            window.localStorage.setItem(STORAGE_KEY, timestamp);
+            stored = true;
+        } catch (error) {
+            reportConsentError('Não foi possível salvar o consentimento no localStorage.', error);
+        }
+
+        if (!stored) {
+            try {
+                window.sessionStorage.setItem(STORAGE_KEY, timestamp);
+            } catch (error) {
+                reportConsentError('Não foi possível salvar o consentimento no sessionStorage.', error);
+            }
+        }
+
+        if ('caches' in window) {
+            try {
+                const cache = await caches.open(CACHE_NAME);
+                const request = new Request(CACHE_URL);
+                const response = new Response(timestamp, {
+                    headers: {
+                        'Content-Type': 'text/plain',
+                        'Cache-Control': 'no-store'
+                    }
+                });
+                await cache.put(request, response);
+            } catch (error) {
+                reportConsentError('Não foi possível armazenar o consentimento no Cache Storage.', error);
+            }
+        }
+    }
+
+    function getStoredConsent() {
+        try {
+            if (window.localStorage.getItem(STORAGE_KEY) || window.sessionStorage.getItem(STORAGE_KEY)) {
+                return true;
+            }
+        } catch (error) {
+            reportConsentError('Falha ao ler o consentimento nos storages disponíveis.', error);
+        }
+        return false;
+    }
+
+    async function hasCacheConsent() {
+        if (!('caches' in window)) {
+            return false;
+        }
+
+        try {
+            const cache = await caches.open(CACHE_NAME);
+            const match = await cache.match(CACHE_URL);
+            return Boolean(match);
+        } catch (error) {
+            reportConsentError('Falha ao consultar o consentimento no Cache Storage.', error);
+            return false;
+        }
+    }
+
+    async function checkConsentStatus() {
+        if (getStoredConsent()) {
+            return false;
+        }
+
+        if (await hasCacheConsent()) {
+            return false;
+        }
+
+        return true;
     }
 }
 

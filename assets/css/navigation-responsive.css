@@ -1,13 +1,83 @@
 /* Navegação unificada: menu desktop + drawer mobile */
 /* Regra base: esconde drawer fora do breakpoint mobile */
 .nav-drawer { display:none; }
+
+.nav-toggle-btn {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .nav-toggle-btn {
+    display: none !important;
+  }
+}
+
+/* Mantém proporção da logo no header em todos os breakpoints */
+.navbar .nav-brand picture {
+  width: auto;
+  max-width: min(320px, 70vw);
+  display: flex;
+  align-items: center;
+}
+
+.navbar .nav-brand picture img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 56px;
+}
+
+.navbar .nav-brand .logo {
+  width: auto;
+  height: auto;
+  max-width: min(320px, 70vw);
+  max-height: 56px;
+  flex-shrink: 0;
+}
+
 /* Mobile primeiro */
 @media (max-width: 768px) {
   .navbar .container { position: relative; }
-  .nav-toggle-btn { position: relative; z-index: 10005; display:flex; align-items:center; justify-content:center; width:48px; height:48px; background:var(--primary-color,#2c5aa0); color:#fff; border:0; border-radius:10px; cursor:pointer; font-size:1.9rem; line-height:1; box-shadow:0 4px 14px -2px rgba(0,0,0,.35); transition:background .25s, transform .25s; }
-  .nav-toggle-btn:active { transform:scale(.9); }
-  .nav-toggle-btn:hover, .nav-toggle-btn:focus-visible { background:var(--primary-dark,#1e3a6f); outline:none; }
-  .nav-toggle-btn span { position:absolute; width:24px; height:2px; background:#fff; border-radius:2px; transition:.35s; }
+  .navbar .nav-brand .logo {
+    height: auto;
+    max-height: 44px;
+    max-width: min(240px, 60vw);
+  }
+  .nav-toggle-btn {
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: auto;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.35);
+    margin-right: var(--spacing-base, 0.75rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color, #2c5aa0);
+    color: #fff;
+    border: 0;
+    cursor: pointer;
+    font-size: 1.9rem;
+    line-height: 1;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+  .nav-toggle-btn:active { transform: scale(0.9); }
+  .nav-toggle-btn:hover,
+  .nav-toggle-btn:focus-visible {
+    background: var(--primary-dark, #1e3a6f);
+    outline: none;
+  }
+  .nav-toggle-btn span {
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
   .nav-toggle-btn span:nth-child(1){ transform:translateY(-6px); }
   .nav-toggle-btn span:nth-child(3){ transform:translateY(6px); }
   .nav-toggle-btn[aria-expanded="true"] span:nth-child(1){ transform:rotate(45deg); }
@@ -45,7 +115,6 @@
 
 /* Desktop mantém estilo já definido em style.css, apenas garante display flex */
 @media (min-width: 769px){
-  .nav-toggle-btn { display:none !important; }
   .nav-menu { display:flex; }
 }
 

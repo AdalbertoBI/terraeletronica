@@ -1,0 +1,93 @@
+{
+  "cache": {
+    "name": "terra-eletronica-cache",
+    "version_check_interval": 1800000,
+    "notification_timeout": 10000,
+    "offline_fallback": "/404.html",
+    "update_strategy": "notify_user",
+    "debug_mode": false
+  },
+  "assets": {
+    "critical": [
+      "/",
+      "/index.html",
+      "/assets/css/style.css",
+      "/assets/css/index.css",
+      "/assets/js/main.js",
+      "/assets/js/index.js"
+    ],
+    "static": [
+      "/manuais.html",
+      "/404.html",
+      "/assets/css/navigation-responsive.css",
+  "/assets/js/nav.js",
+      "/assets/css/mobile-menu.css",
+      "/assets/css/manuais.css",
+      "/assets/css/404.css",
+      "/assets/js/nav-responsive.js",
+  "/assets/templates/nav.html",
+      "/assets/js/mobile-menu-simple.js",
+      "/assets/js/manuais.js",
+      "/assets/js/404.js"
+    ],
+    "pages": [
+      "/produtos/big-ball-mouse.html",
+      "/produtos/instrumentos-midi.html",
+      "/produtos/lupa-bolinha.html",
+      "/produtos/roller-mouse.html",
+      "/produtos/sensory-musical.html",
+      "/produtos/tecnologia-assistiva.html",
+      "/produtos/biblia-eletronica.html",
+      "/produtos/instrumentos/big-kbd-25.html",
+      "/produtos/instrumentos/board-bells.html",
+      "/produtos/instrumentos/board-som.html",
+      "/produtos/instrumentos/giro-som-09.html",
+      "/produtos/instrumentos/musical-beam-05.html"
+    ],
+    "extensions_to_cache": [
+      ".html",
+      ".css",
+      ".js",
+      ".png",
+      ".jpg",
+      ".jpeg",
+      ".gif",
+      ".svg",
+      ".webp",
+      ".pdf",
+      ".ico"
+    ],
+    "exclude_patterns": [
+      "/admin/",
+      "/temp/",
+      "/.git/",
+      "/node_modules/",
+      "*.log",
+      "*.tmp"
+    ]
+  },
+  "notifications": {
+    "enabled": true,
+    "auto_dismiss": true,
+    "dismiss_timeout": 10000,
+    "position": "top-right",
+    "style": {
+      "background": "#2c3e50",
+      "color": "#ffffff",
+      "border_radius": "8px",
+      "shadow": "0 4px 12px rgba(0,0,0,0.3)"
+    }
+  },
+  "versioning": {
+    "format": "semver",
+    "auto_increment": "patch",
+    "track_changes": true,
+    "changelog_enabled": true
+  },
+  "performance": {
+    "preload_critical": true,
+    "lazy_load_images": true,
+    "compress_responses": true,
+    "cache_first_strategy": true
+  }
+}

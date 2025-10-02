@@ -11,10 +11,7 @@
   body, html {
     overflow-x: hidden !important;
     width: 100% !important;
-    /* Performance optimizations for mobile */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
+    /* Evitar transformações que afetem elementos fixos como o header */
   }
   
   /* Ensure proper stacking context */
@@ -39,6 +36,11 @@
     /* Ensure carousel doesn't exceed viewport */
     min-width: 0;
     contain: layout;
+    touch-action: pan-x;
+    /* Ensure proper interaction */
+    pointer-events: auto;
+    -webkit-user-select: none;
+    user-select: none;
   }
   
   /* Hero content mobile improvements */
@@ -67,13 +69,6 @@
     touch-action: pan-x pan-y;
   }
   
-  .carousel-track-inner {
-    touch-action: pan-x;
-    /* Ensure proper interaction */
-    pointer-events: auto;
-    -webkit-user-select: none;
-    user-select: none;
-  }
   
   /* Disable hover effects on mobile to prevent performance issues */
   .produto-card:hover,
@@ -329,6 +324,11 @@
     margin-bottom: 1rem;
   }
 }
+
+  /* Evita deslocamento vertical dos cards durante a animação inicial */
+  .produtos-grid .produto-card[data-aos="fade-up"] {
+    --aos-translate-distance: 0px;
+  }
 
 /* Lightbox para imagens do carrossel de notícias */
 .lightbox {
