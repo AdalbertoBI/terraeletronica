@@ -1,4 +1,6 @@
-// Tabelas estáticconst DOWNLOADS = [
+// Tabelas estáticas. Atualize-as se adicionar/remover arquivos nas pastas.
+
+const DOWNLOADS = [
   {
     path: 'https://drive.google.com/uc?export=download&id=1wONtvPnWPAlJBuCYoyUUqR7ihRrdaOi3',
     name: 'Lupa Bolinha - Software de Ampliação para Windows',
@@ -23,7 +25,7 @@
     name: 'PARTITURA GRÁTIS SINOS - CARLOS.pdf',
     type: 'pdf'
   }
-];-as se adicionar/remover arquivos nas pastas.
+];
 
 const MANUAIS = [
   { path: 'Manuais/Midi Player Config.pdf', name: 'Midi Player Config.pdf', type: 'pdf' },
@@ -41,19 +43,6 @@ const MANUAIS = [
   { path: 'Manuais/Manual Big KBD.pdf', name: 'Manual Big KBD.pdf', type: 'pdf' }
 ];
 
-const DOWNLOADS = [
-  {
-    path: 'download/PDF- PARTITURAS GRÁTIS SINOS - MARCELO NELLIS.pdf',
-    name: 'PDF- PARTITURAS GRÁTIS SINOS - MARCELO NELLIS.pdf',
-    type: 'pdf'
-  },
-  {
-    path: 'download/PARTITURA GRÁTIS SINOS - CARLOS.pdf',
-    name: 'PARTITURA GRÁTIS SINOS - CARLOS.pdf',
-    type: 'pdf'
-  }
-];
-
 function getIcon(type) {
   switch (type) {
     case 'pdf': return '<i class="far fa-file-pdf" aria-hidden="true"></i>';
@@ -66,11 +55,13 @@ function getIcon(type) {
 function renderDownloads(tipo) {
   const list = document.getElementById('downloadsList');
   if (!list) return;
+  
   const data = tipo === 'manual' ? MANUAIS : DOWNLOADS;
   if (!data.length) {
     list.innerHTML = '<p>Nenhum arquivo disponível no momento.</p>';
     return;
   }
+  
   list.innerHTML = data.map(file => {
     const encoded = file.path.startsWith('http') ? file.path : encodeURI(file.path);
     const isExternal = file.path.startsWith('http');
@@ -121,7 +112,7 @@ function initTabs() {
   tabManual?.addEventListener('click', () => selectTab('manual'));
   tabDownload?.addEventListener('click', () => selectTab('download'));
 
-  // inicial
+  // Seleção inicial
   selectTab(tipo);
 }
 
