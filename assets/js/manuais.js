@@ -1,4 +1,29 @@
-// Tabelas estáticas. Atualize-as se adicionar/remover arquivos nas pastas.
+// Tabelas estáticconst DOWNLOADS = [
+  {
+    path: 'https://drive.google.com/uc?export=download&id=1wONtvPnWPAlJBuCYoyUUqR7ihRrdaOi3',
+    name: 'Lupa Bolinha - Software de Ampliação para Windows',
+    type: 'zip',
+    size: '~153 MB',
+    description: 'Software de lupa eletrônica para Windows com ampliação de 2x a 32x'
+  },
+  {
+    path: 'https://drive.google.com/uc?export=download&id=1uT8LLCdpnRtJIwVfZ-VwU7d0kIkdwYSr',
+    name: 'MobiLupa - Aplicativo de Lupa para Android',
+    type: 'apk',
+    size: '~5 MB',
+    description: 'Aplicativo que usa a câmera do dispositivo como lupa eletrônica'
+  },
+  {
+    path: 'download/PDF- PARTITURAS GRÁTIS SINOS - MARCELO NELLIS.pdf',
+    name: 'PDF- PARTITURAS GRÁTIS SINOS - MARCELO NELLIS.pdf',
+    type: 'pdf'
+  },
+  {
+    path: 'download/PARTITURA GRÁTIS SINOS - CARLOS.pdf',
+    name: 'PARTITURA GRÁTIS SINOS - CARLOS.pdf',
+    type: 'pdf'
+  }
+];-as se adicionar/remover arquivos nas pastas.
 
 const MANUAIS = [
   { path: 'Manuais/Midi Player Config.pdf', name: 'Midi Player Config.pdf', type: 'pdf' },
@@ -33,6 +58,7 @@ function getIcon(type) {
   switch (type) {
     case 'pdf': return '<i class="far fa-file-pdf" aria-hidden="true"></i>';
     case 'zip': return '<i class="far fa-file-archive" aria-hidden="true"></i>';
+    case 'apk': return '<i class="fab fa-android" aria-hidden="true"></i>';
     default: return '<i class="far fa-file" aria-hidden="true"></i>';
   }
 }
@@ -46,17 +72,23 @@ function renderDownloads(tipo) {
     return;
   }
   list.innerHTML = data.map(file => {
-    const encoded = encodeURI(file.path);
+    const encoded = file.path.startsWith('http') ? file.path : encodeURI(file.path);
+    const isExternal = file.path.startsWith('http');
+    const sizeInfo = file.size ? `<span class="file-size">${file.size}</span>` : '';
+    const description = file.description ? `<div class="file-description">${file.description}</div>` : '';
+    
     return `
-      <div class="download-card">
+      <div class="download-card ${file.type}">
         ${getIcon(file.type)}
         <div class="download-meta">
           <div class="download-name">${file.name}</div>
+          ${sizeInfo}
+          ${description}
           <div class="download-actions">
-            <a href="${encoded}" target="_blank" rel="noopener" aria-label="Abrir ${file.name}">
+            ${!isExternal ? `<a href="${encoded}" target="_blank" rel="noopener" aria-label="Abrir ${file.name}">
               <i class="fas fa-eye" aria-hidden="true"></i> Abrir
-            </a>
-            <a href="${encoded}" download aria-label="Baixar ${file.name}">
+            </a>` : ''}
+            <a href="${encoded}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : 'download'} aria-label="Baixar ${file.name}">
               <i class="fas fa-download" aria-hidden="true"></i> Baixar
             </a>
           </div>

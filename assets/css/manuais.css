@@ -70,3 +70,63 @@
 .download-actions a:hover {
   background: var(--gray-100);
 }
+
+/* Estilos para os novos elementos de download */
+.file-size {
+  display: inline-block;
+  background: var(--primary-50, #E0F2F1);
+  color: var(--primary-700, #00695C);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.file-description {
+  color: var(--gray-600);
+  font-size: 0.9rem;
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+/* Estilos específicos por tipo de arquivo */
+.download-card.zip {
+  border-left: 4px solid #FF9800;
+}
+
+.download-card.apk {
+  border-left: 4px solid #4CAF50;
+}
+
+.download-card.pdf {
+  border-left: 4px solid #F44336;
+}
+
+/* Ícones específicos por tipo */
+.download-card.zip i {
+  color: #FF9800;
+}
+
+.download-card.apk i {
+  color: #4CAF50;
+}
+
+.download-card.pdf i {
+  color: #F44336;
+}
+
+/* Responsividade para dispositivos menores */
+@media (max-width: 640px) {
+  .download-actions {
+    flex-direction: column;
+  }
+  
+  .download-actions a {
+    justify-content: center;
+  }
+  
+  .downloads-list {
+    grid-template-columns: 1fr;
+  }
+}
