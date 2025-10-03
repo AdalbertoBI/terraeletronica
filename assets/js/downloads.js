@@ -286,7 +286,9 @@ document.head.appendChild(style);
 
 /**
  * Verificar se os arquivos existem antes de permitir download
+ * NOTA: Desabilitado para links externos (Google Drive) devido a CORS
  */
+/*
 async function checkFileExists(url) {
     try {
         const response = await fetch(url, { method: 'HEAD' });
@@ -296,9 +298,6 @@ async function checkFileExists(url) {
     }
 }
 
-/**
- * Validar links de download na inicialização
- */
 async function validateDownloadLinks() {
     const downloadLinks = document.querySelectorAll('.download-btn');
     
@@ -321,3 +320,4 @@ async function validateDownloadLinks() {
 
 // Validar links quando a página carregar
 document.addEventListener('DOMContentLoaded', validateDownloadLinks);
+*/

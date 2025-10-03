@@ -26,11 +26,15 @@ Esta pasta contém os arquivos de download dos softwares da Terra Eletrônica.
 
 ## ⚠️ Nota Importante
 
-Devido às limitações de tamanho de arquivo do GitHub (100 MB máximo), os arquivos binários são mantidos localmente no servidor e não são versionados no repositório Git.
+Devido às limitações de tamanho de arquivo do GitHub (100 MB máximo), os arquivos binários são hospedados no Google Drive e acessados através de links diretos.
+
+**Links de Download:**
+- **Lupa Bolinha:** https://drive.google.com/uc?export=download&id=1wONtvPnWPAlJBuCYoyUUqR7ihRrdaOi3
+- **MobiLupa:** https://drive.google.com/uc?export=download&id=1uT8LLCdpnRtJIwVfZ-VwU7d0kIkdwYSr
 
 Para acessar os downloads:
-- **Site em produção:** `www.terraeletronica.com.br/downloads/`
-- **Desenvolvimento local:** Coloque os arquivos nesta pasta
+- **Site em produção:** `www.terraeletronica.com.br/downloads.html`
+- **Google Drive:** Links diretos implementados na página
 
 ## 🔧 Para Desenvolvedores
 
