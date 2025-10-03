@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Modal - Terra Eletrônica</title>
+    <link rel="stylesheet" href="assets/css/partituras-interativas.css">
+    <style>
+        body {
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .debug-info {
+            background: #333;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #555;
+        }
+        .test-button {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .test-button:hover {
+            background: #45a049;
+        }
+        .test-button.problematic {
+            background: #f44336;
+        }
+        .test-button.problematic:hover {
+            background: #da190b;
+        }
+        #debug-log {
+            background: #000;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Debug Modal - Teste dos Vídeos Problemáticos</h1>
+    
+    <div class="debug-info">
+        <h2>Informações de Debug</h2>
+        <div id="debug-log"></div>
+        <button onclick="clearLog()">Limpar Log</button>
+    </div>
+
+    <div class="debug-info">
+        <h2>Testes dos Vídeos</h2>
+        <p><strong>Vídeos que funcionam:</strong></p>
+        <button class="test-button" onclick="testVideo('zGG7Eb-N8tE', 'Hino da Alegria')">Hino da Alegria (Funciona)</button>
+        <button class="test-button" onclick="testVideo('5jXbE2pEWco', 'For Elise')">For Elise (Funciona)</button>
+        
+        <p><strong>Vídeos problemáticos:</strong></p>
+        <button class="test-button problematic" onclick="testVideo('83ftjiyiz4g', 'Christmas Lights')">Christmas Lights (Problema)</button>
+        <button class="test-button problematic" onclick="testVideo('Pqbhzj8XWOU', 'Rockin Around Christmas Tree')">Rockin Around Christmas Tree (Problema)</button>
+        <button class="test-button problematic" onclick="testVideo('N48yxdRKMbM', 'Count On Me')">Count On Me (Problema)</button>
+    </div>
+
+    <!-- Modal HTML -->
+    <div id="video-modal" class="video-modal hidden">
+        <div class="video-modal-backdrop"></div>
+        <div class="video-modal-content">
+            <div class="video-modal-header">
+                <h2 id="video-modal-title">Título do Vídeo</h2>
+                <button class="video-modal-close" aria-label="Fechar modal">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="video-modal-body">
+                <div id="video-player-container" class="video-player-container">
+                    <!-- YouTube player será inserido aqui -->
+                </div>
+                <p id="video-modal-description" class="video-modal-description">
+                    Descrição do vídeo
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let debugLog = document.getElementById('debug-log');
+        
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            debugLog.textContent += `[${timestamp}] ${message}\n`;
+            debugLog.scrollTop = debugLog.scrollHeight;
+            console.log(message);
+        }
+        
+        function clearLog() {
+            debugLog.textContent = '';
+        }
+        
+        function testVideo(videoId, title) {
+            log(`=== TESTANDO VÍDEO: ${title} (${videoId}) ===`);
+            
+            // Verificar se elementos existem
+            const modal = document.getElementById('video-modal');
+            const modalTitle = document.getElementById('video-modal-title');
+            const modalDescription = document.getElementById('video-modal-description');
+            const playerContainer = document.getElementById('video-player-container');
+            
+            log(`Modal element: ${modal ? 'FOUND' : 'NOT FOUND'}`);
+            log(`Modal title: ${modalTitle ? 'FOUND' : 'NOT FOUND'}`);
+            log(`Modal description: ${modalDescription ? 'FOUND' : 'NOT FOUND'}`);
+            log(`Player container: ${playerContainer ? 'FOUND' : 'NOT FOUND'}`);
+            
+            if (!modal || !modalTitle || !modalDescription || !playerContainer) {
+                log('ERROR: Missing modal elements!');
+                return;
+            }
+            
+            // Verificar estado inicial do modal
+            log(`Modal initial classes: ${modal.className}`);
+            log(`Modal initial display: ${getComputedStyle(modal).display}`);
+            log(`Modal initial visibility: ${getComputedStyle(modal).visibility}`);
+            log(`Modal initial z-index: ${getComputedStyle(modal).zIndex}`);
+            
+            // Configurar conteúdo
+            modalTitle.textContent = title;
+            modalDescription.textContent = `Testando vídeo: ${title} (ID: ${videoId})`;
+            
+            // Criar iframe do YouTube
+            const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0`;
+            log(`Embed URL: ${embedUrl}`);
+            
+            playerContainer.innerHTML = `
+                <iframe 
+                    width="100%" 
+                    height="400" 
+                    src="${embedUrl}" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            `;
+            
+            log('Player container updated with iframe');
+            
+            // Mostrar modal
+            log('Attempting to show modal...');
+            modal.classList.remove('hidden');
+            document.body.classList.add('video-modal-open');
+            
+            // Verificar estado após mostrar
+            log(`Modal classes after show: ${modal.className}`);
+            log(`Modal display after show: ${getComputedStyle(modal).display}`);
+            log(`Modal visibility after show: ${getComputedStyle(modal).visibility}`);
+            log(`Modal z-index after show: ${getComputedStyle(modal).zIndex}`);
+            log(`Body classes: ${document.body.className}`);
+            
+            // Verificar se modal está visível
+            const rect = modal.getBoundingClientRect();
+            log(`Modal position: top=${rect.top}, left=${rect.left}, width=${rect.width}, height=${rect.height}`);
+            
+            if (rect.width === 0 || rect.height === 0) {
+                log('WARNING: Modal has zero dimensions!');
+            }
+            
+            if (rect.top < 0 || rect.left < 0) {
+                log('WARNING: Modal is positioned outside viewport!');
+            }
+            
+            log('=== TESTE CONCLUÍDO ===\n');
+        }
+        
+        // Configurar evento de fechar modal
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('video-modal');
+            const closeBtn = event.target.closest('.video-modal-close');
+            const backdrop = event.target.classList.contains('video-modal-backdrop');
+            
+            if (closeBtn || backdrop) {
+                log('Closing modal...');
+                modal.classList.add('hidden');
+                document.body.classList.remove('video-modal-open');
+                document.getElementById('video-player-container').innerHTML = '';
+            }
+        });
+        
+        // Escape key para fechar
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('video-modal');
+            if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                log('Closing modal with Escape key...');
+                modal.classList.add('hidden');
+                document.body.classList.remove('video-modal-open');
+                document.getElementById('video-player-container').innerHTML = '';
+            }
+        });
+        
+        log('Debug page loaded successfully');
+    </script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Partituras Interativas - Terra Eletrônica. Vídeos de partituras interativas para utilizar instrumentos MIDI-TA em terapias e atividades musicais.">
+    <meta name="keywords" content="partituras interativas, musicoterapia, instrumentos MIDI, terapia musical, acessibilidade, tecnologia assistiva">
+    <meta name="theme-color" content="#009688">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Partituras Interativas - Terra Eletrônica">
+    <title>Partituras Interativas - Terra Eletrônica</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logos/logo-P.png" sizes="32x32">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/navigation-responsive.css">
+    <link rel="stylesheet" href="assets/css/partituras-interativas.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar" aria-label="Navegação principal">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="index.html" aria-label="Voltar ao início">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
+                            <source type="image/webp" srcset="assets/images/logos/terra-compact.webp" media="(max-width:899px)">
+                            <source srcset="assets/images/logos/terra-horizontal.png" media="(min-width:900px)">
+                            <source srcset="assets/images/logos/terra-compact.png" media="(max-width:899px)">
+                            <img src="assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                    </a>
+                </div>
+                
+                <!-- Menu de navegação -->
+                <ul class="nav-menu" id="main-nav">
+                    <li>
+                        <a href="index.html#home" class="nav-link">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            <span>Página Inicial</span>
+                        </a>
+                    </li>
+                    <li><a href="produtos/instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
+                    <li><a href="produtos/sensory-musical.html" class="nav-link">Vibro Senrory Music</a></li>
+                    <li><a href="produtos/tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
+                    <li><a href="partituras-interativas.html" class="nav-link active">Partituras Interativas</a></li>
+                    <li><a href="downloads.html" class="nav-link">Downloads</a></li>
+                    <li><a href="manuais.html" class="nav-link">Manuais</a></li>
+                    <li><a href="index.html#sobre" class="nav-link">Sobre</a></li>
+                    <li><a href="index.html#contato" class="nav-link">Contato</a></li>
+                </ul>
+                
+                <!-- Mobile menu button -->
+                <button class="nav-toggle" type="button" aria-label="Abrir menu" data-nav-toggle>
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Drawer Mobile Navigation -->
+    <div class="nav-drawer" id="navDrawer" aria-hidden="true" aria-label="Menu Mobile">
+        <nav class="nav-drawer-panel" aria-label="Links principais">
+            <button class="nav-drawer-close" type="button" aria-label="Fechar menu" data-nav-close>&times;</button>
+            <ul class="nav-drawer-list" id="navDrawerList"></ul>
+        </nav>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero hero-partituras">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="highlight">Partituras Interativas</span><br>
+                    para <span class="highlight">Terapias</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Descubra nossa coleção de vídeos com partituras interativas especialmente desenvolvidas 
+                    para utilizar nossos instrumentos MIDI-TA em terapias e atividades musicais inclusivas.
+                </p>
+                <div class="hero-cta">
+                    <a href="#videos" class="btn btn-primary">Ver Vídeos</a>
+                    <a href="produtos/instrumentos-midi.html" class="btn btn-secondary">Conheça os Instrumentos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Informações Section -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Terapia Musical</h3>
+                    <p>Partituras especialmente adaptadas para uso terapêutico com instrumentos MIDI-TA.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-universal-access"></i>
+                    </div>
+                    <h3>Acessibilidade</h3>
+                    <p>Conteúdo desenvolvido para promover inclusão e acessibilidade musical.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Interatividade</h3>
+                    <p>Vídeos interativos que facilitam o aprendizado e a prática musical.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vídeos Section -->
+    <section id="videos" class="videos-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Playlist de Partituras Interativas</h2>
+                <p class="section-subtitle">
+                    Selecionamos manualmente vídeos com partituras interativas para apoiar suas terapias musicais
+                </p>
+            </div>
+            
+            <!-- Loading indicator -->
+            <div id="loading-indicator" class="loading-indicator">
+                <div class="spinner"></div>
+                <p>Carregando vídeos...</p>
+            </div>
+            
+            <!-- Error message -->
+            <div id="error-message" class="error-message hidden">
+                <div class="error-content">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Erro ao carregar vídeos</h3>
+                    <p>Não foi possível carregar a playlist no momento. Tente novamente mais tarde ou acesse diretamente:</p>
+                    <a href="https://www.youtube.com/playlist?list=PLsguanbRtJ5Wn2jF-ItiZtOnq-ii6MeV5" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="btn btn-primary">
+                        <i class="fab fa-youtube"></i> Ver no YouTube
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Videos grid -->
+            <div id="videos-grid" class="videos-grid" aria-live="polite">
+                <!-- Videos will be carregados aqui via JavaScript -->
+            </div>
+            
+            <!-- YouTube link -->
+            <div class="youtube-link">
+                <a href="https://www.youtube.com/playlist?list=PLsguanbRtJ5Wn2jF-ItiZtOnq-ii6MeV5" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="btn btn-outline">
+                    <i class="fab fa-youtube"></i> Ver playlist completa no YouTube
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal hidden" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
+        <div class="video-modal-content">
+            <button class="video-modal-close" type="button" aria-label="Fechar modal" data-modal-close>&times;</button>
+            <div class="video-modal-player" id="video-player-container"></div>
+            <div class="video-modal-info">
+                <h3 id="video-modal-title"></h3>
+                <p id="video-modal-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Como Usar Section -->
+    <section class="how-to-use">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Como Utilizar</h2>
+                <p class="section-subtitle">
+                    Aprenda a usar as partituras interativas com seus instrumentos MIDI-TA
+                </p>
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Escolha o Vídeo</h3>
+                    <p>Selecione uma partitura interativa adequada para sua atividade terapêutica.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Configure o Instrumento</h3>
+                    <p>Conecte e configure seu instrumento MIDI-TA seguindo as instruções do manual.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Reproduza e Interaja</h3>
+                    <p>Inicie o vídeo e use o instrumento para interagir com a partitura em tempo real.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>Desenvolva a Terapia</h3>
+                    <p>Utilize a experiência musical interativa como ferramenta terapêutica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Potencialize suas Terapias Musicais</h2>
+                <p>Conheça nossa linha completa de instrumentos MIDI-TA e descubra como a tecnologia pode transformar suas sessões terapêuticas.</p>
+                <div class="cta-buttons">
+                    <a href="produtos/instrumentos-midi.html" class="btn btn-primary">Ver Instrumentos</a>
+                    <a href="index.html#contato" class="btn btn-outline">Entre em Contato</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/logos/terra-compact.webp">
+                            <img src="assets/images/logos/terra-compact.png" alt="Terra Eletrônica" class="logo" loading="lazy">
+                        </picture>
+                        <p>Tecnologia que liberta seu potencial</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/terraeletronica/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/terraeletronica/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@terraeletronicaoficial" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://wa.me/5512991653176" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Produtos</h4>
+                    <ul>
+                        <li><a href="produtos/instrumentos-midi.html">Instrumentos MIDI-TA</a></li>
+                        <li><a href="produtos/tecnologia-assistiva.html">Tecnologia Assistiva</a></li>
+                        <li><a href="produtos/sensory-musical.html">Vibro Senrory Music</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="partituras-interativas.html">Partituras Interativas</a></li>
+                        <li><a href="downloads.html">Downloads</a></li>
+                        <li><a href="manuais.html">Manuais</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="index.html#sobre">Sobre Nós</a></li>
+                        <li><a href="index.html#contato">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Terra Eletrônica. Todos os direitos reservados.</p>
+                <p>Desenvolvido com ❤️ para promover inclusão e acessibilidade.</p>
+                <p class="footer-legal-notice" role="note">
+                    Ao continuar navegando, você concorda com o uso responsável de cookies essenciais e com o tratamento dos dados fornecidos em conformidade com o Marco Civil da Internet (Lei nº 12.965/2014) e com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018).
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <!-- Scripts -->
+    <script src="assets/js/partituras-interativas.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/nav.js" defer></script>
+    <script src="assets/js/nav-responsive.js" defer></script>
+
+    <!-- Cache Manager -->
+    <script src="assets/js/cache-manager.js" defer></script>
+</body>
+</html>

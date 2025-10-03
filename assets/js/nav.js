@@ -79,6 +79,9 @@
         <li><a href="{{BASE}}produtos/instrumentos-midi.html" class="nav-link" data-nav-id="instrumentos-midi">Instrumentos MIDI</a></li>
   <li><a href="{{BASE}}produtos/sensory-musical.html" class="nav-link" data-nav-id="sensory-musical">Vibro Senrory Music</a></li>
         <li><a href="{{BASE}}produtos/tecnologia-assistiva.html" class="nav-link" data-nav-id="tecnologia-assistiva">Tecnologia Assistiva</a></li>
+        <li><a href="{{BASE}}partituras-interativas.html" class="nav-link" data-nav-id="partituras-interativas">Partituras Interativas</a></li>
+        <li><a href="{{BASE}}downloads.html" class="nav-link" data-nav-id="downloads">Downloads</a></li>
+        <li><a href="{{BASE}}manuais.html" class="nav-link" data-nav-id="manuais">Manuais</a></li>
         <li><a href="{{BASE}}index.html#sobre" class="nav-link" data-nav-id="sobre">Sobre</a></li>
         <li><a href="{{BASE}}index.html#contato" class="nav-link" data-nav-id="contato">Contato</a></li>
       </ul>
