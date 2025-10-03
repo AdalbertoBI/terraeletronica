@@ -18,6 +18,12 @@ yarn-error.log*
 # OS Files
 .DS_Store
 Thumbs.db
+
+# Arquivos de download grandes (mantidos localmente)
+downloads/*.zip
+downloads/*.apk
+downloads/*.exe
+downloads/*.msi
 desktop.ini
 
 # Build outputs

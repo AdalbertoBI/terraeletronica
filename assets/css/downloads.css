@@ -1,0 +1,391 @@
+/* ===== DOWNLOADS PAGE STYLES ===== */
+
+/* Hero Section */
+.hero-downloads {
+  background: linear-gradient(135deg, #009688 0%, #00796B 100%);
+  color: white;
+  padding: 6rem 0 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-downloads::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.hero-title i {
+  margin-right: 1rem;
+  color: #B2DFDB;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Downloads Section */
+.downloads-section {
+  padding: 5rem 0;
+  background: #f8f9fa;
+}
+
+.downloads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+/* Download Cards */
+.download-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+  position: relative;
+  overflow: hidden;
+}
+
+.download-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #009688, #00BCD4);
+}
+
+.download-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(0, 150, 136, 0.15);
+}
+
+.download-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.download-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #009688, #00BCD4);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+}
+
+.download-icon i {
+  font-size: 1.8rem;
+  color: white;
+}
+
+.download-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+.download-content {
+  margin-bottom: 2.5rem;
+}
+
+.download-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.download-features h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.download-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.download-features li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.download-features li i {
+  color: #009688;
+  margin-right: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.download-info {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: #f0f9ff;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #0277bd;
+  border: 1px solid #e1f5fe;
+}
+
+.info-item i {
+  margin-right: 0.5rem;
+}
+
+.download-actions {
+  text-align: center;
+}
+
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #009688, #00796B);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  min-width: 200px;
+  justify-content: center;
+}
+
+.download-btn:hover {
+  background: linear-gradient(135deg, #00796B, #004D40);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 150, 136, 0.3);
+  color: white;
+  text-decoration: none;
+}
+
+.download-btn i {
+  margin-right: 0.8rem;
+}
+
+.download-note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.download-note i {
+  margin-right: 0.5rem;
+  color: #ff9800;
+}
+
+/* Downloads Info */
+.downloads-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.info-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid #009688;
+}
+
+.info-box h3 {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.info-box h3 i {
+  margin-right: 0.8rem;
+  color: #009688;
+}
+
+.info-box p {
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+.info-box .link {
+  color: #009688;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.info-box .link:hover {
+  color: #00796B;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-downloads {
+    padding: 4rem 0 3rem;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .downloads-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .download-card {
+    padding: 2rem;
+  }
+  
+  .download-header {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .download-icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+  
+  .download-info {
+    justify-content: center;
+  }
+  
+  .info-item {
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .download-card {
+    padding: 1.5rem;
+  }
+  
+  .download-btn {
+    width: 100%;
+    min-width: unset;
+  }
+  
+  .downloads-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .info-box {
+    padding: 1.5rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .download-card,
+  .download-btn,
+  .hero-downloads::before {
+    transition: none;
+  }
+  
+  .download-card:hover {
+    transform: none;
+  }
+  
+  .download-btn:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .download-card {
+    border: 2px solid #333;
+  }
+  
+  .download-btn {
+    border: 2px solid transparent;
+  }
+  
+  .download-btn:hover {
+    border-color: #fff;
+  }
+}
+
+/* Print styles */
+@media print {
+  .hero-downloads {
+    background: none;
+    color: #333;
+  }
+  
+  .download-btn {
+    background: none;
+    color: #333;
+    border: 2px solid #333;
+  }
+  
+  .download-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
