@@ -28,6 +28,18 @@
   const siteRootUrl = new URL('../', assetsRootUrl);
   const siteRootPath = (siteRootUrl.pathname.endsWith('/') ? siteRootUrl.pathname : `${siteRootUrl.pathname}/`).replace(/\\/g, '/');
   const templateUrl = new URL('templates/nav.html', assetsRootUrl).href;
+  const footerScriptUrl = new URL('footer.js', scriptUrl).href;
+
+  const ensureFooterLoader = () => {
+    if (document.querySelector('script[data-terra-footer-loader]')) {
+      return;
+    }
+    const loader = document.createElement('script');
+    loader.src = footerScriptUrl;
+    loader.defer = true;
+    loader.dataset.terraFooterLoader = 'true';
+    document.head.appendChild(loader);
+  };
 
   const computeBasePath = () => {
     const currentPath = window.location.pathname.replace(/\\/g, '/');
@@ -49,6 +61,49 @@
   };
 
   const basePath = computeBasePath();
+
+  let headerResizeObserver = null;
+  let headerResizeHandler = null;
+
+  const setHeaderOffset = (headerEl) => {
+    if (!headerEl) {
+      return;
+    }
+    const height = Math.round(headerEl.getBoundingClientRect().height);
+    if (height > 0) {
+      document.documentElement.style.setProperty('--header-offset', `${height}px`);
+    }
+  };
+
+  const observeHeaderOffset = (headerEl) => {
+    if (!headerEl) {
+      return;
+    }
+
+    setHeaderOffset(headerEl);
+
+    if (typeof ResizeObserver !== 'undefined') {
+      if (headerResizeObserver) {
+        headerResizeObserver.disconnect();
+      }
+
+      headerResizeObserver = new ResizeObserver(() => {
+        setHeaderOffset(headerEl);
+      });
+
+      headerResizeObserver.observe(headerEl);
+    } else {
+      if (headerResizeHandler) {
+        window.removeEventListener('resize', headerResizeHandler);
+      }
+
+      headerResizeHandler = () => {
+        setHeaderOffset(headerEl);
+      };
+
+      window.addEventListener('resize', headerResizeHandler, { passive: true });
+    }
+  };
 
   const NAV_TEMPLATE_FALLBACK = `
 <div data-nav-template>
@@ -260,6 +315,8 @@
 
     enableSmoothAnchors(document);
     highlightActive(headerEl);
+    observeHeaderOffset(headerEl);
+    ensureFooterLoader();
 
     document.dispatchEvent(new CustomEvent('terra-nav-ready', {
       detail: {

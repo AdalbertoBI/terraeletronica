@@ -34,6 +34,9 @@
     <header class="header">
         <nav class="navbar" aria-label="Main Navigation">
             <div class="container">
+                <button class="nav-toggle-btn" type="button" aria-expanded="false" aria-label="Abrir menu de navegação" aria-controls="navDrawer">
+                    <span></span><span></span><span></span>
+                </button>
                 <div class="nav-brand">
                     <a href="../index.html" aria-label="Voltar ao início">
                         <picture>
@@ -49,19 +52,19 @@
                 
                 <ul class="nav-menu" id="main-nav">
                     <li>
-                        <a href="../index.html#home" class="nav-link">
+                        <a href="../index.html#home" class="nav-link" data-nav-id="home">
                             <i class="fas fa-home" aria-hidden="true"></i>
                             <span>Página Inicial</span>
                         </a>
                     </li>
-                    <li><a href="instrumentos-midi.html" class="nav-link active">Instrumentos MIDI</a></li>
-                    <li><a href="sensory-musical.html" class="nav-link">Vibro Senrory Music</a></li>
-                    <li><a href="tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
-                    <li><a href="../partituras-interativas.html" class="nav-link">Partituras Interativas</a></li>
-                    <li><a href="../downloads.html" class="nav-link">Downloads</a></li>
-                    <li><a href="../manuais.html" class="nav-link">Manuais</a></li>
-                    <li><a href="../index.html#sobre" class="nav-link">Sobre</a></li>
-                    <li><a href="../index.html#contato" class="nav-link">Contato</a></li>
+                    <li><a href="instrumentos-midi.html" class="nav-link" data-nav-id="instrumentos-midi" aria-current="page">Instrumentos MIDI</a></li>
+                    <li><a href="sensory-musical.html" class="nav-link" data-nav-id="sensory-musical">Vibro Senrory Music</a></li>
+                    <li><a href="tecnologia-assistiva.html" class="nav-link" data-nav-id="tecnologia-assistiva">Tecnologia Assistiva</a></li>
+                    <li><a href="../partituras-interativas.html" class="nav-link" data-nav-id="partituras-interativas">Partituras Interativas</a></li>
+                    <li><a href="../downloads.html" class="nav-link" data-nav-id="downloads">Downloads</a></li>
+                    <li><a href="../manuais.html" class="nav-link" data-nav-id="manuais">Manuais</a></li>
+                    <li><a href="../index.html#sobre" class="nav-link" data-nav-id="sobre">Sobre</a></li>
+                    <li><a href="../index.html#contato" class="nav-link" data-nav-id="contato">Contato</a></li>
                 </ul>
             </div>
         </nav>
@@ -73,20 +76,6 @@
             <button class="nav-drawer-close" type="button" aria-label="Fechar menu" data-nav-close>&times;</button>
             <ul class="nav-drawer-list" id="navDrawerList"></ul>
         </nav>
-    </div>
-
-    <!-- Breadcrumb -->
-    <div class="breadcrumb-wrapper">
-        <div class="container">
-            <nav class="breadcrumb" aria-label="Você está em">
-                <a href="../index.html" class="breadcrumb-link">
-                    <i class="fas fa-home" aria-hidden="true"></i>
-                    <span>Início</span>
-                </a>
-                <i class="fas fa-chevron-right breadcrumb-separator" aria-hidden="true"></i>
-                <span class="breadcrumb-current">Instrumentos NET-MIDI-T.A.</span>
-            </nav>
-        </div>
     </div>
 
     <!-- Hero Section -->

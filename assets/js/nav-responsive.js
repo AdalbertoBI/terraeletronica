@@ -130,7 +130,8 @@
         closeDrawer();
       }
     };
-    const handleResize = () => { if(window.innerWidth > 768 && isOpen){ closeDrawer(); } };
+  const MOBILE_MAX_WIDTH = 1100;
+  const handleResize = () => { if(window.innerWidth > MOBILE_MAX_WIDTH && isOpen){ closeDrawer(); } };
 
     toggleBtn.addEventListener('click', handleToggle);
     closeBtn?.addEventListener('click', handleCloseClick);

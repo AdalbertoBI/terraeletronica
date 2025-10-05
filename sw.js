@@ -1,5 +1,5 @@
-const SITE_VERSION = '1.0.0.2.7';
-const CACHE_NAME = 'terra-eletronica-cache-v2.7';
+const SITE_VERSION = '1.0.0.2.8';
+const CACHE_NAME = 'terra-eletronica-cache-v2.8';
 
 const SCOPE_URL = new URL('./', self.location);
 const resolveScopeUrl = path => {
@@ -127,22 +127,42 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Interceptar requisições
+// Interceptar requisições com estratégia híbrida
 self.addEventListener('fetch', event => {
-  // Não verifica mais a versão em cada fetch, simplificando a lógica.
-  // O navegador cuidará de verificar o sw.js em segundo plano.
+  const url = new URL(event.request.url);
+  
+  // Estratégia Network First para páginas HTML (garante conteúdo atualizado)
+  if (event.request.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(fetchResponse => {
+          // Se a resposta for válida, atualiza o cache e retorna
+          if (fetchResponse && fetchResponse.status === 200) {
+            const responseClone = fetchResponse.clone();
+            caches.open(CACHE_NAME)
+              .then(cache => cache.put(event.request, responseClone));
+          }
+          return fetchResponse;
+        })
+        .catch(() => {
+          // Se falhar, tenta buscar do cache
+          return caches.match(event.request)
+            .then(response => response || caches.match(FALLBACK_404_URL));
+        })
+    );
+    return;
+  }
+  
+  // Estratégia Cache First para recursos estáticos (CSS, JS, imagens)
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Se encontrou no cache, retorna.
         if (response) {
           return response;
         }
         
-        // Se não encontrou no cache, busca na rede
         return fetch(event.request)
           .then(fetchResponse => {
-            // Se a resposta for válida, clona e armazena no cache.
             if (fetchResponse && fetchResponse.status === 200 && shouldCache(event.request)) {
               const responseClone = fetchResponse.clone();
               caches.open(CACHE_NAME)
@@ -186,9 +206,31 @@ function shouldCache(request) {
          url.pathname.endsWith('.pdf')));
 }
 
-// Escutar mensagens dos clientes (pode ser usado para debug ou outras ações)
+// Escutar mensagens dos clientes
 self.addEventListener('message', event => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
+  }
+  
+  // Responder com a versão atual quando solicitado
+  if (event.data && event.data.type === 'GET_VERSION') {
+    event.ports[0].postMessage({ version: SITE_VERSION });
+  }
+  
+  // Forçar limpeza de cache e atualização
+  if (event.data && event.data.type === 'FORCE_UPDATE') {
+    event.waitUntil(
+      caches.keys().then(cacheNames => {
+        return Promise.all(
+          cacheNames.map(cacheName => caches.delete(cacheName))
+        );
+      }).then(() => {
+        return self.clients.matchAll();
+      }).then(clients => {
+        clients.forEach(client => {
+          client.postMessage({ type: 'CACHE_CLEARED' });
+        });
+      })
+    );
   }
 });

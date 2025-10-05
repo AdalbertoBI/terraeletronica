@@ -26,8 +26,25 @@ class CacheManager {
       const registration = await navigator.serviceWorker.register(scriptURL, { scope });
       console.log('Service Worker registrado:', registration);
 
-      // O navegador verificará automaticamente se há uma nova versão do sw.js.
-      // A lógica de atualização está agora no próprio Service Worker.
+      // Verificar atualizações periodicamente (a cada 30 minutos)
+      setInterval(() => {
+        registration.update();
+        console.log('Verificando atualizações do Service Worker...');
+      }, 30 * 60 * 1000);
+
+      // Verificar atualização imediatamente após o registro
+      registration.update();
+      
+      // Escutar mensagens do Service Worker
+      navigator.serviceWorker.addEventListener('message', event => {
+        if (event.data && event.data.type === 'SW_ACTIVATED') {
+          console.log('Service Worker ativado com sucesso');
+        }
+        if (event.data && event.data.type === 'CACHE_CLEARED') {
+          console.log('Cache limpo, recarregando página...');
+          window.location.reload();
+        }
+      });
       
     } catch (error) {
       console.error('Erro ao registrar Service Worker:', error);
@@ -108,16 +125,70 @@ class CacheManager {
     }, 5000);
   }
 
+  // Forçar atualização do site
+  async forceUpdate() {
+    try {
+      const registration = await navigator.serviceWorker.getRegistration();
+      if (registration) {
+        // Forçar verificação de atualização
+        await registration.update();
+        console.log('Verificação de atualização forçada');
+        
+        // Se houver um SW esperando, ativa-lo imediatamente
+        if (registration.waiting) {
+          registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+        }
+      }
+    } catch (error) {
+      console.error('Erro ao forçar atualização:', error);
+    }
+  }
+
   // Limpar cache manualmente (para desenvolvimento)
   async clearCache() {
-    if ('caches' in window) {
-      const cacheNames = await caches.keys();
-      await Promise.all(
-        cacheNames.map(cacheName => caches.delete(cacheName))
-      );
-      console.log('Cache limpo');
-      window.location.reload();
+    try {
+      if ('serviceWorker' in navigator) {
+        const registration = await navigator.serviceWorker.getRegistration();
+        if (registration && registration.active) {
+          registration.active.postMessage({ type: 'FORCE_UPDATE' });
+          return;
+        }
+      }
+      
+      // Fallback: limpar cache diretamente
+      if ('caches' in window) {
+        const cacheNames = await caches.keys();
+        await Promise.all(
+          cacheNames.map(cacheName => caches.delete(cacheName))
+        );
+        console.log('Cache limpo');
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error('Erro ao limpar cache:', error);
     }
+  }
+
+  // Obter versão atual do Service Worker
+  async getVersion() {
+    try {
+      const registration = await navigator.serviceWorker.getRegistration();
+      if (registration && registration.active) {
+        return new Promise((resolve) => {
+          const messageChannel = new MessageChannel();
+          messageChannel.port1.onmessage = (event) => {
+            resolve(event.data.version);
+          };
+          registration.active.postMessage(
+            { type: 'GET_VERSION' },
+            [messageChannel.port2]
+          );
+        });
+      }
+    } catch (error) {
+      console.error('Erro ao obter versão:', error);
+    }
+    return null;
   }
 }
 

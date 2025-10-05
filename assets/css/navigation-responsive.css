@@ -6,7 +6,7 @@
   display: none;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 1101px) {
   .nav-toggle-btn {
     display: none !important;
   }
@@ -24,19 +24,24 @@
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 56px;
+  max-height: clamp(44px, 6vw, 56px);
 }
 
 .navbar .nav-brand .logo {
   width: auto;
   height: auto;
   max-width: min(320px, 70vw);
-  max-height: 56px;
+  max-height: clamp(44px, 6vw, 56px);
   flex-shrink: 0;
 }
 
+.header.scrolled .nav-brand picture img,
+.header.scrolled .nav-brand .logo {
+  max-height: 48px;
+}
+
 /* Mobile primeiro */
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
   .navbar .container { position: relative; }
   .navbar .nav-brand .logo {
     height: auto;
@@ -114,11 +119,11 @@
 }
 
 /* Desktop mantém estilo já definido em style.css, apenas garante display flex */
-@media (min-width: 769px){
+@media (min-width: 1101px){
   .nav-menu { display:flex; }
 }
 
-@media (prefers-color-scheme: light) and (max-width:768px){
+@media (prefers-color-scheme: light) and (max-width:1100px){
   .nav-menu { background:rgba(250,252,255,0.9); color:#1b2330; box-shadow:0 0 0 1px rgba(0,20,40,.08),0 8px 28px -6px rgba(0,0,0,.20),0 4px 12px -2px rgba(0,0,0,.12); }
   .nav-menu .nav-link { color:#18202b; }
   .nav-menu .nav-link:hover { background:rgba(0,0,0,.06); color:var(--primary-dark,#1e3a6f); }

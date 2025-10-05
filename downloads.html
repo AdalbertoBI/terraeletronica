@@ -29,10 +29,13 @@
 </head>
 <body>
   <header class="header">
-    <nav class="navbar" aria-label="Navegação principal">
+    <nav class="navbar" aria-label="Main Navigation">
       <div class="container">
+        <button class="nav-toggle-btn" type="button" aria-expanded="false" aria-label="Abrir menu de navegação" aria-controls="navDrawer">
+          <span></span><span></span><span></span>
+        </button>
         <div class="nav-brand">
-          <a href="index.html" aria-label="Voltar ao início">
+          <a href="index.html" aria-label="Voltar para a página inicial">
             <picture>
               <source type="image/webp" srcset="assets/images/logos/terra-horizontal.webp" media="(min-width:900px)">
               <source type="image/webp" srcset="assets/images/logos/terra-compact.webp" media="(max-width:899px)">
@@ -41,32 +44,26 @@
               <img src="assets/images/logos/terra-horizontal.png" alt="Terra Eletrônica" class="logo" loading="lazy">
             </picture>
           </a>
+          <h1 class="sr-only">Terra Eletrônica</h1>
         </div>
-        
+
         <!-- Menu de navegação -->
         <ul class="nav-menu" id="main-nav">
           <li>
-            <a href="index.html#home" class="nav-link">
+            <a href="index.html#home" class="nav-link" data-nav-id="home">
               <i class="fas fa-home" aria-hidden="true"></i>
               <span>Página Inicial</span>
             </a>
           </li>
-          <li><a href="produtos/instrumentos-midi.html" class="nav-link">Instrumentos MIDI</a></li>
-          <li><a href="produtos/sensory-musical.html" class="nav-link">Vibro Senrory Music</a></li>
-          <li><a href="produtos/tecnologia-assistiva.html" class="nav-link">Tecnologia Assistiva</a></li>
-          <li><a href="partituras-interativas.html" class="nav-link">Partituras Interativas</a></li>
-          <li><a href="downloads.html" class="nav-link active">Downloads</a></li>
-          <li><a href="manuais.html" class="nav-link">Manuais</a></li>
-          <li><a href="index.html#sobre" class="nav-link">Sobre</a></li>
-          <li><a href="index.html#contato" class="nav-link">Contato</a></li>
+          <li><a href="produtos/instrumentos-midi.html" class="nav-link" data-nav-id="instrumentos-midi">Instrumentos MIDI</a></li>
+          <li><a href="produtos/sensory-musical.html" class="nav-link" data-nav-id="sensory-musical">Vibro Senrory Music</a></li>
+          <li><a href="produtos/tecnologia-assistiva.html" class="nav-link" data-nav-id="tecnologia-assistiva">Tecnologia Assistiva</a></li>
+          <li><a href="partituras-interativas.html" class="nav-link" data-nav-id="partituras-interativas">Partituras Interativas</a></li>
+          <li><a href="downloads.html" class="nav-link active" data-nav-id="downloads" aria-current="page">Downloads</a></li>
+          <li><a href="manuais.html" class="nav-link" data-nav-id="manuais">Manuais</a></li>
+          <li><a href="index.html#sobre" class="nav-link" data-nav-id="sobre">Sobre</a></li>
+          <li><a href="index.html#contato" class="nav-link" data-nav-id="contato">Contato</a></li>
         </ul>
-        
-        <!-- Botão mobile menu -->
-        <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menu" data-nav-toggle>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
       </div>
     </nav>
   </header>

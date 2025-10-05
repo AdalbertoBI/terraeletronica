@@ -57,9 +57,99 @@ html.tecnologia-assistiva .header {
   z-index: 10020;
 }
 
+/* Navbar container - mesmo comportamento de instrumentos-midi com flex responsivo */
+html.tecnologia-assistiva .navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: clamp(var(--spacing-sm), 2vw, var(--spacing-2xl));
+  row-gap: clamp(var(--spacing-sm), 1vw, var(--spacing-lg));
+}
+
+/* Logo (nav-brand) - posicionamento à esquerda com largura responsiva */
+html.tecnologia-assistiva .nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-base);
+  flex: 0 1 clamp(200px, 28vw, 320px);
+  min-width: clamp(180px, 24vw, 280px);
+  position: relative;
+  z-index: 10;
+}
+
+/* Menu de navegação - auto ajustável à largura da página */
+html.tecnologia-assistiva .nav-menu {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: clamp(var(--spacing-xs), 0.9vw, var(--spacing-lg));
+  row-gap: clamp(0.35rem, 0.6vw, 0.75rem);
+  align-items: center;
+  position: relative;
+  justify-content: flex-end;
+  margin-left: auto;
+  flex: 1 1 clamp(520px, 62vw, 860px);
+  max-width: 100%;
+  z-index: 1;
+}
+
+html.tecnologia-assistiva .nav-menu > li {
+  flex: 0 0 auto;
+}
+
+html.tecnologia-assistiva .nav-link {
+  font-size: clamp(0.92rem, 0.82rem + 0.3vw, 1.05rem);
+  padding: var(--spacing-xs) clamp(0.5rem, 0.65vw, 0.85rem);
+  white-space: nowrap;
+}
+
 @media (min-width: 769px) {
   html.tecnologia-assistiva body {
     padding-top: clamp(var(--header-height-desktop), 6vw, 120px);
+  }
+
+  html.tecnologia-assistiva .header .container {
+    max-width: 100%;
+    padding: 0 clamp(var(--spacing-base), 2.2vw, var(--spacing-xl));
+    column-gap: clamp(var(--spacing-sm), 1.6vw, var(--spacing-xl));
+    row-gap: clamp(var(--spacing-sm), 0.8vw, var(--spacing-lg));
+  }
+
+  html.tecnologia-assistiva .nav-brand {
+    margin-right: clamp(var(--spacing-sm), 1.5vw, var(--spacing-lg));
+    flex: 0 1 clamp(220px, 24vw, 320px);
+  }
+
+  html.tecnologia-assistiva .nav-menu {
+    flex: 1 1 clamp(560px, 58vw, 880px);
+    gap: clamp(0.65rem, 0.9vw, 1.25rem);
+    row-gap: clamp(0.35rem, 0.5vw, 0.6rem);
+  }
+}
+
+/* Responsividade para tablets (769px - 1100px) */
+@media (min-width: 769px) and (max-width: 1100px) {
+  html.tecnologia-assistiva .nav-brand .logo {
+    max-width: min(260px, 38vw);
+  }
+
+  html.tecnologia-assistiva .nav-menu {
+    gap: clamp(0.45rem, 0.8vw, 0.9rem);
+    row-gap: clamp(0.3rem, 0.45vw, 0.55rem);
+    flex: 1 1 100%;
+  }
+
+  html.tecnologia-assistiva .nav-link {
+    padding: var(--spacing-xs) clamp(0.4rem, 0.55vw, 0.75rem);
+    font-size: clamp(0.9rem, 0.82rem + 0.4vw, 1.02rem);
+  }
+}
+
+/* Responsividade para desktop maior */
+@media (min-width: 1101px) {
+  html.tecnologia-assistiva .navbar .container {
+    flex-wrap: nowrap;
   }
 }
 
@@ -713,6 +803,31 @@ html.tecnologia-assistiva .header {
     padding: 0.625rem 0.75rem;
     min-height: 40px;
   }
+}
+
+/* Garante que os botões em tecnologia-assistiva sejam idênticos aos de instrumentos-midi */
+html.tecnologia-assistiva .card-actions .btn-primary {
+  color: white !important;
+  background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+  border-color: transparent !important;
+}
+
+html.tecnologia-assistiva .card-actions .btn-primary:hover {
+  background: linear-gradient(135deg, #d97706, #b45309) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3) !important;
+}
+
+html.tecnologia-assistiva .card-actions .btn-outline {
+  color: var(--primary-600, #0ea5e9) !important;
+  background: transparent !important;
+  border-color: var(--primary-200, #bae6fd) !important;
+}
+
+html.tecnologia-assistiva .card-actions .btn-outline:hover {
+  background: var(--primary-50, #f0f9ff) !important;
+  border-color: var(--primary-400, #38bdf8) !important;
+  transform: translateY(-1px) !important;
 }
 
 /* Hero simples */

@@ -6,6 +6,7 @@
 html {
     font-size: 16px;
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-offset, 0px) + env(safe-area-inset-top, 0px));
 }
 
 body {
@@ -16,6 +17,45 @@ body {
     background-color: var(--white);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    touch-action: pan-y;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding-top: calc(var(--header-offset, 0px) + env(safe-area-inset-top, 0px));
+}
+
+a,
+button,
+input,
+textarea,
+select {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+    touch-action: manipulation;
+}
+
+.carousel-track,
+.videos-carousel .carousel-track,
+.noticias-carousel .carousel-track {
+    touch-action: pan-x pan-y !important;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.carousel-track-inner {
+    touch-action: pan-x !important;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    *:hover {
+        transition: none !important;
+        transform: none !important;
+    }
 }
 
 /* Container */

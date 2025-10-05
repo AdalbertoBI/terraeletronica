@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.2.7",
-  "updated": "2025-10-03",
-  "previous_version": "1.0.0.2.6",
-  "changelog": "Força atualização completa - versão 1.0.0.2.7 para garantir propagação das melhorias na página de Partituras Interativas"
+  "version": "1.0.0.2.8",
+  "updated": "2025-10-05",
+  "previous_version": "1.0.0.2.7",
+  "changelog": "Sistema de atualização automática aprimorado: Network-first para HTML, verificação periódica de atualizações a cada 30 minutos, métodos para forçar atualização e limpeza de cache, melhor controle de versão"
 }

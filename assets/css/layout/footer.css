@@ -1,0 +1,191 @@
+/* Rodapé Universal */
+.footer {
+  background: var(--gray-800);
+  color: var(--white);
+  padding: clamp(var(--spacing-3xl), 5vw, var(--spacing-4xl)) 0 clamp(var(--spacing-lg), 3vw, var(--spacing-2xl));
+  margin-top: auto;
+}
+
+.footer .logo {
+  height: clamp(44px, 5vw, 64px);
+  width: auto;
+  max-width: 260px;
+}
+
+.footer-content {
+  display: grid;
+  gap: clamp(var(--spacing-lg), 2vw, var(--spacing-2xl));
+  margin-bottom: clamp(var(--spacing-xl), 2vw, var(--spacing-2xl));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: start;
+}
+
+.footer-section--brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-base);
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-base);
+  flex-wrap: wrap;
+}
+
+.footer-brand picture {
+  flex-shrink: 0;
+}
+
+.footer-brand p {
+  margin: 0;
+  color: var(--gray-300);
+  font-size: 0.95rem;
+  flex: 1 1 220px;
+}
+
+.footer-section h4 {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+  color: var(--white);
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-section ul a {
+  color: var(--gray-400);
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+.footer-section ul a:hover,
+.footer-section ul a:focus-visible {
+  color: var(--white);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--spacing-base);
+  margin-top: var(--spacing-base);
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--gray-700);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: var(--radius-full);
+  transition: var(--transition-base);
+  font-size: 1.05rem;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  background: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 150, 136, 0.3);
+}
+
+.social-links a[aria-label="Facebook"]:hover {
+  background: #1877f2;
+}
+
+.social-links a[aria-label="Instagram"]:hover {
+  background: linear-gradient(45deg, #f56040, #e4405f, #c13584, #833ab4);
+}
+
+.social-links a[aria-label="YouTube"]:hover {
+  background: #ff0000;
+}
+
+.social-links a[aria-label="WhatsApp"]:hover {
+  background: #25d366;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--gray-700);
+  padding-top: var(--spacing-lg);
+  text-align: center;
+  color: var(--gray-400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.footer-bottom > * + * {
+  margin-top: var(--spacing-xs);
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+.footer-legal-notice {
+  max-width: 960px;
+  margin: 0 auto;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+@media (max-width: 1024px) {
+  .footer-content {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .footer-section--brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-brand {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer-brand p {
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .footer-section {
+    text-align: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding-inline: var(--spacing-base);
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-section ul li {
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .footer-bottom {
+    gap: var(--spacing-xs);
+  }
+}
