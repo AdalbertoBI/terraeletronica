@@ -1,0 +1,16 @@
+# Redirecionamentos para URLs antigas que podem existir
+
+# Páginas que podem ter mudado de nome
+/produtos.html           /                      301
+/sobre.html              /#sobre                301  
+/contato.html            /#contato              301
+/catalogo.html           /produtos/instrumentos-midi.html  301
+/manual.html             /manuais.html          301
+/download.html           /downloads.html        301
+
+# Redirecionamentos genéricos para caminhos comuns
+/produto/*               /produtos/:splat       301
+/manual/*                /manuais.html          301
+
+# Fallback para qualquer 404 - redireciona para home
+/*                       /404.html              404

@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.2.8",
-  "updated": "2025-10-05",
-  "previous_version": "1.0.0.2.7",
-  "changelog": "Sistema de atualização automática aprimorado: Network-first para HTML, verificação periódica de atualizações a cada 30 minutos, métodos para forçar atualização e limpeza de cache, melhor controle de versão"
+  "version": "1.0.0.2.9",
+  "updated": "2025-10-06",
+  "previous_version": "1.0.0.2.8",
+  "changelog": "Sistema de redirecionamento 404 implementado: Redirecionamento automático da página 404 para a home após 5 segundos, mapeamento de URLs antigas para novas páginas, interface melhorada com contador visual, fallback com meta refresh e configurações para GitHub Pages"
 }

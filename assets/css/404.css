@@ -17,7 +17,34 @@
 .error-content p { font-size: var(--font-size-lg); margin-bottom: var(--spacing-2xl); opacity: 0.9; line-height: 1.6; }
 .error-actions { display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap; }
 
+/* Redirect info styling */
+.redirect-info {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-base);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.redirect-info p {
+  margin: 0;
+  font-size: var(--font-size-base);
+  opacity: 0.9;
+}
+
+.redirect-info i {
+  margin-right: var(--spacing-sm);
+  color: var(--secondary-color);
+}
+
+#countdown {
+  font-weight: 700;
+  color: var(--secondary-color);
+  font-size: 1.2em;
+}
+
 @media (max-width: 768px) {
   .error-content h1 { font-size: 4rem; }
   .error-actions { flex-direction: column; align-items: center; }
+  .redirect-info { margin: var(--spacing-lg) 0; padding: var(--spacing-base); }
 }

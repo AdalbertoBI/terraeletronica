@@ -1,0 +1,25 @@
+# Configuração para GitHub Pages
+plugins:
+  - jekyll-redirect-from
+
+# Configurações gerais
+title: "Terra Eletrônica"
+description: "Produtos especiais para pessoas especiais"
+url: "https://adalbertobi.github.io/terraeletronica"
+baseurl: ""
+
+# Configuração para tratamento de 404
+permalink: pretty
+
+# Exclusões do processamento Jekyll
+exclude:
+  - node_modules/
+  - package.json
+  - README.md
+  - scripts/
+  - .git/
+  - .gitignore
+
+# Inclui arquivos que normalmente seriam ignorados
+include:
+  - _redirects
