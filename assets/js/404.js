@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
         countdown--;
         
         if (countdown < 0) {
-            // Redireciona para a página inicial
-            window.location.href = 'index.html';
+            // Redireciona para a página inicial usando caminho absoluto
+            window.location.href = '/';
         }
     }
     
@@ -34,26 +34,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // Fallback adicional: se por algum motivo o timer falhar, redireciona após 8 segundos
         setTimeout(function() {
             if (window.location.pathname.includes('404')) {
-                window.location.href = 'index.html';
+                window.location.href = '/';
             }
         }, 8000);
     } else {
         // Se não encontrar o elemento countdown, redireciona após 5 segundos
         setTimeout(function() {
-            window.location.href = 'index.html';
+            window.location.href = '/';
         }, 5000);
     }
     
     // Redirecionamento imediato para URLs específicas conhecidas
     const currentPath = window.location.pathname.toLowerCase();
     const redirectMap = {
-        // Mapeamento de URLs antigas para novas (adicione conforme necessário)
-        '/produtos.html': 'index.html#produtos',
-        '/sobre.html': 'index.html#sobre',
-        '/contato.html': 'index.html#contato',
-        '/catalogo.html': 'produtos/instrumentos-midi.html',
-        '/manual.html': 'manuais.html',
-        '/download.html': 'downloads.html'
+        // Mapeamento de URLs antigas para novas (usando caminhos absolutos)
+        '/produtos.html': '/#produtos',
+        '/sobre.html': '/#sobre',
+        '/contato.html': '/#contato',
+        '/catalogo.html': '/produtos/instrumentos-midi.html',
+        '/catalogos/': '/produtos/instrumentos-midi.html',
+        '/catalogos': '/produtos/instrumentos-midi.html',
+        '/manual.html': '/manuais.html',
+        '/download.html': '/downloads.html'
     };
     
     // Verifica se a URL atual tem um redirecionamento específico
