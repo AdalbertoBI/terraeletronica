@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.2.9",
+  "version": "1.0.0.3.0",
   "updated": "2025-10-06",
-  "previous_version": "1.0.0.2.8",
-  "changelog": "Sistema de redirecionamento 404 implementado: Redirecionamento automático da página 404 para a home após 5 segundos, mapeamento de URLs antigas para novas páginas, interface melhorada com contador visual, fallback com meta refresh e configurações para GitHub Pages"
+  "previous_version": "1.0.0.2.9",
+  "changelog": "Correções críticas no sistema 404: Corrigidos caminhos relativos que causavam redirecionamentos incorretos em subdiretórios antigos, implementados caminhos absolutos em todos os links e redirecionamentos JavaScript, adicionado mapeamento específico para URLs '/catalogos/', melhorada compatibilidade com WCAG removendo meta refresh, configurado idioma português-brasileiro"
 }
