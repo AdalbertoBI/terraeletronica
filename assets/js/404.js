@@ -30,6 +30,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearInterval(timer);
             }
         });
+        
+        // Fallback adicional: se por algum motivo o timer falhar, redireciona após 8 segundos
+        setTimeout(function() {
+            if (window.location.pathname.includes('404')) {
+                window.location.href = 'index.html';
+            }
+        }, 8000);
+    } else {
+        // Se não encontrar o elemento countdown, redireciona após 5 segundos
+        setTimeout(function() {
+            window.location.href = 'index.html';
+        }, 5000);
     }
     
     // Redirecionamento imediato para URLs específicas conhecidas
