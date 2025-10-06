@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.3.0",
+  "version": "1.0.0.3.1",
   "updated": "2025-10-06",
-  "previous_version": "1.0.0.2.9",
-  "changelog": "Correções críticas no sistema 404: Corrigidos caminhos relativos que causavam redirecionamentos incorretos em subdiretórios antigos, implementados caminhos absolutos em todos os links e redirecionamentos JavaScript, adicionado mapeamento específico para URLs '/catalogos/', melhorada compatibilidade com WCAG removendo meta refresh, configurado idioma português-brasileiro"
+  "previous_version": "1.0.0.3.0",
+  "changelog": "CORREÇÃO CRÍTICA de recursos estáticos na página 404: Implementados caminhos absolutos para CSS, JavaScript e imagens, resolvendo erro 404 nos assets quando acessando URLs antigas como '/catalogos/'. Todos os recursos (estilos, scripts, favicon, imagens do logo) agora carregam corretamente independente da URL acessada. Links de navegação do menu também corrigidos para caminhos absolutos."
 }
