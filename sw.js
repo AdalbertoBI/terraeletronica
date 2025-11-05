@@ -1,4 +1,4 @@
-const SITE_VERSION = '1.0.0.3.1';
+const SITE_VERSION = '1.0.0.3.2';
 const CACHE_NAME = 'terra-eletronica-cache-v3.1';
 
 const SCOPE_URL = new URL('./', self.location);
@@ -235,4 +235,5 @@ self.addEventListener('message', event => {
       })
     );
   }
+
 });
