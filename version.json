@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.3.1",
-  "updated": "2025-10-06",
-  "previous_version": "1.0.0.3.0",
-  "changelog": "CORREÇÃO CRÍTICA de recursos estáticos na página 404: Implementados caminhos absolutos para CSS, JavaScript e imagens, resolvendo erro 404 nos assets quando acessando URLs antigas como '/catalogos/'. Todos os recursos (estilos, scripts, favicon, imagens do logo) agora carregam corretamente independente da URL acessada. Links de navegação do menu também corrigidos para caminhos absolutos."
+  "version": "1.0.0.4.0",
+  "updated": "2025-11-05",
+  "previous_version": "1.0.0.3.1",
+  "changelog": "ATUALIZAÇÃO COMPLETA: Página Partituras Interativas otimizada - Adicionado vídeo em destaque como primeiro da lista (ID: 7Z0g7lIc6Z4), corrigida ordem dos passos de utilização (1. Configure o Instrumento, 2. Escolha o Vídeo), implementado hero section com mesmo estilo da página inicial, adicionados botões flutuantes de WhatsApp e Widget de Acessibilidade completo com todas as funcionalidades (aumentar/diminuir fonte, alto contraste, modo escuro, leitura em voz alta). Cache atualizado para incluir novos recursos CSS e JavaScript."
 }

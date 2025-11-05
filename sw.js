@@ -1,5 +1,5 @@
-const SITE_VERSION = '1.0.0.3.2';
-const CACHE_NAME = 'terra-eletronica-cache-v3.1';
+const SITE_VERSION = '1.0.0.4.0';
+const CACHE_NAME = 'terra-eletronica-cache-v4.0';
 
 const SCOPE_URL = new URL('./', self.location);
 const resolveScopeUrl = path => {
@@ -19,6 +19,8 @@ const STATIC_ASSETS = [
   './',
   'index.html',
   'manuais.html',
+  'partituras-interativas.html',
+  'downloads.html',
   '404.html',
   'version.json',
   '_config.yml',
@@ -28,6 +30,8 @@ const STATIC_ASSETS = [
   'assets/css/style.css',
   'assets/css/index.css',
   'assets/css/manuais.css',
+  'assets/css/partituras-interativas.css',
+  'assets/css/downloads.css',
   'assets/css/navigation-responsive.css',
   'assets/css/mobile-menu.css',
   'assets/css/404.css',
@@ -36,9 +40,13 @@ const STATIC_ASSETS = [
   'assets/js/main.js',
   'assets/js/index.js',
   'assets/js/manuais.js',
+  'assets/js/partituras-interativas.js',
+  'assets/js/downloads.js',
+  'assets/js/nav.js',
   'assets/js/nav-responsive.js',
   'assets/js/mobile-menu-simple.js',
   'assets/js/404.js',
+  'assets/js/cache-manager.js',
   
   // Imagens essenciais
   'assets/images/logos/terra-horizontal.png',

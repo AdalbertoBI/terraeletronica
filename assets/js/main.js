@@ -671,10 +671,33 @@ if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register(swUrl.pathname)
                 .then(registration => {
                     console.log('SW registered: ', registration);
+                    
+                    // Verificar atualizações periodicamente
+                    setInterval(() => {
+                        registration.update();
+                    }, 60000); // Verifica a cada 1 minuto
+                    
+                    // Detectar quando há uma nova versão esperando
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                // Nova versão disponível, ativa automaticamente
+                                console.log('Nova versão disponível, atualizando...');
+                                newWorker.postMessage({ type: 'SKIP_WAITING' });
+                            }
+                        });
+                    });
                 })
                 .catch(registrationError => {
                     console.log('SW registration failed: ', registrationError);
                 });
+                
+            // Recarregar quando o service worker for atualizado
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                console.log('Service Worker atualizado, recarregando página...');
+                window.location.reload();
+            });
         } catch (error) {
             console.log('SW registration failed: ', error);
         }

@@ -6,24 +6,6 @@
     display: none !important;
 }
 
-/* Hero Section - Específico para Partituras */
-.hero-partituras {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 70vh;
-    position: relative;
-}
-
-.hero-partituras .hero-background {
-    background-image: url('../images/banners/sala-de-musicoterapia.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.hero-partituras .hero-overlay {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
-}
-
 /* Info Section */
 .info-section {
     padding: 4rem 0;
@@ -610,18 +592,6 @@ body.video-modal-open {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .hero-partituras {
-        min-height: 60vh;
-    }
-    
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-    
     .info-grid,
     .steps-grid {
         grid-template-columns: 1fr;
@@ -683,10 +653,6 @@ body.video-modal-open {
     
     .video-thumbnail {
         aspect-ratio: 16 / 9;
-    }
-    
-    .hero-partituras {
-        min-height: 50vh;
     }
 }
 

@@ -8,6 +8,12 @@ const PARTITURAS_PLAYLIST_URL = 'https://www.youtube.com/playlist?list=PLsguanbR
 
 const PARTITURAS_STATIC_VIDEOS = [
     {
+        id: '7Z0g7lIc6Z4',
+        title: 'Vídeo de Partitura Interativa',
+        description: 'Partitura interativa para utilizar com instrumentos MIDI-TA em terapias e atividades musicais.',
+        thumbnail: 'https://img.youtube.com/vi/7Z0g7lIc6Z4/hqdefault.jpg'
+    },
+    {
         id: 'ufO4YT_J7XU',
         title: 'French Valse (Emilio Huerta) - XYLOPHONE PLAY ALONG',
         description: 'Acompanhe a valsa francesa de Emilio Huerta no xilofone e trabalhe musicalidade suave.',
