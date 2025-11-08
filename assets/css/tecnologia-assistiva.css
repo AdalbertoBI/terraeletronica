@@ -35,19 +35,20 @@
 }
 
 /* Hero overlay específico para Tecnologia Assistiva */
+
 .hero-overlay-tech {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 150, 136, 0.2) 50%, rgba(0, 0, 0, 0.4) 100%);
+  background: linear-gradient(135deg, rgba(8, 8, 8, 0.18) 0%, rgba(8, 8, 8, 0.32) 55%, rgba(8, 8, 8, 0.48) 100%);
   z-index: 2;
 }
 
 /* Hero content com glassmorphism para Tecnologia Assistiva */
 .hero-content-tech {
-  background: linear-gradient(135deg, rgba(0, 150, 136, 0.65) 0%, rgba(0, 188, 168, 0.55) 100%);
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.42) 0%, rgba(18, 18, 18, 0.32) 100%);
   padding: 4rem 3rem;
   border-radius: 20px;
   -webkit-backdrop-filter: blur(12px) saturate(180%);
@@ -427,7 +428,7 @@ html.tecnologia-assistiva .nav-link {
 }
 
 .hero-overlay-tech {
-  background: linear-gradient(135deg, rgba(0, 150, 136, 0.2) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 150, 136, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(12, 12, 12, 0.18) 0%, rgba(12, 12, 12, 0.32) 52%, rgba(12, 12, 12, 0.48) 100%);
   position: absolute;
   top: 0;
   left: 0;
@@ -488,12 +489,12 @@ html.tecnologia-assistiva .nav-link {
   left: -20px;
   right: -20px;
   bottom: -20px;
-  background: rgba(0, 150, 136, 0.15); /* Fundo semi-transparente com a cor da marca */
+  background: rgba(0, 0, 0, 0.35);
   border-radius: 15px;
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
   z-index: -1;
-  border: 1px solid rgba(0, 150, 136, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 /* Seção Em Breve com vídeo de fundo */
@@ -978,8 +979,12 @@ html.tecnologia-assistiva .card-actions .btn-outline:hover {
 
 .videos-carousel {
   position: relative;
+  width: 100%;
   max-width: 1200px;
   margin: 3rem auto 0;
+  padding: 0 clamp(1rem, 4vw, 2.5rem);
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .carousel-container {
@@ -991,7 +996,7 @@ html.tecnologia-assistiva .card-actions .btn-outline:hover {
 .carousel-track {
   display: flex;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  gap: 1.5rem;
+  gap: clamp(1rem, 3vw, 1.5rem);
   cursor: grab;
   touch-action: pan-y; /* permite rolagem vertical natural */
   will-change: transform;
@@ -1000,7 +1005,7 @@ html.tecnologia-assistiva .card-actions .btn-outline:hover {
 /* Cards de Vídeo */
 .video-card {
   flex: 0 0 auto;
-  width: 320px;
+  width: clamp(240px, 60vw, 320px);
   background: white;
   border-radius: 12px;
   overflow: hidden;
@@ -1153,11 +1158,11 @@ html.tecnologia-assistiva .card-actions .btn-outline:hover {
 }
 
 .carousel-btn-prev {
-  left: -24px;
+  left: clamp(0.5rem, 2.5vw, 1.5rem);
 }
 
 .carousel-btn-next {
-  right: -24px;
+  right: clamp(0.5rem, 2.5vw, 1.5rem);
 }
 
 /* Indicadores */
@@ -1338,10 +1343,6 @@ html.tecnologia-assistiva .card-actions .btn-outline:hover {
     padding: 3rem 0;
   }
   
-  .video-card {
-    width: 280px;
-  }
-  
   .carousel-btn {
     width: 40px;
     height: 40px;
@@ -1349,11 +1350,11 @@ html.tecnologia-assistiva .card-actions .btn-outline:hover {
   }
   
   .carousel-btn-prev {
-    left: -20px;
+    left: clamp(0.5rem, 5vw, 1rem);
   }
   
   .carousel-btn-next {
-    right: -20px;
+    right: clamp(0.5rem, 5vw, 1rem);
   }
   
   .modal-content {

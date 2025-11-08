@@ -1,4 +1,4 @@
-const SITE_VERSION = '1.0.0.4.0';
+const SITE_VERSION = '1.0.0.4.1';
 const CACHE_NAME = 'terra-eletronica-cache-v4.0';
 
 const SCOPE_URL = new URL('./', self.location);
