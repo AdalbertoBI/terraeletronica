@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.4.1",
-  "updated": "2025-11-05",
-  "previous_version": "1.0.0.3.1",
-  "changelog": "ATUALIZAÇÃO COMPLETA: Página Partituras Interativas otimizada - Adicionado vídeo em destaque como primeiro da lista (ID: 7Z0g7lIc6Z4), corrigida ordem dos passos de utilização (1. Configure o Instrumento, 2. Escolha o Vídeo), implementado hero section com mesmo estilo da página inicial, adicionados botões flutuantes de WhatsApp e Widget de Acessibilidade completo com todas as funcionalidades (aumentar/diminuir fonte, alto contraste, modo escuro, leitura em voz alta). Cache atualizado para incluir novos recursos CSS e JavaScript."
+  "version": "1.0.0.5.0",
+  "updated": "2025-12-10",
+  "previous_version": "1.0.0.4.1",
+  "changelog": "ATUALIZAÇÃO: Página Vibro Sensory Musical completamente reformulada - Novo Hero Section com gatilhos mentais, seção de Descobertas Científicas com 6 referências acadêmicas verificadas, seção de Benefícios com 8 estudos científicos, seção de Uso Profissional (TEA, TDAH, Neurodiversidade) com 6 referências, 3 depoimentos em vídeo (Wagner Brito, Marcelo Nellis, Bruno Malta), CTAs estratégicos para conversão, carrossel de vídeos demonstrativos. Todas as referências acadêmicas revisadas e validadas."
 }
