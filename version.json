@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.5.1",
+  "version": "1.0.0.5.2",
   "updated": "2025-12-10",
-  "previous_version": "1.0.0.5.0",
-  "changelog": "Ajustes manuais na página Sensory Musical."
+  "previous_version": "1.0.0.5.1",
+  "changelog": "Corrigido: imagem TVS22.png (case-sensitive), removido video de fundo inexistente."
 }

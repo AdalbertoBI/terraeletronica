@@ -1,5 +1,5 @@
-const SITE_VERSION = '1.0.0.5.1';
-const CACHE_NAME = 'terra-eletronica-cache-v5.1';
+const SITE_VERSION = '1.0.0.5.2';
+const CACHE_NAME = 'terra-eletronica-cache-v5.2';
 
 const SCOPE_URL = new URL('./', self.location);
 const resolveScopeUrl = path => {
