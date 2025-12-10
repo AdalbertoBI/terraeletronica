@@ -3699,3 +3699,66 @@ html {
     font-size: 0.95rem;
   }
 }
+
+/* =============================================
+   Carrossel Mobile - Touch/Swipe Support
+   ============================================= */
+@media (max-width: 768px) {
+  .videos-carousel {
+    padding: 0 0.5rem;
+  }
+  
+  .carousel-container {
+    overflow: visible;
+  }
+  
+  .carousel-track {
+    touch-action: pan-x;
+    scroll-behavior: smooth;
+    gap: 1rem;
+  }
+  
+  .video-card {
+    width: 85vw;
+    max-width: 320px;
+    flex-shrink: 0;
+  }
+  
+  /* Botões de navegação maiores para touch */
+  .carousel-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+  }
+  
+  .carousel-btn-prev {
+    left: 0;
+  }
+  
+  .carousel-btn-next {
+    right: 0;
+  }
+  
+  /* Indicadores maiores para touch */
+  .carousel-indicators {
+    gap: 12px;
+    margin-top: 1.5rem;
+  }
+  
+  .carousel-indicators .indicator {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Telas muito pequenas */
+@media (max-width: 480px) {
+  .video-card {
+    width: 90vw;
+  }
+  
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+  }
+}

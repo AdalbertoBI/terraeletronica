@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.5.4",
+  "version": "1.0.0.5.5",
   "updated": "2025-12-10",
-  "previous_version": "1.0.0.5.3",
-  "changelog": "Atualizado texto Liberdade Total de Conteudo com plataformas de audio especializadas."
+  "previous_version": "1.0.0.5.4",
+  "changelog": "Fix: Carrossel de videos agora responde a touch/swipe em dispositivos moveis."
 }

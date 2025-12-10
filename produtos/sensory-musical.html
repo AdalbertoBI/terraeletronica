@@ -1509,10 +1509,48 @@
             });
         });
         
+        // ===== SUPORTE TOUCH/SWIPE PARA MOBILE =====
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isDragging = false;
+        
+        track.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+            isDragging = true;
+        }, { passive: true });
+        
+        track.addEventListener('touchmove', function(e) {
+            if (!isDragging) return;
+            touchEndX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        track.addEventListener('touchend', function(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            
+            const swipeThreshold = 50; // Mínimo de pixels para considerar swipe
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0 && currentIndex < maxIndex) {
+                    // Swipe para esquerda - próximo
+                    currentIndex++;
+                    updateCarousel();
+                } else if (diff < 0 && currentIndex > 0) {
+                    // Swipe para direita - anterior
+                    currentIndex--;
+                    updateCarousel();
+                }
+            }
+            
+            touchStartX = 0;
+            touchEndX = 0;
+        }, { passive: true });
+        
         // Inicializar estado
         updateCarousel();
         
-        console.log('Navegação do carrossel configurada com sucesso!');
+        console.log('Navegação do carrossel configurada com sucesso (incluindo touch)!');
     }
     </script>
 
