@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.5.2",
+  "version": "1.0.0.5.3",
   "updated": "2025-12-10",
-  "previous_version": "1.0.0.5.1",
-  "changelog": "Corrigido: imagem TVS22.png (case-sensitive), removido video de fundo inexistente."
+  "previous_version": "1.0.0.5.2",
+  "changelog": "Fix: TVS22.PNG renomeado para TVS22.png via git mv (case-sensitive fix)."
 }
