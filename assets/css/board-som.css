@@ -158,6 +158,53 @@
     transform: translateY(-1px);
 }
 
+/* Hero Benefits - dentro da hero section */
+.product-hero .hero-benefits,
+.hero-sales .hero-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.product-hero .hero-benefits .benefit-item,
+.hero-sales .hero-benefits .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.product-hero .hero-benefits .benefit-item:hover,
+.hero-sales .hero-benefits .benefit-item:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.product-hero .hero-benefits .benefit-item i,
+.hero-sales .hero-benefits .benefit-item i {
+    color: #90EE90;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(144, 238, 144, 0.5);
+}
+
+.product-hero .hero-benefits .benefit-item span,
+.hero-sales .hero-benefits .benefit-item span {
+    color: #ffffff;
+}
+
 .breadcrumb span {
     color: var(--white);
     font-family: var(--font-secondary);
@@ -785,12 +832,10 @@
     font-weight: 600;
 }
 
-/* Enhanced Final CTA */
+/* Final CTA Section */
 .final-cta {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 5rem 0;
-    text-align: center;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark, #00796b) 100%);
+    padding: 4rem 0;
     position: relative;
     overflow: hidden;
 }
@@ -802,39 +847,78 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-    animation: shimmer 15s ease-in-out infinite alternate;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
 }
 
-@keyframes shimmer {
-    0% { opacity: 0.5; }
-    100% { opacity: 1; }
+.final-cta .container {
+    position: relative;
+    z-index: 1;
 }
 
-.final-benefits {
+.final-cta .cta-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.final-cta .cta-content h2 {
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.final-cta .cta-content p {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+}
+
+.final-cta .cta-content p strong {
+    color: white;
+    font-weight: 700;
+}
+
+/* Trust Badges */
+.trust-badges {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin: 2rem 0;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
 }
 
-.final-benefit {
+.trust-badge {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
+    gap: 0.6rem;
+    background: rgba(255, 255, 255, 0.15);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+    padding: 0.8rem 1.2rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
-.final-benefit i {
-    color: var(--success-color);
-    font-size: 1.2rem;
+.trust-badge:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.trust-badge i {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.trust-badge span {
+    white-space: nowrap;
 }
 
 /* Accessibility Enhancements */
@@ -874,6 +958,27 @@
     .final-buttons {
         flex-direction: column;
         align-items: center;
+    }
+    
+    .final-cta {
+        padding: 3rem 1rem;
+    }
+    
+    .final-cta .cta-content h2 {
+        font-size: 1.6rem;
+    }
+    
+    .final-cta .cta-content p {
+        font-size: 1rem;
+    }
+    
+    .trust-badges {
+        gap: 0.75rem;
+    }
+    
+    .trust-badge {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
     }
     
     .final-benefits {

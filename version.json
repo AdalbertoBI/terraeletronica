@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.5.7",
-  "updated": "2025-12-10",
-  "previous_version": "1.0.0.5.6",
-  "changelog": "Renomeado produto ARS-22 de Almofadas Ribas Sensory para Almofadas Clinica Sensory."
+  "version": "1.0.0.5.8",
+  "updated": "2025-12-12",
+  "previous_version": "1.0.0.5.7",
+  "changelog": "Correção de referências acadêmicas em instrumentos-midi.html (Rushton 2022, Särkämö 2018)."
 }

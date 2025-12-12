@@ -118,6 +118,53 @@
     font-weight: 400;
 }
 
+/* Hero Benefits - dentro da hero section */
+.product-hero .hero-benefits,
+.hero-sales .hero-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.product-hero .hero-benefits .benefit-item,
+.hero-sales .hero-benefits .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 0.75rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.product-hero .hero-benefits .benefit-item:hover,
+.hero-sales .hero-benefits .benefit-item:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.product-hero .hero-benefits .benefit-item i,
+.hero-sales .hero-benefits .benefit-item i {
+    color: #90EE90;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(144, 238, 144, 0.5);
+}
+
+.product-hero .hero-benefits .benefit-item span,
+.hero-sales .hero-benefits .benefit-item span {
+    color: #ffffff;
+}
+
 /* Enhanced Product Highlights */
 .breadcrumb {
     margin-bottom: 3rem;
@@ -338,43 +385,50 @@
 }
 
 .benefit-item {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 150, 136, 0.2);
+    background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+    border: 2px solid rgba(0, 150, 136, 0.15);
     border-radius: 20px;
     padding: 2rem;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    box-shadow: 
+        0 4px 20px rgba(0, 0, 0, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .benefit-item::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
+    left: 0;
+    width: 4px;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.5s ease;
+    background: var(--gradient-primary);
+    border-radius: 20px 0 0 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .benefit-item:hover::before {
-    left: 100%;
+    opacity: 1;
 }
 
 .benefit-item:hover {
     border-color: var(--primary-color);
     box-shadow: 
-        0 25px 50px rgba(0, 150, 136, 0.2),
-        0 0 30px rgba(0, 150, 136, 0.1);
-    transform: none;
+        0 15px 40px rgba(0, 150, 136, 0.15),
+        0 5px 15px rgba(0, 0, 0, 0.08);
+    transform: translateY(-5px);
 }
 
 .benefit-icon {
     width: 70px;
+    min-width: 70px;
     height: 70px;
+    min-height: 70px;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     background: var(--gradient-primary);
     display: flex;
@@ -383,19 +437,43 @@
     margin-bottom: 1.5rem;
     font-size: 1.8rem;
     color: white;
-    box-shadow: 0 10px 25px rgba(0, 150, 136, 0.3);
-    animation: iconGlow 3s ease-in-out infinite;
+    box-shadow: 
+        0 8px 25px rgba(0, 150, 136, 0.35),
+        0 4px 10px rgba(0, 150, 136, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@keyframes iconGlow {
-    0%, 100% {
-        box-shadow: 0 10px 25px rgba(0, 150, 136, 0.3);
-        transform: none;
-    }
-    50% {
-        box-shadow: 0 15px 30px rgba(0, 150, 136, 0.45);
-        transform: none;
-    }
+.benefit-icon i {
+    font-size: 1.8rem;
+    line-height: 1;
+    width: auto;
+    height: auto;
+}
+
+.benefit-item:hover .benefit-icon {
+    transform: scale(1.1);
+    box-shadow: 
+        0 12px 30px rgba(0, 150, 136, 0.4),
+        0 6px 15px rgba(0, 150, 136, 0.25);
+}
+
+.benefit-content h3 {
+    color: var(--dark-color);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.benefit-content p {
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.benefit-content p strong {
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 /* Enhanced Specifications */
