@@ -9,15 +9,17 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Instrumentos NET-MIDI-T.A. - Terra Eletrônica">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.terraeletronica.com.br/produtos/instrumentos-midi.html">
     <title>Instrumentos NET-MIDI-T.A. | Terra Eletrônica</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="../assets/images/logos/logo-P.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/assets/images/logos/logo-P.png" sizes="32x32">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="/../assets/css/style.css">
-    <link rel="stylesheet" href="/../assets/css/navigation-responsive.css">
-    <link rel="stylesheet" href="/../assets/css/instrumentos-midi-grid.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/navigation-responsive.css">
+    <link rel="stylesheet" href="/assets/css/instrumentos-midi-grid.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -1059,267 +1061,12 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/nav.js" defer></script>
-    <script src="../assets/js/nav-responsive.js" defer></script>
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/nav.js" defer></script>
+    <script src="/assets/js/nav-responsive.js" defer></script>
     
-    <!-- Sistema de Modal de Vídeo Inline -->
-    <script>
-    console.log('Iniciando sistema de modal inline...');
+    <!-- Sistema de Modal de Vídeo Inline removido (lógica está no main.js) -->
     
-    document.addEventListener('DOMContentLoaded', function() {
-        // Marcar como inicializado
-        window.videoCarouselInitialized = true;
-        
-        // Elementos do modal
-        const modal = document.getElementById('videoModal');
-        const modalPlayer = document.getElementById('modalVideoPlayer');
-        const modalClose = document.getElementById('modalClose');
-        const modalBackdrop = document.getElementById('modalBackdrop');
-        const videoCards = document.querySelectorAll('.video-card');
-        
-        console.log('Elementos encontrados:', {
-            modal: !!modal,
-            modalPlayer: !!modalPlayer,
-            modalClose: !!modalClose,
-            modalBackdrop: !!modalBackdrop,
-            videoCards: videoCards.length
-        });
-        
-        if (!modal || !modalPlayer) {
-            console.error('Elementos essenciais não encontrados');
-            return;
-        }
-        
-        // Função para abrir modal
-        function openModal(videoId) {
-            console.log('Abrindo modal com ID:', videoId);
-            
-            let embedUrl;
-            const videoContainer = modalPlayer.parentElement;
-            const modalContent = modal.querySelector('.modal-content');
-            
-            // Limpar classes anteriores
-            videoContainer.classList.remove('instagram');
-            modalContent.classList.remove('instagram');
-            
-            // Definir URL do embed
-            if (videoId.includes('instagram.com')) {
-                const cleanUrl = videoId.split('?')[0];
-                embedUrl = cleanUrl + 'embed/?cr=1&v=1';
-                videoContainer.classList.add('instagram');
-                modalContent.classList.add('instagram');
-            } else {
-                embedUrl = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
-            }
-            
-            console.log('URL do embed:', embedUrl);
-            
-            // Definir src e mostrar modal
-            modalPlayer.src = embedUrl;
-            modal.classList.add('active');
-            modal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-            
-            // Focar no botão fechar
-            setTimeout(() => modalClose && modalClose.focus(), 100);
-        }
-        
-        // Função para fechar modal
-        function closeModal() {
-            console.log('Fechando modal');
-            modal.classList.remove('active');
-            modal.setAttribute('aria-hidden', 'true');
-            modalPlayer.src = '';
-            document.body.style.overflow = '';
-        }
-        
-        // Configurar event listeners para cards
-        videoCards.forEach((card, index) => {
-            const videoId = card.getAttribute('data-video-id');
-            console.log(`Card ${index + 1}: ${videoId}`);
-            
-            card.addEventListener('click', function(e) {
-                e.preventDefault();
-                console.log('Clique no card detectado');
-                openModal(videoId);
-            });
-            
-            card.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    console.log('Tecla Enter/Space no card detectada');
-                    openModal(videoId);
-                }
-            });
-        });
-        
-        // Event listeners para fechar modal
-        if (modalClose) {
-            modalClose.addEventListener('click', closeModal);
-        }
-        
-        if (modalBackdrop) {
-            modalBackdrop.addEventListener('click', closeModal);
-        }
-        
-        // Fechar com ESC
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && modal.classList.contains('active')) {
-                closeModal();
-            }
-        });
-        
-        console.log('Sistema de modal configurado com sucesso!');
-        
-        // Inicializar carrossel de navegação
-        initCarouselNavigation();
-    });
-    
-    // Função para controlar navegação do carrossel
-    function initCarouselNavigation() {
-        const track = document.getElementById('carouselTrack');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const indicators = document.querySelectorAll('.indicator');
-        const videoCards = document.querySelectorAll('.video-card');
-        
-        console.log('Inicializando navegação do carrossel:', {
-            track: !!track,
-            prevBtn: !!prevBtn,
-            nextBtn: !!nextBtn,
-            indicators: indicators.length,
-            videoCards: videoCards.length
-        });
-        
-        if (!track || !prevBtn || !nextBtn) {
-            console.error('Elementos do carrossel não encontrados');
-            return;
-        }
-        
-        let currentIndex = 0;
-        const totalCards = videoCards.length;
-        const cardsPerView = 3; // Número de cards visíveis por vez
-        const maxIndex = Math.max(0, totalCards - cardsPerView);
-        
-        console.log(`Carrossel configurado: ${totalCards} cards, máximo ${cardsPerView} por visualização`);
-        
-        // Função para atualizar posição do carrossel
-        function updateCarousel() {
-            // Calcular baseado no tamanho real dos cards
-            const firstCard = videoCards[0];
-            if (!firstCard) return;
-            
-            const cardWidth = firstCard.offsetWidth;
-            const computedStyle = window.getComputedStyle(track);
-            const gap = parseFloat(computedStyle.gap) || 24;
-            
-            const moveDistance = cardWidth + gap;
-            const translateX = -(currentIndex * moveDistance);
-            
-            track.style.transform = `translateX(${translateX}px)`;
-            
-            // Atualizar indicadores se existirem
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
-            });
-            
-            // Atualizar estado dos botões
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex >= maxIndex;
-            
-            // Atualizar aparência dos botões
-            if (currentIndex === 0) {
-                prevBtn.style.opacity = '0.5';
-                prevBtn.style.cursor = 'not-allowed';
-            } else {
-                prevBtn.style.opacity = '1';
-                prevBtn.style.cursor = 'pointer';
-            }
-            
-            if (currentIndex >= maxIndex) {
-                nextBtn.style.opacity = '0.5';
-                nextBtn.style.cursor = 'not-allowed';
-            } else {
-                nextBtn.style.opacity = '1';
-                nextBtn.style.cursor = 'pointer';
-            }
-            
-            console.log(`Carrossel atualizado - índice: ${currentIndex}/${maxIndex}, translateX: ${translateX}px, cardWidth: ${cardWidth}px, gap: ${gap}px`);
-        }
-        
-        // Event listeners para botões
-        prevBtn.addEventListener('click', function() {
-            console.log('Botão anterior clicado');
-            if (currentIndex > 0) {
-                currentIndex--;
-                updateCarousel();
-            }
-        });
-        
-        nextBtn.addEventListener('click', function() {
-            console.log('Botão próximo clicado');
-            if (currentIndex < maxIndex) {
-                currentIndex++;
-                updateCarousel();
-            }
-        });
-        
-        // Event listeners para indicadores
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', function() {
-                console.log(`Indicador ${index} clicado`);
-                currentIndex = Math.min(index, maxIndex);
-                updateCarousel();
-            });
-        });
-        
-        // Suporte para teclado
-        document.addEventListener('keydown', function(e) {
-            if (e.target.closest('.videos-carousel')) {
-                if (e.key === 'ArrowLeft') {
-                    prevBtn.click();
-                } else if (e.key === 'ArrowRight') {
-                    nextBtn.click();
-                }
-            }
-        });
-        
-        // Suporte para touch/swipe (básico)
-        let startX = 0;
-        let isDragging = false;
-        
-        track.addEventListener('touchstart', function(e) {
-            startX = e.touches[0].clientX;
-            isDragging = true;
-        });
-        
-        track.addEventListener('touchend', function(e) {
-            if (!isDragging) return;
-            
-            const endX = e.changedTouches[0].clientX;
-            const diffX = startX - endX;
-            
-            if (Math.abs(diffX) > 50) { // mínimo de 50px para ativar swipe
-                if (diffX > 0 && currentIndex < maxIndex) {
-                    // Swipe left - próximo
-                    nextBtn.click();
-                } else if (diffX < 0 && currentIndex > 0) {
-                    // Swipe right - anterior
-                    prevBtn.click();
-                }
-            }
-            
-            isDragging = false;
-        });
-        
-        // Inicializar estado
-        updateCarousel();
-        
-        console.log('Navegação do carrossel configurada com sucesso!');
-    }
-    </script>
-    
-    <script src="../assets/js/instrumentos-midi.js"></script>
+    <script src="/assets/js/instrumentos-midi.js"></script>
 </body>
 </html>

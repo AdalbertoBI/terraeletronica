@@ -1254,10 +1254,14 @@ function initVideoCarousel() {
 
     // Adicionar indicadores de plataforma
     function addPlatformIndicators() {
+        if (!videoCards || videoCards.length === 0) return;
+
         videoCards.forEach(card => {
             const videoId = card.getAttribute('data-video-id');
             const thumbnail = card.querySelector('.video-thumbnail');
             
+            if (!thumbnail) return; // Proteção contra nulos
+
             // Remover indicador existente se houver
             const existingIndicator = thumbnail.querySelector('.platform-indicator');
             if (existingIndicator) {

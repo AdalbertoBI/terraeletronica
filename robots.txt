@@ -2,15 +2,17 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://terra-eletronica.github.io/site-oficial/sitemap.xml
+Sitemap: https://www.terraeletronica.com.br/sitemap.xml
 
 # Crawl delay
 Crawl-delay: 1
 
-# Disallow specific paths
-Disallow: /assets/
-Disallow: /*.min.js
-Disallow: /*.min.css
+# Allow assets for Google to render the page correctly
+Allow: /assets/
+Allow: /*.min.js
+Allow: /*.min.css
+
+# Disallow sensitive or system paths
 Disallow: /node_modules/
 Disallow: /package.json
 Disallow: /package-lock.json
