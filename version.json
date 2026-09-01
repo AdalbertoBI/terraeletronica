@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0.7.0",
+  "version": "1.0.0.7.1",
   "updated": "2026-09-01",
-  "previous_version": "1.0.0.6.1",
-  "changelog": "Menu Vibro Sensory Music agora abre em nova aba (vibrosensory.com.br); página sensory-musical.html vira redirecionamento."
+  "previous_version": "1.0.0.7.0",
+  "changelog": "Menu Vibro Sensory Music abre em nova aba (vibrosensory.com.br); corrige links gerados via JS (nav.js/footer.js) e remove sensory-musical do precache."
 }

@@ -1,5 +1,5 @@
-const SITE_VERSION = '1.0.0.7.0';
-const CACHE_NAME = 'terra-eletronica-cache-v7.0';
+const SITE_VERSION = '1.0.0.7.1';
+const CACHE_NAME = 'terra-eletronica-cache-v7.1';
 
 const SCOPE_URL = new URL('./', self.location);
 const resolveScopeUrl = path => {
@@ -60,7 +60,6 @@ const STATIC_ASSETS = [
   'produtos/instrumentos-midi.html',
   'produtos/lupa-bolinha.html',
   'produtos/roller-mouse.html',
-  'produtos/sensory-musical.html',
   'produtos/tecnologia-assistiva.html',
   'produtos/biblia-eletronica.html',
   
